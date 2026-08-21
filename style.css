@@ -111,8 +111,12 @@ body {
 
 .product {
   max-width: 420px;
-  margin: 0 auto;
+  margin: 0 auto 70px;
   text-align: center;
+}
+
+.product + .product {
+  margin-top: 40px;
 }
 
 .product-image {

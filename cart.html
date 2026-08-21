@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Your Cart | @Tenacious</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #0b0b0b;
+      color: #ffffff;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    .cart-page {
+      max-width: 900px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    .back-link {
+      display: inline-block;
+      color: #ffffff;
+      text-decoration: none;
+      margin-bottom: 35px;
+      opacity: 0.8;
+    }
+
+    .cart-title {
+      font-size: 36px;
+      margin-bottom: 35px;
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      padding: 20px 0;
+      border-bottom: 1px solid #2d2d2d;
+    }
+
+    .cart-item img {
+      width: 130px;
+      height: 130px;
+      object-fit: contain;
+      background: #111111;
+    }
+
+    .item-info {
+      flex: 1;
+    }
+
+    .item-info h2 {
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+
+    .item-price {
+      color: #cccccc;
+    }
+
+    .quantity {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .quantity button {
+      width: 30px;
+      height: 30px;
+      background: #ffffff;
+      color: #000000;
+      border: none;
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+    .cart-total {
+      text-align: right;
+      margin-top: 35px;
+      font-size: 24px;
+    }
+
+    .checkout-button {
+      display: block;
+      width: 100%;
+      padding: 16px;
+      margin-top: 25px;
+      background: #ffffff;
+      color: #000000;
+      text-align: center;
+      text-decoration: none;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+    }
+
+    .empty-cart {
+      color: #aaaaaa;
+      text-align: center;
+      padding: 60px 0;
+    }
+
+    @media (max-width: 600px) {
+      .cart-item {
+        gap: 15px;
+      }
+
+      .cart-item img {
+        width: 95px;
+        height: 95px;
+      }
+
+      .cart-title {
+        font-size: 30px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="cart-page">
+
+    <a href="index.html#shop" class="back-link">← Continue Shopping</a>
+
+    <h1 class="cart-title">Your Cart</h1>
+
+    <div id="cart-items"></div>
+
+    <div class="cart-total">
+      Total: $<span id="cart-total">0.00</span>
+    </div>
+
+    <button class="checkout-button" onclick="checkout()">
+      Proceed to Checkout
+    </button>
+
+  </main>
+
+  <script>
+
+    function displayCart() {
+
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+      const cartItems = document.getElementById("cart-items");
+      const cartTotal = document.getElementById("cart-total");
+
+      cartItems.innerHTML = "";
+
+      if (cart.length === 0) {
+
+        cartItems.innerHTML = `
+          <div class="empty-cart">
+            Your cart is currently empty.
+          </div>
+        `;
+
+        cartTotal.textContent = "0.00";
+
+        return;
+      }
+
+      let total = 0;
+
+      cart.forEach((item, index) => {
+
+        total += item.price * item.quantity;
+
+        cartItems.innerHTML += `
+          <div class="cart-item">
+
+            <img src="${item.image}" alt="${item.name}">
+
+            <div class="item-info">
+
+              <h2>${item.name}</h2>
+
+              <p class="item-price">$${item.price.toFixed(2)}</p>
+
+              <div class="quantity">
+
+                <button onclick="changeQuantity(${index}, -1)">−</button>
+
+                <span>${item.quantity}</span>
+
+                <button onclick="changeQuantity(${index}, 1)">+</button>
+
+              </div>
+
+            </div>
+
+          </div>
+        `;
+
+      });
+
+      cartTotal.textContent = total.toFixed(2);
+    }
+
+
+    function changeQuantity(index, amount) {
+
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+      cart[index].quantity += amount;
+
+      if (cart[index].quantity <= 0) {
+        cart.splice(index, 1);
+      }
+
+      localStorage.setItem("cart", JSON.stringify(cart));
+
+      displayCart();
+    }
+
+
+    function checkout() {
+
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+      if (cart.length === 0) {
+        alert("Your cart is empty.");
+        return;
+      }
+
+      alert("Checkout is coming next!");
+    }
+
+
+    displayCart();
+
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,286 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #111111;
+  color: #ffffff;
+  min-height: 100vh;
+}
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 90px 30px 30px;
+}
+
+.logo {
+  font-size: 48px;
+  font-weight: 600;
+  letter-spacing: 5px;
+  margin-bottom: 22px;
+}
+
+.tagline {
+  font-size: 18px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+}
+
+.intro {
+  color: #bdbdbd;
+  font-size: 16px;
+  max-width: 450px;
+  line-height: 1.7;
+}
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 18px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(17, 17, 17, 0.96);
+  border-bottom: 1px solid #2a2a2a;
+  z-index: 1000;
+}
+.brand {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.navbar nav {
+  display: flex;
+  gap: 18px;
+  position: static;
+}
+
+.navbar nav a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+
+.navbar nav a:hover {
+  opacity: 0.6;
+}
+
+.shop-button {
+  margin-top: 30px;
+  padding: 15px 32px;
+  background: #ffffff;
+  color: #111111;
+  border: 1px solid #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2.2px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.shop-button:hover {
+  background: transparent;
+  color: #ffffff;
+}
+
+.shop {
+  padding: 90px 25px;
+  text-align: center;
+  background: #181818;
+}
+
+.shop h2 {
+  font-size: 26px;
+  font-weight: 500;
+  letter-spacing: 4px;
+  margin-bottom: 40px;
+  text-transform: uppercase;
+}
+
+.product {
+  max-width: 360px;
+  margin: 0 auto;
+}
+
+.product-image {
+  min-height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #333333;
+  color: #777777;
+  letter-spacing: 2px;
+  margin-bottom: 25px;
+}
+  
+  
+  .product-image img {
+  max-width: none;
+  max-height: 100%; 
+  width: 115%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  margin: auto;
+}
+
+
+
+.product h3 {
+  font-size: 19px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  margin: 16px 0 10px;
+}
+
+.product p {
+  color: #aaaaaa;
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 8px 0 0;
+}
+
+.product .price {
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  margin: 14px 0 18px;
+}
+.product-image {
+  background: #101010;
+  border: 1px solid #2d2d2d;
+  min-height: 380px;
+  position: relative;
+  overflow: hidden;
+}
+
+.product-image::after {
+  content: "@TENACIOUS";
+  position: absolute;
+  font-size: 11px;
+  letter-spacing: 4px;
+  color: #444444;
+}
+.magazine {
+  padding: 100px 25px;
+  text-align: center;
+  background: #111111;
+  border-top: 1px solid #2a2a2a;
+}
+
+.section-label {
+  font-size: 11px;
+  letter-spacing: 4px;
+  color: #888888;
+  margin-bottom: 20px;
+}
+
+.magazine h2 {
+  font-size: 36px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+  margin-bottom: 22px;
+}
+
+.magazine-text {
+  max-width: 500px;
+  margin: 0 auto;
+  color: #aaaaaa;
+  font-size: 15px; 
+  line-height: 1.8;
+}
+.about {
+  padding: 100px 25px;
+  text-align: center;
+  background: #111111;
+  border-top: 1px solid #2a2a2a;
+}
+
+.about .section-label {
+  font-size: 11px;
+  letter-spacing: 4px;
+  color: #888888;
+  margin-bottom: 20px;
+}
+
+.about h2 {
+  font-size: 36px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+  margin-bottom: 24px;
+}
+
+.about-text {
+  max-width: 520px;
+  margin: 0 auto;
+  color: #aaaaaa;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.about-signature {
+  margin-top: 35px;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 4px;
+}
+.footer {
+  padding: 70px 25px 30px;
+  text-align: center;
+  background: #0b0b0b;
+  border-top: 1px solid #2a2a2a;
+}
+
+.footer-brand {
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 4px;
+  margin-bottom: 18px;
+}
+
+.footer p {
+  color: #888888;
+  font-size: 13px;
+  line-height: 1.7;
+  margin: 8px 0;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin: 28px 0;
+}
+
+.footer-links a {
+  color: #ffffff;
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  text-decoration: none;
+}
+
+.footer .copyright {
+  margin-top: 35px;
+  color: #555555;
+  font-size: 11px;
+}
+html {
+  scroll-behavior: smooth;
+}

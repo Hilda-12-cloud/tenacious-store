@@ -41,6 +41,11 @@ body {
   max-width: 450px;
   line-height: 1.7;
 }
+.laptop-sleeve-image {
+  width: 115% !important;
+  height: 115% !important;
+  object-fit: contain;
+}
 .navbar {
   position: fixed;
   top: 0;

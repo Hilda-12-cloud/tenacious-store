@@ -110,33 +110,41 @@ body {
 }
 
 .product {
-  max-width: 360px;
+  max-width: 420px;
   margin: 0 auto;
+  text-align: center;
 }
 
 .product-image {
-  min-height: 380px;
+  width: 100%;
+  height: 500px;
+  background: #101010;
+  border: 1px solid #2d2d2d;
+  position: relative;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid #333333;
-  color: #777777;
-  letter-spacing: 2px;
   margin-bottom: 25px;
 }
-  
-  
-  .product-image img {
-  max-width: none;
-  max-height: 100%; 
-  width: 115%;
+
+.product-image img {
+  width: 100%;
   height: 100%;
   object-fit: contain;
   display: block;
-  margin: auto;
 }
 
-
+.product-image::after {
+  content: "@TENACIOUS";
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 11px;
+  letter-spacing: 4px;
+  color: #444444;
+}
 
 .product h3 {
   font-size: 19px;
@@ -158,21 +166,6 @@ body {
   font-weight: 600;
   letter-spacing: 0.3px;
   margin: 14px 0 18px;
-}
-.product-image {
-  background: #101010;
-  border: 1px solid #2d2d2d;
-  min-height: 380px;
-  position: relative;
-  overflow: hidden;
-}
-
-.product-image::after {
-  content: "@TENACIOUS";
-  position: absolute;
-  font-size: 11px;
-  letter-spacing: 4px;
-  color: #444444;
 }
 .magazine {
   padding: 100px 25px;

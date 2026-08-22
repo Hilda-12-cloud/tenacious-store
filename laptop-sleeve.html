@@ -241,39 +241,40 @@
     </div>
 
   </main>
+<script>
 
-  <script>
+  function addToCart() {
 
-    function addToCart() {
+    const product = {
+      name: "Laptop Sleeve",
+      price: 45,
+      image: "laptop-sleeve-13-front-6a4d80010a1f9.png",
+      quantity: 1
+    };
 
-      const product = {
-        name: "Laptop Sleeve",
-        price: 45,
-        image: "laptop-sleeve-13-front-6a4d80010a1f9.png",
-        quantity: 1
-      };
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const existingProduct = cart.find(
+      item => item.name === product.name
+    );
 
-      const existingProduct = cart.find(
-        item => item.name === product.name
-      );
-
-      if (existingProduct) {
-        existingProduct.quantity += 1;
-      } else {
-        cart.push(product);
-      }
-
-      localStorage.setItem("cart", JSON.stringify(cart));
-
-      window.location.href = "cart.html";
+    if (existingProduct) {
+      existingProduct.quantity += 1;
+    } else {
+      cart.push(product);
     }
 
-  </function changeProductImage(imageSource) {
-  document.getElementById("mainProductImage").src = imageSource;
-    }>
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    window.location.href = "cart.html";
+  }
+
+  function changeProductImage(imageSource) {
+    document.getElementById("mainProductImage").src = imageSource;
+  }
+
+</script>
 
 </body>
 
-  </html>
+</html>

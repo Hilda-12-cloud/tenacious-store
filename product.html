@@ -52,34 +52,33 @@
       border: 1px solid #2d2d2d;
       padding: 5px;
     }
-
-.product-image img {
+.product-image > #mainProductImage {
   width: 110%;
   height: auto;
   display: block;
   margin-left: -4%;
 }
-    .thumbnail-gallery {
+
+.thumbnail-gallery {
   display: flex;
-  gap: 8px;
-  margin-top: 12px;
+  gap: 10px;
+  margin-top: 15px;
   overflow-x: auto;
-  padding: 3px 0;
+  padding-bottom: 5px;
 }
 
 .thumbnail-gallery img {
-  width: 60px !important;
-  height: 60px !important;
-  min-width: 60px !important;
-  max-width: 60px !important;
-  object-fit: cover !important;
-  display: block !important;
-  margin: 0 !important;
-  padding: 0 !important;
+  width: 65px;
+  height: 65px;
+  object-fit: cover;
+  display: block;
+  margin: 0;
+  padding: 0;
   border: 1px solid #2d2d2d;
   cursor: pointer;
-  opacity: 0.75;
-  flex-shrink: 0;
+  flex: 0 0 65px;
+  opacity: 0.8;
+  transition: opacity 0.2s ease, border-color 0.2s ease;
 }
 
 .thumbnail-gallery img:hover {

@@ -138,6 +138,29 @@ body {
   object-fit: contain;
   display: block;
 }
+.thumbnail-gallery {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+  overflow-x: auto;
+  padding-bottom: 5px;
+}
+
+.thumbnail-gallery img {
+  width: 75px;
+  height: 75px;
+  object-fit: cover;
+  border: 1px solid #2d2d2d;
+  cursor: pointer;
+  flex-shrink: 0;
+  opacity: 0.75;
+  transition: 0.2s ease;
+}
+
+.thumbnail-gallery img:hover {
+  opacity: 1;
+  border-color: #ffffff;
+}
 
 .product-image::after {
   content: "@TENACIOUS";

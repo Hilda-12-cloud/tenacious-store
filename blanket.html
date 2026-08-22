@@ -47,52 +47,62 @@
       align-items: center;
     }
 
-.product-gallery {
-  width: 100%;
-}
+    /* PRODUCT GALLERY */
 
-.main-product-image {
-  background: #111111;
-  border: 1px solid #2d2d2d;
-  padding: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 450px;
-}
+    .product-gallery {
+      width: 100%;
+    }
 
-.main-product-image img {
-  width: 100%;
-  height: 450px;
-  object-fit: contain;
-  display: block;
-}
+    .main-product-image {
+      width: 100%;
+      height: 450px;
+      background: #111111;
+      border: 1px solid #2d2d2d;
+      padding: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
 
-.product-thumbnails {
-  display: flex;
-  gap: 12px;
-  margin-top: 15px;
-  overflow-x: auto;
-  padding-bottom: 3px;
-}
+    .main-product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
 
-.product-thumbnails img {
-  width: 80px;
-  height: 80px;
-  min-width: 80px;
-  max-width: 80px;
-  object-fit: contain;
-  background: #111111;
-  border: 1px solid #2d2d2d;
-  padding: 3px;
-  cursor: pointer;
-  flex-shrink: 0;
-  display: block;
-}
+    /* THUMBNAILS */
 
-.product-thumbnails img:hover {
-  border-color: #ffffff;
-}
+    .product-thumbnails {
+      display: flex;
+      gap: 12px;
+      margin-top: 15px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+
+    .product-thumbnails img {
+      width: 80px;
+      height: 80px;
+      min-width: 80px;
+      min-height: 80px;
+      max-width: 80px;
+      max-height: 80px;
+      object-fit: contain;
+      background: #111111;
+      border: 1px solid #2d2d2d;
+      padding: 3px;
+      display: block;
+      cursor: pointer;
+      flex: 0 0 80px;
+    }
+
+    .product-thumbnails img:hover {
+      border-color: #ffffff;
+    }
+
+    /* PRODUCT INFORMATION */
 
     .product-info h1 {
       font-size: 42px;
@@ -152,7 +162,10 @@
       margin-bottom: 8px;
     }
 
+    /* MOBILE */
+
     @media (max-width: 768px) {
+
       .product-container {
         grid-template-columns: 1fr;
         gap: 35px;
@@ -165,6 +178,11 @@
       .product-page {
         padding: 25px 15px;
       }
+
+      .main-product-image {
+        height: 450px;
+      }
+
     }
   </style>
 </head>
@@ -173,60 +191,85 @@
 
   <main class="product-page">
 
-    <a href="index.html#shop" class="back-link">← Back to Shop</a>
+    <a href="index.html#shop" class="back-link">
+      ← Back to Shop
+    </a>
 
     <div class="product-container">
 
-    <div class="product-gallery">
+      <!-- PRODUCT GALLERY -->
 
-  <div class="main-product-image">
-    <img
-      id="mainProductImage"
-      src="embroidered-premium-sherpa-blanket-black-front-6a5eed73c1ced.png"
-      alt="Premium Sherpa Blanket">
-  </div>
+      <div class="product-gallery">
 
-  <div class="product-thumbnails">
+        <!-- MAIN IMAGE -->
+        <div class="main-product-image">
 
-    <img
-      src="embroidered-premium-sherpa-blanket-black-front-6a5eed73c1ced.png"
-      alt="Premium Sherpa Blanket main view"
-      onclick="changeProductImage(this.src)">
+          <img
+            id="mainProductImage"
+            src="embroidered-premium-sherpa-blanket-black-front-6a5eed73c1ced.png"
+            alt="Premium Sherpa Blanket">
 
-    <img
-      src="embroidered-premium-sherpa-blanket-black-front-2-6a5eed73c1c08.png"
-      alt="Premium Sherpa Blanket front"
-      onclick="changeProductImage(this.src)">
+        </div>
 
-    <img
-      src="embroidered-premium-sherpa-blanket-black-front-2-6a5eed73c1c89.png"
-      alt="Premium Sherpa Blanket front view"
-      onclick="changeProductImage(this.src)">
 
-    <img
-      src="embroidered-premium-sherpa-blanket-black-product-details-2-6a5eed73c1b96.png"
-      alt="Premium Sherpa Blanket details"
-      onclick="changeProductImage(this.src)">
+        <!-- 7 THUMBNAILS -->
 
-    <img
-      src="embroidered-premium-sherpa-blanket-black-product-details-6a5eed73c1afd.png"
-      alt="Premium Sherpa Blanket product details"
-      onclick="changeProductImage(this.src)">
+        <div class="product-thumbnails">
 
-    <img
-      src="embroidered-premium-sherpa-blanket-black-front-6a5eed73c1a75.png"
-      alt="Premium Sherpa Blanket front"
-      onclick="changeProductImage(this.src)">
+          <!-- THUMBNAIL 1 — ORIGINAL MAIN BLANKET -->
+          <img
+            src="embroidered-premium-sherpa-blanket-black-front-6a5eed73c1ced.png"
+            alt="Premium Sherpa Blanket main view"
+            onclick="changeProductImage(this.src)">
 
-    <img
-      src="embroidered-premium-sherpa-blanket-black-back-6a5eed73c1ac8.png"
-      alt="Premium Sherpa Blanket back"
-      onclick="changeProductImage(this.src)">
 
-  </div>
+          <!-- THUMBNAIL 2 -->
+          <img
+            src="embroidered-premium-sherpa-blanket-black-front-2-6a5eed73c1c08.png"
+            alt="Premium Sherpa Blanket front"
+            onclick="changeProductImage(this.src)">
 
-    </div>
 
+          <!-- THUMBNAIL 3 -->
+          <img
+            src="embroidered-premium-sherpa-blanket-black-front-2-6a5eed73c1c89.png"
+            alt="Premium Sherpa Blanket front view"
+            onclick="changeProductImage(this.src)">
+
+
+          <!-- THUMBNAIL 4 -->
+          <img
+            src="embroidered-premium-sherpa-blanket-black-product-details-2-6a5eed73c1b96.png"
+            alt="Premium Sherpa Blanket details"
+            onclick="changeProductImage(this.src)">
+
+
+          <!-- THUMBNAIL 5 -->
+          <img
+            src="embroidered-premium-sherpa-blanket-black-product-details-6a5eed73c1afd.png"
+            alt="Premium Sherpa Blanket product details"
+            onclick="changeProductImage(this.src)">
+
+
+          <!-- THUMBNAIL 6 -->
+          <img
+            src="embroidered-premium-sherpa-blanket-black-front-6a5eed73c1a75.png"
+            alt="Premium Sherpa Blanket front"
+            onclick="changeProductImage(this.src)">
+
+
+          <!-- THUMBNAIL 7 -->
+          <img
+            src="embroidered-premium-sherpa-blanket-black-back-6a5eed73c1ac8.png"
+            alt="Premium Sherpa Blanket back"
+            onclick="changeProductImage(this.src)">
+
+        </div>
+
+      </div>
+
+
+      <!-- PRODUCT INFORMATION -->
 
       <div class="product-info">
 
@@ -239,13 +282,20 @@
 
         <p class="price">$90.00</p>
 
-        <button class="order-button" onclick="addToCart()">
+
+        <button
+          class="order-button"
+          onclick="addToCart()">
+
           Add to Cart
+
         </button>
+
 
         <a href="#" class="whatsapp-button">
           Order via WhatsApp
         </a>
+
 
         <div class="details">
 
@@ -263,40 +313,55 @@
 
   </main>
 
-<script>
 
-  function addToCart() {
+  <script>
 
-    const product = {
-      name: "Premium Sherpa Blanket",
-      price: 90,
-      image: "embroidered-premium-sherpa-blanket-black-front-6a5eed73c1ced.png",
-      quantity: 1
-    };
+    function addToCart() {
 
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const product = {
+        name: "Premium Sherpa Blanket",
+        price: 90,
+        image: "embroidered-premium-sherpa-blanket-black-front-6a5eed73c1ced.png",
+        quantity: 1
+      };
 
-    const existingProduct = cart.find(
-      item => item.name === product.name
-    );
+      let cart =
+        JSON.parse(localStorage.getItem("cart")) || [];
 
-    if (existingProduct) {
-      existingProduct.quantity += 1;
-    } else {
-      cart.push(product);
+      const existingProduct =
+        cart.find(item => item.name === product.name);
+
+      if (existingProduct) {
+
+        existingProduct.quantity += 1;
+
+      } else {
+
+        cart.push(product);
+
+      }
+
+      localStorage.setItem(
+        "cart",
+        JSON.stringify(cart)
+      );
+
+      window.location.href = "cart.html";
+
     }
 
-    localStorage.setItem("cart", JSON.stringify(cart));
 
-    window.location.href = "cart.html";
-  }
+    function changeProductImage(imageSource) {
 
-  function changeProductImage(imageSource) {
-    document.getElementById("mainProductImage").src = imageSource;
-  }
+      document.getElementById(
+        "mainProductImage"
+      ).src = imageSource;
 
-</script>
+    }
+
+  </script>
 
 </body>
 
-            </html>
+</html>
+    

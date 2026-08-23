@@ -1,1 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Travel Mug with a Handle | @Tenacious</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #0b0b0b;
+      color: #ffffff;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    .product-page {
+      max-width: 1100px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    .back-link {
+      display: inline-block;
+      color: #ffffff;
+      text-decoration: none;
+      margin-bottom: 35px;
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    .back-link:hover {
+      opacity: 1;
+    }
+
+    .product-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .product-image {
+      background: #111111;
+      border: 1px solid #2d2d2d;
+      padding: 5px;
+    }
+
+    .product-image > #mainProductImage {
+      width: 110%;
+      height: auto;
+      display: block;
+      margin-left: -4%;
+    }
+
+    .thumbnail-gallery {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+      overflow-x: auto;
+      padding-bottom: 5px;
+    }
+
+    .thumbnail-gallery img {
+      width: 65px;
+      height: 65px;
+      object-fit: cover;
+      display: block;
+      border: 1px solid #2d2d2d;
+      cursor: pointer;
+      flex: 0 0 65px;
+      opacity: 0.8;
+      transition: opacity 0.2s ease, border-color 0.2s ease;
+    }
+
+    .thumbnail-gallery img:hover {
+      opacity: 1;
+      border-color: #ffffff;
+    }
+
+    .product-info h1 {
+      font-size: 42px;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+    }
+
+    .description {
+      color: #cfcfcf;
+      margin-bottom: 25px;
+      font-size: 16px;
+    }
+
+    .price {
+      font-size: 28px;
+      margin-bottom: 25px;
+      font-weight: bold;
+    }
+
+    .size-label {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 15px;
+      font-weight: bold;
+    }
+
+    .size-select {
+      width: 100%;
+      padding: 14px;
+      margin-bottom: 25px;
+      background: #111111;
+      color: #ffffff;
+      border: 1px solid #444444;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .order-button {
+      display: block;
+      width: 100%;
+      padding: 16px;
+      background: #ffffff;
+      color: #000000;
+      text-align: center;
+      text-decoration: none;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      margin-bottom: 15px;
+    }
+
+    .whatsapp-button {
+      display: block;
+      width: 100%;
+      padding: 16px;
+      border: 1px solid #ffffff;
+      color: #ffffff;
+      text-align: center;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .details {
+      margin-top: 35px;
+      border-top: 1px solid #2d2d2d;
+      padding-top: 25px;
+    }
+
+    .details h2 {
+      font-size: 18px;
+      margin-bottom: 15px;
+    }
+
+    .details p {
+      color: #bdbdbd;
+      margin-bottom: 8px;
+    }
+
+    @media (max-width: 768px) {
+      .product-container {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+
+      .product-info h1 {
+        font-size: 32px;
+      }
+
+      .product-page {
+        padding: 25px 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="product-page">
+
+    <a href="index.html#shop" class="back-link">← Back to Shop</a>
+
+    <div class="product-container">
+
+      <div class="product-image">
+
+        <img
+          id="mainProductImage"
+          src="travel-mug-with-a-handle-white-40-oz-front-6a5edf4b88368.png"
+          alt="Travel Mug with a Handle">
+
+        <div class="thumbnail-gallery">
+
+          <img
+            src="travel-mug-with-a-handle-white-40-oz-front-6a5edf4b88368.png"
+            alt="Travel Mug 40 oz Front"
+            onclick="changeImage(this.src)">
+
+          <img
+            src="travel-mug-with-a-handle-white-25-oz-front-6a5edf4b87dd1.png"
+            alt="Travel Mug 25 oz Front"
+            onclick="changeImage(this.src)">
+
+          <img
+            src="travel-mug-with-a-handle-white-25-oz-front-6a5edf4b87eee.png"
+            alt="Travel Mug 25 oz Front View"
+            onclick="changeImage(this.src)">
+
+          <img
+            src="travel-mug-with-a-handle-white-25-oz-left-6a5edf4b87d34.png"
+            alt="Travel Mug 25 oz Left"
+            onclick="changeImage(this.src)">
+
+          <img
+            src="travel-mug-with-a-handle-white-25-oz-left-6a5edf4b87e1f.png"
+            alt="Travel Mug 25 oz Left View"
+            onclick="changeImage(this.src)">
+
+          <img
+            src="travel-mug-with-a-handle-white-25-oz-left-6a5edf4b87ec8.png"
+            alt="Travel Mug 25 oz Left View"
+            onclick="changeImage(this.src)">
+
+          <img
+            src="travel-mug-with-a-handle-white-25-oz-left-6a5edf4b88046.png"
+            alt="Travel Mug 25 oz Left View"
+            onclick="changeImage(this.src)">
+
+          <img
+            src="travel-mug-with-a-handle-white-25-oz-product-details-6a5edf4b880d0.png"
+            alt="Travel Mug 25 oz Product Details"
+            onclick="changeImage(this.src)">
+
+          <img
+            src="travel-mug-with-a-handle-white-25-oz-right-6a5edf4b87f23.png"
+            alt="Travel Mug 25 oz Right"
+            onclick="changeImage(this.src)">
+
+          <img
+            src="travel-mug-with-a-handle-white-40-oz-front-6a5edf4b88429.png"
+            alt="Travel Mug 40 oz Front View"
+            onclick="changeImage(this.src)">
+
+          <img
+            src="travel-mug-with-a-handle-white-40-oz-left-6a5edf4b881f6.png"
+            alt="Travel Mug 40 oz Left"
+            onclick="changeImage(this.src)">
+
+          <img
+            src="travel-mug-with-a-handle-white-40-oz-product-details-6a5edf4b88284.png"
+            alt="Travel Mug 40 oz Product Details"
+            onclick="changeImage(this.src)">
+
+        </div>
+
+      </div>
+
+      <div class="product-info">
+
+        <h1>Travel Mug with a Handle</h1>
+
+        <p class="description">
+          Carry your drink with confidence. A practical @Tenacious
+          travel companion designed for movement, ambition and everyday life.
+        </p>
+
+        <p class="price" id="price">$45.00</p>
+
+        <label class="size-label" for="size">
+          Choose Size
+        </label>
+
+        <select id="size" class="size-select" onchange="updatePrice()">
+          <option value="25 oz" data-price="45">25 oz — $45.00</option>
+          <option value="40 oz" data-price="49">40 oz — $49.00</option>
+        </select>
+
+        <button class="order-button" onclick="addToCart()">
+          Add to Cart
+        </button>
+
+        <a href="#" class="whatsapp-button">
+          Order via WhatsApp
+        </a>
+
+        <div class="details">
+
+          <h2>Product Details</h2>
+
+          <p>• Stainless steel construction</p>
+          <p>• Comfortable handle</p>
+          <p>• Available in 25 oz and 40 oz</p>
+          <p>• @Tenacious design</p>
+          <p>• Designed for everyday use</p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <script>
+
+    function updatePrice() {
+
+      const sizeSelect = document.getElementById("size");
+      const selectedOption =
+        sizeSelect.options[sizeSelect.selectedIndex];
+
+      const price = selectedOption.dataset.price;
+
+      document.getElementById("price").textContent =
+        "$" + Number(price).toFixed(2);
+    }
+
+    function addToCart() {
+
+      const sizeSelect = document.getElementById("size");
+      const selectedOption =
+        sizeSelect.options[sizeSelect.selectedIndex];
+
+      const size = selectedOption.value;
+      const price = Number(selectedOption.dataset.price);
+
+      const image =
+        size === "25 oz"
+          ? "travel-mug-with-a-handle-white-25-oz-front-6a5edf4b87dd1.png"
+          : "travel-mug-with-a-handle-white-40-oz-front-6a5edf4b88368.png";
+
+      const product = {
+        name: "Travel Mug with a Handle",
+        size: size,
+        price: price,
+        image: image,
+        quantity: 1
+      };
+
+      let cart =
+        JSON.parse(localStorage.getItem("cart")) || [];
+
+      const existingProduct = cart.find(
+        item =>
+          item.name === product.name &&
+          item.size === product.size
+      );
+
+      if (existingProduct) {
+        existingProduct.quantity += 1;
+      } else {
+        cart.push(product);
+      }
+
+      localStorage.setItem(
+        "cart",
+        JSON.stringify(cart)
+      );
+
+      window.location.href = "cart.html";
+    }
+
+    function changeImage(imageSrc) {
+      document.getElementById("mainProductImage").src =
+        imageSrc;
+    }
+
+  </script>
+
+</body>
+
+            </html>

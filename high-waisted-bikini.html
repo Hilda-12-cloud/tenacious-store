@@ -1,1 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>All-Over Print Recycled High-Waisted Bikini | @Tenacious</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #0b0b0b;
+      color: #ffffff;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    .product-page {
+      max-width: 1100px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    .back-link {
+      display: inline-block;
+      color: #ffffff;
+      text-decoration: none;
+      margin-bottom: 35px;
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    .back-link:hover {
+      opacity: 1;
+    }
+
+    .product-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .product-image {
+      background: #111111;
+      border: 1px solid #2d2d2d;
+      padding: 5px;
+    }
+
+    .product-image > #mainProductImage {
+      width: 110%;
+      height: auto;
+      display: block;
+      margin-left: -4%;
+    }
+
+    .thumbnail-gallery {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+      overflow-x: auto;
+      padding-bottom: 5px;
+    }
+
+    .thumbnail-gallery img {
+      width: 65px;
+      height: 65px;
+      object-fit: cover;
+      display: block;
+      border: 1px solid #2d2d2d;
+      cursor: pointer;
+      flex: 0 0 65px;
+      opacity: 0.8;
+      transition: opacity 0.2s ease, border-color 0.2s ease;
+    }
+
+    .thumbnail-gallery img:hover {
+      opacity: 1;
+      border-color: #ffffff;
+    }
+
+    .product-info h1 {
+      font-size: 42px;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+    }
+
+    .description {
+      color: #cfcfcf;
+      margin-bottom: 25px;
+      font-size: 16px;
+    }
+
+    .price {
+      font-size: 28px;
+      margin-bottom: 25px;
+      font-weight: bold;
+    }
+
+    .size-label {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 15px;
+      font-weight: bold;
+    }
+
+    .size-select {
+      width: 100%;
+      padding: 14px;
+      margin-bottom: 25px;
+      background: #111111;
+      color: #ffffff;
+      border: 1px solid #444444;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .size-note {
+      color: #bdbdbd;
+      font-size: 14px;
+      margin-top: -15px;
+      margin-bottom: 25px;
+    }
+
+    .order-button {
+      display: block;
+      width: 100%;
+      padding: 16px;
+      background: #ffffff;
+      color: #000000;
+      text-align: center;
+      text-decoration: none;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      margin-bottom: 15px;
+    }
+
+    .whatsapp-button {
+      display: block;
+      width: 100%;
+      padding: 16px;
+      border: 1px solid #ffffff;
+      color: #ffffff;
+      text-align: center;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .details {
+      margin-top: 35px;
+      border-top: 1px solid #2d2d2d;
+      padding-top: 25px;
+    }
+
+    .details h2 {
+      font-size: 18px;
+      margin-bottom: 15px;
+    }
+
+    .details p {
+      color: #bdbdbd;
+      margin-bottom: 8px;
+    }
+
+    .care-note {
+      margin-top: 20px;
+      padding: 15px;
+      border: 1px solid #333333;
+      color: #cfcfcf;
+      font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
+      .product-container {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+
+      .product-info h1 {
+        font-size: 32px;
+      }
+
+      .product-page {
+        padding: 25px 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="product-page">
+
+    <a href="index.html#shop" class="back-link">← Back to Shop</a>
+
+    <div class="product-container">
+
+      <div class="product-image">
+
+        <img
+          id="mainProductImage"
+          src="all-over-print-recycled-high-waisted-bikini-white-front-6a5ee31ce4a74.png"
+          alt="All-Over Print Recycled High-Waisted Bikini">
+
+        <div class="thumbnail-gallery">
+
+          <img
+            src="all-over-print-recycled-high-waisted-bikini-white-front-6a5ee31ce4a74.png"
+            alt="Bikini Front"
+            onclick="changeImage(this.src)">
+
+          <img
+            src="all-over-print-recycled-high-waisted-bikini-white-back-6a5ee31ce6509.png"
+            alt="Bikini Back"
+            onclick="changeImage(this.src)">
+
+          <img
+            src="all-over-print-recycled-high-waisted-bikini-white-back-6a5ee31ce63f3.png"
+            alt="Bikini Back View"
+            onclick="changeImage(this.src)">
+
+          <img
+            src="all-over-print-recycled-high-waisted-bikini-white-back-6a5ee31ce58b1.png"
+            alt="Bikini Back Detail"
+            onclick="changeImage(this.src)">
+
+          <img
+            src="all-over-print-recycled-high-waisted-bikini-white-front-6a5ee31ce592c.png"
+            alt="Bikini Front View"
+            onclick="changeImage(this.src)">
+
+          <img
+            src="all-over-print-recycled-high-waisted-bikini-white-front-6a5ee31ce647e.png"
+            alt="Bikini Front Detail"
+            onclick="changeImage(this.src)">
+
+          <img
+            src="all-over-print-recycled-high-waisted-bikini-white-left-front-6a5ee31ce5f30.png"
+            alt="Bikini Left Front"
+            onclick="changeImage(this.src)">
+
+          <img
+            src="all-over-print-recycled-high-waisted-bikini-white-left-front-6a5ee31ce625e.png"
+            alt="Bikini Left Front View"
+            onclick="changeImage(this.src)">
+
+          <img
+            src="all-over-print-recycled-high-waisted-bikini-white-product-details-6a5ee31ce5b03.png"
+            alt="Bikini Product Details"
+            onclick="changeImage(this.src)">
+
+          <img
+            src="all-over-print-recycled-high-waisted-bikini-white-right-back-6a5ee31ce5fb8.png"
+            alt="Bikini Right Back"
+            onclick="changeImage(this.src)">
+
+          <img
+            src="all-over-print-recycled-high-waisted-bikini-white-right-back-6a5ee31ce62e6.png"
+            alt="Bikini Right Back View"
+            onclick="changeImage(this.src)">
+
+        </div>
+
+      </div>
+
+      <div class="product-info">
+
+        <h1>All-Over Print Recycled High-Waisted Bikini</h1>
+
+        <p class="description">
+          A flattering high-waisted bikini made with recycled materials,
+          designed for bold expression, comfort and the @Tenacious spirit.
+        </p>
+
+        <p class="price" id="price">$78.00</p>
+
+        <label class="size-label" for="size">
+          Choose Size
+        </label>
+
+        <select id="size" class="size-select" onchange="updatePrice()">
+
+          <option value="XS" data-price="78">XS — $78.00</option>
+          <option value="S" data-price="78">S — $78.00</option>
+          <option value="M" data-price="78">M — $78.00</option>
+          <option value="L" data-price="78">L — $78.00</option>
+          <option value="XL" data-price="78">XL — $78.00</option>
+          <option value="2XL" data-price="80">2XL — $80.00</option>
+          <option value="3XL" data-price="80">3XL — $80.00</option>
+
+        </select>
+
+        <p class="size-note">
+          2XL and 3XL are priced slightly higher.
+        </p>
+
+        <button class="order-button" onclick="addToCart()">
+          Add to Cart
+        </button>
+
+        <a href="#" class="whatsapp-button">
+          Order via WhatsApp
+        </a>
+
+        <div class="details">
+
+          <h2>Product Details</h2>
+
+          <p>• 75% recycled polyester, 25% elastane for US/Mexico fulfillment</p>
+          <p>• 88% recycled polyester, 12% elastane for Latvia fulfillment</p>
+          <p>• UPF 50+ protection</p>
+          <p>• Double layered and non-reversible</p>
+          <p>• Removable padding</p>
+          <p>• High-waisted bottoms</p>
+          <p>• Tear-away care label</p>
+          <p>• Zig-zag stitching</p>
+          <p>• OEKO-TEX 100 certified fabric</p>
+          <p>• GRS-certified recycled content</p>
+          <p>• Made on demand with no minimums</p>
+
+        </div>
+
+        <div class="care-note">
+          <strong>Care:</strong><br>
+          Thoroughly rinse the bikini after each use to remove
+          chlorine or salt residue and help the swimwear last longer.
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <script>
+
+    function updatePrice() {
+
+      const sizeSelect = document.getElementById("size");
+      const selectedOption =
+        sizeSelect.options[sizeSelect.selectedIndex];
+
+      const price = selectedOption.dataset.price;
+
+      document.getElementById("price").textContent =
+        "$" + Number(price).toFixed(2);
+    }
+
+    function addToCart() {
+
+      const sizeSelect = document.getElementById("size");
+      const selectedOption =
+        sizeSelect.options[sizeSelect.selectedIndex];
+
+      const size = selectedOption.value;
+      const price = Number(selectedOption.dataset.price);
+
+      const product = {
+        name: "All-Over Print Recycled High-Waisted Bikini",
+        size: size,
+        price: price,
+        image: "all-over-print-recycled-high-waisted-bikini-white-front-6a5ee31ce4a74.png",
+        quantity: 1
+      };
+
+      let cart =
+        JSON.parse(localStorage.getItem("cart")) || [];
+
+      const existingProduct = cart.find(
+        item =>
+          item.name === product.name &&
+          item.size === product.size
+      );
+
+      if (existingProduct) {
+        existingProduct.quantity += 1;
+      } else {
+        cart.push(product);
+      }
+
+      localStorage.setItem(
+        "cart",
+        JSON.stringify(cart)
+      );
+
+      window.location.href = "cart.html";
+    }
+
+    function changeImage(imageSrc) {
+      document.getElementById("mainProductImage").src =
+        imageSrc;
+    }
+
+  </script>
+
+</body>
+
+  </html>

@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Round Mouse Pad | @Tenacious</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #0b0b0b;
+      color: #f5f5f5;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(11, 11, 11, 0.96);
+      border-bottom: 1px solid #292929;
+      padding: 18px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 700;
+      letter-spacing: 2px;
+      font-size: 1.15rem;
+    }
+
+    .back-link {
+      color: #d0d0d0;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .back-link:hover {
+      color: #ffffff;
+    }
+
+    .product-page {
+      max-width: 1150px;
+      margin: 0 auto;
+      padding: 55px 6% 80px;
+    }
+
+    .product-layout {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .gallery {
+      width: 100%;
+    }
+
+    .main-image {
+      background: #111111;
+      border: 1px solid #292929;
+      border-radius: 14px;
+      min-height: 520px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding: 30px;
+    }
+
+    .main-image img {
+      width: 100%;
+      height: 100%;
+      max-height: 500px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .thumbnail-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .thumbnail {
+      background: #111111;
+      border: 1px solid #292929;
+      border-radius: 10px;
+      padding: 8px;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .thumbnail:hover,
+    .thumbnail.active {
+      border-color: #ffffff;
+    }
+
+    .thumbnail img {
+      width: 100%;
+      height: 105px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .product-info h1 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      line-height: 1.1;
+      margin-bottom: 14px;
+      letter-spacing: -0.5px;
+    }
+
+    .tagline {
+      color: #bdbdbd;
+      font-size: 1rem;
+      margin-bottom: 25px;
+    }
+
+    .price {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 28px;
+    }
+
+    .divider {
+      height: 1px;
+      background: #292929;
+      margin: 25px 0;
+    }
+
+    .section-title {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 10px;
+      color: #ffffff;
+    }
+
+    .description {
+      color: #c7c7c7;
+      margin-bottom: 25px;
+    }
+
+    .details {
+      list-style: none;
+      color: #c7c7c7;
+      margin-bottom: 28px;
+    }
+
+    .details li {
+      padding: 6px 0;
+    }
+
+    .details li::before {
+      content: "— ";
+      color: #ffffff;
+    }
+
+    .quantity-label {
+      display: block;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 8px;
+    }
+
+    .quantity {
+      width: 90px;
+      padding: 12px;
+      background: #111111;
+      color: #ffffff;
+      border: 1px solid #383838;
+      border-radius: 6px;
+      font-size: 1rem;
+      margin-bottom: 18px;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      flex: 1;
+      min-width: 180px;
+      padding: 15px 20px;
+      border: 1px solid #ffffff;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      transition: 0.2s ease;
+    }
+
+    .add-cart {
+      background: #ffffff;
+      color: #000000;
+    }
+
+    .add-cart:hover {
+      background: #dddddd;
+    }
+
+    .buy-now {
+      background: transparent;
+      color: #ffffff;
+    }
+
+    .buy-now:hover {
+      background: #ffffff;
+      color: #000000;
+    }
+
+    .made-on-demand {
+      margin-top: 22px;
+      padding: 15px;
+      border: 1px solid #292929;
+      border-radius: 8px;
+      color: #a9a9a9;
+      font-size: 0.85rem;
+    }
+
+    .footer {
+      border-top: 1px solid #292929;
+      padding: 28px 6%;
+      text-align: center;
+      color: #888888;
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 800px) {
+      .product-layout {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .main-image {
+        min-height: 390px;
+      }
+
+      .product-page {
+        padding-top: 35px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .navbar {
+        padding: 16px 5%;
+      }
+
+      .product-page {
+        padding-left: 5%;
+        padding-right: 5%;
+      }
+
+      .main-image {
+        min-height: 330px;
+        padding: 18px;
+      }
+
+      .thumbnail img {
+        height: 80px;
+      }
+
+      .button {
+        min-width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="navbar">
+    <a href="index.html" class="logo">@TENACIOUS</a>
+    <a href="index.html#shop" class="back-link">← Back to Shop</a>
+  </header>
+
+  <main class="product-page">
+
+    <div class="product-layout">
+
+      <section class="gallery">
+
+        <div class="main-image">
+          <img
+            id="mainProductImage"
+            src="round-mouse-pad-white-front-6a5eed3bf279a.png"
+            alt="Round Mouse Pad">
+        </div>
+
+        <div class="thumbnail-row">
+
+          <button class="thumbnail active"
+            onclick="changeImage('round-mouse-pad-white-front-6a5eed3bf279a.png', this)">
+            <img
+              src="round-mouse-pad-white-front-6a5eed3bf279a.png"
+              alt="Round Mouse Pad view 1">
+          </button>
+
+          <button class="thumbnail"
+            onclick="changeImage('round-mouse-pad-white-front-6a5eed3bf281e.png', this)">
+            <img
+              src="round-mouse-pad-white-front-6a5eed3bf281e.png"
+              alt="Round Mouse Pad view 2">
+          </button>
+
+          <button class="thumbnail"
+            onclick="changeImage('round-mouse-pad-white-front-6a5eed3bf2864.png', this)">
+            <img
+              src="round-mouse-pad-white-front-6a5eed3bf2864.png"
+              alt="Round Mouse Pad view 3">
+          </button>
+
+        </div>
+
+      </section>
+
+      <section class="product-info">
+
+        <h1>Round Mouse Pad</h1>
+
+        <p class="tagline">
+          A compact, modern desk essential designed for smooth movement and everyday precision.
+        </p>
+
+        <div class="price">$19.00</div>
+
+        <div class="divider"></div>
+
+        <h2 class="section-title">Description</h2>
+
+        <p class="description">
+          A smooth and sturdy surface that makes everyday scrolling easier, this round mouse pad
+          is compact and modern. Its round shape fits neatly into small spaces while still giving
+          enough room for precise movements. With a durable build and a one-sided customizable
+          surface, it’s a practical accessory for home offices, work desks, or creative setups.
+        </p>
+
+        <h2 class="section-title">Product Details</h2>
+
+        <ul class="details">
+          <li>Neoprene with rubber backing</li>
+          <li>Diameter: 8″ (20.3 cm)</li>
+          <li>Thickness: 0.25″ (0.63 cm)</li>
+          <li>One-sided print surface with bright, crisp detail</li>
+          <li>Seamless top surface with durable edges</li>
+          <li>Non-slip bottom keeps the pad in place</li>
+          <li>Made on demand — no minimums</li>
+        </ul>
+
+        <div class="divider"></div>
+
+        <label for="quantity" class="quantity-label">Quantity</label>
+
+        <input
+          id="quantity"
+          class="quantity"
+          type="number"
+          min="1"
+          value="1">
+
+        <div class="button-group">
+          <button class="button add-cart" onclick="addToCart()">
+            Add to Cart
+          </button>
+
+          <button class="button buy-now" onclick="buyNow()">
+            Buy Now
+          </button>
+        </div>
+
+        <div class="made-on-demand">
+          Made especially for you after your order is placed. @Tenacious supports
+          thoughtful, on-demand production.
+        </div>
+
+      </section>
+
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    © 2026 @Tenacious — Resilient by choice.
+  </footer>
+
+  <script>
+    function changeImage(image, button) {
+      document.getElementById("mainProductImage").src = image;
+
+      document.querySelectorAll(".thumbnail").forEach(function(item) {
+        item.classList.remove("active");
+      });
+
+      button.classList.add("active");
+    }
+
+    function addToCart() {
+      const quantity = document.getElementById("quantity").value;
+
+      alert(
+        "Round Mouse Pad added to your cart. Quantity: " + quantity
+      );
+    }
+
+    function buyNow() {
+      const quantity = document.getElementById("quantity").value;
+
+      alert(
+        "Buy Now selected for " + quantity + " Round Mouse Pad(s)."
+      );
+    }
+  </script>
+
+</body>
+
+</html>

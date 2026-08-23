@@ -234,12 +234,53 @@
       <p class="subtitle">
         Rabbit Skins 3326
       </p>
+<div class="price">
+  From $34.95
+</div>
 
-      <div class="price">
-        2T — $34.95<br>
-        4T — $36.95<br>
-        5–6T — $38.95
-      </div>
+<div class="section">
+
+  <h2>Select Size</h2>
+
+  <select id="size" style="
+    width: 100%;
+    padding: 14px;
+    background: #111;
+    color: #fff;
+    border: 1px solid #555;
+    border-radius: 5px;
+    font-size: 16px;
+  ">
+    <option value="2T" data-price="34.95">2T — $34.95</option>
+    <option value="4T" data-price="36.95">4T — $36.95</option>
+    <option value="5–6T" data-price="38.95">5–6T — $38.95</option>
+  </select>
+
+  <button
+    onclick="addToCart()"
+    style="
+      width: 100%;
+      margin-top: 18px;
+      padding: 16px;
+      background: #fff;
+      color: #000;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    "
+  >
+    Add to Cart
+  </button>
+
+  <p id="cart-message" style="
+    margin-top: 12px;
+    color: #aaa;
+    text-align: center;
+  "></p>
+
+</div>
 
       <p class="price-note">
         Price varies by size.

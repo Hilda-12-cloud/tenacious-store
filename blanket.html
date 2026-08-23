@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Premium Sherpa Blanket | @Tenacious</title>
+  <title>All-Over Print Recycled Unisex Hoodie | @Tenacious</title>
 
   <style>
     * {
@@ -47,60 +47,48 @@
       align-items: center;
     }
 
-    /* PRODUCT GALLERY */
-
     .product-gallery {
       width: 100%;
-    }.main-product-image {
-  width: 100%;
-  height: 380px;
-  background: #111111;
-  border: 1px solid #2d2d2d;
-  padding: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
+    }
 
-.main-product-image img {
-  width: 88%;
-  height: 88%;
-  object-fit: contain;
-  display: block;
-}
+    .main-product-image {
+      background: #111111;
+      border: 1px solid #2d2d2d;
+      padding: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 450px;
+    }
 
-    /* THUMBNAILS */
+    .main-product-image img {
+      width: 100%;
+      height: 450px;
+      object-fit: contain;
+      display: block;
+    }
 
     .product-thumbnails {
       display: flex;
       gap: 12px;
       margin-top: 15px;
       overflow-x: auto;
-      padding-bottom: 4px;
     }
 
     .product-thumbnails img {
       width: 80px;
       height: 80px;
-      min-width: 80px;
-      min-height: 80px;
-      max-width: 80px;
-      max-height: 80px;
-      object-fit: contain;
+      object-fit: cover;
       background: #111111;
       border: 1px solid #2d2d2d;
       padding: 3px;
-      display: block;
       cursor: pointer;
-      flex: 0 0 80px;
+      flex-shrink: 0;
     }
 
     .product-thumbnails img:hover {
       border-color: #ffffff;
     }
-
-    /* PRODUCT INFORMATION */
 
     .product-info h1 {
       font-size: 42px;
@@ -160,8 +148,6 @@
       margin-bottom: 8px;
     }
 
-    /* MOBILE */
-
     @media (max-width: 768px) {
 
       .product-container {
@@ -176,11 +162,6 @@
       .product-page {
         padding: 25px 15px;
       }
-
-      .main-product-image {
-        height: 360px;
-      }
-
     }
   </style>
 </head>
@@ -195,112 +176,79 @@
 
     <div class="product-container">
 
-      <!-- PRODUCT GALLERY -->
-
       <div class="product-gallery">
 
-        <!-- MAIN IMAGE -->
         <div class="main-product-image">
-
           <img
             id="mainProductImage"
-            src="embroidered-premium-sherpa-blanket-black-front-6a5eed73c1ced.png"
-            alt="Premium Sherpa Blanket">
-
+            src="all-over-print-recycled-unisex-hoodie-white-front-6a5458d182faa.png"
+            alt="All-Over Print Recycled Unisex Hoodie">
         </div>
-
-
-        <!-- 7 THUMBNAILS -->
 
         <div class="product-thumbnails">
 
-          <!-- THUMBNAIL 1 — ORIGINAL MAIN BLANKET -->
           <img
-            src="embroidered-premium-sherpa-blanket-black-front-6a5eed73c1ced.png"
-            alt="Premium Sherpa Blanket main view"
+            src="all-over-print-recycled-unisex-hoodie-white-front-6a5458d182faa.png"
+            alt="Hoodie front"
             onclick="changeProductImage(this.src)">
 
-
-          <!-- THUMBNAIL 2 -->
           <img
-            src="embroidered-premium-sherpa-blanket-black-front-2-6a5eed73c1c08.png"
-            alt="Premium Sherpa Blanket front"
+            src="all-over-print-recycled-unisex-hoodie-white-back-6a5458d1836b1.png"
+            alt="Hoodie back"
             onclick="changeProductImage(this.src)">
 
-
-          <!-- THUMBNAIL 3 -->
           <img
-            src="embroidered-premium-sherpa-blanket-black-front-2-6a5eed73c1c89.png"
-            alt="Premium Sherpa Blanket front view"
+            src="all-over-print-recycled-unisex-hoodie-white-front-6a5458d184af0.png"
+            alt="Hoodie front view"
             onclick="changeProductImage(this.src)">
 
-
-          <!-- THUMBNAIL 4 -->
           <img
-            src="embroidered-premium-sherpa-blanket-black-product-details-2-6a5eed73c1b96.png"
-            alt="Premium Sherpa Blanket details"
+            src="all-over-print-recycled-unisex-hoodie-white-product-details-2-6a5458d1822d9.png"
+            alt="Hoodie product details"
             onclick="changeProductImage(this.src)">
 
-
-          <!-- THUMBNAIL 5 -->
           <img
-            src="embroidered-premium-sherpa-blanket-black-product-details-6a5eed73c1afd.png"
-            alt="Premium Sherpa Blanket product details"
+            src="all-over-print-recycled-unisex-hoodie-white-front-6a5458d185148.png"
+            alt="Hoodie alternate front"
             onclick="changeProductImage(this.src)">
 
-
-          <!-- THUMBNAIL 6 -->
           <img
-            src="embroidered-premium-sherpa-blanket-black-front-6a5eed73c1a75.png"
-            alt="Premium Sherpa Blanket front"
-            onclick="changeProductImage(this.src)">
-
-
-          <!-- THUMBNAIL 7 -->
-          <img
-            src="embroidered-premium-sherpa-blanket-black-back-6a5eed73c1ac8.png"
-            alt="Premium Sherpa Blanket back"
+            src="all-over-print-recycled-unisex-hoodie-white-right-6a5458d181dcb.png"
+            alt="Hoodie right view"
             onclick="changeProductImage(this.src)">
 
         </div>
 
       </div>
 
-
-      <!-- PRODUCT INFORMATION -->
-
       <div class="product-info">
 
-        <h1>Premium Sherpa Blanket</h1>
+        <h1>All-Over Print Recycled Unisex Hoodie</h1>
 
         <p class="description">
-          Wrap yourself in comfort and the @Tenacious spirit — softness
-          designed for those who remain resilient by choice.
+          A statement layer made for movement, resilience and everyday
+          confidence — carrying the @Tenacious spirit wherever you go.
         </p>
 
-        <p class="price">$90.00</p>
-
+        <p class="price">$79.00</p>
 
         <button
           class="order-button"
           onclick="addToCart()">
-
           Add to Cart
-
         </button>
-
 
         <a href="#" class="whatsapp-button">
           Order via WhatsApp
         </a>
 
-
         <div class="details">
 
           <h2>Product Details</h2>
 
-          <p>• Premium sherpa fabric</p>
-          <p>• Ultra-soft & comfortable</p>
+          <p>• Recycled fabric</p>
+          <p>• All-over printed design</p>
+          <p>• Unisex fit</p>
           <p>• @Tenacious design</p>
 
         </div>
@@ -311,15 +259,14 @@
 
   </main>
 
-
   <script>
 
     function addToCart() {
 
       const product = {
-        name: "Premium Sherpa Blanket",
-        price: 90,
-        image: "embroidered-premium-sherpa-blanket-black-front-6a5eed73c1ced.png",
+        name: "All-Over Print Recycled Unisex Hoodie",
+        price: 79,
+        image: "all-over-print-recycled-unisex-hoodie-white-front-6a5458d182faa.png",
         quantity: 1
       };
 
@@ -330,13 +277,9 @@
         cart.find(item => item.name === product.name);
 
       if (existingProduct) {
-
         existingProduct.quantity += 1;
-
       } else {
-
         cart.push(product);
-
       }
 
       localStorage.setItem(
@@ -345,21 +288,14 @@
       );
 
       window.location.href = "cart.html";
-
     }
 
-
     function changeProductImage(imageSource) {
-
-      document.getElementById(
-        "mainProductImage"
-      ).src = imageSource;
-
+      document.getElementById("mainProductImage").src = imageSource;
     }
 
   </script>
 
 </body>
 
-</html>
-    
+            </html>

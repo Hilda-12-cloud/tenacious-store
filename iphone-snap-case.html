@@ -1,1 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Snap Case for iPhone | @Tenacious</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #0b0b0b;
+      color: #ffffff;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    .product-page {
+      max-width: 1100px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    .back-link {
+      display: inline-block;
+      color: #ffffff;
+      text-decoration: none;
+      margin-bottom: 35px;
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    .back-link:hover {
+      opacity: 1;
+    }
+
+    .product-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .product-image {
+      background: #111111;
+      border: 1px solid #2d2d2d;
+      padding: 5px;
+    }
+
+    .product-image > #mainProductImage {
+      width: 110%;
+      height: auto;
+      display: block;
+      margin-left: -4%;
+    }
+
+    .thumbnail-gallery {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+      overflow-x: auto;
+      padding-bottom: 5px;
+    }
+
+    .thumbnail-gallery img {
+      width: 65px;
+      height: 65px;
+      object-fit: cover;
+      display: block;
+      border: 1px solid #2d2d2d;
+      cursor: pointer;
+      flex: 0 0 65px;
+      opacity: 0.8;
+      transition: opacity 0.2s ease, border-color 0.2s ease;
+    }
+
+    .thumbnail-gallery img:hover {
+      opacity: 1;
+      border-color: #ffffff;
+    }
+
+    .product-info h1 {
+      font-size: 42px;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+    }
+
+    .description {
+      color: #cfcfcf;
+      margin-bottom: 25px;
+      font-size: 16px;
+    }
+
+    .price {
+      font-size: 28px;
+      margin-bottom: 25px;
+      font-weight: bold;
+    }
+
+    .model-label {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 15px;
+      font-weight: bold;
+    }
+
+    .model-select {
+      width: 100%;
+      padding: 14px;
+      margin-bottom: 25px;
+      background: #111111;
+      color: #ffffff;
+      border: 1px solid #444444;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .order-button {
+      display: block;
+      width: 100%;
+      padding: 16px;
+      background: #ffffff;
+      color: #000000;
+      text-align: center;
+      text-decoration: none;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      margin-bottom: 15px;
+    }
+
+    .whatsapp-button {
+      display: block;
+      width: 100%;
+      padding: 16px;
+      border: 1px solid #ffffff;
+      color: #ffffff;
+      text-align: center;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .details {
+      margin-top: 35px;
+      border-top: 1px solid #2d2d2d;
+      padding-top: 25px;
+    }
+
+    .details h2 {
+      font-size: 18px;
+      margin-bottom: 15px;
+    }
+
+    .details p {
+      color: #bdbdbd;
+      margin-bottom: 8px;
+    }
+
+    .shipping-note {
+      margin-top: 20px;
+      padding: 15px;
+      border: 1px solid #333333;
+      color: #cfcfcf;
+      font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
+      .product-container {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+
+      .product-info h1 {
+        font-size: 32px;
+      }
+
+      .product-page {
+        padding: 25px 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="product-page">
+
+    <a href="index.html#shop" class="back-link">← Back to Shop</a>
+
+    <div class="product-container">
+
+      <div class="product-image">
+
+        <img
+          id="mainProductImage"
+          src="snap-case-for-iphone-matte-iphone-16-pro-max-front-6a5ee6292cd23.png"
+          alt="Snap Case for iPhone">
+
+        <div class="thumbnail-gallery">
+
+          <img
+            src="snap-case-for-iphone-matte-iphone-16-pro-max-front-6a5ee6292cd23.png"
+            alt="Snap Case iPhone 16 Pro Max"
+            onclick="changeImage(this.src)">
+
+          <img
+            src="snap-case-for-iphone-matte-iphone-14-plus-front-6a5ee62929baf.png"
+            alt="Snap Case iPhone 14 Plus"
+            onclick="changeImage(this.src)">
+
+          <img
+            src="snap-case-for-iphone-matte-iphone-14-pro-front-3-6a5ee6292a2d8.png"
+            alt="Snap Case iPhone 14 Pro"
+            onclick="changeImage(this.src)">
+
+          <img
+            src="snap-case-for-iphone-matte-iphone-16-plus-front-6a5ee6292c789.png"
+            alt="Snap Case iPhone 16 Plus"
+            onclick="changeImage(this.src)">
+
+          <img
+            src="snap-case-for-iphone-matte-iphone-16-pro-max-front-6a5ee6292cf27.png"
+            alt="Snap Case iPhone 16 Pro Max"
+            onclick="changeImage(this.src)">
+
+          <img
+            src="snap-case-for-iphone-matte-iphone-16-pro-max-front-6a5ee6292cf42.png"
+            alt="Snap Case iPhone 16 Pro Max View"
+            onclick="changeImage(this.src)">
+
+          <img
+            src="snap-case-for-iphone-matte-iphone-16-pro-max-right-6a5ee6292cee4.png"
+            alt="Snap Case iPhone 16 Pro Max Right"
+            onclick="changeImage(this.src)">
+
+        </div>
+
+      </div>
+
+      <div class="product-info">
+
+        <h1>Snap Case for iPhone</h1>
+
+        <p class="description">
+          A slim, lightweight phone case with a premium matte finish —
+          designed to protect your device while carrying the
+          @Tenacious spirit everywhere you go.
+        </p>
+
+        <p class="price">$34.00</p>
+
+        <label class="model-label" for="model">
+          Choose Your iPhone Model
+        </label>
+
+        <select id="model" class="model-select">
+
+          <option value="iPhone 11">iPhone 11</option>
+          <option value="iPhone 11 Pro">iPhone 11 Pro</option>
+          <option value="iPhone 11 Pro Max">iPhone 11 Pro Max</option>
+
+          <option value="iPhone 12 Mini">iPhone 12 Mini</option>
+          <option value="iPhone 12">iPhone 12</option>
+          <option value="iPhone 12 Pro">iPhone 12 Pro</option>
+          <option value="iPhone 12 Pro Max">iPhone 12 Pro Max</option>
+
+          <option value="iPhone 13 Mini">iPhone 13 Mini</option>
+          <option value="iPhone 13">iPhone 13</option>
+          <option value="iPhone 13 Pro">iPhone 13 Pro</option>
+          <option value="iPhone 13 Pro Max">iPhone 13 Pro Max</option>
+
+          <option value="iPhone 14">iPhone 14</option>
+          <option value="iPhone 14 Plus">iPhone 14 Plus</option>
+          <option value="iPhone 14 Pro">iPhone 14 Pro</option>
+          <option value="iPhone 14 Pro Max">iPhone 14 Pro Max</option>
+
+          <option value="iPhone 15">iPhone 15</option>
+          <option value="iPhone 15 Plus">iPhone 15 Plus</option>
+          <option value="iPhone 15 Pro">iPhone 15 Pro</option>
+          <option value="iPhone 15 Pro Max">iPhone 15 Pro Max</option>
+
+          <option value="iPhone 16">iPhone 16</option>
+          <option value="iPhone 16 Plus">iPhone 16 Plus</option>
+          <option value="iPhone 16 Pro">iPhone 16 Pro</option>
+          <option value="iPhone 16 Pro Max">iPhone 16 Pro Max</option>
+
+          <option value="iPhone 17">iPhone 17</option>
+          <option value="iPhone 17 Air">iPhone 17 Air</option>
+          <option value="iPhone 17 Pro">iPhone 17 Pro</option>
+          <option value="iPhone 17 Pro Max">iPhone 17 Pro Max</option>
+
+        </select>
+
+        <button class="order-button" onclick="addToCart()">
+          Add to Cart
+        </button>
+
+        <a href="#" class="whatsapp-button">
+          Order via WhatsApp
+        </a>
+
+        <div class="details">
+
+          <h2>Product Details</h2>
+
+          <p>• Polycarbonate (PC) material</p>
+          <p>• Wireless charging compatible</p>
+          <p>• Precisely aligned port openings</p>
+          <p>• Matte finish</p>
+          <p>• All-over print sublimation</p>
+          <p>• Made on demand with no minimums</p>
+
+        </div>
+
+        <div class="shipping-note">
+          <strong>Shipping restriction:</strong><br>
+          This product cannot be shipped to South Korea,
+          Hong Kong, Taiwan, Japan, or Singapore.
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <script>
+
+    function addToCart() {
+
+      const model = document.getElementById("model").value;
+
+      const product = {
+        name: "Snap Case for iPhone",
+        model: model,
+        price: 34,
+        image: "snap-case-for-iphone-matte-iphone-16-pro-max-front-6a5ee6292cd23.png",
+        quantity: 1
+      };
+
+      let cart =
+        JSON.parse(localStorage.getItem("cart")) || [];
+
+      const existingProduct = cart.find(
+        item =>
+          item.name === product.name &&
+          item.model === product.model
+      );
+
+      if (existingProduct) {
+        existingProduct.quantity += 1;
+      } else {
+        cart.push(product);
+      }
+
+      localStorage.setItem(
+        "cart",
+        JSON.stringify(cart)
+      );
+
+      window.location.href = "cart.html";
+    }
+
+    function changeImage(imageSrc) {
+      document.getElementById("mainProductImage").src =
+        imageSrc;
+    }
+
+  </script>
+
+</body>
+
+            </html>

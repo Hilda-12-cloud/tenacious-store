@@ -379,7 +379,50 @@
   <footer>
     © 2026 @Tenacious — Resilient by choice.
   </footer>
+<script>
 
+function addToCart() {
+
+  const sizeSelect = document.getElementById("size");
+
+  const selectedOption =
+    sizeSelect.options[sizeSelect.selectedIndex];
+
+  const size = selectedOption.value;
+  const price = parseFloat(selectedOption.dataset.price);
+
+  const product = {
+    name: "Toddler Pullover Fleece Hoodie - " + size,
+    price: price,
+    image: "toddler-pullover-fleece-hoodie-navy-front-6a5ee363f3df9.png",
+    quantity: 1
+  };
+
+  const cart =
+    JSON.parse(localStorage.getItem("cart")) || [];
+
+  const existingItem = cart.find(
+    item => item.name === product.name
+  );
+
+  if (existingItem) {
+
+    existingItem.quantity += 1;
+
+  } else {
+
+    cart.push(product);
+
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+
+  document.getElementById("cart-message").textContent =
+    "Added to cart ✓";
+
+}
+
+</script>
 </body>
 
   </html>

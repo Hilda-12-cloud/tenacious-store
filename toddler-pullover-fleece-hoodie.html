@@ -79,14 +79,13 @@
     .price {
       font-size: 28px;
       font-weight: bold;
-      margin-bottom: 25px;
+      margin-bottom: 20px;
     }
 
     .price-note {
       color: #999;
       font-size: 14px;
-      margin-top: -18px;
-      margin-bottom: 25px;
+      margin-top: 10px;
     }
 
     .section {
@@ -113,6 +112,40 @@
       margin-bottom: 7px;
     }
 
+    .size-select {
+      width: 100%;
+      padding: 14px;
+      background: #111;
+      color: #fff;
+      border: 1px solid #555;
+      border-radius: 5px;
+      font-size: 16px;
+      margin-bottom: 15px;
+    }
+
+    .add-to-cart {
+      width: 100%;
+      padding: 16px;
+      background: #fff;
+      color: #000;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .add-to-cart:hover {
+      background: #ddd;
+    }
+
+    .cart-message {
+      margin-top: 14px;
+      text-align: center;
+      color: #aaa;
+      min-height: 24px;
+    }
+
     .sizes {
       display: flex;
       flex-wrap: wrap;
@@ -136,9 +169,9 @@
       color: #ddd;
     }
 
-    .order-button {
+    .cart-link {
       display: inline-block;
-      margin-top: 25px;
+      margin-top: 15px;
       padding: 14px 25px;
       background: #fff;
       color: #000;
@@ -147,8 +180,23 @@
       border-radius: 5px;
     }
 
-    .order-button:hover {
+    .cart-link:hover {
       background: #ddd;
+    }
+
+    .continue-link {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 14px 25px;
+      border: 1px solid #555;
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 5px;
+    }
+
+    .continue-link:hover {
+      background: #1a1a1a;
     }
 
     footer {
@@ -185,7 +233,7 @@
 
   <main class="product-page">
 
-    <a class="back" href="index.html">← Back to Collection</a>
+    <a class="back" href="index.html#shop">← Back to Collection</a>
 
     <div class="gallery">
 
@@ -234,53 +282,43 @@
       <p class="subtitle">
         Rabbit Skins 3326
       </p>
-<div class="price">
-  From $34.95
-</div>
 
-<div class="section">
+      <div class="price" id="display-price">
+        $34.95
+      </div>
 
-  <h2>Select Size</h2>
+      <div class="section">
 
-  <select id="size" style="
-    width: 100%;
-    padding: 14px;
-    background: #111;
-    color: #fff;
-    border: 1px solid #555;
-    border-radius: 5px;
-    font-size: 16px;
-  ">
-    <option value="2T" data-price="34.95">2T — $34.95</option>
-    <option value="4T" data-price="36.95">4T — $36.95</option>
-    <option value="5–6T" data-price="38.95">5–6T — $38.95</option>
-  </select>
+        <h2>Select Size</h2>
 
-  <button
-    onclick="addToCart()"
-    style="
-      width: 100%;
-      margin-top: 18px;
-      padding: 16px;
-      background: #fff;
-      color: #000;
-      border: none;
-      border-radius: 5px;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-    "
-  >
-    Add to Cart
-  </button>
+        <select id="size" class="size-select" onchange="updatePrice()">
+          <option value="2T" data-price="34.95">
+            2T — $34.95
+          </option>
 
-  <p id="cart-message" style="
-    margin-top: 12px;
-    color: #aaa;
-    text-align: center;
-  "></p>
+          <option value="4T" data-price="36.95">
+            4T — $36.95
+          </option>
 
-</div>
+          <option value="5-6T" data-price="38.95">
+            5–6T — $38.95
+          </option>
+        </select>
+
+        <button
+          type="button"
+          class="add-to-cart"
+          onclick="addToCart()">
+          Add to Cart
+        </button>
+
+        <p id="cart-message" class="cart-message"></p>
+
+        <a href="cart.html" class="cart-link">
+          View Cart
+        </a>
+
+      </div>
 
       <p class="price-note">
         Price varies by size.
@@ -368,7 +406,7 @@
         Made on demand for @Tenacious.
       </div>
 
-      <a class="order-button" href="index.html#shop">
+      <a class="continue-link" href="index.html#shop">
         Continue Shopping
       </a>
 
@@ -379,50 +417,76 @@
   <footer>
     © 2026 @Tenacious — Resilient by choice.
   </footer>
-<script>
 
-function addToCart() {
+  <script>
 
-  const sizeSelect = document.getElementById("size");
+    function updatePrice() {
 
-  const selectedOption =
-    sizeSelect.options[sizeSelect.selectedIndex];
+      const sizeSelect = document.getElementById("size");
 
-  const size = selectedOption.value;
-  const price = parseFloat(selectedOption.dataset.price);
+      const selectedOption =
+        sizeSelect.options[sizeSelect.selectedIndex];
 
-  const product = {
-    name: "Toddler Pullover Fleece Hoodie - " + size,
-    price: price,
-    image: "toddler-pullover-fleece-hoodie-navy-front-6a5ee363f3df9.png",
-    quantity: 1
-  };
+      const price =
+        parseFloat(selectedOption.getAttribute("data-price"));
 
-  const cart =
-    JSON.parse(localStorage.getItem("cart")) || [];
+      document.getElementById("display-price").textContent =
+        "$" + price.toFixed(2);
+    }
 
-  const existingItem = cart.find(
-    item => item.name === product.name
-  );
 
-  if (existingItem) {
+    function addToCart() {
 
-    existingItem.quantity += 1;
+      const sizeSelect = document.getElementById("size");
 
-  } else {
+      const selectedOption =
+        sizeSelect.options[sizeSelect.selectedIndex];
 
-    cart.push(product);
+      const size = selectedOption.value;
 
-  }
+      const price =
+        parseFloat(selectedOption.getAttribute("data-price"));
 
-  localStorage.setItem("cart", JSON.stringify(cart));
+      const product = {
+        name: "Toddler Pullover Fleece Hoodie - " + size,
+        price: price,
+        image: "toddler-pullover-fleece-hoodie-navy-front-6a5ee363f3df9.png",
+        quantity: 1
+      };
 
-  document.getElementById("cart-message").textContent =
-    "Added to cart ✓";
+      let cart =
+        JSON.parse(localStorage.getItem("cart")) || [];
 
-}
+      if (!Array.isArray(cart)) {
+        cart = [];
+      }
 
-</script>
+      const existingProduct = cart.find(function(item) {
+        return item.name === product.name;
+      });
+
+      if (existingProduct) {
+
+        existingProduct.quantity += 1;
+
+      } else {
+
+        cart.push(product);
+
+      }
+
+      localStorage.setItem(
+        "cart",
+        JSON.stringify(cart)
+      );
+
+      document.getElementById("cart-message").textContent =
+        "Added to cart ✓";
+
+    }
+
+  </script>
+
 </body>
 
-  </html>
+        </html>

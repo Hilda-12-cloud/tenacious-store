@@ -1,1 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>White Glossy Mug | @Tenacious</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #0b0b0b;
+      color: #ffffff;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    .product-page {
+      max-width: 1100px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    .back-link {
+      display: inline-block;
+      color: #ffffff;
+      text-decoration: none;
+      margin-bottom: 35px;
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    .back-link:hover {
+      opacity: 1;
+    }
+
+    .product-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .product-gallery {
+      width: 100%;
+    }
+
+    .main-product-image {
+      background: #111111;
+      border: 1px solid #2d2d2d;
+      padding: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 450px;
+    }
+
+    .main-product-image img {
+      width: 100%;
+      height: 450px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .product-thumbnails {
+      display: flex;
+      gap: 12px;
+      margin-top: 15px;
+      overflow-x: auto;
+      padding-bottom: 5px;
+    }
+
+    .product-thumbnails img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      background: #111111;
+      border: 1px solid #2d2d2d;
+      padding: 3px;
+      cursor: pointer;
+      flex-shrink: 0;
+      opacity: 0.8;
+    }
+
+    .product-thumbnails img:hover {
+      border-color: #ffffff;
+      opacity: 1;
+    }
+
+    .product-info h1 {
+      font-size: 42px;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+    }
+
+    .description {
+      color: #cfcfcf;
+      margin-bottom: 25px;
+      font-size: 16px;
+    }
+
+    .size-label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    .size-select {
+      width: 100%;
+      padding: 14px;
+      background: #111111;
+      color: #ffffff;
+      border: 1px solid #444444;
+      font-size: 16px;
+      margin-bottom: 20px;
+      cursor: pointer;
+    }
+
+    .price {
+      font-size: 28px;
+      margin-bottom: 30px;
+      font-weight: bold;
+    }
+
+    .order-button {
+      display: block;
+      width: 100%;
+      padding: 16px;
+      background: #ffffff;
+      color: #000000;
+      text-align: center;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      margin-bottom: 15px;
+    }
+
+    .whatsapp-button {
+      display: block;
+      width: 100%;
+      padding: 16px;
+      border: 1px solid #ffffff;
+      color: #ffffff;
+      text-align: center;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .details {
+      margin-top: 35px;
+      border-top: 1px solid #2d2d2d;
+      padding-top: 25px;
+    }
+
+    .details h2 {
+      font-size: 18px;
+      margin-bottom: 15px;
+    }
+
+    .details p {
+      color: #bdbdbd;
+      margin-bottom: 8px;
+    }
+
+    @media (max-width: 768px) {
+
+      .product-container {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+
+      .product-info h1 {
+        font-size: 32px;
+      }
+
+      .product-page {
+        padding: 25px 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="product-page">
+
+    <a href="index.html#shop" class="back-link">
+      ← Back to Shop
+    </a>
+
+    <div class="product-container">
+
+      <!-- PRODUCT GALLERY -->
+
+      <div class="product-gallery">
+
+        <div class="main-product-image">
+
+          <img
+            id="mainProductImage"
+            src="white-glossy-mug-white-15-oz-front-view-6a4d8c8d22ea8.png"
+            alt="White Glossy Mug">
+
+        </div>
+
+        <div class="product-thumbnails">
+
+          <img
+            src="white-glossy-mug-white-15-oz-front-view-6a4d8c8d22ea8.png"
+            alt="White Glossy Mug 15 oz Front View"
+            onclick="changeProductImage(this.src)">
+
+          <img
+            src="white-glossy-mug-white-15-oz-front-6a4d8c8d22fd1.png"
+            alt="White Glossy Mug 15 oz Front"
+            onclick="changeProductImage(this.src)">
+
+          <img
+            src="white-glossy-mug-white-15-oz-front-view-6a4d8c8d22bda.png"
+            alt="White Glossy Mug 15 oz Front View"
+            onclick="changeProductImage(this.src)">
+
+          <img
+            src="white-glossy-mug-white-15-oz-handle-on-left-6a4d8c8d22b9f.png"
+            alt="White Glossy Mug 15 oz Handle Left"
+            onclick="changeProductImage(this.src)">
+
+          <img
+            src="white-glossy-mug-white-15-oz-handle-on-left-6a4d8c8d22e3d.png"
+            alt="White Glossy Mug 15 oz Handle Left"
+            onclick="changeProductImage(this.src)">
+
+          <img
+            src="white-glossy-mug-white-15-oz-handle-on-right-6a4d8c8d22b7c.png"
+            alt="White Glossy Mug 15 oz Handle Right"
+            onclick="changeProductImage(this.src)">
+
+          <img
+            src="white-glossy-mug-white-15-oz-handle-on-right-6a4d8c8d22d21.png"
+            alt="White Glossy Mug 15 oz Handle Right"
+            onclick="changeProductImage(this.src)">
+
+          <img
+            src="white-glossy-mug-white-15-oz-handle-on-right-6a4d8c8d22f46.png"
+            alt="White Glossy Mug 15 oz Handle Right"
+            onclick="changeProductImage(this.src)">
+
+          <img
+            src="white-glossy-mug-white-15-oz-woman-6a4d8c8d22bff.png"
+            alt="White Glossy Mug Lifestyle"
+            onclick="changeProductImage(this.src)">
+
+          <img
+            src="white-glossy-mug-white-20-oz-front-view-6a4d8c8d23341.png"
+            alt="White Glossy Mug 20 oz Front View"
+            onclick="changeProductImage(this.src)">
+
+          <img
+            src="white-glossy-mug-white-20-oz-handle-on-right-6a4d8c8d2331c.png"
+            alt="White Glossy Mug 20 oz Handle Right"
+            onclick="changeProductImage(this.src)">
+
+          <img
+            src="white-glossy-mug-white-20-oz-woman-6a4d8c8d23469.png"
+            alt="White Glossy Mug 20 oz Lifestyle"
+            onclick="changeProductImage(this.src)">
+
+        </div>
+
+      </div>
+
+
+      <!-- PRODUCT INFORMATION -->
+
+      <div class="product-info">
+
+        <h1>White Glossy Mug</h1>
+
+        <p class="description">
+          A classic glossy ceramic mug made for morning coffee,
+          afternoon tea and everyday moments — finished with vivid
+          @Tenacious designs that bring character to every sip.
+        </p>
+
+        <label class="size-label" for="size">
+          Select Size
+        </label>
+
+        <select
+          id="size"
+          class="size-select"
+          onchange="updatePrice()">
+
+          <option value="11 oz" data-price="18">
+            11 oz — $18.00
+          </option>
+
+          <option value="15 oz" data-price="21" selected>
+            15 oz — $21.00
+          </option>
+
+          <option value="20 oz" data-price="24">
+            20 oz — $24.00
+          </option>
+
+        </select>
+
+        <p class="price" id="productPrice">
+          $21.00
+        </p>
+
+        <button
+          class="order-button"
+          onclick="addToCart()">
+
+          Add to Cart
+
+        </button>
+
+        <a href="#" class="whatsapp-button">
+          Order via WhatsApp
+        </a>
+
+        <div class="details">
+
+          <h2>Product Details</h2>
+
+          <p>• Ceramic construction</p>
+
+          <p>• Glossy white finish</p>
+
+          <p>• Vivid sublimation prints</p>
+
+          <p>• Dishwasher safe</p>
+
+          <p>• Microwave safe</p>
+
+          <p>• 11 oz dimensions: 3.8″ × 3.2″</p>
+
+          <p>• 15 oz dimensions: 4.7″ × 3.3″</p>
+
+          <p>• 20 oz dimensions: 4.3″ × 3.7″</p>
+
+          <p>• Premium everyday drinkware</p>
+
+          <p>• Sublimation printing</p>
+
+          <p>• Blank product sourced from China</p>
+
+          <p>• Made on demand — no minimums</p>
+
+          <p>• Available in 11 oz, 15 oz and 20 oz</p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+
+  <script>
+
+    function updatePrice() {
+
+      const sizeSelect =
+        document.getElementById("size");
+
+      const selectedOption =
+        sizeSelect.options[
+          sizeSelect.selectedIndex
+        ];
+
+      const price =
+        Number(selectedOption.dataset.price);
+
+      document.getElementById(
+        "productPrice"
+      ).textContent =
+        "$" + price.toFixed(2);
+
+    }
+
+
+    function addToCart() {
+
+      const sizeSelect =
+        document.getElementById("size");
+
+      const selectedOption =
+        sizeSelect.options[
+          sizeSelect.selectedIndex
+        ];
+
+      const size =
+        selectedOption.value;
+
+      const price =
+        Number(selectedOption.dataset.price);
+
+      const product = {
+
+        name: "White Glossy Mug",
+
+        size: size,
+
+        price: price,
+
+        image:
+          "white-glossy-mug-white-15-oz-front-view-6a4d8c8d22ea8.png",
+
+        quantity: 1
+
+      };
+
+
+      let cart =
+        JSON.parse(
+          localStorage.getItem("cart")
+        ) || [];
+
+
+      const existingProduct =
+        cart.find(
+          item =>
+            item.name === product.name &&
+            item.size === product.size
+        );
+
+
+      if (existingProduct) {
+
+        existingProduct.quantity += 1;
+
+      } else {
+
+        cart.push(product);
+
+      }
+
+
+      localStorage.setItem(
+        "cart",
+        JSON.stringify(cart)
+      );
+
+
+      window.location.href =
+        "cart.html";
+
+    }
+
+
+    function changeProductImage(imageSource) {
+
+      document.getElementById(
+        "mainProductImage"
+      ).src = imageSource;
+
+    }
+
+  </script>
+
+</body>
+
+  </html>

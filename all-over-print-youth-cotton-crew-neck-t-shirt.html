@@ -1,1 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>All-Over Print Youth Cotton Crew Neck T-Shirt | @Tenacious</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #0b0b0b;
+      color: #ffffff;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    .product-page {
+      max-width: 1100px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    .back-link {
+      display: inline-block;
+      color: #ffffff;
+      text-decoration: none;
+      margin-bottom: 35px;
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    .back-link:hover {
+      opacity: 1;
+    }
+
+    .product-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .product-gallery {
+      width: 100%;
+    }
+
+    .main-product-image {
+      background: #111111;
+      border: 1px solid #2d2d2d;
+      padding: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 450px;
+    }
+
+    .main-product-image img {
+      width: 100%;
+      height: 450px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .product-thumbnails {
+      display: flex;
+      gap: 12px;
+      margin-top: 15px;
+      overflow-x: auto;
+      padding-bottom: 5px;
+    }
+
+    .product-thumbnails img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      background: #111111;
+      border: 1px solid #2d2d2d;
+      padding: 3px;
+      cursor: pointer;
+      flex-shrink: 0;
+      opacity: 0.8;
+    }
+
+    .product-thumbnails img:hover {
+      opacity: 1;
+      border-color: #ffffff;
+    }
+
+    .product-info h1 {
+      font-size: 42px;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+    }
+
+    .description {
+      color: #cfcfcf;
+      margin-bottom: 25px;
+      font-size: 16px;
+    }
+
+    .size-label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    .size-select {
+      width: 100%;
+      padding: 14px;
+      background: #111111;
+      color: #ffffff;
+      border: 1px solid #444444;
+      font-size: 16px;
+      margin-bottom: 20px;
+      cursor: pointer;
+    }
+
+    .price {
+      font-size: 28px;
+      margin-bottom: 30px;
+      font-weight: bold;
+    }
+
+    .order-button {
+      display: block;
+      width: 100%;
+      padding: 16px;
+      background: #ffffff;
+      color: #000000;
+      text-align: center;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      margin-bottom: 15px;
+    }
+
+    .order-button:hover {
+      background: #dddddd;
+    }
+
+    .whatsapp-button {
+      display: block;
+      width: 100%;
+      padding: 16px;
+      border: 1px solid #ffffff;
+      color: #ffffff;
+      text-align: center;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .whatsapp-button:hover {
+      background: #ffffff;
+      color: #000000;
+    }
+
+    .details {
+      margin-top: 35px;
+      border-top: 1px solid #2d2d2d;
+      padding-top: 25px;
+    }
+
+    .details h2 {
+      font-size: 18px;
+      margin-bottom: 15px;
+    }
+
+    .details p {
+      color: #bdbdbd;
+      margin-bottom: 8px;
+    }
+
+    @media (max-width: 768px) {
+
+      .product-container {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+
+      .product-info h1 {
+        font-size: 32px;
+      }
+
+      .product-page {
+        padding: 25px 15px;
+      }
+
+      .main-product-image {
+        min-height: 350px;
+      }
+
+      .main-product-image img {
+        height: 350px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="product-page">
+
+    <a href="index.html#shop" class="back-link">
+      ← Back to Shop
+    </a>
+
+    <div class="product-container">
+
+      <!-- PRODUCT GALLERY -->
+
+      <div class="product-gallery">
+
+        <div class="main-product-image">
+
+          <img
+            id="mainProductImage"
+            src="all-over-print-youth-cotton-crew-neck-t-shirt-white-front-6a4d8b6235c50.png"
+            alt="All-Over Print Youth Cotton Crew Neck T-Shirt">
+
+        </div>
+
+        <div class="product-thumbnails">
+
+          <img
+            src="all-over-print-youth-cotton-crew-neck-t-shirt-white-front-6a4d8b6235c50.png"
+            alt="Youth T-Shirt Front"
+            onclick="changeProductImage(this.src)">
+
+          <img
+            src="all-over-print-youth-cotton-crew-neck-t-shirt-white-left-front-6a4d8b6235bb1.png"
+            alt="Youth T-Shirt Left Front"
+            onclick="changeProductImage(this.src)">
+
+          <img
+            src="all-over-print-youth-cotton-crew-neck-t-shirt-white-right-front-6a4d8b62359d3.png"
+            alt="Youth T-Shirt Right Front"
+            onclick="changeProductImage(this.src)">
+
+          <img
+            src="all-over-print-youth-cotton-crew-neck-t-shirt-white-right-front-6a4d8b6235a25.png"
+            alt="Youth T-Shirt Right Front View"
+            onclick="changeProductImage(this.src)">
+
+          <img
+            src="all-over-print-youth-cotton-crew-neck-t-shirt-white-back-6a4d8b62357ae.png"
+            alt="Youth T-Shirt Back"
+            onclick="changeProductImage(this.src)">
+
+          <img
+            src="all-over-print-youth-cotton-crew-neck-t-shirt-white-back-6a4d8b6235845.png"
+            alt="Youth T-Shirt Back View"
+            onclick="changeProductImage(this.src)">
+
+          <img
+            src="all-over-print-youth-cotton-crew-neck-t-shirt-white-front-6a4d8b6235acc.png"
+            alt="Youth T-Shirt Front Detail"
+            onclick="changeProductImage(this.src)">
+
+        </div>
+
+      </div>
+
+
+      <!-- PRODUCT INFORMATION -->
+
+      <div class="product-info">
+
+        <h1>All-Over Print Youth Cotton Crew Neck T-Shirt</h1>
+
+        <p class="description">
+          A soft, breathable everyday tee made for school days,
+          playground adventures and everything in between — bringing
+          the @Tenacious spirit to a younger generation.
+        </p>
+
+        <label class="size-label" for="size">
+          Select Size
+        </label>
+
+        <select id="size" class="size-select" onchange="updatePrice()">
+
+          <option value="8" data-price="45">
+            8 — $45.00
+          </option>
+
+          <option value="10" data-price="45">
+            10 — $45.00
+          </option>
+
+          <option value="12" data-price="46">
+            12 — $46.00
+          </option>
+
+          <option value="14" data-price="47">
+            14 — $47.00
+          </option>
+
+          <option value="16" data-price="48">
+            16 — $48.00
+          </option>
+
+          <option value="18" data-price="49">
+            18 — $49.00
+          </option>
+
+          <option value="20" data-price="50">
+            20 — $50.00
+          </option>
+
+        </select>
+
+        <p class="price" id="productPrice">
+          $45.00
+        </p>
+
+        <button class="order-button" onclick="addToCart()">
+          Add to Cart
+        </button>
+
+        <a href="#" class="whatsapp-button">
+          Order via WhatsApp
+        </a>
+
+        <div class="details">
+
+          <h2>Product Details</h2>
+
+          <p>• 96% cotton, 4% elastane</p>
+          <p>• Fabric weight: 5.6 oz/yd² (189 g/m²)</p>
+          <p>• Soft handfeel with a smooth surface</p>
+          <p>• Regular fit</p>
+          <p>• Self-fabric collar</p>
+          <p>• Tear-away care label</p>
+          <p>• Pilling-resistant and colorfast after washing</p>
+          <p>• All-over cotton printing</p>
+          <p>• Front, left sleeve and right sleeve print placements</p>
+          <p>• Blank product sourced from Mexico</p>
+          <p>• Product code: 5103YCO</p>
+          <p>• Available in sizes 8–20</p>
+          <p>• Made on demand — no minimums</p>
+          <p>• Product made for children</p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+
+  <script>
+
+    function updatePrice() {
+
+      const sizeSelect =
+        document.getElementById("size");
+
+      const selectedOption =
+        sizeSelect.options[sizeSelect.selectedIndex];
+
+      const price =
+        Number(selectedOption.dataset.price);
+
+      document.getElementById("productPrice").textContent =
+        "$" + price.toFixed(2);
+    }
+
+
+    function addToCart() {
+
+      const sizeSelect =
+        document.getElementById("size");
+
+      const selectedOption =
+        sizeSelect.options[sizeSelect.selectedIndex];
+
+      const size =
+        selectedOption.value;
+
+      const price =
+        Number(selectedOption.dataset.price);
+
+      const product = {
+
+        name: "All-Over Print Youth Cotton Crew Neck T-Shirt",
+
+        size: size,
+
+        price: price,
+
+        image:
+          "all-over-print-youth-cotton-crew-neck-t-shirt-white-front-6a4d8b6235c50.png",
+
+        quantity: 1
+
+      };
+
+
+      let cart =
+        JSON.parse(localStorage.getItem("cart")) || [];
+
+
+      const existingProduct =
+        cart.find(
+          item =>
+            item.name === product.name &&
+            item.size === product.size
+        );
+
+
+      if (existingProduct) {
+
+        existingProduct.quantity += 1;
+
+      } else {
+
+        cart.push(product);
+
+      }
+
+
+      localStorage.setItem(
+        "cart",
+        JSON.stringify(cart)
+      );
+
+
+      window.location.href =
+        "cart.html";
+
+    }
+
+
+    function changeProductImage(imageSource) {
+
+      document.getElementById(
+        "mainProductImage"
+      ).src = imageSource;
+
+    }
+
+  </script>
+
+</body>
+
+</html>

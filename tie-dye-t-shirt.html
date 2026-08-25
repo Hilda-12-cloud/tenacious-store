@@ -73,6 +73,7 @@
       gap: 12px;
       margin-top: 15px;
       overflow-x: auto;
+      padding-bottom: 5px;
     }
 
     .product-thumbnails img {
@@ -84,10 +85,13 @@
       padding: 3px;
       cursor: pointer;
       flex-shrink: 0;
+      opacity: 0.8;
+      transition: 0.2s ease;
     }
 
     .product-thumbnails img:hover {
       border-color: #ffffff;
+      opacity: 1;
     }
 
     .product-info h1 {
@@ -100,6 +104,66 @@
       color: #cfcfcf;
       margin-bottom: 25px;
       font-size: 16px;
+    }
+
+    /* DESIGN / COLOUR */
+
+    .option-label {
+      display: block;
+      margin-bottom: 12px;
+      font-weight: bold;
+    }
+
+    .color-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .color-button {
+      padding: 10px 14px;
+      background: #111111;
+      color: #ffffff;
+      border: 1px solid #444444;
+      cursor: pointer;
+      font-size: 14px;
+      transition: 0.2s ease;
+    }
+
+    .color-button:hover {
+      border-color: #ffffff;
+    }
+
+    .color-button.active {
+      background: #ffffff;
+      color: #000000;
+      border-color: #ffffff;
+    }
+
+    .selected-color {
+      color: #bdbdbd;
+      font-size: 14px;
+      margin-bottom: 22px;
+    }
+
+    /* SIZE */
+
+    .size-label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    .size-select {
+      width: 100%;
+      padding: 14px;
+      background: #111111;
+      color: #ffffff;
+      border: 1px solid #444444;
+      font-size: 16px;
+      margin-bottom: 20px;
+      cursor: pointer;
     }
 
     .price {
@@ -162,6 +226,14 @@
       .product-page {
         padding: 25px 15px;
       }
+
+      .main-product-image {
+        min-height: 350px;
+      }
+
+      .main-product-image img {
+        height: 350px;
+      }
     }
   </style>
 </head>
@@ -189,32 +261,31 @@
 
         </div>
 
-
         <div class="product-thumbnails">
 
           <img
             src="unisex-oversized-tie-dye-t-shirt-milky-way-front-6a5060f41d078.png"
-            alt="Milky Way front"
+            alt="Milky Way"
             onclick="changeProductImage(this.src)">
 
           <img
             src="unisex-oversized-tie-dye-t-shirt-navy-white-back-6a5060f41e530.png"
-            alt="Navy white back"
+            alt="Navy White"
             onclick="changeProductImage(this.src)">
 
           <img
             src="unisex-oversized-tie-dye-t-shirt-sherbet-rainbow-product-details-6a5060f4207ce.png"
-            alt="Sherbet Rainbow product details"
+            alt="Sherbet Rainbow"
             onclick="changeProductImage(this.src)">
 
           <img
             src="unisex-oversized-tie-dye-t-shirt-black-white-front-6a5060f427513.png"
-            alt="Black white front"
+            alt="Black White"
             onclick="changeProductImage(this.src)">
 
           <img
             src="unisex-oversized-tie-dye-t-shirt-classic-rainbow-zoomed-in-6a5060f424bed.png"
-            alt="Classic Rainbow detail"
+            alt="Classic Rainbow"
             onclick="changeProductImage(this.src)">
 
         </div>
@@ -230,13 +301,119 @@
 
         <p class="description">
           An expressive oversized layer made for individuality,
-          confidence, and the @Tenacious spirit.
+          confidence, and the @Tenacious spirit. Each tie-dye piece
+          carries its own unique colour variation.
         </p>
 
-        <p class="price">$75.00</p>
+
+        <!-- COLOUR / DESIGN -->
+
+        <label class="option-label">
+          Colour
+        </label>
+
+        <div class="color-options">
+
+          <button
+            class="color-button active"
+            onclick="selectColor(
+              'Milky Way',
+              'unisex-oversized-tie-dye-t-shirt-milky-way-front-6a5060f41d078.png',
+              this
+            )">
+            Milky Way
+          </button>
+
+          <button
+            class="color-button"
+            onclick="selectColor(
+              'Navy White',
+              'unisex-oversized-tie-dye-t-shirt-navy-white-back-6a5060f41e530.png',
+              this
+            )">
+            Navy White
+          </button>
+
+          <button
+            class="color-button"
+            onclick="selectColor(
+              'Sherbet Rainbow',
+              'unisex-oversized-tie-dye-t-shirt-sherbet-rainbow-product-details-6a5060f4207ce.png',
+              this
+            )">
+            Sherbet Rainbow
+          </button>
+
+          <button
+            class="color-button"
+            onclick="selectColor(
+              'Black White',
+              'unisex-oversized-tie-dye-t-shirt-black-white-front-6a5060f427513.png',
+              this
+            )">
+            Black White
+          </button>
+
+          <button
+            class="color-button"
+            onclick="selectColor(
+              'Classic Rainbow',
+              'unisex-oversized-tie-dye-t-shirt-classic-rainbow-zoomed-in-6a5060f424bed.png',
+              this
+            )">
+            Classic Rainbow
+          </button>
+
+        </div>
+
+        <p class="selected-color">
+          Selected colour:
+          <strong id="selectedColor">Milky Way</strong>
+        </p>
 
 
-        <button class="order-button" onclick="addToCart()">
+        <!-- SIZE -->
+
+        <label class="size-label" for="size">
+          Select Size
+        </label>
+
+        <select
+          id="size"
+          class="size-select"
+          onchange="updatePrice()">
+
+          <option value="S" data-price="75">
+            S — $75.00
+          </option>
+
+          <option value="M" data-price="75">
+            M — $75.00
+          </option>
+
+          <option value="L" data-price="75">
+            L — $75.00
+          </option>
+
+          <option value="XL" data-price="78">
+            XL — $78.00
+          </option>
+
+          <option value="2XL" data-price="81">
+            2XL — $81.00
+          </option>
+
+        </select>
+
+
+        <p class="price" id="productPrice">
+          $75.00
+        </p>
+
+
+        <button
+          class="order-button"
+          onclick="addToCart()">
           Add to Cart
         </button>
 
@@ -246,14 +423,25 @@
         </a>
 
 
+        <!-- DETAILS -->
+
         <div class="details">
 
           <h2>Product Details</h2>
 
-          <p>• Oversized unisex fit</p>
-          <p>• Soft, comfortable fabric</p>
+          <p>• 100% US grown cotton</p>
+          <p>• Heavyweight 7.5 oz./yd.² (254 g/m²) fabric</p>
+          <p>• Oversized fit</p>
+          <p>• Extended sleeves</p>
+          <p>• Ribbed neck</p>
           <p>• Bold tie-dye finish</p>
-          <p>• Designed for everyday expression</p>
+          <p>• Each shirt has slight colour variation</p>
+          <p>• Every piece is unique</p>
+          <p>• Blank product sourced from Honduras</p>
+          <p>• Left chest embroidery placement</p>
+          <p>• Embroidery technique</p>
+          <p>• Sizes S–2XL</p>
+          <p>• Made on demand — no minimums</p>
 
         </div>
 
@@ -266,20 +454,126 @@
 
   <script>
 
+    let selectedColor = "Milky Way";
+
+    let selectedImage =
+      "unisex-oversized-tie-dye-t-shirt-milky-way-front-6a5060f41d078.png";
+
+
+    function selectColor(color, image, button) {
+
+      selectedColor = color;
+
+      selectedImage = image;
+
+      document.getElementById(
+        "mainProductImage"
+      ).src = image;
+
+      document.getElementById(
+        "selectedColor"
+      ).textContent = color;
+
+
+      const buttons =
+        document.querySelectorAll(
+          ".color-button"
+        );
+
+
+      buttons.forEach(function(btn) {
+
+        btn.classList.remove("active");
+
+      });
+
+
+      button.classList.add("active");
+
+    }
+
+
+    function updatePrice() {
+
+      const sizeSelect =
+        document.getElementById("size");
+
+      const selectedOption =
+        sizeSelect.options[
+          sizeSelect.selectedIndex
+        ];
+
+      const price =
+        Number(
+          selectedOption.dataset.price
+        );
+
+
+      document.getElementById(
+        "productPrice"
+      ).textContent =
+        "$" + price.toFixed(2);
+
+    }
+
+
     function addToCart() {
 
+      const sizeSelect =
+        document.getElementById("size");
+
+      const selectedOption =
+        sizeSelect.options[
+          sizeSelect.selectedIndex
+        ];
+
+
+      const size =
+        selectedOption.value;
+
+      const price =
+        Number(
+          selectedOption.dataset.price
+        );
+
+
       const product = {
-        name: "Unisex Oversized Tie-Dye T-Shirt",
-        price: 75,
-        image: "unisex-oversized-tie-dye-t-shirt-milky-way-front-6a5060f41d078.png",
-        quantity: 1
+
+        name:
+          "Unisex Oversized Tie-Dye T-Shirt",
+
+        color:
+          selectedColor,
+
+        size:
+          size,
+
+        price:
+          price,
+
+        image:
+          selectedImage,
+
+        quantity:
+          1
+
       };
 
+
       let cart =
-        JSON.parse(localStorage.getItem("cart")) || [];
+        JSON.parse(
+          localStorage.getItem("cart")
+        ) || [];
+
 
       const existingProduct =
-        cart.find(item => item.name === product.name);
+        cart.find(
+          item =>
+            item.name === product.name &&
+            item.color === product.color &&
+            item.size === product.size
+        );
+
 
       if (existingProduct) {
 
@@ -291,12 +585,15 @@
 
       }
 
+
       localStorage.setItem(
         "cart",
         JSON.stringify(cart)
       );
 
-      window.location.href = "cart.html";
+
+      window.location.href =
+        "cart.html";
 
     }
 

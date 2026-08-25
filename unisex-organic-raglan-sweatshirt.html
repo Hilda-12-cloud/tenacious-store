@@ -1,1 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Unisex Organic Raglan Sweatshirt | @Tenacious</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #0b0b0b;
+      color: #ffffff;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    .product-page {
+      max-width: 1100px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    .back-link {
+      display: inline-block;
+      color: #ffffff;
+      text-decoration: none;
+      margin-bottom: 35px;
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    .back-link:hover {
+      opacity: 1;
+    }
+
+    .product-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .product-image {
+      background: #111111;
+      border: 1px solid #2d2d2d;
+      padding: 5px;
+    }
+
+    .product-image > #mainProductImage {
+      width: 110%;
+      height: auto;
+      display: block;
+      margin-left: -4%;
+    }
+
+    .thumbnail-gallery {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+      overflow-x: auto;
+      padding-bottom: 5px;
+    }
+
+    .thumbnail-gallery img {
+      width: 65px;
+      height: 65px;
+      object-fit: cover;
+      display: block;
+      margin: 0;
+      padding: 0;
+      border: 1px solid #2d2d2d;
+      cursor: pointer;
+      flex: 0 0 65px;
+      opacity: 0.8;
+      transition: opacity 0.2s ease, border-color 0.2s ease;
+    }
+
+    .thumbnail-gallery img:hover {
+      opacity: 1;
+      border-color: #ffffff;
+    }
+
+    .product-info h1 {
+      font-size: 42px;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+    }
+
+    .description {
+      color: #cfcfcf;
+      margin-bottom: 25px;
+      font-size: 16px;
+    }
+
+    .size-label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    .size-select {
+      width: 100%;
+      padding: 14px;
+      background: #111111;
+      color: #ffffff;
+      border: 1px solid #444444;
+      font-size: 16px;
+      margin-bottom: 20px;
+      cursor: pointer;
+    }
+
+    .price {
+      font-size: 28px;
+      margin-bottom: 30px;
+      font-weight: bold;
+    }
+
+    .order-button {
+      display: block;
+      width: 100%;
+      padding: 16px;
+      background: #ffffff;
+      color: #000000;
+      text-align: center;
+      text-decoration: none;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      margin-bottom: 15px;
+    }
+
+    .whatsapp-button {
+      display: block;
+      width: 100%;
+      padding: 16px;
+      border: 1px solid #ffffff;
+      color: #ffffff;
+      text-align: center;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .details {
+      margin-top: 35px;
+      border-top: 1px solid #2d2d2d;
+      padding-top: 25px;
+    }
+
+    .details h2 {
+      font-size: 18px;
+      margin-bottom: 15px;
+    }
+
+    .details p {
+      color: #bdbdbd;
+      margin-bottom: 8px;
+    }
+
+    @media (max-width: 768px) {
+      .product-container {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+
+      .product-info h1 {
+        font-size: 32px;
+      }
+
+      .product-page {
+        padding: 25px 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="product-page">
+
+    <a href="index.html#shop" class="back-link">← Back to Shop</a>
+
+    <div class="product-container">
+
+      <div class="product-image">
+
+        <img
+          id="mainProductImage"
+          src="unisex-organic-raglan-sweatshirt-white-front-6a5ee574e4097.png"
+          alt="Unisex Organic Raglan Sweatshirt">
+
+        <div class="thumbnail-gallery">
+
+          <img
+            src="unisex-organic-raglan-sweatshirt-white-front-6a5ee574e4097.png"
+            alt="White Sweatshirt Front"
+            onclick="changeImage(this.src)">
+
+          <img
+            src="unisex-organic-raglan-sweatshirt-burnt-orange-front-6a5ee574c246b.png"
+            alt="Burnt Orange Sweatshirt Front"
+            onclick="changeImage(this.src)">
+
+          <img
+            src="unisex-organic-raglan-sweatshirt-black-back-6a5ee5744240c.png"
+            alt="Black Sweatshirt Back"
+            onclick="changeImage(this.src)">
+
+          <img
+            src="unisex-organic-raglan-sweatshirt-black-product-details-2-6a5ee57444858.png"
+            alt="Black Sweatshirt Product Details"
+            onclick="changeImage(this.src)">
+
+          <img
+            src="unisex-organic-raglan-sweatshirt-bottle-green-product-details-6a5ee574770d6.png"
+            alt="Bottle Green Sweatshirt"
+            onclick="changeImage(this.src)">
+
+          <img
+            src="unisex-organic-raglan-sweatshirt-burgundy-front-6a5ee5745692b.png"
+            alt="Burgundy Sweatshirt Front"
+            onclick="changeImage(this.src)">
+
+          <img
+            src="unisex-organic-raglan-sweatshirt-burnt-orange-right-front-6a5ee574c7dba.png"
+            alt="Burnt Orange Sweatshirt Right Front"
+            onclick="changeImage(this.src)">
+
+          <img
+            src="unisex-organic-raglan-sweatshirt-charcoal-melange-back-2-6a5ee5746990a.png"
+            alt="Charcoal Melange Sweatshirt Back"
+            onclick="changeImage(this.src)">
+
+          <img
+            src="unisex-organic-raglan-sweatshirt-white-left-6a5ee57501ab9.png"
+            alt="White Sweatshirt Left"
+            onclick="changeImage(this.src)">
+
+          <img
+            src="unisex-organic-raglan-sweatshirt-white-product-details-3-6a5ee5751b480.png"
+            alt="White Sweatshirt Product Details"
+            onclick="changeImage(this.src)">
+
+          <img
+            src="unisex-organic-raglan-sweatshirt-white-product-details-4-6a5ee575027cc.png"
+            alt="White Sweatshirt Product Details"
+            onclick="changeImage(this.src)">
+
+        </div>
+
+      </div>
+
+      <div class="product-info">
+
+        <h1>Unisex Organic Raglan Sweatshirt</h1>
+
+        <p class="description">
+          A premium organic sweatshirt made for everyday movement and
+          resilience. With a soft brushed-fleece interior, smooth organic
+          cotton exterior and a clean raglan silhouette, it delivers
+          comfort without sacrificing style.
+        </p>
+
+        <label class="size-label" for="size">Select Size</label>
+
+        <select id="size" class="size-select" onchange="updatePrice()">
+          <option value="XS" data-price="69">XS — $69.00</option>
+          <option value="S" data-price="69">S — $69.00</option>
+          <option value="M" data-price="69">M — $69.00</option>
+          <option value="L" data-price="69">L — $69.00</option>
+          <option value="XL" data-price="72">XL — $72.00</option>
+          <option value="2XL" data-price="75">2XL — $75.00</option>
+          <option value="3XL" data-price="78">3XL — $78.00</option>
+        </select>
+
+        <p class="price" id="productPrice">$69.00</p>
+
+        <button class="order-button" onclick="addToCart()">
+          Add to Cart
+        </button>
+
+        <a href="#" class="whatsapp-button">Order via WhatsApp</a>
+
+        <div class="details">
+
+          <h2>Product Details</h2>
+
+          <p>• 100% organic cotton exterior</p>
+          <p>• 80% organic cotton, 20% recycled polyester interior</p>
+          <p>• Charcoal Melange: 60% organic cotton, 40% recycled polyester exterior</p>
+          <p>• 97% organic cotton, 3% elastane ribs</p>
+          <p>• Fabric weight: 8.3 oz/yd² (280 g/m²)</p>
+          <p>• Charcoal Melange: 10.3 oz/yd² (348 g/m²)</p>
+          <p>• Raglan sleeves</p>
+          <p>• Brushed fleece lining</p>
+          <p>• 2 × 2 ribbed cuffs, collar and hem</p>
+          <p>• Side-seamed construction</p>
+          <p>• Front print + left wrist placement</p>
+          <p>• DTG printing</p>
+          <p>• GOTS and OCS certified organic cotton</p>
+          <p>• OEKO-TEX® STANDARD 100 certified</p>
+          <p>• PETA-Approved Vegan</p>
+          <p>• Made on demand — no minimums</p>
+          <p>• Available in XS–3XL</p>
+          <p>• Product: SOL'S 03567</p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <script>
+
+    function updatePrice() {
+
+      const sizeSelect = document.getElementById("size");
+      const selectedOption =
+        sizeSelect.options[sizeSelect.selectedIndex];
+
+      const price = selectedOption.dataset.price;
+
+      document.getElementById("productPrice").textContent =
+        "$" + Number(price).toFixed(2);
+
+    }
+
+    function addToCart() {
+
+      const sizeSelect = document.getElementById("size");
+      const selectedOption =
+        sizeSelect.options[sizeSelect.selectedIndex];
+
+      const size = selectedOption.value;
+      const price = Number(selectedOption.dataset.price);
+
+      const product = {
+        name: "Unisex Organic Raglan Sweatshirt",
+        size: size,
+        price: price,
+        image: "unisex-organic-raglan-sweatshirt-white-front-6a5ee574e4097.png",
+        quantity: 1
+      };
+
+      let cart =
+        JSON.parse(localStorage.getItem("cart")) || [];
+
+      const existingProduct = cart.find(
+        item =>
+          item.name === product.name &&
+          item.size === product.size
+      );
+
+      if (existingProduct) {
+        existingProduct.quantity += 1;
+      } else {
+        cart.push(product);
+      }
+
+      localStorage.setItem(
+        "cart",
+        JSON.stringify(cart)
+      );
+
+      window.location.href = "cart.html";
+    }
+
+    function changeImage(imageSrc) {
+      document.getElementById("mainProductImage").src = imageSrc;
+    }
+
+  </script>
+
+</body>
+
+  </html>

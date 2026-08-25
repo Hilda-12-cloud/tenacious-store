@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+        <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -99,6 +99,50 @@
       font-size: 16px;
     }
 
+    /* COLOUR SELECTOR */
+
+    .option-label {
+      display: block;
+      margin-bottom: 12px;
+      font-weight: bold;
+    }
+
+    .color-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 25px;
+    }
+
+    .color-button {
+      padding: 10px 16px;
+      background: #111111;
+      color: #ffffff;
+      border: 1px solid #444444;
+      cursor: pointer;
+      font-size: 14px;
+      transition: 0.2s ease;
+    }
+
+    .color-button:hover {
+      border-color: #ffffff;
+    }
+
+    .color-button.active {
+      background: #ffffff;
+      color: #000000;
+      border-color: #ffffff;
+    }
+
+    .selected-color {
+      color: #bdbdbd;
+      font-size: 14px;
+      margin-top: -15px;
+      margin-bottom: 20px;
+    }
+
+    /* SIZE */
+
     .size-label {
       display: block;
       margin-bottom: 10px;
@@ -196,62 +240,62 @@
           src="unisex-organic-raglan-sweatshirt-burnt-orange-front-6a5ee574c940c.png"
           alt="Unisex Organic Raglan Sweatshirt">
 
-        <!-- THUMBNAIL GALLERY -->
+        <!-- IMAGE GALLERY -->
         <div class="thumbnail-gallery">
 
           <img
             src="unisex-organic-raglan-sweatshirt-burnt-orange-front-6a5ee574c940c.png"
-            alt="Burnt Orange Sweatshirt Front"
+            alt="Burnt Orange"
             onclick="changeImage(this.src)">
 
           <img
             src="unisex-organic-raglan-sweatshirt-white-front-6a5ee5752b69d.png"
-            alt="White Sweatshirt Front"
+            alt="White"
             onclick="changeImage(this.src)">
 
           <img
             src="unisex-organic-raglan-sweatshirt-black-back-6a5ee5744240c.png"
-            alt="Black Sweatshirt Back"
+            alt="Black"
             onclick="changeImage(this.src)">
 
           <img
             src="unisex-organic-raglan-sweatshirt-black-product-details-2-6a5ee57444858.png"
-            alt="Black Sweatshirt Product Details"
+            alt="Black Product Details"
             onclick="changeImage(this.src)">
 
           <img
             src="unisex-organic-raglan-sweatshirt-bottle-green-product-details-6a5ee574770d6.png"
-            alt="Bottle Green Sweatshirt"
+            alt="Bottle Green"
             onclick="changeImage(this.src)">
 
           <img
             src="unisex-organic-raglan-sweatshirt-burgundy-front-6a5ee5745692b.png"
-            alt="Burgundy Sweatshirt Front"
+            alt="Burgundy"
             onclick="changeImage(this.src)">
 
           <img
             src="unisex-organic-raglan-sweatshirt-burnt-orange-right-front-6a5ee574c7dba.png"
-            alt="Burnt Orange Sweatshirt Right Front"
+            alt="Burnt Orange Side"
             onclick="changeImage(this.src)">
 
           <img
             src="unisex-organic-raglan-sweatshirt-charcoal-melange-back-2-6a5ee5746990a.png"
-            alt="Charcoal Melange Sweatshirt Back"
+            alt="Charcoal Melange"
             onclick="changeImage(this.src)">
 
           <img
             src="unisex-organic-raglan-sweatshirt-white-left-6a5ee57501ab9.png"
-            alt="White Sweatshirt Left"
+            alt="White Left"
             onclick="changeImage(this.src)">
 
           <img
             src="unisex-organic-raglan-sweatshirt-white-product-details-3-6a5ee5751b480.png"
-            alt="White Sweatshirt Product Details"
+            alt="White Details"
             onclick="changeImage(this.src)">
 
           <img
             src="unisex-organic-raglan-sweatshirt-white-product-details-4-6a5ee575027cc.png"
-            alt="White Sweatshirt Product Details"
+            alt="White Details"
             onclick="changeImage(this.src)">
 
         </div>
@@ -269,16 +313,88 @@
           comfort without sacrificing style.
         </p>
 
+        <!-- COLOUR -->
+
+        <label class="option-label">Colour</label>
+
+        <div class="color-options">
+
+          <button
+            class="color-button active"
+            onclick="selectColor('Burnt Orange', 'unisex-organic-raglan-sweatshirt-burnt-orange-front-6a5ee574c940c.png', this)">
+            Burnt Orange
+          </button>
+
+          <button
+            class="color-button"
+            onclick="selectColor('White', 'unisex-organic-raglan-sweatshirt-white-front-6a5ee5752b69d.png', this)">
+            White
+          </button>
+
+          <button
+            class="color-button"
+            onclick="selectColor('Black', 'unisex-organic-raglan-sweatshirt-black-back-6a5ee5744240c.png', this)">
+            Black
+          </button>
+
+          <button
+            class="color-button"
+            onclick="selectColor('Bottle Green', 'unisex-organic-raglan-sweatshirt-bottle-green-product-details-6a5ee574770d6.png', this)">
+            Bottle Green
+          </button>
+
+          <button
+            class="color-button"
+            onclick="selectColor('Burgundy', 'unisex-organic-raglan-sweatshirt-burgundy-front-6a5ee5745692b.png', this)">
+            Burgundy
+          </button>
+
+          <button
+            class="color-button"
+            onclick="selectColor('Charcoal Melange', 'unisex-organic-raglan-sweatshirt-charcoal-melange-back-2-6a5ee5746990a.png', this)">
+            Charcoal Melange
+          </button>
+
+        </div>
+
+        <p class="selected-color">
+          Selected colour: <strong id="selectedColor">Burnt Orange</strong>
+        </p>
+
+        <!-- SIZE -->
+
         <label class="size-label" for="size">Select Size</label>
 
         <select id="size" class="size-select" onchange="updatePrice()">
-          <option value="XS" data-price="69">XS — $69.00</option>
-          <option value="S" data-price="69">S — $69.00</option>
-          <option value="M" data-price="69">M — $69.00</option>
-          <option value="L" data-price="69">L — $69.00</option>
-          <option value="XL" data-price="72">XL — $72.00</option>
-          <option value="2XL" data-price="75">2XL — $75.00</option>
-          <option value="3XL" data-price="78">3XL — $78.00</option>
+
+          <option value="XS" data-price="69">
+            XS — $69.00
+          </option>
+
+          <option value="S" data-price="69">
+            S — $69.00
+          </option>
+
+          <option value="M" data-price="69">
+            M — $69.00
+          </option>
+
+          <option value="L" data-price="69">
+            L — $69.00
+          </option>
+
+          <option value="XL" data-price="72">
+            XL — $72.00
+          </option>
+
+          <option value="2XL" data-price="75">
+            2XL — $75.00
+          </option>
+
+          <option value="3XL" data-price="78">
+            3XL — $78.00
+          </option>
+
         </select>
 
         <p class="price" id="productPrice">$69.00</p>
@@ -287,7 +403,9 @@
           Add to Cart
         </button>
 
-        <a href="#" class="whatsapp-button">Order via WhatsApp</a>
+        <a href="#" class="whatsapp-button">
+          Order via WhatsApp
+        </a>
 
         <div class="details">
 
@@ -295,7 +413,7 @@
 
           <p>• 100% organic cotton exterior</p>
           <p>• 80% organic cotton, 20% recycled polyester interior</p>
-          <p>• Charcoal Melange: 60% organic cotton, 40% recycled polyester exterior</p>
+          <p>• Charcoal Melange: 60% organic cotton, 40% recycled polyester</p>
           <p>• 97% organic cotton, 3% elastane ribs</p>
           <p>• Fabric weight: 8.3 oz/yd² (280 g/m²)</p>
           <p>• Charcoal Melange: 10.3 oz/yd² (348 g/m²)</p>
@@ -322,64 +440,133 @@
 
   <script>
 
+    let selectedColor = "Burnt Orange";
+
+    let selectedImage =
+      "unisex-organic-raglan-sweatshirt-burnt-orange-front-6a5ee574c940c.png";
+
+
+    function selectColor(color, image, button) {
+
+      selectedColor = color;
+      selectedImage = image;
+
+      document.getElementById("mainProductImage").src = image;
+
+      document.getElementById("selectedColor").textContent = color;
+
+      const buttons =
+        document.querySelectorAll(".color-button");
+
+      buttons.forEach(function(btn) {
+        btn.classList.remove("active");
+      });
+
+      button.classList.add("active");
+    }
+
+
     function updatePrice() {
 
-      const sizeSelect = document.getElementById("size");
+      const sizeSelect =
+        document.getElementById("size");
+
       const selectedOption =
         sizeSelect.options[sizeSelect.selectedIndex];
 
-      const price = selectedOption.dataset.price;
+      const price =
+        Number(selectedOption.dataset.price);
 
       document.getElementById("productPrice").textContent =
-        "$" + Number(price).toFixed(2);
+        "$" + price.toFixed(2);
     }
+
 
     function addToCart() {
 
-      const sizeSelect = document.getElementById("size");
+      const sizeSelect =
+        document.getElementById("size");
+
       const selectedOption =
         sizeSelect.options[sizeSelect.selectedIndex];
 
-      const size = selectedOption.value;
-      const price = Number(selectedOption.dataset.price);
+      const size =
+        selectedOption.value;
+
+      const price =
+        Number(selectedOption.dataset.price);
+
 
       const product = {
-        name: "Unisex Organic Raglan Sweatshirt",
-        size: size,
-        price: price,
-        image: "unisex-organic-raglan-sweatshirt-burnt-orange-front-6a5ee574c940c.png",
-        quantity: 1
+
+        name:
+          "Unisex Organic Raglan Sweatshirt",
+
+        color:
+          selectedColor,
+
+        size:
+          size,
+
+        price:
+          price,
+
+        image:
+          selectedImage,
+
+        quantity:
+          1
+
       };
 
-      let cart =
-        JSON.parse(localStorage.getItem("cart")) || [];
 
-      const existingProduct = cart.find(
-        item =>
-          item.name === product.name &&
-          item.size === product.size
-      );
+      let cart =
+        JSON.parse(
+          localStorage.getItem("cart")
+        ) || [];
+
+
+      const existingProduct =
+        cart.find(
+          item =>
+            item.name === product.name &&
+            item.color === product.color &&
+            item.size === product.size
+        );
+
 
       if (existingProduct) {
+
         existingProduct.quantity += 1;
+
       } else {
+
         cart.push(product);
+
       }
+
 
       localStorage.setItem(
         "cart",
         JSON.stringify(cart)
       );
 
-      window.location.href = "cart.html";
+
+      window.location.href =
+        "cart.html";
     }
 
+
     function changeImage(imageSrc) {
-      document.getElementById("mainProductImage").src = imageSrc;
+
+      document.getElementById(
+        "mainProductImage"
+      ).src = imageSrc;
+
     }
 
   </script>
 
 </body>
 
-</html>
+  </html>

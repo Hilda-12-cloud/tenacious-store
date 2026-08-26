@@ -1,1 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Classic Dad Hat | @Tenacious</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #0b0b0b;
+      color: #ffffff;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    .product-page {
+      max-width: 1100px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    .back-link {
+      display: inline-block;
+      color: #ffffff;
+      text-decoration: none;
+      margin-bottom: 35px;
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    .back-link:hover {
+      opacity: 1;
+    }
+
+    .product-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .product-gallery {
+      width: 100%;
+    }
+
+    .main-product-image {
+      background: #111111;
+      border: 1px solid #2d2d2d;
+      padding: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 450px;
+    }
+
+    .main-product-image img {
+      width: 100%;
+      height: 450px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .product-thumbnails {
+      display: flex;
+      gap: 12px;
+      margin-top: 15px;
+      overflow-x: auto;
+      padding-bottom: 5px;
+    }
+
+    .product-thumbnails img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      background: #111111;
+      border: 1px solid #2d2d2d;
+      padding: 3px;
+      cursor: pointer;
+      flex-shrink: 0;
+      opacity: 0.8;
+    }
+
+    .product-thumbnails img:hover {
+      border-color: #ffffff;
+      opacity: 1;
+    }
+
+    .product-info h1 {
+      font-size: 42px;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+    }
+
+    .description {
+      color: #cfcfcf;
+      margin-bottom: 25px;
+      font-size: 16px;
+    }
+
+    .option-label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    .color-select {
+      width: 100%;
+      padding: 14px;
+      background: #111111;
+      color: #ffffff;
+      border: 1px solid #444444;
+      font-size: 16px;
+      margin-bottom: 20px;
+      cursor: pointer;
+    }
+
+    .size-box {
+      background: #111111;
+      border: 1px solid #2d2d2d;
+      padding: 14px;
+      margin-bottom: 20px;
+      color: #cccccc;
+    }
+
+    .price {
+      font-size: 28px;
+      margin-bottom: 30px;
+      font-weight: bold;
+    }
+
+    .order-button {
+      display: block;
+      width: 100%;
+      padding: 16px;
+      background: #ffffff;
+      color: #000000;
+      text-align: center;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      margin-bottom: 15px;
+    }
+
+    .whatsapp-button {
+      display: block;
+      width: 100%;
+      padding: 16px;
+      border: 1px solid #ffffff;
+      color: #ffffff;
+      text-align: center;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .details {
+      margin-top: 35px;
+      border-top: 1px solid #2d2d2d;
+      padding-top: 25px;
+    }
+
+    .details h2 {
+      font-size: 18px;
+      margin-bottom: 15px;
+    }
+
+    .details p {
+      color: #bdbdbd;
+      margin-bottom: 8px;
+    }
+
+    @media (max-width: 768px) {
+
+      .product-container {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+
+      .product-info h1 {
+        font-size: 32px;
+      }
+
+      .product-page {
+        padding: 25px 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="product-page">
+
+    <a href="index.html#shop" class="back-link">
+      ← Back to Shop
+    </a>
+
+    <div class="product-container">
+
+      <!-- PRODUCT GALLERY -->
+
+      <div class="product-gallery">
+
+        <div class="main-product-image">
+
+          <img
+            id="mainProductImage"
+            src="classic-dad-hat-black-front-6a4d7ea8223a2.png"
+            alt="Classic Dad Hat">
+
+        </div>
+
+        <div class="product-thumbnails">
+
+          <img
+            src="classic-dad-hat-black-front-6a4d7ea8223a2.png"
+            alt="Black Dad Hat Front"
+            onclick="changeProductImage(this.src)">
+
+          <img
+            src="classic-dad-hat-black-front-6a4d7ea8227e4.png"
+            alt="Black Dad Hat Front"
+            onclick="changeProductImage(this.src)">
+
+          <img
+            src="classic-dad-hat-black-back-6a4d7ea8224b7.png"
+            alt="Black Dad Hat Back"
+            onclick="changeProductImage(this.src)">
+
+          <img
+            src="classic-dad-hat-black-product-details-6a4d7ea8228ee.png"
+            alt="Black Dad Hat Details"
+            onclick="changeProductImage(this.src)">
+
+          <img
+            src="classic-dad-hat-cranberry-front-6a8e444db41bd.png"
+            alt="Cranberry Dad Hat"
+            onclick="changeProductImage(this.src)">
+
+          <img
+            src="classic-dad-hat-dark-grey-left-6a8e444db51de.png"
+            alt="Dark Grey Dad Hat"
+            onclick="changeProductImage(this.src)">
+
+          <img
+            src="classic-dad-hat-green-camo-left-6a8e444db5220.png"
+            alt="Green Camo Dad Hat"
+            onclick="changeProductImage(this.src)">
+
+          <img
+            src="classic-dad-hat-green-camo-right-side-6a8e444db3421.png"
+            alt="Green Camo Dad Hat Right Side"
+            onclick="changeProductImage(this.src)">
+
+          <img
+            src="classic-dad-hat-khaki-left-6a8e444db5272.png"
+            alt="Khaki Dad Hat"
+            onclick="changeProductImage(this.src)">
+
+          <img
+            src="classic-dad-hat-navy-right-front-6a8e444db3ff2.png"
+            alt="Navy Dad Hat"
+            onclick="changeProductImage(this.src)">
+
+          <img
+            src="classic-dad-hat-light-blue-left-6a8e444db4b09.png"
+            alt="Light Blue Dad Hat"
+            onclick="changeProductImage(this.src)">
+
+          <img
+            src="classic-dad-hat-spruce-front-6a8e444db4f88.png"
+            alt="Spruce Dad Hat"
+            onclick="changeProductImage(this.src)">
+
+          <img
+            src="classic-dad-hat-stone-left-6a8e444db537f.png"
+            alt="Stone Dad Hat"
+            onclick="changeProductImage(this.src)">
+
+        </div>
+
+      </div>
+
+
+      <!-- PRODUCT INFORMATION -->
+
+      <div class="product-info">
+
+        <h1>Classic Dad Hat</h1>
+
+        <p class="description">
+          A timeless low-profile essential made from cotton twill,
+          designed for relaxed everyday wear. Finished with the
+          @Tenacious spirit, it's an easy piece to wear your identity
+          wherever you go.
+        </p>
+
+        <label class="option-label" for="color">
+          Select Colour
+        </label>
+
+        <select
+          id="color"
+          class="color-select"
+          onchange="updateProductImage()">
+
+          <option value="Black"
+            data-image="classic-dad-hat-black-front-6a4d7ea8223a2.png">
+            Black
+          </option>
+
+          <option value="Cranberry"
+            data-image="classic-dad-hat-cranberry-front-6a8e444db41bd.png">
+            Cranberry
+          </option>
+
+          <option value="Dark Grey"
+            data-image="classic-dad-hat-dark-grey-left-6a8e444db51de.png">
+            Dark Grey
+          </option>
+
+          <option value="Green Camo"
+            data-image="classic-dad-hat-green-camo-left-6a8e444db5220.png">
+            Green Camo
+          </option>
+
+          <option value="Khaki"
+            data-image="classic-dad-hat-khaki-left-6a8e444db5272.png">
+            Khaki
+          </option>
+
+          <option value="Navy"
+            data-image="classic-dad-hat-navy-right-front-6a8e444db3ff2.png">
+            Navy
+          </option>
+
+          <option value="Light Blue"
+            data-image="classic-dad-hat-light-blue-left-6a8e444db4b09.png">
+            Light Blue
+          </option>
+
+          <option value="Spruce"
+            data-image="classic-dad-hat-spruce-front-6a8e444db4f88.png">
+            Spruce
+          </option>
+
+          <option value="Stone"
+            data-image="classic-dad-hat-stone-left-6a8e444db537f.png">
+            Stone
+          </option>
+
+        </select>
+
+        <div class="size-box">
+          <strong>Size:</strong> One Size
+        </div>
+
+        <p class="price">
+          $34.00
+        </p>
+
+        <button
+          class="order-button"
+          onclick="addToCart()">
+
+          Add to Cart
+
+        </button>
+
+        <a href="#" class="whatsapp-button">
+          Order via WhatsApp
+        </a>
+
+        <div class="details">
+
+          <h2>Product Details</h2>
+
+          <p>• 100% chino cotton twill</p>
+
+          <p>• Green Camo: 35% chino cotton twill, 65% polyester</p>
+
+          <p>• Unstructured 6-panel construction</p>
+
+          <p>• Low-profile crown</p>
+
+          <p>• 6 embroidered eyelets</p>
+
+          <p>• 3⅛″ (7.6 cm) crown</p>
+
+          <p>• Adjustable strap with antique buckle</p>
+
+          <p>• Embroidery technique</p>
+
+          <p>• Front, back, right side and left side placements</p>
+
+          <p>• One size</p>
+
+          <p>• Blank product sourced from Vietnam or Bangladesh</p>
+
+          <p>• Made on demand — no minimums</p>
+
+          <p>• Product: Yupoong 6245CM</p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+
+  <script>
+
+    function updateProductImage() {
+
+      const colorSelect =
+        document.getElementById("color");
+
+      const selectedOption =
+        colorSelect.options[
+          colorSelect.selectedIndex
+        ];
+
+      const image =
+        selectedOption.dataset.image;
+
+      document.getElementById(
+        "mainProductImage"
+      ).src = image;
+
+    }
+
+
+    function addToCart() {
+
+      const colorSelect =
+        document.getElementById("color");
+
+      const selectedOption =
+        colorSelect.options[
+          colorSelect.selectedIndex
+        ];
+
+      const color =
+        selectedOption.value;
+
+      const image =
+        selectedOption.dataset.image;
+
+      const product = {
+
+        name: "Classic Dad Hat",
+
+        color: color,
+
+        size: "One Size",
+
+        price: 34,
+
+        image: image,
+
+        quantity: 1
+
+      };
+
+
+      let cart =
+        JSON.parse(
+          localStorage.getItem("cart")
+        ) || [];
+
+
+      const existingProduct =
+        cart.find(
+          item =>
+            item.name === product.name &&
+            item.color === product.color
+        );
+
+
+      if (existingProduct) {
+
+        existingProduct.quantity += 1;
+
+      } else {
+
+        cart.push(product);
+
+      }
+
+
+      localStorage.setItem(
+        "cart",
+        JSON.stringify(cart)
+      );
+
+
+      window.location.href =
+        "cart.html";
+
+    }
+
+
+    function changeProductImage(imageSource) {
+
+      document.getElementById(
+        "mainProductImage"
+      ).src = imageSource;
+
+    }
+
+  </script>
+
+</body>
+
+            </html>

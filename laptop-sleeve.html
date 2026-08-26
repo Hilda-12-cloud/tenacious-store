@@ -46,48 +46,49 @@
       gap: 60px;
       align-items: center;
     }
-.product-gallery {
-  width: 100%;
-}
 
-.main-product-image {
-  background: #111111;
-  border: 1px solid #2d2d2d;
-  padding: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 450px;
-}
+    .product-gallery {
+      width: 100%;
+    }
 
-.main-product-image img {
-  width: 100%;
-  height: 450px;
-  object-fit: contain;
-  display: block;
-}
+    .main-product-image {
+      background: #111111;
+      border: 1px solid #2d2d2d;
+      padding: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 450px;
+    }
 
-.product-thumbnails {
-  display: flex;
-  gap: 12px;
-  margin-top: 15px;
-  overflow-x: auto;
-}
+    .main-product-image img {
+      width: 100%;
+      height: 450px;
+      object-fit: contain;
+      display: block;
+    }
 
-.product-thumbnails img {
-  width: 80px;
-  height: 80px;
-  object-fit: cover;
-  background: #111111;
-  border: 1px solid #2d2d2d;
-  padding: 3px;
-  cursor: pointer;
-  flex-shrink: 0;
-}
+    .product-thumbnails {
+      display: flex;
+      gap: 12px;
+      margin-top: 15px;
+      overflow-x: auto;
+    }
 
-.product-thumbnails img:hover {
-  border-color: #ffffff;
-}
+    .product-thumbnails img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      background: #111111;
+      border: 1px solid #2d2d2d;
+      padding: 3px;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .product-thumbnails img:hover {
+      border-color: #ffffff;
+    }
 
     .product-info h1 {
       font-size: 42px;
@@ -99,6 +100,28 @@
       color: #cfcfcf;
       margin-bottom: 25px;
       font-size: 16px;
+    }
+
+    .option-label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    .size-select {
+      width: 100%;
+      padding: 14px;
+      background: #111111;
+      color: #ffffff;
+      border: 1px solid #444444;
+      font-size: 16px;
+      margin-bottom: 25px;
+      cursor: pointer;
+    }
+
+    .size-select:focus {
+      outline: none;
+      border-color: #ffffff;
     }
 
     .price {
@@ -120,6 +143,10 @@
       margin-bottom: 15px;
     }
 
+    .order-button:hover {
+      background: #dddddd;
+    }
+
     .whatsapp-button {
       display: block;
       width: 100%;
@@ -129,6 +156,11 @@
       text-align: center;
       text-decoration: none;
       font-weight: bold;
+    }
+
+    .whatsapp-button:hover {
+      background: #ffffff;
+      color: #000000;
     }
 
     .details {
@@ -148,6 +180,7 @@
     }
 
     @media (max-width: 768px) {
+
       .product-container {
         grid-template-columns: 1fr;
         gap: 35px;
@@ -160,6 +193,14 @@
       .product-page {
         padding: 25px 15px;
       }
+
+      .main-product-image {
+        min-height: 380px;
+      }
+
+      .main-product-image img {
+        height: 380px;
+      }
     }
   </style>
 </head>
@@ -168,61 +209,93 @@
 
   <main class="product-page">
 
-    <a href="index.html#shop" class="back-link">← Back to Shop</a>
+    <a href="index.html#shop" class="back-link">
+      ← Back to Shop
+    </a>
 
     <div class="product-container">
 
+      <!-- PRODUCT GALLERY -->
       <div class="product-gallery">
 
-  <div class="main-product-image">
-    <img
-      id="mainProductImage"
-      src="laptop-sleeve-13-front-6a4d80010a1f9.png"
-      alt="Laptop Sleeve">
-  </div>
+        <div class="main-product-image">
+          <img
+            id="mainProductImage"
+            src="laptop-sleeve-13-front-6a4d80010a1f9.png"
+            alt="Laptop Sleeve">
+        </div>
 
-  <div class="product-thumbnails">
+        <div class="product-thumbnails">
 
-    <img
-      src="laptop-sleeve-13-front-6a4d80010a1f9.png"
-      alt="Laptop Sleeve front"
-      onclick="changeProductImage(this.src)">
+          <img
+            src="laptop-sleeve-13-front-6a4d80010a1f9.png"
+            alt="Laptop Sleeve 13 inch front"
+            onclick="changeProductImage(this.src)">
 
-    <img
-      src="laptop-sleeve-13-product-details-2-6a4d80010a4a7.png"
-      alt="Laptop Sleeve details"
-      onclick="changeProductImage(this.src)">
+          <img
+            src="laptop-sleeve-13-product-details-2-6a4d80010a4a7.png"
+            alt="Laptop Sleeve 13 inch product details"
+            onclick="changeProductImage(this.src)">
 
-    <img
-      src="laptop-sleeve-15-front-6a4d80010a52c.png"
-      alt="Laptop Sleeve 15 front"
-      onclick="changeProductImage(this.src)">
+          <img
+            src="laptop-sleeve-15-front-6a4d80010a52c.png"
+            alt="Laptop Sleeve 15 inch front"
+            onclick="changeProductImage(this.src)">
 
-    <img
-      src="laptop-sleeve-15-product-details-6a4d80010a574.png"
-      alt="Laptop Sleeve details"
-      onclick="changeProductImage(this.src)">
+          <img
+            src="laptop-sleeve-15-product-details-6a4d80010a574.png"
+            alt="Laptop Sleeve 15 inch product details"
+            onclick="changeProductImage(this.src)">
 
-  </div>
+        </div>
 
       </div>
 
+      <!-- PRODUCT INFORMATION -->
       <div class="product-info">
 
         <h1>Laptop Sleeve</h1>
 
         <p class="description">
-          Protect your laptop with @Tenacious style — built for those
-          who carry their ambition everywhere.
+          Keep your laptop protected wherever your ambition takes you.
+          This lightweight, form-fitting sleeve combines a water-resistant
+          and scratch-resistant neoprene exterior with a soft faux-fur
+          interior, giving your everyday device a clean and protective
+          @Tenacious finish.
         </p>
 
-        <p class="price">$45.00</p>
+        <label class="option-label" for="size">
+          Select Size
+        </label>
 
-        <button class="order-button" onclick="addToCart()">
+        <select
+          id="size"
+          class="size-select"
+          onchange="updatePrice()">
+
+          <option value="13" data-price="59">
+            13″ — $59.00
+          </option>
+
+          <option value="15" data-price="65">
+            15″ — $65.00
+          </option>
+
+        </select>
+
+        <p class="price" id="productPrice">
+          $59.00
+        </p>
+
+        <button
+          class="order-button"
+          onclick="addToCart()">
           Add to Cart
         </button>
 
-        <a href="#" class="whatsapp-button">
+        <a
+          href="#"
+          class="whatsapp-button">
           Order via WhatsApp
         </a>
 
@@ -230,9 +303,24 @@
 
           <h2>Product Details</h2>
 
-          <p>• Protective laptop sleeve</p>
-          <p>• Lightweight & durable</p>
-          <p>• @Tenacious design</p>
+          <p>• 100% neoprene</p>
+          <p>• Available in 13″ and 15″ sizes</p>
+          <p>• Lightweight and form-fitting</p>
+          <p>• Water-resistant material</p>
+          <p>• Resistant to oil and heat</p>
+          <p>• Scratch-resistant exterior</p>
+          <p>• Soft faux-fur interior lining</p>
+          <p>• Snug fit</p>
+          <p>• Top-loading zippered enclosure with two sliders</p>
+          <p>• Padded zipper binding</p>
+          <p>• Customizable front</p>
+          <p>• Solid black rear</p>
+          <p>• Sublimation printing</p>
+          <p>• Made on demand — no minimums</p>
+          <p>• Blank product sourced from China</p>
+          <p>• Fits most 13″ and 15″ laptops</p>
+          <p>• Adult product</p>
+          <p>• @Tenacious premium collection</p>
 
         </div>
 
@@ -241,40 +329,94 @@
     </div>
 
   </main>
-<script>
 
-  function addToCart() {
+  <script>
 
-    const product = {
-      name: "Laptop Sleeve",
-      price: 45,
-      image: "laptop-sleeve-13-front-6a4d80010a1f9.png",
-      quantity: 1
-    };
+    function updatePrice() {
 
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const sizeSelect =
+        document.getElementById("size");
 
-    const existingProduct = cart.find(
-      item => item.name === product.name
-    );
+      const selectedOption =
+        sizeSelect.options[sizeSelect.selectedIndex];
 
-    if (existingProduct) {
-      existingProduct.quantity += 1;
-    } else {
-      cart.push(product);
+      const price =
+        Number(selectedOption.dataset.price);
+
+      document.getElementById("productPrice").textContent =
+        "$" + price.toFixed(2);
+
     }
 
-    localStorage.setItem("cart", JSON.stringify(cart));
 
-    window.location.href = "cart.html";
-  }
+    function addToCart() {
 
-  function changeProductImage(imageSource) {
-    document.getElementById("mainProductImage").src = imageSource;
-  }
+      const sizeSelect =
+        document.getElementById("size");
 
-</script>
+      const selectedOption =
+        sizeSelect.options[sizeSelect.selectedIndex];
+
+      const size =
+        selectedOption.value;
+
+      const price =
+        Number(selectedOption.dataset.price);
+
+      const image =
+        size === "13"
+          ? "laptop-sleeve-13-front-6a4d80010a1f9.png"
+          : "laptop-sleeve-15-front-6a4d80010a52c.png";
+
+      const product = {
+        name: "Laptop Sleeve",
+        size: size + "″",
+        price: price,
+        image: image,
+        quantity: 1
+      };
+
+      let cart =
+        JSON.parse(localStorage.getItem("cart")) || [];
+
+      const existingProduct =
+        cart.find(
+          item =>
+            item.name === product.name &&
+            item.size === product.size
+        );
+
+      if (existingProduct) {
+
+        existingProduct.quantity += 1;
+
+      } else {
+
+        cart.push(product);
+
+      }
+
+      localStorage.setItem(
+        "cart",
+        JSON.stringify(cart)
+      );
+
+      window.location.href = "cart.html";
+    }
+
+
+    function changeProductImage(imageSource) {
+
+      document.getElementById(
+        "mainProductImage"
+      ).src = imageSource;
+
+    }
+
+  </script>
 
 </body>
 
 </html>
+
+    

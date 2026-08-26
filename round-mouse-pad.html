@@ -290,85 +290,135 @@
 
   <header class="navbar">
     <a href="index.html" class="logo">@TENACIOUS</a>
-    <a href="index.html#shop" class="back-link">← Back to Shop</a>
+
+    <a href="index.html#shop" class="back-link">
+      ← Back to Shop
+    </a>
   </header>
+
 
   <main class="product-page">
 
     <div class="product-layout">
 
+
+      <!-- GALLERY -->
+
       <section class="gallery">
 
         <div class="main-image">
+
           <img
             id="mainProductImage"
             src="round-mouse-pad-white-front-6a5eed3bf279a.png"
             alt="Round Mouse Pad">
+
         </div>
+
 
         <div class="thumbnail-row">
 
-          <button class="thumbnail active"
+          <button
+            type="button"
+            class="thumbnail active"
             onclick="changeImage('round-mouse-pad-white-front-6a5eed3bf279a.png', this)">
+
             <img
               src="round-mouse-pad-white-front-6a5eed3bf279a.png"
               alt="Round Mouse Pad view 1">
+
           </button>
 
-          <button class="thumbnail"
+
+          <button
+            type="button"
+            class="thumbnail"
             onclick="changeImage('round-mouse-pad-white-front-6a5eed3bf281e.png', this)">
+
             <img
               src="round-mouse-pad-white-front-6a5eed3bf281e.png"
               alt="Round Mouse Pad view 2">
+
           </button>
 
-          <button class="thumbnail"
+
+          <button
+            type="button"
+            class="thumbnail"
             onclick="changeImage('round-mouse-pad-white-front-6a5eed3bf2864.png', this)">
+
             <img
               src="round-mouse-pad-white-front-6a5eed3bf2864.png"
               alt="Round Mouse Pad view 3">
+
           </button>
 
         </div>
 
       </section>
 
+
+      <!-- PRODUCT INFORMATION -->
+
       <section class="product-info">
 
         <h1>Round Mouse Pad</h1>
 
         <p class="tagline">
-          A compact, modern desk essential designed for smooth movement and everyday precision.
+          A compact, modern desk essential designed for smooth movement
+          and everyday precision.
         </p>
 
-        <div class="price">$19.00</div>
+        <div class="price">
+          $19.00
+        </div>
 
         <div class="divider"></div>
 
-        <h2 class="section-title">Description</h2>
+
+        <h2 class="section-title">
+          Description
+        </h2>
 
         <p class="description">
-          A smooth and sturdy surface that makes everyday scrolling easier, this round mouse pad
-          is compact and modern. Its round shape fits neatly into small spaces while still giving
-          enough room for precise movements. With a durable build and a one-sided customizable
-          surface, it’s a practical accessory for home offices, work desks, or creative setups.
+          A smooth and sturdy surface that makes everyday scrolling easier,
+          this round mouse pad is compact and modern. Its round shape fits
+          neatly into small spaces while still giving enough room for precise
+          movements. With a durable build and a one-sided customizable
+          surface, it’s a practical accessory for home offices, work desks,
+          or creative setups.
         </p>
 
-        <h2 class="section-title">Product Details</h2>
+
+        <h2 class="section-title">
+          Product Details
+        </h2>
 
         <ul class="details">
+
           <li>Neoprene with rubber backing</li>
           <li>Diameter: 8″ (20.3 cm)</li>
           <li>Thickness: 0.25″ (0.63 cm)</li>
-          <li>One-sided print surface with bright, crisp detail</li>
-          <li>Seamless top surface with durable edges</li>
-          <li>Non-slip bottom keeps the pad in place</li>
+          <li>One-sided customizable print surface</li>
+          <li>Smooth seamless top surface</li>
+          <li>Durable edges</li>
+          <li>Non-slip bottom</li>
           <li>Made on demand — no minimums</li>
+
         </ul>
+
 
         <div class="divider"></div>
 
-        <label for="quantity" class="quantity-label">Quantity</label>
+
+        <label
+          for="quantity"
+          class="quantity-label">
+
+          Quantity
+
+        </label>
+
 
         <input
           id="quantity"
@@ -377,19 +427,36 @@
           min="1"
           value="1">
 
+
         <div class="button-group">
-          <button class="button add-cart" onclick="addToCart()">
+
+          <button
+            type="button"
+            class="button add-cart"
+            onclick="addToCart()">
+
             Add to Cart
+
           </button>
 
-          <button class="button buy-now" onclick="buyNow()">
+
+          <button
+            type="button"
+            class="button buy-now"
+            onclick="buyNow()">
+
             Buy Now
+
           </button>
+
         </div>
 
+
         <div class="made-on-demand">
-          Made especially for you after your order is placed. @Tenacious supports
-          thoughtful, on-demand production.
+
+          Made especially for you after your order is placed.
+          @Tenacious supports thoughtful, on-demand production.
+
         </div>
 
       </section>
@@ -398,38 +465,171 @@
 
   </main>
 
+
   <footer class="footer">
+
     © 2026 @Tenacious — Resilient by choice.
+
   </footer>
 
+
   <script>
+
+    /* CHANGE PRODUCT IMAGE */
+
     function changeImage(image, button) {
+
       document.getElementById("mainProductImage").src = image;
 
-      document.querySelectorAll(".thumbnail").forEach(function(item) {
-        item.classList.remove("active");
-      });
+      document
+        .querySelectorAll(".thumbnail")
+        .forEach(function(item) {
+
+          item.classList.remove("active");
+
+        });
 
       button.classList.add("active");
     }
 
-    function addToCart() {
-      const quantity = document.getElementById("quantity").value;
 
-      alert(
-        "Round Mouse Pad added to your cart. Quantity: " + quantity
+    /* ADD TO CART */
+
+    function addToCart() {
+
+      const quantityInput =
+        document.getElementById("quantity");
+
+      const quantity =
+        parseInt(quantityInput.value, 10);
+
+
+      if (!quantity || quantity < 1) {
+
+        quantityInput.value = 1;
+
+        return;
+
+      }
+
+
+      const product = {
+
+        name: "Round Mouse Pad",
+
+        price: 19,
+
+        image:
+          "round-mouse-pad-white-front-6a5eed3bf279a.png",
+
+        quantity: quantity
+
+      };
+
+
+      let cart =
+        JSON.parse(localStorage.getItem("cart")) || [];
+
+
+      const existingProduct =
+        cart.find(function(item) {
+
+          return item.name === product.name;
+
+        });
+
+
+      if (existingProduct) {
+
+        existingProduct.quantity += quantity;
+
+      } else {
+
+        cart.push(product);
+
+      }
+
+
+      localStorage.setItem(
+        "cart",
+        JSON.stringify(cart)
       );
+
+
+      window.location.href = "cart.html";
+
     }
+
+
+    /* BUY NOW */
 
     function buyNow() {
-      const quantity = document.getElementById("quantity").value;
 
-      alert(
-        "Buy Now selected for " + quantity + " Round Mouse Pad(s)."
+      const quantityInput =
+        document.getElementById("quantity");
+
+      const quantity =
+        parseInt(quantityInput.value, 10);
+
+
+      if (!quantity || quantity < 1) {
+
+        quantityInput.value = 1;
+
+        return;
+
+      }
+
+
+      const product = {
+
+        name: "Round Mouse Pad",
+
+        price: 19,
+
+        image:
+          "round-mouse-pad-white-front-6a5eed3bf279a.png",
+
+        quantity: quantity
+
+      };
+
+
+      let cart =
+        JSON.parse(localStorage.getItem("cart")) || [];
+
+
+      const existingProduct =
+        cart.find(function(item) {
+
+          return item.name === product.name;
+
+        });
+
+
+      if (existingProduct) {
+
+        existingProduct.quantity += quantity;
+
+      } else {
+
+        cart.push(product);
+
+      }
+
+
+      localStorage.setItem(
+        "cart",
+        JSON.stringify(cart)
       );
+
+
+      window.location.href = "cart.html";
+
     }
+
   </script>
 
 </body>
 
-</html>
+            </html>

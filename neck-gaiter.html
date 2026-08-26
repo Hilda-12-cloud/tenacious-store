@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>All-Over-Print Neck Gaiter | @Tenacious</title>
+  <title>All-Over Print Neck Gaiter | @Tenacious</title>
 
   <style>
     * {
@@ -44,20 +44,30 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 60px;
-      align-items: center;
+      align-items: start;
     }
 
-    .product-image {
+    /* PRODUCT GALLERY */
+
+    .product-gallery {
+      width: 100%;
+    }
+
+    .main-product-image {
       background: #111111;
       border: 1px solid #2d2d2d;
       padding: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 450px;
     }
 
-    .product-image > #mainProductImage {
-      width: 110%;
-      height: auto;
+    .main-product-image img {
+      width: 100%;
+      height: 450px;
+      object-fit: contain;
       display: block;
-      margin-left: -4%;
     }
 
     .thumbnail-gallery {
@@ -69,21 +79,24 @@
     }
 
     .thumbnail-gallery img {
-      width: 65px;
-      height: 65px;
+      width: 70px;
+      height: 70px;
       object-fit: cover;
-      display: block;
+      background: #111111;
       border: 1px solid #2d2d2d;
+      padding: 3px;
       cursor: pointer;
-      flex: 0 0 65px;
+      flex: 0 0 70px;
       opacity: 0.8;
-      transition: opacity 0.2s ease, border-color 0.2s ease;
+      transition: 0.2s ease;
     }
 
     .thumbnail-gallery img:hover {
       opacity: 1;
       border-color: #ffffff;
     }
+
+    /* PRODUCT INFORMATION */
 
     .product-info h1 {
       font-size: 42px;
@@ -110,11 +123,14 @@
       background: #ffffff;
       color: #000000;
       text-align: center;
-      text-decoration: none;
       font-weight: bold;
       border: none;
       cursor: pointer;
       margin-bottom: 15px;
+    }
+
+    .order-button:hover {
+      opacity: 0.9;
     }
 
     .whatsapp-button {
@@ -127,6 +143,13 @@
       text-decoration: none;
       font-weight: bold;
     }
+
+    .whatsapp-button:hover {
+      background: #ffffff;
+      color: #000000;
+    }
+
+    /* DETAILS */
 
     .details {
       margin-top: 35px;
@@ -144,7 +167,10 @@
       margin-bottom: 8px;
     }
 
+    /* MOBILE */
+
     @media (max-width: 768px) {
+
       .product-container {
         grid-template-columns: 1fr;
         gap: 35px;
@@ -157,6 +183,14 @@
       .product-page {
         padding: 25px 15px;
       }
+
+      .main-product-image {
+        min-height: 350px;
+      }
+
+      .main-product-image img {
+        height: 350px;
+      }
     }
   </style>
 </head>
@@ -165,89 +199,104 @@
 
   <main class="product-page">
 
-    <a href="index.html#shop" class="back-link">← Back to Shop</a>
+    <a href="index.html#shop" class="back-link">
+      ← Back to Shop
+    </a>
 
     <div class="product-container">
 
-      <div class="product-image">
+      <!-- =========================
+           NECK GAITER GALLERY
+      ========================== -->
 
-        <img
-          id="mainProductImage"
-          src="all-over-print-neck-gaiter-white-on-tube-6a5ede198a24b.png"
-          alt="All-Over-Print Neck Gaiter">
+      <div class="product-gallery">
+
+        <div class="main-product-image">
+
+          <img
+            id="mainProductImage"
+            src="all-over-print-neck-gaiter-white-on-tube-6a5ede198a24b.png"
+            alt="All-Over Print Neck Gaiter">
+
+        </div>
 
         <div class="thumbnail-gallery">
 
-          <img src="all-over-print-neck-gaiter-white-on-tube-6a5ede198a24b.png"
+          <img
+            src="all-over-print-neck-gaiter-white-on-tube-6a5ede198a24b.png"
             alt="Neck Gaiter on Tube"
             onclick="changeImage(this.src)">
 
-          <img src="all-over-print-neck-gaiter-white-back-6a5ede198a19d.png"
-            alt="Neck Gaiter Back"
-            onclick="changeImage(this.src)">
-
-          <img src="all-over-print-neck-gaiter-white-front-6a5ede198a11d.png"
+          <img
+            src="all-over-print-neck-gaiter-white-front-6a5ede198a11d.png"
             alt="Neck Gaiter Front"
             onclick="changeImage(this.src)">
 
-          <img src="all-over-print-neck-gaiter-white-back-6a5ede198a98f.png"
-            alt="Neck Gaiter Back View"
-            onclick="changeImage(this.src)">
-
-          <img src="all-over-print-neck-gaiter-white-left-6a5ede198ad59.png"
-            alt="Neck Gaiter Left View"
-            onclick="changeImage(this.src)">
-
-          <img src="all-over-print-neck-gaiter-white-left-6a5ede198a8a4.png"
-            alt="Neck Gaiter Left View"
-            onclick="changeImage(this.src)">
-
-          <img src="all-over-print-neck-gaiter-white-right-6a5ede198a940.png"
-            alt="Neck Gaiter Right View"
-            onclick="changeImage(this.src)">
-
-          <img src="all-over-print-neck-gaiter-white-back-6a5ede198a19d.png"
+          <img
+            src="all-over-print-neck-gaiter-white-back-6a5ede198a19d.png"
             alt="Neck Gaiter Back"
             onclick="changeImage(this.src)">
 
-          <img src="all-over-print-neck-gaiter-white-front-6a5ede198a11d.png"
-            alt="Neck Gaiter Front"
+          <img
+            src="all-over-print-neck-gaiter-white-left-6a5ede198ad59.png"
+            alt="Neck Gaiter Left"
             onclick="changeImage(this.src)">
 
-          <img src="all-over-print-neck-gaiter-white-on-tube-6a5ede198a24b.png"
-            alt="Neck Gaiter on Tube"
+          <img
+            src="all-over-print-neck-gaiter-white-right-6a5ede198a940.png"
+            alt="Neck Gaiter Right"
             onclick="changeImage(this.src)">
 
         </div>
 
       </div>
 
+
+      <!-- =========================
+           NECK GAITER INFORMATION
+      ========================== -->
+
       <div class="product-info">
 
-        <h1>All-Over-Print Neck Gaiter</h1>
+        <h1>All-Over Print Neck Gaiter</h1>
 
         <p class="description">
-          A versatile statement piece made for movement, comfort and
-          everyday resilience — designed for those who remain tenacious
-          by choice.
+          A versatile @Tenacious essential designed for movement,
+          comfort and everyday resilience. Wear it as a neck warmer,
+          headband, bandana, wristband or face covering.
         </p>
 
-        <p class="price">$35.00</p>
+        <p class="price">
+          $35.00
+        </p>
 
-        <button class="order-button" onclick="addToCart()">
+        <button
+          class="order-button"
+          onclick="addToCart()">
           Add to Cart
         </button>
 
-        <a href="#" class="whatsapp-button">Order via WhatsApp</a>
+        <a
+          href="#"
+          class="whatsapp-button">
+          Order via WhatsApp
+        </a>
 
         <div class="details">
+
           <h2>Product Details</h2>
 
-          <p>• Soft, versatile fabric</p>
-          <p>• All-over @Tenacious design</p>
-          <p>• Lightweight & comfortable</p>
-          <p>• Suitable for everyday wear</p>
-          <p>• Multi-purpose neck and face covering</p>
+          <p>• One size</p>
+          <p>• Breathable fabric</p>
+          <p>• Smooth 2-way stretch</p>
+          <p>• Washable and reusable</p>
+          <p>• Lightweight and comfortable</p>
+          <p>• Printed on one side</p>
+          <p>• Reverse side left blank</p>
+          <p>• OEKO-TEX 100 certified fabric</p>
+          <p>• Made on demand — no minimums</p>
+          <p>• Suitable for adults and children</p>
+
         </div>
 
       </div>
@@ -256,40 +305,53 @@
 
   </main>
 
+
   <script>
 
     function addToCart() {
 
       const product = {
-        name: "All-Over-Print Neck Gaiter",
+        name: "All-Over Print Neck Gaiter",
         price: 35,
         image: "all-over-print-neck-gaiter-white-on-tube-6a5ede198a24b.png",
         quantity: 1
       };
 
-      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      let cart =
+        JSON.parse(localStorage.getItem("cart")) || [];
 
-      const existingProduct = cart.find(
-        item => item.name === product.name
-      );
+      const existingProduct =
+        cart.find(item => item.name === product.name);
 
       if (existingProduct) {
+
         existingProduct.quantity += 1;
+
       } else {
+
         cart.push(product);
+
       }
 
-      localStorage.setItem("cart", JSON.stringify(cart));
+      localStorage.setItem(
+        "cart",
+        JSON.stringify(cart)
+      );
 
       window.location.href = "cart.html";
     }
 
-    function changeImage(imageSrc) {
-      document.getElementById("mainProductImage").src = imageSrc;
+
+    function changeImage(imageSource) {
+
+      document.getElementById(
+        "mainProductImage"
+      ).src = imageSource;
+
     }
 
   </script>
 
 </body>
 
-            </html>
+</html>

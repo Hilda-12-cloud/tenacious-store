@@ -4,497 +4,693 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>All-Over Print Recycled Unisex Hoodie | @Tenacious</title>
-
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      background: #0b0b0b;
-      color: #ffffff;
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-    }
-
-    .product-page {
-      max-width: 1100px;
-      margin: auto;
-      padding: 40px 20px;
-    }
-
-    .back-link {
-      display: inline-block;
-      color: #ffffff;
-      text-decoration: none;
-      margin-bottom: 35px;
-      font-size: 14px;
-      opacity: 0.8;
-    }
-
-    .back-link:hover {
-      opacity: 1;
-    }
-
-    .product-container {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: center;
-    }
-
-    .product-gallery {
-      width: 100%;
-    }
-
-    .main-product-image {
-      background: #111111;
-      border: 1px solid #2d2d2d;
-      padding: 5px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 450px;
-    }
-
-    .main-product-image img {
-      width: 100%;
-      height: 450px;
-      object-fit: contain;
-      display: block;
-    }
-
-    .product-thumbnails {
-      display: flex;
-      gap: 12px;
-      margin-top: 15px;
-      overflow-x: auto;
-    }
-
-    .product-thumbnails img {
-      width: 80px;
-      height: 80px;
-      object-fit: cover;
-      background: #111111;
-      border: 1px solid #2d2d2d;
-      padding: 3px;
-      cursor: pointer;
-      flex-shrink: 0;
-    }
-
-    .product-thumbnails img:hover {
-      border-color: #ffffff;
-    }
-
-    .product-info h1 {
-      font-size: 42px;
-      margin-bottom: 20px;
-      letter-spacing: 1px;
-    }
-
-    .description {
-      color: #cfcfcf;
-      margin-bottom: 25px;
-      font-size: 16px;
-    }
-
-    .option-label {
-      display: block;
-      margin-bottom: 10px;
-      font-weight: bold;
-    }
-
-    .size-select {
-      width: 100%;
-      padding: 14px;
-      background: #111111;
-      color: #ffffff;
-      border: 1px solid #444444;
-      font-size: 16px;
-      margin-bottom: 25px;
-      cursor: pointer;
-    }
-
-    .size-select:focus {
-      outline: none;
-      border-color: #ffffff;
-    }
-
-    .price {
-      font-size: 28px;
-      margin-bottom: 30px;
-      font-weight: bold;
-    }
-
-    .order-button {
-      display: block;
-      width: 100%;
-      padding: 16px;
-      background: #ffffff;
-      color: #000000;
-      text-align: center;
-      font-weight: bold;
-      border: none;
-      cursor: pointer;
-      margin-bottom: 15px;
-    }
-
-    .order-button:hover {
-      background: #dddddd;
-    }
-
-    .whatsapp-button {
-      display: block;
-      width: 100%;
-      padding: 16px;
-      border: 1px solid #ffffff;
-      color: #ffffff;
-      text-align: center;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .whatsapp-button:hover {
-      background: #ffffff;
-      color: #000000;
-    }
-
-    .details {
-      margin-top: 35px;
-      border-top: 1px solid #2d2d2d;
-      padding-top: 25px;
-    }
-
-    .details h2 {
-      font-size: 18px;
-      margin-bottom: 15px;
-    }
-
-    .details p {
-      color: #bdbdbd;
-      margin-bottom: 8px;
-    }
-
-    @media (max-width: 768px) {
-
-      .product-container {
-        grid-template-columns: 1fr;
-        gap: 35px;
-      }
-
-      .product-info h1 {
-        font-size: 32px;
-      }
-
-      .product-page {
-        padding: 25px 15px;
-      }
-
-      .main-product-image {
-        min-height: 380px;
-      }
-
-      .main-product-image img {
-        height: 380px;
-      }
-    }
-  </style>
+  <title>@Tenacious</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <main class="product-page">
+<header class="navbar">
+  <div class="brand">@TENACIOUS</div>
 
-    <a href="index.html#shop" class="back-link">
-      ← Back to Shop
-    </a>
-
-    <div class="product-container">
-
-      <!-- PRODUCT GALLERY -->
-
-      <div class="product-gallery">
-
-        <div class="main-product-image">
-
-          <img
-            id="mainProductImage"
-            src="all-over-print-recycled-unisex-hoodie-white-front-6a5458d182faa.png"
-            alt="All-Over Print Recycled Unisex Hoodie">
-
-        </div>
-
-        <div class="product-thumbnails">
-
-          <img
-            src="all-over-print-recycled-unisex-hoodie-white-front-6a5458d182faa.png"
-            alt="Hoodie front"
-            onclick="changeProductImage(this.src)">
-
-          <img
-            src="all-over-print-recycled-unisex-hoodie-white-back-6a5458d1836b1.png"
-            alt="Hoodie back"
-            onclick="changeProductImage(this.src)">
-
-          <img
-            src="all-over-print-recycled-unisex-hoodie-white-front-6a5458d184af0.png"
-            alt="Hoodie front view"
-            onclick="changeProductImage(this.src)">
-
-          <img
-            src="all-over-print-recycled-unisex-hoodie-white-product-details-2-6a5458d1822d9.png"
-            alt="Hoodie product details"
-            onclick="changeProductImage(this.src)">
-
-          <img
-            src="all-over-print-recycled-unisex-hoodie-white-front-6a5458d185148.png"
-            alt="Hoodie front detail"
-            onclick="changeProductImage(this.src)">
-
-          <img
-            src="all-over-print-recycled-unisex-hoodie-white-right-6a5458d181dcb.png"
-            alt="Hoodie right view"
-            onclick="changeProductImage(this.src)">
-
-        </div>
-
-      </div>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#shop">Shop</a>
+    <a href="#magazine">Magazine</a>
+    <a href="#about">About</a>
+  </nav>
+</header>
 
 
-      <!-- PRODUCT INFORMATION -->
+<main class="hero" id="home" style="scroll-margin-top:80px;">
 
-      <div class="product-info">
+  <div class="logo">@Tenacious</div>
 
-        <h1>All-Over Print Recycled Unisex Hoodie</h1>
+  <div class="tagline">
+    Resilient by choice.
+  </div>
 
-        <p class="description">
-          A customizable recycled hoodie with a relaxed unisex fit,
-          soft cotton-feel fabric and a brushed fleece interior.
-          Designed for everyday comfort, movement and the
-          @Tenacious spirit.
-        </p>
+  <p class="intro">
+    A brand created for those who refuse to give up,
+    stand out, and remain tenacious.
+  </p>
 
+  <a href="#shop" class="shop-button">
+    Explore Collection
+  </a>
 
-        <!-- SIZE -->
-
-        <label class="option-label" for="size">
-          Select Size
-        </label>
-
-        <select
-          id="size"
-          class="size-select"
-          onchange="updatePrice()">
-
-          <option value="2XS" data-price="89">
-            2XS — $89.00
-          </option>
-
-          <option value="XS" data-price="89">
-            XS — $89.00
-          </option>
-
-          <option value="S" data-price="89">
-            S — $89.00
-          </option>
-
-          <option value="M" data-price="89">
-            M — $89.00
-          </option>
-
-          <option value="L" data-price="89">
-            L — $89.00
-          </option>
-
-          <option value="XL" data-price="94">
-            XL — $94.00
-          </option>
-
-          <option value="2XL" data-price="99">
-            2XL — $99.00
-          </option>
-
-          <option value="3XL" data-price="104">
-            3XL — $104.00
-          </option>
-
-          <option value="4XL" data-price="109">
-            4XL — $109.00
-          </option>
-
-          <option value="5XL" data-price="114">
-            5XL — $114.00
-          </option>
-
-          <option value="6XL" data-price="119">
-            6XL — $119.00
-          </option>
-
-        </select>
+</main>
 
 
-        <p class="price" id="productPrice">
-          $89.00
-        </p>
+<section class="shop" id="shop">
+
+  <h2>SHOP THE COLLECTION</h2>
 
 
-        <button
-          class="order-button"
-          onclick="addToCart()">
-          Add to Cart
-        </button>
+  <!-- PREMIUM SHERPA BLANKET -->
 
+  <div class="product">
 
-        <a
-          href="#"
-          class="whatsapp-button">
-          Order via WhatsApp
-        </a>
-
-
-        <!-- DETAILS -->
-
-        <div class="details">
-
-          <h2>Product Details</h2>
-
-          <p>• 95–96% recycled polyester</p>
-          <p>• 4–5% elastane</p>
-          <p>• Soft cotton-feel fabric face</p>
-          <p>• Brushed fleece interior</p>
-          <p>• Relaxed unisex fit</p>
-          <p>• Double-lined hood</p>
-          <p>• Design on both sides of the hood</p>
-          <p>• Premium drawstrings with metal hardware</p>
-          <p>• Moon-shaped inner-back patch</p>
-          <p>• Overlock seams</p>
-          <p>• All-over synthetic printing</p>
-          <p>• GRS-certified recycled content</p>
-          <p>• OEKO-TEX® certified fabric</p>
-          <p>• Sizes 2XS–6XL</p>
-          <p>• Product code #140</p>
-          <p>• Made on demand — no minimums</p>
-          <p>• Printed, cut and hand-sewn by expert teams</p>
-          <p>• @Tenacious premium collection</p>
-
-        </div>
-
-      </div>
-
+    <div class="product-image">
+      <img
+        src="embroidered-premium-sherpa-blanket-black-front-6a5eed73c1ced.png"
+        alt="Embroidered Premium Sherpa Blanket">
     </div>
 
-  </main>
+    <h3>Embroidered Premium Sherpa Blanket</h3>
+
+    <p>
+      Wrap yourself in exceptional warmth and comfort with soft sherpa
+      fabric on one side and smooth fleece on the other — a luxurious
+      @Tenacious essential made for cozy moments.
+    </p>
+
+    <p class="price">$79.00</p>
+
+    <a href="blanket.html" class="shop-button">
+      View Product
+    </a>
+
+  </div>
 
 
-  <script>
+  <!-- LAPTOP SLEEVE -->
 
-    function updatePrice() {
+  <div class="product">
 
-      const sizeSelect =
-        document.getElementById("size");
+    <div class="product-image">
+      <img
+        class="laptop-sleeve-image"
+        src="laptop-sleeve-13-front-6a4d80010a1f9.png"
+        alt="Laptop Sleeve">
+    </div>
 
-      const selectedOption =
-        sizeSelect.options[
-          sizeSelect.selectedIndex
-        ];
+    <h3>Laptop Sleeve</h3>
 
-      const price =
-        Number(selectedOption.dataset.price);
+    <p>
+      Keep your laptop protected wherever your ambition takes you.
+      A lightweight, form-fitting sleeve with a water-resistant,
+      scratch-resistant exterior and soft faux-fur interior.
+    </p>
 
-      document.getElementById(
-        "productPrice"
-      ).textContent =
-        "$" + price.toFixed(2);
+    <p class="price">From $59.00</p>
 
-    }
+    <a href="laptop-sleeve.html" class="shop-button">
+      View Product
+    </a>
 
-
-    function addToCart() {
-
-      const sizeSelect =
-        document.getElementById("size");
-
-      const selectedOption =
-        sizeSelect.options[
-          sizeSelect.selectedIndex
-        ];
-
-      const size =
-        selectedOption.value;
-
-      const price =
-        Number(selectedOption.dataset.price);
-
-      const product = {
-
-        name:
-          "All-Over Print Recycled Unisex Hoodie",
-
-        size:
-          size,
-
-        price:
-          price,
-
-        image:
-          "all-over-print-recycled-unisex-hoodie-white-front-6a5458d182faa.png",
-
-        quantity:
-          1
-      };
+  </div>
 
 
-      let cart =
-        JSON.parse(
-          localStorage.getItem("cart")
-        ) || [];
+  <!-- HOODIE -->
+
+  <div class="product">
+
+    <div class="product-image">
+      <img
+        src="all-over-print-recycled-unisex-hoodie-white-front-6a5458d182faa.png"
+        alt="All-Over Print Recycled Unisex Hoodie">
+    </div>
+
+    <h3>All-Over Print Recycled Unisex Hoodie</h3>
+
+    <p>
+      A statement layer made for movement, resilience and everyday confidence.
+    </p>
+
+    <p class="price">$89.00</p>
+
+    <a href="hoodie.html" class="shop-button">
+      View Product
+    </a>
+
+  </div>
 
 
-      const existingProduct =
-        cart.find(
-          item =>
-            item.name === product.name &&
-            item.size === product.size
-        );
+  <!-- TIE-DYE T-SHIRT -->
+
+  <div class="product">
+
+    <div class="product-image">
+      <img
+        src="unisex-oversized-tie-dye-t-shirt-milky-way-front-6a5060f41d078.png"
+        alt="Unisex Oversized Tie-Dye T-Shirt">
+    </div>
+
+    <h3>Unisex Oversized Tie-Dye T-Shirt</h3>
+
+    <p>
+      Bold tie-dye energy for those who move differently — oversized,
+      expressive and made for the @Tenacious spirit.
+    </p>
+
+    <p class="price">$75.00</p>
+
+    <a href="tie-dye-t-shirt.html" class="shop-button">
+      View Product
+    </a>
+
+  </div>
 
 
-      if (existingProduct) {
+  <!-- NECK GAITER -->
 
-        existingProduct.quantity += 1;
+  <div class="product">
 
-      } else {
+    <div class="product-image">
+      <img
+        src="all-over-print-neck-gaiter-white-front-6a5ede198a11d.png"
+        alt="All-Over-Print Neck Gaiter">
+    </div>
 
-        cart.push(product);
+    <h3>All-Over-Print Neck Gaiter</h3>
 
-      }
+    <p>
+      A versatile statement piece made for movement, comfort and everyday
+      resilience — designed for those who remain tenacious by choice.
+    </p>
+
+    <p class="price">$35.00</p>
+
+    <a href="neck-gaiter.html" class="shop-button">
+      View Product
+    </a>
+
+  </div>
 
 
-      localStorage.setItem(
-        "cart",
-        JSON.stringify(cart)
-      );
+  <!-- TRAVEL MUG -->
+
+  <div class="product">
+
+    <div class="product-image">
+      <img
+        src="travel-mug-with-a-handle-white-25-oz-front-6a5edf4b87dd1.png"
+        alt="Travel Mug with a Handle">
+    </div>
+
+    <h3>Travel Mug with a Handle</h3>
+
+    <p>
+      Carry your drink with confidence — a practical @Tenacious
+      travel companion designed for movement, ambition and everyday life.
+    </p>
+
+    <p class="price">From $45.00</p>
+
+    <a href="travel-mug-with-a-handle.html" class="shop-button">
+      View Product
+    </a>
+
+  </div>
 
 
-      window.location.href =
-        "cart.html";
+  <!-- WOMEN'S COLUMBIA FLEECE VEST -->
 
-    }
+  <div class="product">
+
+    <div class="product-image">
+      <img
+        src="womens-columbia-fleece-vest-black-front-6a5ee39e881e1.png"
+        alt="Women's Columbia Fleece Vest">
+    </div>
+
+    <h3>Women's Columbia Fleece Vest</h3>
+
+    <p>
+      A soft, versatile fleece layer made for cold-weather movement,
+      everyday adventures and the @Tenacious spirit.
+    </p>
+
+    <p class="price">$89.00</p>
+
+    <a href="womens-columbia-fleece-vest.html" class="shop-button">
+      View Product
+    </a>
+
+  </div>
 
 
-    function changeProductImage(imageSource) {
+  <!-- IPHONE SNAP CASE -->
 
-      document.getElementById(
-        "mainProductImage"
-      ).src = imageSource;
+  <div class="product">
 
-    }
+    <div class="product-image">
+      <img
+        src="snap-case-for-iphone-matte-iphone-16-pro-max-front-6a5ee6292cd23.png"
+        alt="Snap Case for iPhone">
+    </div>
 
-  </script>
+    <h3>Snap Case for iPhone</h3>
+
+    <p>
+      A slim, lightweight case with a premium finish — protection
+      designed to carry the @Tenacious spirit everywhere you go.
+    </p>
+
+    <p class="price">$34.00</p>
+
+    <a href="iphone-snap-case.html" class="shop-button">
+      View Product
+    </a>
+
+  </div>
+
+
+  <!-- MEN'S RASH GUARD -->
+
+  <div class="product">
+
+    <div class="product-image">
+      <img
+        src="all-over-print-mens-rash-guard-white-front-6a5ee6e97ab8f.png"
+        alt="All-Over Print Men's Rash Guard">
+    </div>
+
+    <h3>All-Over Print Men's Rash Guard</h3>
+
+    <p>
+      A smooth, fitted long-sleeve layer made for active days outdoors —
+      combining comfort, bold all-over printing and the @Tenacious spirit.
+    </p>
+
+    <p class="price">$79.00 – $81.00</p>
+
+    <a href="mens-rash-guard.html" class="shop-button">
+      View Product
+    </a>
+
+  </div>
+
+
+  <!-- WOMEN'S RASH GUARD -->
+
+  <div class="product">
+
+    <div class="product-image">
+      <img
+        src="all-over-print-womens-rash-guard-white-front-6a5ee492af4e7.png"
+        alt="All-Over Print Women's Rash Guard">
+    </div>
+
+    <h3>All-Over Print Women's Rash Guard</h3>
+
+    <p>
+      A smooth and versatile long-sleeve layer made for active days —
+      combining comfort, bold all-over printing and the @Tenacious spirit.
+    </p>
+
+    <p class="price">$79.00 – $81.00</p>
+
+    <a href="womens-rash-guard.html" class="shop-button">
+      View Product
+    </a>
+
+  </div>
+
+
+  <!-- HIGH-WAISTED BIKINI -->
+
+  <div class="product">
+
+    <div class="product-image">
+      <img
+        src="all-over-print-recycled-high-waisted-bikini-white-front-6a5ee31ce4a74.png"
+        alt="All-Over Print Recycled High-Waisted Bikini">
+    </div>
+
+    <h3>All-Over Print Recycled High-Waisted Bikini</h3>
+
+    <p>
+      A flattering high-waisted bikini made with recycled materials —
+      designed for comfort, confidence and the @Tenacious spirit.
+    </p>
+
+    <p class="price">$78.00 – $80.00</p>
+
+    <a href="high-waisted-bikini.html" class="shop-button">
+      View Product
+    </a>
+
+  </div>
+
+
+  <!-- URBAN SWEATPANTS -->
+
+  <div class="product">
+
+    <div class="product-image">
+      <img
+        src="unisex-urban-sweatpants-black-front-6a5edffbe0e69.png"
+        alt="Unisex Urban Sweatpants">
+    </div>
+
+    <h3>Unisex Urban Sweatpants</h3>
+
+    <p>
+      Elevated streetwear with a relaxed fit — heavyweight fleece,
+      durable construction and everyday comfort for those who move
+      with the @Tenacious spirit.
+    </p>
+
+    <p class="price">$75.00 – $77.00</p>
+
+    <a href="urban-sweatpants.html" class="shop-button">
+      View Product
+    </a>
+
+  </div>
+
+
+  <!-- ROUND MOUSE PAD -->
+
+  <div class="product">
+
+    <div class="product-image">
+      <img
+        src="round-mouse-pad-white-front-6a5eed3bf279a.png"
+        alt="Round Mouse Pad">
+    </div>
+
+    <h3>Round Mouse Pad</h3>
+
+    <p>
+      A compact, modern desk essential with a smooth surface for precise
+      movement — designed to bring the @Tenacious spirit to your workspace.
+    </p>
+
+    <p class="price">$19.00</p>
+
+    <a href="round-mouse-pad.html" class="shop-button">
+      View Product
+    </a>
+
+  </div>
+
+
+  <!-- ORGANIC RIBBED BEANIE -->
+
+  <div class="product">
+
+    <div class="product-image">
+      <img
+        src="organic-ribbed-beanie-black-front-6a5ee4250e8bb.png"
+        alt="Organic Ribbed Beanie">
+    </div>
+
+    <h3>Organic Ribbed Beanie</h3>
+
+    <p>
+      Organic comfort with an understated streetwear edge — made for those
+      who remain tenacious by choice.
+    </p>
+
+    <p class="price">$39.00</p>
+
+    <a href="organic-ribbed-beanie.html" class="shop-button">
+      View Product
+    </a>
+
+  </div>
+
+
+  <!-- TODDLER HOODIE -->
+
+  <div class="product">
+
+    <div class="product-image">
+      <img
+        src="toddler-pullover-fleece-hoodie-navy-front-6a5ee363f3df9.png"
+        alt="Toddler Pullover Fleece Hoodie">
+    </div>
+
+    <h3>Toddler Pullover Fleece Hoodie</h3>
+
+    <p>
+      Soft, cozy and made for everyday play — a comfortable fleece hoodie
+      designed for little ones with the @Tenacious spirit.
+    </p>
+
+    <p class="price">$34.95 – $38.95</p>
+
+    <a href="toddler-pullover-fleece-hoodie.html" class="shop-button">
+      View Product
+    </a>
+
+  </div>
+
+
+  <!-- LARGE TOTE BAG -->
+
+  <div class="product">
+
+    <div class="product-image">
+      <img
+        src="all-over-print-large-tote-bag-w-pocket-black-front-6a5ee5eac0bfb.png"
+        alt="All-Over Print Large Tote Bag w/ Pocket"
+        style="width:100%;height:auto;display:block;margin:0;">
+    </div>
+
+    <h3>All-Over Print Large Tote Bag w/ Pocket</h3>
+
+    <p>
+      A spacious everyday essential designed for movement, style and
+      resilience — combining practical space with a bold @Tenacious look.
+    </p>
+
+    <p class="price">$49.00</p>
+
+    <a href="all-over-print-large-tote-bag.html" class="shop-button">
+      View Product
+    </a>
+
+  </div>
+
+
+  <!-- ORGANIC RAGLAN SWEATSHIRT -->
+
+  <div class="product">
+
+    <div class="product-image">
+      <img
+        src="unisex-organic-raglan-sweatshirt-burnt-orange-front-6a5ee574c940c.png"
+        alt="Unisex Organic Raglan Sweatshirt"
+        style="width:100%;height:auto;display:block;margin:0;">
+    </div>
+
+    <h3>Unisex Organic Raglan Sweatshirt</h3>
+
+    <p>
+      A premium organic sweatshirt with a soft fleece interior,
+      smooth organic cotton exterior and a clean raglan silhouette.
+    </p>
+
+    <p class="price">From $69.00</p>
+
+    <a href="unisex-organic-raglan-sweatshirt.html" class="shop-button">
+      View Product
+    </a>
+
+  </div>
+
+
+  <!-- LONG SLEEVE CROP TOP -->
+
+  <div class="product">
+
+    <div class="product-image">
+      <img
+        src="all-over-print-recycled-long-sleeve-crop-top-white-front-6a5ee4c28b881.png"
+        alt="All-Over Print Recycled Long Sleeve Crop Top">
+    </div>
+
+    <h3>All-Over Print Recycled Long Sleeve Crop Top</h3>
+
+    <p>
+      A versatile recycled crop top made for movement, athletic wear,
+      swimwear and elevated streetwear.
+    </p>
+
+    <p class="price">From $59.00</p>
+
+    <a href="all-over-print-recycled-long-sleeve-crop-top.html" class="shop-button">
+      View Product
+    </a>
+
+  </div>
+
+
+  <!-- WOMEN'S PAJAMA SHORTS -->
+
+  <div class="product">
+
+    <div class="product-image">
+      <img
+        src="all-over-print-womens-pajama-shorts-white-front-6a4d82c5c6b05.png"
+        alt="All-Over Print Women's Pajama Shorts">
+    </div>
+
+    <h3>All-Over Print Women's Pajama Shorts</h3>
+
+    <p>
+      Silky, relaxed and effortlessly comfortable — designed for cozy
+      nights, laid-back mornings and the @Tenacious spirit.
+    </p>
+
+    <p class="price">From $49.00</p>
+
+    <a href="all-over-print-womens-pajama-shorts.html" class="shop-button">
+      View Product
+    </a>
+
+  </div>
+
+
+  <!-- YOUTH T-SHIRT -->
+
+  <div class="product">
+
+    <div class="product-image">
+      <img
+        src="all-over-print-youth-cotton-crew-neck-t-shirt-white-front-6a4d8b6235c50.png"
+        alt="All-Over Print Youth Cotton Crew Neck T-Shirt">
+    </div>
+
+    <h3>All-Over Print Youth Cotton Crew Neck T-Shirt</h3>
+
+    <p>
+      A soft, breathable everyday tee made for school days,
+      playground adventures and everything in between — bringing
+      the @Tenacious spirit to a younger generation.
+    </p>
+
+    <p class="price">From $45.00</p>
+
+    <a href="all-over-print-youth-cotton-crew-neck-t-shirt.html" class="shop-button">
+      View Product
+    </a>
+
+  </div>
+
+
+  <!-- WHITE GLOSSY MUG -->
+
+  <div class="product">
+
+    <div class="product-image">
+      <img
+        src="white-glossy-mug-white-15-oz-front-view-6a4d8c8d22ea8.png"
+        alt="White Glossy Mug">
+    </div>
+
+    <h3>White Glossy Mug</h3>
+
+    <p>
+      A classic glossy ceramic mug made for coffee, tea and everyday
+      moments — finished with vivid @Tenacious designs.
+    </p>
+
+    <p class="price">From $18.00</p>
+
+    <a href="white-glossy-mug.html" class="shop-button">
+      View Product
+    </a>
+
+  </div>
+
+
+  <!-- CLASSIC DAD HAT -->
+
+  <div class="product">
+
+    <div class="product-image">
+      <img
+        src="classic-dad-hat-black-front-6a4d7ea8223a2.png"
+        alt="Classic Dad Hat">
+    </div>
+
+    <h3>Classic Dad Hat</h3>
+
+    <p>
+      A timeless low-profile essential made from cotton twill —
+      relaxed, versatile and finished with the @Tenacious spirit.
+    </p>
+
+    <p class="price">$34.00</p>
+
+    <a href="classic-dad-hat.html" class="shop-button">
+      View Product
+    </a>
+
+  </div>
+
+</section>
+
+
+<section class="magazine" id="magazine">
+
+  <p class="section-label">
+    THE @TENACIOUS JOURNAL
+  </p>
+
+  <h2>More Than A Brand.</h2>
+
+  <p class="magazine-text">
+    @Tenacious is built around resilience, individuality and the choice
+    to keep moving forward. Explore the stories, ideas and philosophy
+    behind the brand.
+  </p>
+
+  <button class="shop-button">
+    Explore Magazine
+  </button>
+
+</section>
+
+
+<section class="about" id="about">
+
+  <p class="section-label">
+    THE TENACIOUS MINDSET
+  </p>
+
+  <h2>Resilient By Choice.</h2>
+
+  <p class="about-text">
+    @Tenacious is more than what you wear or carry.
+    It is a statement of strength, individuality and persistence.
+    Created for people who choose to keep going, even when the path
+    isn't easy.
+  </p>
+
+  <p class="about-signature">
+    @TENACIOUS
+  </p>
+
+</section>
+
+
+<footer class="footer">
+
+  <div class="footer-brand">
+    @TENACIOUS
+  </div>
+
+  <p>Resilient by choice.</p>
+
+  <p>Worldwide Shipping 🌍</p>
+
+  <div class="footer-links">
+    <a href="#">Instagram</a>
+    <a href="#">WhatsApp</a>
+    <a href="#">Email</a>
+  </div>
+
+  <p class="copyright">
+    © 2026 @Tenacious. All rights reserved.
+  </p>
+
+</footer>
 
 </body>
-
-</html>
+      </html>

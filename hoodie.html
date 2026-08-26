@@ -102,6 +102,28 @@
       font-size: 16px;
     }
 
+    .option-label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    .size-select {
+      width: 100%;
+      padding: 14px;
+      background: #111111;
+      color: #ffffff;
+      border: 1px solid #444444;
+      font-size: 16px;
+      margin-bottom: 25px;
+      cursor: pointer;
+    }
+
+    .size-select:focus {
+      outline: none;
+      border-color: #ffffff;
+    }
+
     .price {
       font-size: 28px;
       margin-bottom: 30px;
@@ -121,6 +143,10 @@
       margin-bottom: 15px;
     }
 
+    .order-button:hover {
+      background: #dddddd;
+    }
+
     .whatsapp-button {
       display: block;
       width: 100%;
@@ -130,6 +156,11 @@
       text-align: center;
       text-decoration: none;
       font-weight: bold;
+    }
+
+    .whatsapp-button:hover {
+      background: #ffffff;
+      color: #000000;
     }
 
     .details {
@@ -162,6 +193,14 @@
       .product-page {
         padding: 25px 15px;
       }
+
+      .main-product-image {
+        min-height: 380px;
+      }
+
+      .main-product-image img {
+        height: 380px;
+      }
     }
   </style>
 </head>
@@ -188,7 +227,6 @@
             alt="All-Over Print Recycled Unisex Hoodie">
 
         </div>
-
 
         <div class="product-thumbnails">
 
@@ -234,31 +272,114 @@
         <h1>All-Over Print Recycled Unisex Hoodie</h1>
 
         <p class="description">
-          A bold @Tenacious layer designed for movement, comfort,
-          and the confidence to remain resilient by choice.
+          A customizable recycled hoodie with a relaxed unisex fit,
+          soft cotton-feel fabric and a brushed fleece interior.
+          Designed for everyday comfort, movement and the
+          @Tenacious spirit.
         </p>
 
-        <p class="price">$89.00</p>
+
+        <!-- SIZE -->
+
+        <label class="option-label" for="size">
+          Select Size
+        </label>
+
+        <select
+          id="size"
+          class="size-select"
+          onchange="updatePrice()">
+
+          <option value="2XS" data-price="89">
+            2XS — $89.00
+          </option>
+
+          <option value="XS" data-price="89">
+            XS — $89.00
+          </option>
+
+          <option value="S" data-price="89">
+            S — $89.00
+          </option>
+
+          <option value="M" data-price="89">
+            M — $89.00
+          </option>
+
+          <option value="L" data-price="89">
+            L — $89.00
+          </option>
+
+          <option value="XL" data-price="94">
+            XL — $94.00
+          </option>
+
+          <option value="2XL" data-price="99">
+            2XL — $99.00
+          </option>
+
+          <option value="3XL" data-price="104">
+            3XL — $104.00
+          </option>
+
+          <option value="4XL" data-price="109">
+            4XL — $109.00
+          </option>
+
+          <option value="5XL" data-price="114">
+            5XL — $114.00
+          </option>
+
+          <option value="6XL" data-price="119">
+            6XL — $119.00
+          </option>
+
+        </select>
 
 
-        <button class="order-button" onclick="addToCart()">
+        <p class="price" id="productPrice">
+          $89.00
+        </p>
+
+
+        <button
+          class="order-button"
+          onclick="addToCart()">
           Add to Cart
         </button>
 
 
-        <a href="#" class="whatsapp-button">
+        <a
+          href="#"
+          class="whatsapp-button">
           Order via WhatsApp
         </a>
 
+
+        <!-- DETAILS -->
 
         <div class="details">
 
           <h2>Product Details</h2>
 
-          <p>• Recycled fabric</p>
-          <p>• Soft brushed interior</p>
-          <p>• Unisex relaxed fit</p>
-          <p>• All-over @Tenacious design</p>
+          <p>• 95–96% recycled polyester</p>
+          <p>• 4–5% elastane</p>
+          <p>• Soft cotton-feel fabric face</p>
+          <p>• Brushed fleece interior</p>
+          <p>• Relaxed unisex fit</p>
+          <p>• Double-lined hood</p>
+          <p>• Design on both sides of the hood</p>
+          <p>• Premium drawstrings with metal hardware</p>
+          <p>• Moon-shaped inner-back patch</p>
+          <p>• Overlock seams</p>
+          <p>• All-over synthetic printing</p>
+          <p>• GRS-certified recycled content</p>
+          <p>• OEKO-TEX® certified fabric</p>
+          <p>• Sizes 2XS–6XL</p>
+          <p>• Product code #140</p>
+          <p>• Made on demand — no minimums</p>
+          <p>• Printed, cut and hand-sewn by expert teams</p>
+          <p>• @Tenacious premium collection</p>
 
         </div>
 
@@ -271,20 +392,75 @@
 
   <script>
 
+    function updatePrice() {
+
+      const sizeSelect =
+        document.getElementById("size");
+
+      const selectedOption =
+        sizeSelect.options[
+          sizeSelect.selectedIndex
+        ];
+
+      const price =
+        Number(selectedOption.dataset.price);
+
+      document.getElementById(
+        "productPrice"
+      ).textContent =
+        "$" + price.toFixed(2);
+
+    }
+
+
     function addToCart() {
 
+      const sizeSelect =
+        document.getElementById("size");
+
+      const selectedOption =
+        sizeSelect.options[
+          sizeSelect.selectedIndex
+        ];
+
+      const size =
+        selectedOption.value;
+
+      const price =
+        Number(selectedOption.dataset.price);
+
       const product = {
-        name: "All-Over Print Recycled Unisex Hoodie",
-        price: 89,
-        image: "all-over-print-recycled-unisex-hoodie-white-front-6a5458d182faa.png",
-        quantity: 1
+
+        name:
+          "All-Over Print Recycled Unisex Hoodie",
+
+        size:
+          size,
+
+        price:
+          price,
+
+        image:
+          "all-over-print-recycled-unisex-hoodie-white-front-6a5458d182faa.png",
+
+        quantity:
+          1
       };
 
+
       let cart =
-        JSON.parse(localStorage.getItem("cart")) || [];
+        JSON.parse(
+          localStorage.getItem("cart")
+        ) || [];
+
 
       const existingProduct =
-        cart.find(item => item.name === product.name);
+        cart.find(
+          item =>
+            item.name === product.name &&
+            item.size === product.size
+        );
+
 
       if (existingProduct) {
 
@@ -296,12 +472,15 @@
 
       }
 
+
       localStorage.setItem(
         "cart",
         JSON.stringify(cart)
       );
 
-      window.location.href = "cart.html";
+
+      window.location.href =
+        "cart.html";
 
     }
 

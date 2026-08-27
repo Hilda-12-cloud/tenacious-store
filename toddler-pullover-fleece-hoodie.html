@@ -64,6 +64,12 @@
       display: block;
       border-radius: 8px;
       background: #151515;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .gallery img:hover {
+      opacity: 0.8;
     }
 
     .product-info h1 {
@@ -112,6 +118,14 @@
       margin-bottom: 7px;
     }
 
+    .selector-label {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 15px;
+      font-weight: bold;
+    }
+
+    .color-select,
     .size-select {
       width: 100%;
       padding: 14px;
@@ -120,7 +134,15 @@
       border: 1px solid #555;
       border-radius: 5px;
       font-size: 16px;
-      margin-bottom: 15px;
+      margin-bottom: 18px;
+      cursor: pointer;
+    }
+
+    .selection-note {
+      color: #999;
+      font-size: 14px;
+      margin-top: -8px;
+      margin-bottom: 20px;
     }
 
     .add-to-cart {
@@ -239,39 +261,48 @@
 
       <img
         src="toddler-pullover-fleece-hoodie-navy-front-6a5ee363f3df9.png"
-        alt="Toddler Pullover Fleece Hoodie Navy">
+        alt="Toddler Pullover Fleece Hoodie Navy"
+        onclick="selectColor('Navy')">
 
       <img
         src="toddler-pullover-fleece-hoodie-kelly-back-6a5ee36400010.png"
-        alt="Toddler Pullover Fleece Hoodie Kelly Back">
+        alt="Toddler Pullover Fleece Hoodie Kelly"
+        onclick="selectColor('Kelly')">
 
       <img
         src="toddler-pullover-fleece-hoodie-heather-front-6a5ee364003f0.png"
-        alt="Toddler Pullover Fleece Hoodie Heather">
+        alt="Toddler Pullover Fleece Hoodie Heather"
+        onclick="selectColor('Heather')">
 
       <img
         src="toddler-pullover-fleece-hoodie-black-front-6a5ee363f3c77.png"
-        alt="Toddler Pullover Fleece Hoodie Black">
+        alt="Toddler Pullover Fleece Hoodie Black"
+        onclick="selectColor('Black')">
 
       <img
         src="toddler-pullover-fleece-hoodie-pink-front-6a5ee36400532.png"
-        alt="Toddler Pullover Fleece Hoodie Pink">
+        alt="Toddler Pullover Fleece Hoodie Pink"
+        onclick="selectColor('Pink')">
 
       <img
         src="toddler-pullover-fleece-hoodie-raspberry-back-2-6a5ee3640028d.png"
-        alt="Toddler Pullover Fleece Hoodie Raspberry Back">
+        alt="Toddler Pullover Fleece Hoodie Raspberry"
+        onclick="selectColor('Raspberry')">
 
       <img
         src="toddler-pullover-fleece-hoodie-red-back-6a5ee363f3f14.png"
-        alt="Toddler Pullover Fleece Hoodie Red Back">
+        alt="Toddler Pullover Fleece Hoodie Red"
+        onclick="selectColor('Red')">
 
       <img
         src="toddler-pullover-fleece-hoodie-royal-front-6a5ee363f41b7.png"
-        alt="Toddler Pullover Fleece Hoodie Royal">
+        alt="Toddler Pullover Fleece Hoodie Royal"
+        onclick="selectColor('Royal')">
 
       <img
         src="toddler-pullover-fleece-hoodie-white-front-6a5ee36400560.png"
-        alt="Toddler Pullover Fleece Hoodie White">
+        alt="Toddler Pullover Fleece Hoodie White"
+        onclick="selectColor('White')">
 
     </div>
 
@@ -289,9 +320,91 @@
 
       <div class="section">
 
-        <h2>Select Size</h2>
+        <h2>Select Options</h2>
 
-        <select id="size" class="size-select" onchange="updatePrice()">
+        <!-- COLOUR SELECTOR -->
+
+        <label class="selector-label" for="color">
+          Choose Colour
+        </label>
+
+        <select
+          id="color"
+          class="color-select"
+          onchange="updateColor()">
+
+          <option
+            value="Navy"
+            data-image="toddler-pullover-fleece-hoodie-navy-front-6a5ee363f3df9.png">
+            Navy
+          </option>
+
+          <option
+            value="Kelly"
+            data-image="toddler-pullover-fleece-hoodie-kelly-back-6a5ee36400010.png">
+            Kelly
+          </option>
+
+          <option
+            value="Heather"
+            data-image="toddler-pullover-fleece-hoodie-heather-front-6a5ee364003f0.png">
+            Heather
+          </option>
+
+          <option
+            value="Black"
+            data-image="toddler-pullover-fleece-hoodie-black-front-6a5ee363f3c77.png">
+            Black
+          </option>
+
+          <option
+            value="Pink"
+            data-image="toddler-pullover-fleece-hoodie-pink-front-6a5ee36400532.png">
+            Pink
+          </option>
+
+          <option
+            value="Raspberry"
+            data-image="toddler-pullover-fleece-hoodie-raspberry-back-2-6a5ee3640028d.png">
+            Raspberry
+          </option>
+
+          <option
+            value="Red"
+            data-image="toddler-pullover-fleece-hoodie-red-back-6a5ee363f3f14.png">
+            Red
+          </option>
+
+          <option
+            value="Royal"
+            data-image="toddler-pullover-fleece-hoodie-royal-front-6a5ee363f41b7.png">
+            Royal
+          </option>
+
+          <option
+            value="White"
+            data-image="toddler-pullover-fleece-hoodie-white-front-6a5ee36400560.png">
+            White
+          </option>
+
+        </select>
+
+        <p class="selection-note">
+          Select your preferred hoodie colour.
+        </p>
+
+
+        <!-- SIZE SELECTOR -->
+
+        <label class="selector-label" for="size">
+          Choose Size
+        </label>
+
+        <select
+          id="size"
+          class="size-select"
+          onchange="updatePrice()">
+
           <option value="2T" data-price="34.95">
             2T — $34.95
           </option>
@@ -303,13 +416,16 @@
           <option value="5-6T" data-price="38.95">
             5–6T — $38.95
           </option>
+
         </select>
 
         <button
           type="button"
           class="add-to-cart"
           onclick="addToCart()">
+
           Add to Cart
+
         </button>
 
         <p id="cart-message" class="cart-message"></p>
@@ -422,48 +538,140 @@
 
     function updatePrice() {
 
-      const sizeSelect = document.getElementById("size");
+      const sizeSelect =
+        document.getElementById("size");
 
       const selectedOption =
         sizeSelect.options[sizeSelect.selectedIndex];
 
       const price =
-        parseFloat(selectedOption.getAttribute("data-price"));
+        parseFloat(
+          selectedOption.getAttribute("data-price")
+        );
 
       document.getElementById("display-price").textContent =
         "$" + price.toFixed(2);
     }
 
 
-    function addToCart() {
+    function updateColor() {
 
-      const sizeSelect = document.getElementById("size");
+      const colorSelect =
+        document.getElementById("color");
 
       const selectedOption =
+        colorSelect.options[colorSelect.selectedIndex];
+
+      const image =
+        selectedOption.getAttribute("data-image");
+
+      /*
+        Change the first gallery image to the
+        selected colour image so the customer
+        immediately sees their selection.
+      */
+
+      const firstImage =
+        document.querySelector(".gallery img");
+
+      if (firstImage) {
+        firstImage.src = image;
+      }
+
+    }
+
+
+    function selectColor(color) {
+
+      const colorSelect =
+        document.getElementById("color");
+
+      colorSelect.value = color;
+
+      updateColor();
+
+      window.scrollTo({
+        top: document.querySelector(".product-info").offsetTop - 20,
+        behavior: "smooth"
+      });
+
+    }
+
+
+    function addToCart() {
+
+      const sizeSelect =
+        document.getElementById("size");
+
+      const selectedSize =
         sizeSelect.options[sizeSelect.selectedIndex];
 
-      const size = selectedOption.value;
+      const size =
+        selectedSize.value;
 
       const price =
-        parseFloat(selectedOption.getAttribute("data-price"));
+        parseFloat(
+          selectedSize.getAttribute("data-price")
+        );
+
+      const colorSelect =
+        document.getElementById("color");
+
+      const color =
+        colorSelect.value;
+
+      const selectedColor =
+        colorSelect.options[colorSelect.selectedIndex];
+
+      const image =
+        selectedColor.getAttribute("data-image");
+
 
       const product = {
-        name: "Toddler Pullover Fleece Hoodie - " + size,
-        price: price,
-        image: "toddler-pullover-fleece-hoodie-navy-front-6a5ee363f3df9.png",
-        quantity: 1
+
+        name:
+          "Toddler Pullover Fleece Hoodie",
+
+        color:
+          color,
+
+        size:
+          size,
+
+        price:
+          price,
+
+        image:
+          image,
+
+        quantity:
+          1
+
       };
 
+
       let cart =
-        JSON.parse(localStorage.getItem("cart")) || [];
+        JSON.parse(
+          localStorage.getItem("cart")
+        ) || [];
+
 
       if (!Array.isArray(cart)) {
         cart = [];
       }
 
-      const existingProduct = cart.find(function(item) {
-        return item.name === product.name;
-      });
+
+      const existingProduct =
+        cart.find(function(item) {
+
+          return (
+            item.name === product.name &&
+            item.color === product.color &&
+            item.size === product.size
+          );
+
+        });
+
 
       if (existingProduct) {
 
@@ -475,12 +683,16 @@
 
       }
 
+
       localStorage.setItem(
         "cart",
         JSON.stringify(cart)
       );
 
-      document.getElementById("cart-message").textContent =
+
+      document.getElementById(
+        "cart-message"
+      ).textContent =
         "Added to cart ✓";
 
     }
@@ -489,4 +701,4 @@
 
 </body>
 
-        </html>
+          </html>

@@ -16,16 +16,13 @@
 
     body {
       background: #0b0b0b;
-      color: #f5f5f5;
-      font-family: Arial, Helvetica, sans-serif;
+      color: #ffffff;
+      font-family: Arial, sans-serif;
       line-height: 1.6;
     }
 
     .navbar {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: rgba(11, 11, 11, 0.96);
+      background: #0b0b0b;
       border-bottom: 1px solid #292929;
       padding: 18px 6%;
       display: flex;
@@ -42,47 +39,39 @@
     }
 
     .back-link {
-      color: #d0d0d0;
+      color: #cccccc;
       text-decoration: none;
       font-size: 0.9rem;
     }
 
-    .back-link:hover {
-      color: #ffffff;
-    }
-
     .product-page {
-      max-width: 1150px;
-      margin: 0 auto;
-      padding: 55px 6% 80px;
+      max-width: 1100px;
+      margin: auto;
+      padding: 45px 6% 70px;
     }
 
     .product-layout {
       display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 60px;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
       align-items: start;
     }
 
-    .gallery {
-      width: 100%;
-    }
+    /* GALLERY */
 
     .main-image {
       background: #111111;
       border: 1px solid #292929;
-      border-radius: 14px;
-      min-height: 520px;
+      border-radius: 12px;
+      padding: 25px;
       display: flex;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
-      padding: 30px;
+      min-height: 500px;
     }
 
     .main-image img {
       width: 100%;
-      height: 100%;
       max-height: 500px;
       object-fit: contain;
       display: block;
@@ -92,16 +81,15 @@
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 10px;
-      margin-top: 14px;
+      margin-top: 12px;
     }
 
     .thumbnail {
       background: #111111;
       border: 1px solid #292929;
-      border-radius: 10px;
-      padding: 7px;
+      border-radius: 8px;
+      padding: 6px;
       cursor: pointer;
-      transition: 0.2s ease;
     }
 
     .thumbnail:hover,
@@ -111,29 +99,29 @@
 
     .thumbnail img {
       width: 100%;
-      height: 90px;
+      height: 85px;
       object-fit: contain;
       display: block;
     }
 
+    /* PRODUCT INFO */
+
     .product-info h1 {
       font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-size: 2.7rem;
       line-height: 1.1;
-      margin-bottom: 14px;
-      letter-spacing: -0.5px;
+      margin-bottom: 15px;
     }
 
     .tagline {
       color: #bdbdbd;
-      font-size: 1rem;
       margin-bottom: 25px;
     }
 
     .price {
       font-size: 1.8rem;
-      font-weight: 700;
-      margin-bottom: 28px;
+      font-weight: bold;
+      margin-bottom: 25px;
     }
 
     .divider {
@@ -147,7 +135,6 @@
       text-transform: uppercase;
       letter-spacing: 1.5px;
       margin-bottom: 10px;
-      color: #ffffff;
     }
 
     .description {
@@ -158,11 +145,10 @@
     .details {
       list-style: none;
       color: #c7c7c7;
-      margin-bottom: 28px;
     }
 
     .details li {
-      padding: 6px 0;
+      padding: 5px 0;
     }
 
     .details li::before {
@@ -179,34 +165,29 @@
     }
 
     .quantity {
-      width: 90px;
-      padding: 12px;
+      width: 85px;
+      padding: 11px;
       background: #111111;
       color: #ffffff;
       border: 1px solid #383838;
-      border-radius: 6px;
+      border-radius: 5px;
       font-size: 1rem;
       margin-bottom: 18px;
     }
 
     .button-group {
       display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
+      gap: 10px;
     }
 
     .button {
       flex: 1;
-      min-width: 180px;
-      padding: 15px 20px;
+      padding: 15px;
       border: 1px solid #ffffff;
-      border-radius: 6px;
-      font-size: 0.95rem;
-      font-weight: 700;
+      border-radius: 5px;
+      font-weight: bold;
       cursor: pointer;
-      text-align: center;
-      text-decoration: none;
-      transition: 0.2s ease;
+      font-size: 0.95rem;
     }
 
     .add-cart {
@@ -229,19 +210,19 @@
     }
 
     .made-on-demand {
-      margin-top: 22px;
-      padding: 15px;
+      margin-top: 20px;
+      padding: 14px;
       border: 1px solid #292929;
-      border-radius: 8px;
-      color: #a9a9a9;
+      border-radius: 7px;
+      color: #999999;
       font-size: 0.85rem;
     }
 
     .footer {
       border-top: 1px solid #292929;
-      padding: 28px 6%;
+      padding: 25px 6%;
       text-align: center;
-      color: #888888;
+      color: #777777;
       font-size: 0.85rem;
     }
 
@@ -249,15 +230,15 @@
 
       .product-layout {
         grid-template-columns: 1fr;
-        gap: 40px;
+        gap: 35px;
       }
 
       .main-image {
         min-height: 390px;
       }
 
-      .product-page {
-        padding-top: 35px;
+      .product-info h1 {
+        font-size: 2.2rem;
       }
     }
 
@@ -273,20 +254,20 @@
       }
 
       .main-image {
-        min-height: 330px;
+        min-height: 320px;
         padding: 18px;
       }
 
       .thumbnail-row {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(3, 1fr);
       }
 
       .thumbnail img {
         height: 70px;
       }
 
-      .button {
-        min-width: 100%;
+      .button-group {
+        flex-direction: column;
       }
     }
   </style>
@@ -316,11 +297,13 @@
 
       <section class="gallery">
 
+        <!-- BACK IMAGE IS THE MAIN IMAGE -->
+
         <div class="main-image">
 
           <img
             id="mainProductImage"
-            src="all-over-print-recycled-unisex-hoodie-white-front-6a5458d182faa.png"
+            src="all-over-print-recycled-unisex-hoodie-white-back-6a5458d1836b1.png"
             alt="All-Over Print Recycled Unisex Hoodie">
 
         </div>
@@ -329,9 +312,25 @@
         <div class="thumbnail-row">
 
 
+          <!-- BACK -->
+
           <button
             type="button"
             class="thumbnail active"
+            onclick="changeImage('all-over-print-recycled-unisex-hoodie-white-back-6a5458d1836b1.png', this)">
+
+            <img
+              src="all-over-print-recycled-unisex-hoodie-white-back-6a5458d1836b1.png"
+              alt="Hoodie Back">
+
+          </button>
+
+
+          <!-- FRONT -->
+
+          <button
+            type="button"
+            class="thumbnail"
             onclick="changeImage('all-over-print-recycled-unisex-hoodie-white-front-6a5458d182faa.png', this)">
 
             <img
@@ -341,26 +340,58 @@
           </button>
 
 
+          <!-- FRONT VIEW 2 -->
+
           <button
             type="button"
             class="thumbnail"
-            onclick="changeImage('all-over-print-recycled-unisex-hoodie-white-back-6a5458d182fba.png', this)">
+            onclick="changeImage('all-over-print-recycled-unisex-hoodie-white-front-6a5458d185148.png', this)">
 
             <img
-              src="all-over-print-recycled-unisex-hoodie-white-back-6a5458d182fba.png"
-              alt="Hoodie Back">
+              src="all-over-print-recycled-unisex-hoodie-white-front-6a5458d185148.png"
+              alt="Hoodie Front View 2">
 
           </button>
 
 
+          <!-- FRONT VIEW 3 -->
+
           <button
             type="button"
             class="thumbnail"
-            onclick="changeImage('all-over-print-recycled-unisex-hoodie-white-product-details-6a5458d182fc1.png', this)">
+            onclick="changeImage('all-over-print-recycled-unisex-hoodie-white-front-6a5458d184af0.png', this)">
 
             <img
-              src="all-over-print-recycled-unisex-hoodie-white-product-details-6a5458d182fc1.png"
+              src="all-over-print-recycled-unisex-hoodie-white-front-6a5458d184af0.png"
+              alt="Hoodie Front View 3">
+
+          </button>
+
+
+          <!-- PRODUCT DETAILS -->
+
+          <button
+            type="button"
+            class="thumbnail"
+            onclick="changeImage('all-over-print-recycled-unisex-hoodie-white-product-details-2-6a5458d1822d9.png', this)">
+
+            <img
+              src="all-over-print-recycled-unisex-hoodie-white-product-details-2-6a5458d1822d9.png"
               alt="Hoodie Product Details">
+
+          </button>
+
+
+          <!-- RIGHT SIDE -->
+
+          <button
+            type="button"
+            class="thumbnail"
+            onclick="changeImage('all-over-print-recycled-unisex-hoodie-white-right-6a5458d181dcb.png', this)">
+
+            <img
+              src="all-over-print-recycled-unisex-hoodie-white-right-6a5458d181dcb.png"
+              alt="Hoodie Right Side">
 
           </button>
 
@@ -368,7 +399,6 @@
         </div>
 
       </section>
-
 
 
       <!-- PRODUCT INFORMATION -->
@@ -379,14 +409,12 @@
           All-Over Print Recycled Unisex Hoodie
         </h1>
 
-
         <p class="tagline">
           A statement layer made for movement, resilience and everyday confidence.
         </p>
 
-
         <div class="price">
-          $89.00
+          $109.00
         </div>
 
 
@@ -397,13 +425,12 @@
           Description
         </h2>
 
-
         <p class="description">
-          Make a statement while staying comfortable in this all-over print
-          recycled unisex hoodie. Designed for everyday wear, it combines a
-          soft feel with a bold full-print finish and a relaxed unisex fit.
-          Whether you're moving through the city, relaxing at home or layering
-          up for an adventure, this hoodie brings the @Tenacious spirit with you.
+          This customizable All-Over Print Recycled Unisex Hoodie has a
+          relaxed fit and super soft cotton-feel fabric thanks to its
+          recycled polyester and elastane blend. The brushed fleece inside
+          makes this hoodie a true wardrobe favorite, so get your designs
+          ready and create a bold @Tenacious look.
         </p>
 
 
@@ -411,24 +438,33 @@
           Product Details
         </h2>
 
-
         <ul class="details">
 
-          <li>Made with recycled materials</li>
+          <li>96% recycled polyester, 4% elastane for US/Mexico fulfillment</li>
 
-          <li>Soft and comfortable fabric</li>
+          <li>95% recycled polyester, 5% elastane for Latvia fulfillment</li>
 
-          <li>All-over printed design</li>
+          <li>Fabric weight: 9.08 oz./yd.² (308 g/m²)</li>
 
-          <li>Unisex fit</li>
+          <li>Soft cotton-feel fabric face</li>
 
-          <li>Adjustable drawstring hood</li>
+          <li>Brushed fleece fabric inside</li>
 
-          <li>Kangaroo pocket</li>
+          <li>Double-lined hood with design on both sides</li>
 
-          <li>Ribbed cuffs and waistband</li>
+          <li>Unisex style</li>
 
-          <li>Designed for everyday wear</li>
+          <li>White or black drawstrings</li>
+
+          <li>Moon-shaped patch for custom logo on inner back</li>
+
+          <li>Premium drawstrings with metal grommets and aglets</li>
+
+          <li>Overlock seams</li>
+
+          <li>Certified recycled content</li>
+
+          <li>Product code: #140</li>
 
           <li>Made on demand — no minimums</li>
 
@@ -457,7 +493,6 @@
 
         <div class="button-group">
 
-
           <button
             type="button"
             class="button add-cart"
@@ -476,7 +511,6 @@
             Buy Now
 
           </button>
-
 
         </div>
 
@@ -502,7 +536,6 @@
   </footer>
 
 
-
   <script>
 
     function changeImage(image, button) {
@@ -518,7 +551,6 @@
       button.classList.add("active");
 
     }
-
 
 
     function addToCart() {
@@ -556,6 +588,11 @@
 
         existingItem.quantity += quantity;
 
+        existingItem.price = 109.00;
+
+        existingItem.image =
+          "all-over-print-recycled-unisex-hoodie-white-back-6a5458d1836b1.png";
+
       } else {
 
         cart.push({
@@ -564,13 +601,13 @@
             "All-Over Print Recycled Unisex Hoodie",
 
           price:
-            89.00,
+            109.00,
 
           quantity:
             quantity,
 
           image:
-            "all-over-print-recycled-unisex-hoodie-white-front-6a5458d182faa.png"
+            "all-over-print-recycled-unisex-hoodie-white-back-6a5458d1836b1.png"
 
         });
 
@@ -586,7 +623,6 @@
       window.location.href = "cart.html";
 
     }
-
 
 
     function buyNow() {
@@ -624,6 +660,11 @@
 
         existingItem.quantity += quantity;
 
+        existingItem.price = 109.00;
+
+        existingItem.image =
+          "all-over-print-recycled-unisex-hoodie-white-back-6a5458d1836b1.png";
+
       } else {
 
         cart.push({
@@ -632,13 +673,13 @@
             "All-Over Print Recycled Unisex Hoodie",
 
           price:
-            89.00,
+            109.00,
 
           quantity:
             quantity,
 
           image:
-            "all-over-print-recycled-unisex-hoodie-white-front-6a5458d182faa.png"
+            "all-over-print-recycled-unisex-hoodie-white-back-6a5458d1836b1.png"
 
         });
 

@@ -82,7 +82,7 @@
 
     .main-image img {
       width: 100%;
-      height: 100%;
+      height: auto;
       max-height: 500px;
       object-fit: contain;
       display: block;
@@ -90,12 +90,13 @@
 
     .thumbnail-row {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(5, 1fr);
       gap: 10px;
       margin-top: 14px;
     }
 
     .thumbnail {
+      appearance: none;
       background: #111111;
       border: 1px solid #292929;
       border-radius: 10px;
@@ -321,6 +322,7 @@
   </style>
 </head>
 
+
 <body>
 
   <header class="navbar">
@@ -339,98 +341,125 @@
   <main class="product-page">
 
     <div class="product-layout">
-      
-<!-- PRODUCT GALLERY -->
-
-<section class="gallery">
-
-  <div class="main-image">
-
-    <!-- DEFAULT MAIN IMAGE: BACK -->
-
-    <img
-    src="./all-over-print-recycled-unisex-hoodie-white-back-6a5458d1836b1.png"
-      alt="All-Over Print Recycled Unisex Hoodie Back">
-
-  </div>
 
 
-  <div class="thumbnail-row">
+      <!-- =====================================================
+           PRODUCT GALLERY
+           ===================================================== -->
 
-    <!-- 1. BACK — DEFAULT -->
+      <section class="gallery">
 
-    <button
-      type="button"
-      class="thumbnail active"
-      onclick="changeImage('all-over-print-recycled-unisex-hoodie-white-back-6a5458d1836b1.png', this)">
-<img
-  src="./all-over-print-recycled-unisex-hoodie-white-back-6a5458d1836b1.png"
-  alt="Hoodie Back">
-    </button>
+        <!-- MAIN PRODUCT IMAGE
+             THIS IS THE BACK OF THE HOODIE -->
 
+        <div class="main-image">
 
-    <!-- 2. FRONT VIEW 2 -->
+          <img
+            id="mainProductImage"
+            src="./all-over-print-recycled-unisex-hoodie-white-back-6a5458d1836b1.png"
+            alt="All-Over Print Recycled Unisex Hoodie Back">
 
-    <button
-      type="button"
-      class="thumbnail"
-      onclick="changeImage('all-over-print-recycled-unisex-hoodie-white-front-6a5458d185148.png', this)">
-
-      <img
-        src="all-over-print-recycled-unisex-hoodie-white-front-6a5458d185148.png"
-        alt="Hoodie Front View 2">
-
-    </button>
+        </div>
 
 
-    <!-- 3. FRONT VIEW 3 -->
+        <!-- PRODUCT THUMBNAILS -->
 
-    <button
-      type="button"
-      class="thumbnail"
-      onclick="changeImage('all-over-print-recycled-unisex-hoodie-white-front-6a5458d184af0.png', this)">
-
-      <img
-        src="all-over-print-recycled-unisex-hoodie-white-front-6a5458d184af0.png"
-        alt="Hoodie Front View 3">
-
-    </button>
+        <div class="thumbnail-row">
 
 
-    <!-- 4. PRODUCT DETAILS -->
+          <!-- 1. BACK — DEFAULT MAIN IMAGE -->
 
-    <button
-      type="button"
-      class="thumbnail"
-      onclick="changeImage('all-over-print-recycled-unisex-hoodie-white-product-details-2-6a5458d1822d9.png', this)">
+          <button
+            type="button"
+            class="thumbnail active"
+            onclick="changeImage(
+              './all-over-print-recycled-unisex-hoodie-white-back-6a5458d1836b1.png',
+              this
+            )">
 
-      <img
-        src="all-over-print-recycled-unisex-hoodie-white-product-details-2-6a5458d1822d9.png"
-        alt="Hoodie Product Details">
+            <img
+              src="./all-over-print-recycled-unisex-hoodie-white-back-6a5458d1836b1.png"
+              alt="Hoodie Back">
 
-    </button>
-
-
-    <!-- 5. RIGHT SIDE -->
-
-    <button
-      type="button"
-      class="thumbnail"
-      onclick="changeImage('all-over-print-recycled-unisex-hoodie-white-right-6a5458d181dcb.png', this)">
-
-      <img
-        src="all-over-print-recycled-unisex-hoodie-white-right-6a5458d181dcb.png"
-        alt="Hoodie Right Side">
-
-    </button>
-
-  </div>
-
-</section>
+          </button>
 
 
+          <!-- 2. FRONT VIEW 2 -->
 
-      <!-- PRODUCT INFORMATION -->
+          <button
+            type="button"
+            class="thumbnail"
+            onclick="changeImage(
+              './all-over-print-recycled-unisex-hoodie-white-front-6a5458d185148.png',
+              this
+            )">
+
+            <img
+              src="./all-over-print-recycled-unisex-hoodie-white-front-6a5458d185148.png"
+              alt="Hoodie Front View 2">
+
+          </button>
+
+
+          <!-- 3. FRONT VIEW 3 -->
+
+          <button
+            type="button"
+            class="thumbnail"
+            onclick="changeImage(
+              './all-over-print-recycled-unisex-hoodie-white-front-6a5458d184af0.png',
+              this
+            )">
+
+            <img
+              src="./all-over-print-recycled-unisex-hoodie-white-front-6a5458d184af0.png"
+              alt="Hoodie Front View 3">
+
+          </button>
+
+
+          <!-- 4. PRODUCT DETAILS -->
+
+          <button
+            type="button"
+            class="thumbnail"
+            onclick="changeImage(
+              './all-over-print-recycled-unisex-hoodie-white-product-details-2-6a5458d1822d9.png',
+              this
+            )">
+
+            <img
+              src="./all-over-print-recycled-unisex-hoodie-white-product-details-2-6a5458d1822d9.png"
+              alt="Hoodie Product Details">
+
+          </button>
+
+
+          <!-- 5. RIGHT SIDE -->
+
+          <button
+            type="button"
+            class="thumbnail"
+            onclick="changeImage(
+              './all-over-print-recycled-unisex-hoodie-white-right-6a5458d181dcb.png',
+              this
+            )">
+
+            <img
+              src="./all-over-print-recycled-unisex-hoodie-white-right-6a5458d181dcb.png"
+              alt="Hoodie Right Side">
+
+          </button>
+
+
+        </div>
+
+      </section>
+
+
+      <!-- =====================================================
+           PRODUCT INFORMATION
+           ===================================================== -->
 
       <section class="product-info">
 
@@ -447,6 +476,7 @@
         <div class="price">
           $89.00
         </div>
+
 
         <p class="price-note">
           Price varies by size.
@@ -528,25 +558,15 @@
           onchange="updatePrice()">
 
           <option value="2XS">2XS — $89.00</option>
-
           <option value="XS">XS — $89.00</option>
-
           <option value="S">S — $89.00</option>
-
           <option value="M">M — $94.00</option>
-
           <option value="L">L — $94.00</option>
-
           <option value="XL">XL — $99.00</option>
-
           <option value="2XL">2XL — $99.00</option>
-
           <option value="3XL">3XL — $104.00</option>
-
           <option value="4XL">4XL — $104.00</option>
-
           <option value="5XL">5XL — $109.00</option>
-
           <option value="6XL">6XL — $109.00</option>
 
         </select>
@@ -571,8 +591,9 @@
           value="1">
 
 
-        <div class="button-group">
+        <!-- BUTTONS -->
 
+        <div class="button-group">
 
           <button
             type="button"
@@ -592,7 +613,6 @@
             Buy Now
 
           </button>
-
 
         </div>
 
@@ -620,7 +640,12 @@
 
   <script>
 
+    /* ==========================================================
+       SIZE PRICES
+       ========================================================== */
+
     const sizePrices = {
+
       "2XS": 89.00,
       "XS": 89.00,
       "S": 89.00,
@@ -632,8 +657,13 @@
       "4XL": 104.00,
       "5XL": 109.00,
       "6XL": 109.00
+
     };
 
+
+    /* ==========================================================
+       UPDATE PRICE
+       ========================================================== */
 
     function updatePrice() {
 
@@ -649,21 +679,33 @@
     }
 
 
+    /* ==========================================================
+       CHANGE MAIN PRODUCT IMAGE
+       ========================================================== */
+
     function changeImage(image, button) {
 
-      document.getElementById("mainProductImage").src =
-        image;
+      const mainImage =
+        document.getElementById("mainProductImage");
 
-      document.querySelectorAll(".thumbnail").forEach(function(item) {
+      mainImage.src = image;
 
-        item.classList.remove("active");
+      document
+        .querySelectorAll(".thumbnail")
+        .forEach(function(item) {
 
-      });
+          item.classList.remove("active");
+
+        });
 
       button.classList.add("active");
 
     }
 
+
+    /* ==========================================================
+       GET SELECTED PRODUCT
+       ========================================================== */
 
     function getSelectedProduct() {
 
@@ -690,6 +732,7 @@
 
 
       return {
+
         name:
           "All-Over Print Recycled Unisex Hoodie",
 
@@ -703,11 +746,16 @@
           quantity,
 
         image:
-          "all-over-print-recycled-unisex-hoodie-white-back-6a5458d1836b1.png"
+          "./all-over-print-recycled-unisex-hoodie-white-back-6a5458d1836b1.png"
+
       };
 
     }
 
+
+    /* ==========================================================
+       ADD TO CART
+       ========================================================== */
 
     function addToCart() {
 
@@ -722,15 +770,18 @@
       const existingItem =
         cart.find(function(item) {
 
-          return item.name === product.name &&
-                 item.size === product.size;
+          return (
+            item.name === product.name &&
+            item.size === product.size
+          );
 
         });
 
 
       if (existingItem) {
 
-        existingItem.quantity += product.quantity;
+        existingItem.quantity +=
+          product.quantity;
 
       } else {
 
@@ -751,6 +802,10 @@
     }
 
 
+    /* ==========================================================
+       BUY NOW
+       ========================================================== */
+
     function buyNow() {
 
       const product =
@@ -764,15 +819,18 @@
       const existingItem =
         cart.find(function(item) {
 
-          return item.name === product.name &&
-                 item.size === product.size;
+          return (
+            item.name === product.name &&
+            item.size === product.size
+          );
 
         });
 
 
       if (existingItem) {
 
-        existingItem.quantity += product.quantity;
+        existingItem.quantity +=
+          product.quantity;
 
       } else {
 
@@ -793,10 +851,14 @@
     }
 
 
+    /* ==========================================================
+       INITIALIZE PAGE
+       ========================================================== */
+
     updatePrice();
 
   </script>
 
 </body>
 
-  </html>
+            </html>

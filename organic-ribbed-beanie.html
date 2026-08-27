@@ -1,1 +1,921 @@
- 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Organic Ribbed Beanie | @Tenacious</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #0b0b0b;
+      color: #f5f5f5;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(11, 11, 11, 0.96);
+      border-bottom: 1px solid #292929;
+      padding: 18px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 700;
+      letter-spacing: 2px;
+      font-size: 1.15rem;
+    }
+
+    .back-link {
+      color: #d0d0d0;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .back-link:hover {
+      color: #ffffff;
+    }
+
+    .product-page {
+      max-width: 1150px;
+      margin: 0 auto;
+      padding: 55px 6% 80px;
+    }
+
+    .product-layout {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .gallery {
+      width: 100%;
+    }
+
+    .main-image {
+      background: #111111;
+      border: 1px solid #292929;
+      border-radius: 14px;
+      min-height: 520px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding: 30px;
+    }
+
+    .main-image img {
+      width: 100%;
+      height: 100%;
+      max-height: 500px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .thumbnail-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .thumbnail {
+      background: #111111;
+      border: 1px solid #292929;
+      border-radius: 10px;
+      padding: 7px;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .thumbnail:hover,
+    .thumbnail.active {
+      border-color: #ffffff;
+    }
+
+    .thumbnail img {
+      width: 100%;
+      height: 90px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .product-info h1 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      line-height: 1.1;
+      margin-bottom: 14px;
+      letter-spacing: -0.5px;
+    }
+
+    .tagline {
+      color: #bdbdbd;
+      font-size: 1rem;
+      margin-bottom: 25px;
+    }
+
+    .price {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 28px;
+    }
+
+    .divider {
+      height: 1px;
+      background: #292929;
+      margin: 25px 0;
+    }
+
+    .section-title {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 10px;
+      color: #ffffff;
+    }
+
+    .description {
+      color: #c7c7c7;
+      margin-bottom: 25px;
+    }
+
+    .details {
+      list-style: none;
+      color: #c7c7c7;
+      margin-bottom: 28px;
+    }
+
+    .details li {
+      padding: 6px 0;
+    }
+
+    .details li::before {
+      content: "— ";
+      color: #ffffff;
+    }
+
+    .option-label {
+      display: block;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 8px;
+      color: #ffffff;
+    }
+
+    .color-select {
+      width: 100%;
+      max-width: 320px;
+      padding: 13px;
+      background: #111111;
+      color: #ffffff;
+      border: 1px solid #383838;
+      border-radius: 6px;
+      font-size: 1rem;
+      margin-bottom: 22px;
+      cursor: pointer;
+    }
+
+    .quantity-label {
+      display: block;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 8px;
+    }
+
+    .quantity {
+      width: 90px;
+      padding: 12px;
+      background: #111111;
+      color: #ffffff;
+      border: 1px solid #383838;
+      border-radius: 6px;
+      font-size: 1rem;
+      margin-bottom: 18px;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      flex: 1;
+      min-width: 180px;
+      padding: 15px 20px;
+      border: 1px solid #ffffff;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      transition: 0.2s ease;
+    }
+
+    .add-cart {
+      background: #ffffff;
+      color: #000000;
+    }
+
+    .add-cart:hover {
+      background: #dddddd;
+    }
+
+    .buy-now {
+      background: transparent;
+      color: #ffffff;
+    }
+
+    .buy-now:hover {
+      background: #ffffff;
+      color: #000000;
+    }
+
+    .made-on-demand {
+      margin-top: 22px;
+      padding: 15px;
+      border: 1px solid #292929;
+      border-radius: 8px;
+      color: #a9a9a9;
+      font-size: 0.85rem;
+    }
+
+    .footer {
+      border-top: 1px solid #292929;
+      padding: 28px 6%;
+      text-align: center;
+      color: #888888;
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 800px) {
+
+      .product-layout {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .main-image {
+        min-height: 390px;
+      }
+
+      .product-page {
+        padding-top: 35px;
+      }
+    }
+
+    @media (max-width: 480px) {
+
+      .navbar {
+        padding: 16px 5%;
+      }
+
+      .product-page {
+        padding-left: 5%;
+        padding-right: 5%;
+      }
+
+      .main-image {
+        min-height: 330px;
+        padding: 18px;
+      }
+
+      .thumbnail-row {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      .thumbnail img {
+        height: 70px;
+      }
+
+      .button {
+        min-width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="navbar">
+
+    <a href="index.html" class="logo">
+      @TENACIOUS
+    </a>
+
+    <a href="index.html#shop" class="back-link">
+      ← Back to Shop
+    </a>
+
+  </header>
+
+
+  <main class="product-page">
+
+    <div class="product-layout">
+
+
+      <!-- GALLERY -->
+
+      <section class="gallery">
+
+        <div class="main-image">
+
+          <img
+            id="mainProductImage"
+            src="organic-ribbed-beanie-burgundy-left-6a5ee4250f7ad.png"
+            alt="Organic Ribbed Beanie">
+
+        </div>
+
+
+        <div class="thumbnail-row">
+
+          <button
+            type="button"
+            class="thumbnail active"
+            onclick="changeImage('organic-ribbed-beanie-burgundy-left-6a5ee4250f7ad.png', this)">
+
+            <img
+              src="organic-ribbed-beanie-burgundy-left-6a5ee4250f7ad.png"
+              alt="Burgundy Beanie">
+
+          </button>
+
+
+          <button
+            type="button"
+            class="thumbnail"
+            onclick="changeImage('organic-ribbed-beanie-oxford-navy-product-details-2-6a5ee4250f634.png', this)">
+
+            <img
+              src="organic-ribbed-beanie-oxford-navy-product-details-2-6a5ee4250f634.png"
+              alt="Oxford Navy Beanie">
+
+          </button>
+
+
+          <button
+            type="button"
+            class="thumbnail"
+            onclick="changeImage('organic-ribbed-beanie-mustard-yellow-product-details-6a5ee4250fc43.png', this)">
+
+            <img
+              src="organic-ribbed-beanie-mustard-yellow-product-details-6a5ee4250fc43.png"
+              alt="Mustard Yellow Beanie">
+
+          </button>
+
+
+          <button
+            type="button"
+            class="thumbnail"
+            onclick="changeImage('organic-ribbed-beanie-light-grey-front-6a5ee4250fe13.png', this)">
+
+            <img
+              src="organic-ribbed-beanie-light-grey-front-6a5ee4250fe13.png"
+              alt="Light Grey Beanie">
+
+          </button>
+
+
+          <button
+            type="button"
+            class="thumbnail"
+            onclick="changeImage('organic-ribbed-beanie-light-avio-blue-front-6a5ee4250f920.png', this)">
+
+            <img
+              src="organic-ribbed-beanie-light-avio-blue-front-6a5ee4250f920.png"
+              alt="Light Avio Blue Beanie">
+
+          </button>
+
+
+          <button
+            type="button"
+            class="thumbnail"
+            onclick="changeImage('organic-ribbed-beanie-leaf-green-front-6a5ee4251007f.png', this)">
+
+            <img
+              src="organic-ribbed-beanie-leaf-green-front-6a5ee4251007f.png"
+              alt="Leaf Green Beanie">
+
+          </button>
+
+
+          <button
+            type="button"
+            class="thumbnail"
+            onclick="changeImage('organic-ribbed-beanie-burgundy-back-6a5ee4250f7d5.png', this)">
+
+            <img
+              src="organic-ribbed-beanie-burgundy-back-6a5ee4250f7d5.png"
+              alt="Burgundy Beanie Back">
+
+          </button>
+
+
+          <button
+            type="button"
+            class="thumbnail"
+            onclick="changeImage('organic-ribbed-beanie-black-front-6a5ee4250e8bb.png', this)">
+
+            <img
+              src="organic-ribbed-beanie-black-front-6a5ee4250e8bb.png"
+              alt="Black Beanie">
+
+          </button>
+
+        </div>
+
+      </section>
+
+
+      <!-- PRODUCT INFORMATION -->
+
+      <section class="product-info">
+
+        <h1>
+          Organic Ribbed Beanie
+        </h1>
+
+
+        <p class="tagline">
+          Organic comfort with an understated streetwear edge —
+          made for those who remain tenacious by choice.
+        </p>
+
+
+        <div
+          class="price"
+          id="price">
+
+          $39.00
+
+        </div>
+
+
+        <div class="divider"></div>
+
+
+        <h2 class="section-title">
+          Description
+        </h2>
+
+
+        <p class="description">
+          The Organic Ribbed Beanie has a classic look, but the ribbed
+          fabric brings a pinch of uniqueness. Wear this 100% organic
+          cotton beanie during your outdoor adventures or combine it
+          with a streetwear outfit. Thanks to its stylish look and
+          practicality, it'll work for both.
+        </p>
+
+
+        <h2 class="section-title">
+          Product Details
+        </h2>
+
+
+        <ul class="details">
+
+          <li>100% certified organic cotton</li>
+
+          <li>Antiallergic and natural fabric</li>
+
+          <li>Cuffed beanie design</li>
+
+          <li>Tear-away tag</li>
+
+          <li>GOTS-certified organic cotton content</li>
+
+          <li>One size</li>
+
+          <li>Embroidered front placement</li>
+
+          <li>Made on demand — no minimums</li>
+
+        </ul>
+
+
+        <div class="divider"></div>
+
+
+        <!-- COLOUR SELECTOR -->
+
+        <label
+          for="color"
+          class="option-label">
+
+          Choose Colour
+
+        </label>
+
+
+        <select
+          id="color"
+          class="color-select"
+          onchange="updateColor()">
+
+          <option value="Burgundy">
+            Burgundy — $39.00
+          </option>
+
+          <option value="Oxford Navy">
+            Oxford Navy — $39.00
+          </option>
+
+          <option value="Mustard Yellow">
+            Mustard Yellow — $39.00
+          </option>
+
+          <option value="Light Grey">
+            Light Grey — $39.00
+          </option>
+
+          <option value="Light Avio Blue">
+            Light Avio Blue — $39.00
+          </option>
+
+          <option value="Leaf Green">
+            Leaf Green — $39.00
+          </option>
+
+          <option value="Black">
+            Black — $41.00
+          </option>
+
+        </select>
+
+
+        <!-- QUANTITY -->
+
+        <label
+          for="quantity"
+          class="quantity-label">
+
+          Quantity
+
+        </label>
+
+
+        <input
+          id="quantity"
+          class="quantity"
+          type="number"
+          min="1"
+          value="1">
+
+
+        <div class="button-group">
+
+          <button
+            type="button"
+            class="button add-cart"
+            onclick="addToCart()">
+
+            Add to Cart
+
+          </button>
+
+
+          <button
+            type="button"
+            class="button buy-now"
+            onclick="buyNow()">
+
+            Buy Now
+
+          </button>
+
+        </div>
+
+
+        <div class="made-on-demand">
+
+          Made especially for you after your order is placed.
+          @Tenacious supports thoughtful, on-demand production.
+
+        </div>
+
+      </section>
+
+    </div>
+
+  </main>
+
+
+  <footer class="footer">
+
+    © 2026 @Tenacious — Resilient by choice.
+
+  </footer>
+
+
+  <script>
+
+    /* =========================
+       BEANIE COLOUR SETTINGS
+       ========================= */
+
+    const colorOptions = {
+
+      "Burgundy": {
+        price: 39.00,
+        image:
+          "organic-ribbed-beanie-burgundy-left-6a5ee4250f7ad.png"
+      },
+
+      "Oxford Navy": {
+        price: 39.00,
+        image:
+          "organic-ribbed-beanie-oxford-navy-product-details-2-6a5ee4250f634.png"
+      },
+
+      "Mustard Yellow": {
+        price: 39.00,
+        image:
+          "organic-ribbed-beanie-mustard-yellow-product-details-6a5ee4250fc43.png"
+      },
+
+      "Light Grey": {
+        price: 39.00,
+        image:
+          "organic-ribbed-beanie-light-grey-front-6a5ee4250fe13.png"
+      },
+
+      "Light Avio Blue": {
+        price: 39.00,
+        image:
+          "organic-ribbed-beanie-light-avio-blue-front-6a5ee4250f920.png"
+      },
+
+      "Leaf Green": {
+        price: 39.00,
+        image:
+          "organic-ribbed-beanie-leaf-green-front-6a5ee4251007f.png"
+      },
+
+      "Black": {
+        price: 41.00,
+        image:
+          "organic-ribbed-beanie-black-front-6a5ee4250e8bb.png"
+      }
+
+    };
+
+
+    /* =========================
+       CHANGE THUMBNAIL IMAGE
+       ========================= */
+
+    function changeImage(image, button) {
+
+      document.getElementById(
+        "mainProductImage"
+      ).src = image;
+
+
+      document.querySelectorAll(
+        ".thumbnail"
+      ).forEach(function(item) {
+
+        item.classList.remove("active");
+
+      });
+
+
+      button.classList.add("active");
+
+    }
+
+
+    /* =========================
+       CHANGE COLOUR
+       ========================= */
+
+    function updateColor() {
+
+      const color =
+        document.getElementById("color").value;
+
+      const selected =
+        colorOptions[color];
+
+
+      if (!selected) {
+        return;
+      }
+
+
+      document.getElementById(
+        "mainProductImage"
+      ).src = selected.image;
+
+
+      document.getElementById(
+        "price"
+      ).textContent =
+        "$" + selected.price.toFixed(2);
+
+    }
+
+
+    /* =========================
+       GET QUANTITY
+       ========================= */
+
+    function getQuantity() {
+
+      const input =
+        document.getElementById("quantity");
+
+      let quantity =
+        parseInt(input.value, 10);
+
+
+      if (
+        isNaN(quantity) ||
+        quantity < 1
+      ) {
+
+        quantity = 1;
+
+        input.value = 1;
+
+      }
+
+
+      return quantity;
+
+    }
+
+
+    /* =========================
+       CREATE PRODUCT
+       ========================= */
+
+    function getProduct() {
+
+      const color =
+        document.getElementById("color").value;
+
+      const selected =
+        colorOptions[color];
+
+      const quantity =
+        getQuantity();
+
+
+      return {
+
+        name:
+          "Organic Ribbed Beanie",
+
+        color:
+          color,
+
+        price:
+          selected.price,
+
+        image:
+          selected.image,
+
+        quantity:
+          quantity
+
+      };
+
+    }
+
+
+    /* =========================
+       ADD TO CART
+       ========================= */
+
+    function addToCart() {
+
+      const product =
+        getProduct();
+
+
+      let cart =
+        JSON.parse(
+          localStorage.getItem("cart")
+        ) || [];
+
+
+      const existingProduct =
+        cart.find(function(item) {
+
+          return (
+            item.name === product.name &&
+            item.color === product.color
+          );
+
+        });
+
+
+      if (existingProduct) {
+
+        existingProduct.quantity +=
+          product.quantity;
+
+      } else {
+
+        cart.push(product);
+
+      }
+
+
+      localStorage.setItem(
+        "cart",
+        JSON.stringify(cart)
+      );
+
+
+      window.location.href =
+        "cart.html";
+
+    }
+
+
+    /* =========================
+       BUY NOW
+       ========================= */
+
+    function buyNow() {
+
+      const product =
+        getProduct();
+
+
+      let cart =
+        JSON.parse(
+          localStorage.getItem("cart")
+        ) || [];
+
+
+      const existingProduct =
+        cart.find(function(item) {
+
+          return (
+            item.name === product.name &&
+            item.color === product.color
+          );
+
+        });
+
+
+      if (existingProduct) {
+
+        existingProduct.quantity +=
+          product.quantity;
+
+      } else {
+
+        cart.push(product);
+
+      }
+
+
+      localStorage.setItem(
+        "cart",
+        JSON.stringify(cart)
+      );
+
+
+      window.location.href =
+        "checkout.html";
+
+    }
+
+
+    /* Set initial price */
+
+    updateColor();
+
+  </script>
+
+</body>
+
+ </html> 

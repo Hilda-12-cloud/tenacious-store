@@ -103,13 +103,14 @@
       font-weight: bold;
     }
 
-    .size-label {
+    .option-label {
       display: block;
       margin-bottom: 10px;
       font-size: 15px;
       font-weight: bold;
     }
 
+    .color-select,
     .size-select {
       width: 100%;
       padding: 14px;
@@ -142,6 +143,10 @@
       margin-bottom: 15px;
     }
 
+    .order-button:hover {
+      background: #dddddd;
+    }
+
     .whatsapp-button {
       display: block;
       width: 100%;
@@ -151,6 +156,11 @@
       text-align: center;
       text-decoration: none;
       font-weight: bold;
+    }
+
+    .whatsapp-button:hover {
+      background: #ffffff;
+      color: #000000;
     }
 
     .details {
@@ -170,6 +180,7 @@
     }
 
     @media (max-width: 768px) {
+
       .product-container {
         grid-template-columns: 1fr;
         gap: 35px;
@@ -190,9 +201,15 @@
 
   <main class="product-page">
 
-    <a href="index.html#shop" class="back-link">← Back to Shop</a>
+    <a href="index.html#shop" class="back-link">
+      ← Back to Shop
+    </a>
+
 
     <div class="product-container">
+
+
+      <!-- PRODUCT IMAGES -->
 
       <div class="product-image">
 
@@ -203,40 +220,48 @@
 
         <div class="thumbnail-gallery">
 
+
           <img
             src="unisex-urban-sweatpants-pebble-blue-back-6a5edffbe100b.png"
             alt="Urban Sweatpants Pebble Blue Back"
             onclick="changeImage(this.src)">
+
 
           <img
             src="unisex-urban-sweatpants-black-back-6a5edffbe0cc5.png"
             alt="Urban Sweatpants Black Back"
             onclick="changeImage(this.src)">
 
+
           <img
             src="unisex-urban-sweatpants-black-front-6a5edffbe0e69.png"
             alt="Urban Sweatpants Black Front"
             onclick="changeImage(this.src)">
+
 
           <img
             src="unisex-urban-sweatpants-burro-front-6a5edffbe167d.png"
             alt="Urban Sweatpants Burro Front"
             onclick="changeImage(this.src)">
 
+
           <img
             src="unisex-urban-sweatpants-burro-front-and-back-6a5edffbe1c36.png"
             alt="Urban Sweatpants Burro Front and Back"
             onclick="changeImage(this.src)">
+
 
           <img
             src="unisex-urban-sweatpants-pistachio-back-6a5edffbe24d4.png"
             alt="Urban Sweatpants Pistachio Back"
             onclick="changeImage(this.src)">
 
+
           <img
             src="unisex-urban-sweatpants-pistachio-front-and-back-6a5edffbe2713.png"
             alt="Urban Sweatpants Pistachio Front and Back"
             onclick="changeImage(this.src)">
+
 
           <img
             src="unisex-urban-sweatpants-white-back-6a5ee1d4535e2.png"
@@ -247,9 +272,15 @@
 
       </div>
 
+
+      <!-- PRODUCT INFORMATION -->
+
       <div class="product-info">
 
-        <h1>Unisex Urban Sweatpants</h1>
+        <h1>
+          Unisex Urban Sweatpants
+        </h1>
+
 
         <p class="description">
           Elevated streetwear with a relaxed fit — heavyweight fleece,
@@ -257,48 +288,192 @@
           with the @Tenacious spirit.
         </p>
 
-        <p class="price" id="price">$75.00</p>
 
-        <label class="size-label" for="size">
-          Choose Size
+        <p class="price" id="price">
+          $75.00
+        </p>
+
+
+        <!-- COLOUR SELECTOR -->
+
+        <label
+          class="option-label"
+          for="color">
+
+          Choose Colour
+
         </label>
 
-        <select id="size" class="size-select" onchange="updatePrice()">
-          <option value="S" data-price="75">S — $75.00</option>
-          <option value="M" data-price="75">M — $75.00</option>
-          <option value="L" data-price="75">L — $75.00</option>
-          <option value="XL" data-price="75">XL — $75.00</option>
-          <option value="2XL" data-price="77">2XL — $77.00</option>
-          <option value="3XL" data-price="77">3XL — $77.00</option>
+
+        <select
+          id="color"
+          class="color-select"
+          onchange="updateColor()">
+
+          <option value="Black">
+            Black
+          </option>
+
+          <option value="Pebble Blue">
+            Pebble Blue
+          </option>
+
+          <option value="Burro">
+            Burro
+          </option>
+
+          <option value="Pistachio">
+            Pistachio
+          </option>
+
+          <option value="White">
+            White
+          </option>
+
         </select>
+
+
+        <!-- SIZE SELECTOR -->
+
+        <label
+          class="option-label"
+          for="size">
+
+          Choose Size
+
+        </label>
+
+
+        <select
+          id="size"
+          class="size-select"
+          onchange="updatePrice()">
+
+          <option
+            value="S"
+            data-price="75">
+
+            S — $75.00
+
+          </option>
+
+          <option
+            value="M"
+            data-price="75">
+
+            M — $75.00
+
+          </option>
+
+          <option
+            value="L"
+            data-price="75">
+
+            L — $75.00
+
+          </option>
+
+          <option
+            value="XL"
+            data-price="75">
+
+            XL — $75.00
+
+          </option>
+
+          <option
+            value="2XL"
+            data-price="77">
+
+            2XL — $77.00
+
+          </option>
+
+          <option
+            value="3XL"
+            data-price="77">
+
+            3XL — $77.00
+
+          </option>
+
+        </select>
+
 
         <p class="size-note">
           2XL and 3XL are priced slightly higher.
         </p>
 
-        <button class="order-button" onclick="addToCart()">
+
+        <button
+          class="order-button"
+          onclick="addToCart()">
+
           Add to Cart
+
         </button>
 
-        <a href="#" class="whatsapp-button">
+
+        <a
+          href="#"
+          class="whatsapp-button">
+
           Order via WhatsApp
+
         </a>
+
+
+        <!-- PRODUCT DETAILS -->
 
         <div class="details">
 
-          <h2>Product Details</h2>
+          <h2>
+            Product Details
+          </h2>
 
-          <p>• 80% cotton, 20% recycled polyester</p>
-          <p>• Heavyweight 10 oz./yd² (340 g/m²) fleece</p>
-          <p>• Relaxed fit, true to size</p>
-          <p>• Elastic waistband and bottom cuffs</p>
-          <p>• Zipped side pockets</p>
-          <p>• Metal-tipped drawcords</p>
-          <p>• Seamless leg construction</p>
-          <p>• Tear-away tag</p>
-          <p>• Under 5% shrinkage</p>
-          <p>• Made with 20% recycled materials</p>
-          <p>• Made on demand with no minimums</p>
+          <p>
+            • 80% cotton, 20% recycled polyester
+          </p>
+
+          <p>
+            • Heavyweight 10 oz./yd² (340 g/m²) fleece
+          </p>
+
+          <p>
+            • Relaxed fit, true to size
+          </p>
+
+          <p>
+            • Elastic waistband and bottom cuffs
+          </p>
+
+          <p>
+            • Zipped side pockets
+          </p>
+
+          <p>
+            • Metal-tipped drawcords
+          </p>
+
+          <p>
+            • Seamless leg construction
+          </p>
+
+          <p>
+            • Tear-away tag
+          </p>
+
+          <p>
+            • Under 5% shrinkage
+          </p>
+
+          <p>
+            • Made with 20% recycled materials
+          </p>
+
+          <p>
+            • Made on demand with no minimums
+          </p>
 
         </div>
 
@@ -308,65 +483,188 @@
 
   </main>
 
+
   <script>
+
+
+    /* =========================
+       COLOUR IMAGE SETTINGS
+       ========================= */
+
+    const colorImages = {
+
+      "Black":
+        "unisex-urban-sweatpants-black-front-6a5edffbe0e69.png",
+
+      "Pebble Blue":
+        "unisex-urban-sweatpants-pebble-blue-back-6a5edffbe100b.png",
+
+      "Burro":
+        "unisex-urban-sweatpants-burro-front-6a5edffbe167d.png",
+
+      "Pistachio":
+        "unisex-urban-sweatpants-pistachio-front-and-back-6a5edffbe2713.png",
+
+      "White":
+        "unisex-urban-sweatpants-white-back-6a5ee1d4535e2.png"
+
+    };
+
+
+    /* =========================
+       CHANGE MAIN IMAGE
+       ========================= */
+
+    function changeImage(imageSrc) {
+
+      document.getElementById(
+        "mainProductImage"
+      ).src = imageSrc;
+
+    }
+
+
+    /* =========================
+       CHANGE COLOUR
+       ========================= */
+
+    function updateColor() {
+
+      const color =
+        document.getElementById("color").value;
+
+      const image =
+        colorImages[color];
+
+      if (image) {
+
+        document.getElementById(
+          "mainProductImage"
+        ).src = image;
+
+      }
+
+    }
+
+
+    /* =========================
+       UPDATE SIZE PRICE
+       ========================= */
 
     function updatePrice() {
 
-      const sizeSelect = document.getElementById("size");
+      const sizeSelect =
+        document.getElementById("size");
 
       const selectedOption =
-        sizeSelect.options[sizeSelect.selectedIndex];
+        sizeSelect.options[
+          sizeSelect.selectedIndex
+        ];
 
-      const price = selectedOption.dataset.price;
+      const price =
+        Number(
+          selectedOption.dataset.price
+        );
 
-      document.getElementById("price").textContent =
-        "$" + Number(price).toFixed(2);
+      document.getElementById(
+        "price"
+      ).textContent =
+        "$" + price.toFixed(2);
+
     }
+
+
+    /* =========================
+       ADD TO CART
+       ========================= */
 
     function addToCart() {
 
-      const sizeSelect = document.getElementById("size");
+      const sizeSelect =
+        document.getElementById("size");
 
       const selectedOption =
-        sizeSelect.options[sizeSelect.selectedIndex];
+        sizeSelect.options[
+          sizeSelect.selectedIndex
+        ];
 
-      const size = selectedOption.value;
-      const price = Number(selectedOption.dataset.price);
+      const size =
+        selectedOption.value;
+
+      const price =
+        Number(
+          selectedOption.dataset.price
+        );
+
+      const color =
+        document.getElementById("color").value;
+
 
       const product = {
-        name: "Unisex Urban Sweatpants",
-        size: size,
-        price: price,
-        image: "unisex-urban-sweatpants-black-front-6a5edffbe0e69.png",
-        quantity: 1
+
+        name:
+          "Unisex Urban Sweatpants",
+
+        size:
+          size,
+
+        color:
+          color,
+
+        price:
+          price,
+
+        image:
+          colorImages[color],
+
+        quantity:
+          1
+
       };
 
-      let cart =
-        JSON.parse(localStorage.getItem("cart")) || [];
 
-      const existingProduct = cart.find(
-        item =>
-          item.name === product.name &&
-          item.size === product.size
-      );
+      let cart =
+        JSON.parse(
+          localStorage.getItem("cart")
+        ) || [];
+
+
+      /*
+        Same product + same colour
+        + same size = increase quantity.
+      */
+
+      const existingProduct =
+        cart.find(
+
+          item =>
+            item.name === product.name &&
+            item.size === product.size &&
+            item.color === product.color
+
+        );
+
 
       if (existingProduct) {
+
         existingProduct.quantity += 1;
+
       } else {
+
         cart.push(product);
+
       }
+
 
       localStorage.setItem(
         "cart",
         JSON.stringify(cart)
       );
 
-      window.location.href = "cart.html";
-    }
 
-    function changeImage(imageSrc) {
-      document.getElementById("mainProductImage").src =
-        imageSrc;
+      window.location.href =
+        "cart.html";
+
     }
 
   </script>

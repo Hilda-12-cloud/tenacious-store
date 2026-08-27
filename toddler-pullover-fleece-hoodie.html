@@ -52,24 +52,53 @@
       color: #fff;
     }
 
-    .gallery {
+    /* MAIN PRODUCT IMAGE */
+
+    .main-product-image {
+      background: #151515;
+      border: 1px solid #292929;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    .main-product-image img {
+      width: 100%;
+      max-height: 600px;
+      object-fit: contain;
+      display: block;
+      margin: auto;
+    }
+
+    /* THUMBNAILS */
+
+    .thumbnail-gallery {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
       margin-bottom: 35px;
     }
 
-    .gallery img {
-      width: 100%;
-      display: block;
-      border-radius: 8px;
-      background: #151515;
+    .thumbnail {
+      padding: 5px;
+      background: #111;
+      border: 1px solid #333;
+      border-radius: 7px;
       cursor: pointer;
       transition: 0.2s ease;
     }
 
-    .gallery img:hover {
-      opacity: 0.8;
+    .thumbnail:hover,
+    .thumbnail.active {
+      border-color: #fff;
+    }
+
+    .thumbnail img {
+      width: 100%;
+      height: 100px;
+      object-fit: contain;
+      display: block;
     }
 
     .product-info h1 {
@@ -118,6 +147,8 @@
       margin-bottom: 7px;
     }
 
+    /* SELECTORS */
+
     .selector-label {
       display: block;
       margin-bottom: 10px;
@@ -144,6 +175,8 @@
       margin-top: -8px;
       margin-bottom: 20px;
     }
+
+    /* BUTTON */
 
     .add-to-cart {
       width: 100%;
@@ -230,8 +263,13 @@
     }
 
     @media (max-width: 700px) {
-      .gallery {
-        grid-template-columns: repeat(2, 1fr);
+
+      .thumbnail-gallery {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .thumbnail img {
+        height: 80px;
       }
 
       .product-info h1 {
@@ -240,8 +278,13 @@
     }
 
     @media (max-width: 450px) {
-      .gallery {
-        grid-template-columns: 1fr;
+
+      .thumbnail-gallery {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .thumbnail img {
+        height: 70px;
       }
     }
   </style>
@@ -253,171 +296,327 @@
     <a href="index.html">@TENACIOUS</a>
   </header>
 
+
   <main class="product-page">
 
-    <a class="back" href="index.html#shop">← Back to Collection</a>
+    <a class="back" href="index.html#shop">
+      ← Back to Collection
+    </a>
 
-    <div class="gallery">
+
+    <!-- MAIN IMAGE -->
+
+    <div class="main-product-image">
 
       <img
+        id="mainProductImage"
         src="toddler-pullover-fleece-hoodie-navy-front-6a5ee363f3df9.png"
-        alt="Toddler Pullover Fleece Hoodie Navy"
-        onclick="selectColor('Navy')">
-
-      <img
-        src="toddler-pullover-fleece-hoodie-kelly-back-6a5ee36400010.png"
-        alt="Toddler Pullover Fleece Hoodie Kelly"
-        onclick="selectColor('Kelly')">
-
-      <img
-        src="toddler-pullover-fleece-hoodie-heather-front-6a5ee364003f0.png"
-        alt="Toddler Pullover Fleece Hoodie Heather"
-        onclick="selectColor('Heather')">
-
-      <img
-        src="toddler-pullover-fleece-hoodie-black-front-6a5ee363f3c77.png"
-        alt="Toddler Pullover Fleece Hoodie Black"
-        onclick="selectColor('Black')">
-
-      <img
-        src="toddler-pullover-fleece-hoodie-pink-front-6a5ee36400532.png"
-        alt="Toddler Pullover Fleece Hoodie Pink"
-        onclick="selectColor('Pink')">
-
-      <img
-        src="toddler-pullover-fleece-hoodie-raspberry-back-2-6a5ee3640028d.png"
-        alt="Toddler Pullover Fleece Hoodie Raspberry"
-        onclick="selectColor('Raspberry')">
-
-      <img
-        src="toddler-pullover-fleece-hoodie-red-back-6a5ee363f3f14.png"
-        alt="Toddler Pullover Fleece Hoodie Red"
-        onclick="selectColor('Red')">
-
-      <img
-        src="toddler-pullover-fleece-hoodie-royal-front-6a5ee363f41b7.png"
-        alt="Toddler Pullover Fleece Hoodie Royal"
-        onclick="selectColor('Royal')">
-
-      <img
-        src="toddler-pullover-fleece-hoodie-white-front-6a5ee36400560.png"
-        alt="Toddler Pullover Fleece Hoodie White"
-        onclick="selectColor('White')">
+        alt="Toddler Pullover Fleece Hoodie Navy">
 
     </div>
 
+
+    <!-- THUMBNAIL GALLERY -->
+
+    <div class="thumbnail-gallery">
+
+      <button
+        type="button"
+        class="thumbnail active"
+        data-color="Navy"
+        onclick="selectThumbnail(this)">
+
+        <img
+          src="toddler-pullover-fleece-hoodie-navy-front-6a5ee363f3df9.png"
+          alt="Navy Toddler Hoodie">
+
+      </button>
+
+
+      <button
+        type="button"
+        class="thumbnail"
+        data-color="Kelly"
+        onclick="selectThumbnail(this)">
+
+        <img
+          src="toddler-pullover-fleece-hoodie-kelly-back-6a5ee36400010.png"
+          alt="Kelly Toddler Hoodie">
+
+      </button>
+
+
+      <button
+        type="button"
+        class="thumbnail"
+        data-color="Heather"
+        onclick="selectThumbnail(this)">
+
+        <img
+          src="toddler-pullover-fleece-hoodie-heather-front-6a5ee364003f0.png"
+          alt="Heather Toddler Hoodie">
+
+      </button>
+
+
+      <button
+        type="button"
+        class="thumbnail"
+        data-color="Black"
+        onclick="selectThumbnail(this)">
+
+        <img
+          src="toddler-pullover-fleece-hoodie-black-front-6a5ee363f3c77.png"
+          alt="Black Toddler Hoodie">
+
+      </button>
+
+
+      <button
+        type="button"
+        class="thumbnail"
+        data-color="Pink"
+        onclick="selectThumbnail(this)">
+
+        <img
+          src="toddler-pullover-fleece-hoodie-pink-front-6a5ee36400532.png"
+          alt="Pink Toddler Hoodie">
+
+      </button>
+
+
+      <button
+        type="button"
+        class="thumbnail"
+        data-color="Raspberry"
+        onclick="selectThumbnail(this)">
+
+        <img
+          src="toddler-pullover-fleece-hoodie-raspberry-back-2-6a5ee3640028d.png"
+          alt="Raspberry Toddler Hoodie">
+
+      </button>
+
+
+      <button
+        type="button"
+        class="thumbnail"
+        data-color="Red"
+        onclick="selectThumbnail(this)">
+
+        <img
+          src="toddler-pullover-fleece-hoodie-red-back-6a5ee363f3f14.png"
+          alt="Red Toddler Hoodie">
+
+      </button>
+
+
+      <button
+        type="button"
+        class="thumbnail"
+        data-color="Royal"
+        onclick="selectThumbnail(this)">
+
+        <img
+          src="toddler-pullover-fleece-hoodie-royal-front-6a5ee363f41b7.png"
+          alt="Royal Toddler Hoodie">
+
+      </button>
+
+
+      <button
+        type="button"
+        class="thumbnail"
+        data-color="White"
+        onclick="selectThumbnail(this)">
+
+        <img
+          src="toddler-pullover-fleece-hoodie-white-front-6a5ee36400560.png"
+          alt="White Toddler Hoodie">
+
+      </button>
+
+    </div>
+
+
+    <!-- PRODUCT INFORMATION -->
+
     <section class="product-info">
 
-      <h1>Toddler Pullover Fleece Hoodie</h1>
+      <h1>
+        Toddler Pullover Fleece Hoodie
+      </h1>
+
 
       <p class="subtitle">
         Rabbit Skins 3326
       </p>
 
-      <div class="price" id="display-price">
+
+      <div
+        class="price"
+        id="display-price">
+
         $34.95
+
       </div>
+
 
       <div class="section">
 
-        <h2>Select Options</h2>
+        <h2>
+          Select Options
+        </h2>
 
-        <!-- COLOUR SELECTOR -->
 
-        <label class="selector-label" for="color">
+        <!-- COLOUR -->
+
+        <label
+          class="selector-label"
+          for="color">
+
           Choose Colour
+
         </label>
+
 
         <select
           id="color"
           class="color-select"
-          onchange="updateColor()">
+          onchange="updateColorFromSelector()">
 
           <option
             value="Navy"
             data-image="toddler-pullover-fleece-hoodie-navy-front-6a5ee363f3df9.png">
+
             Navy
+
           </option>
+
 
           <option
             value="Kelly"
             data-image="toddler-pullover-fleece-hoodie-kelly-back-6a5ee36400010.png">
+
             Kelly
+
           </option>
+
 
           <option
             value="Heather"
             data-image="toddler-pullover-fleece-hoodie-heather-front-6a5ee364003f0.png">
+
             Heather
+
           </option>
+
 
           <option
             value="Black"
             data-image="toddler-pullover-fleece-hoodie-black-front-6a5ee363f3c77.png">
+
             Black
+
           </option>
+
 
           <option
             value="Pink"
             data-image="toddler-pullover-fleece-hoodie-pink-front-6a5ee36400532.png">
+
             Pink
+
           </option>
+
 
           <option
             value="Raspberry"
             data-image="toddler-pullover-fleece-hoodie-raspberry-back-2-6a5ee3640028d.png">
+
             Raspberry
+
           </option>
+
 
           <option
             value="Red"
             data-image="toddler-pullover-fleece-hoodie-red-back-6a5ee363f3f14.png">
+
             Red
+
           </option>
+
 
           <option
             value="Royal"
             data-image="toddler-pullover-fleece-hoodie-royal-front-6a5ee363f41b7.png">
+
             Royal
+
           </option>
+
 
           <option
             value="White"
             data-image="toddler-pullover-fleece-hoodie-white-front-6a5ee36400560.png">
+
             White
+
           </option>
 
         </select>
 
+
         <p class="selection-note">
-          Select your preferred hoodie colour.
+          Selecting a colour automatically changes the main product image.
         </p>
 
 
-        <!-- SIZE SELECTOR -->
+        <!-- SIZE -->
 
-        <label class="selector-label" for="size">
+        <label
+          class="selector-label"
+          for="size">
+
           Choose Size
+
         </label>
+
 
         <select
           id="size"
           class="size-select"
           onchange="updatePrice()">
 
-          <option value="2T" data-price="34.95">
+          <option
+            value="2T"
+            data-price="34.95">
+
             2T — $34.95
+
           </option>
 
-          <option value="4T" data-price="36.95">
+
+          <option
+            value="4T"
+            data-price="36.95">
+
             4T — $36.95
+
           </option>
 
-          <option value="5-6T" data-price="38.95">
+
+          <option
+            value="5-6T"
+            data-price="38.95">
+
             5–6T — $38.95
+
           </option>
 
         </select>
+
 
         <button
           type="button"
@@ -428,32 +627,50 @@
 
         </button>
 
-        <p id="cart-message" class="cart-message"></p>
 
-        <a href="cart.html" class="cart-link">
+        <p
+          id="cart-message"
+          class="cart-message">
+        </p>
+
+
+        <a
+          href="cart.html"
+          class="cart-link">
+
           View Cart
+
         </a>
 
       </div>
+
 
       <p class="price-note">
         Price varies by size.
       </p>
 
+
+      <!-- DESCRIPTION -->
+
       <div class="section">
 
-        <h2>Description</h2>
+        <h2>
+          Description
+        </h2>
+
 
         <p>
           Soft, cozy, and built for everyday play, this toddler pullover
           fleece hoodie is an easy win for kidswear collections.
         </p>
 
+
         <p>
           The midweight fleece keeps little ones comfortable indoors and out,
           while the clean silhouette works across casual, seasonal, and
           family-themed designs.
         </p>
+
 
         <p>
           Thoughtful construction details and a no-drawstring hood make it a
@@ -462,157 +679,259 @@
 
       </div>
 
+
+      <!-- DETAILS -->
+
       <div class="section">
 
-        <h2>Product Details</h2>
+        <h2>
+          Product Details
+        </h2>
+
 
         <ul>
-          <li>60% combed ring-spun cotton, 40% polyester</li>
-          <li>Fabric weight: 7.5 oz./yd.² (254 g/m²)</li>
-          <li>Regular fit for toddlers</li>
-          <li>Jersey-lined hood with double-needle hem</li>
-          <li>Side seam pockets</li>
-          <li>Coverstitched ribbed waistband and cuffs</li>
-          <li>Coverstitched shoulders and armholes</li>
-          <li>No drawstrings</li>
-          <li>CPSIA-compliant tracking label on the side seam</li>
-          <li>Made on demand — no minimums</li>
+
+          <li>
+            60% combed ring-spun cotton, 40% polyester
+          </li>
+
+          <li>
+            Fabric weight: 7.5 oz./yd.² (254 g/m²)
+          </li>
+
+          <li>
+            Regular fit for toddlers
+          </li>
+
+          <li>
+            Jersey-lined hood with double-needle hem
+          </li>
+
+          <li>
+            Side seam pockets
+          </li>
+
+          <li>
+            Coverstitched ribbed waistband and cuffs
+          </li>
+
+          <li>
+            Coverstitched shoulders and armholes
+          </li>
+
+          <li>
+            No drawstrings
+          </li>
+
+          <li>
+            CPSIA-compliant tracking label on the side seam
+          </li>
+
+          <li>
+            Made on demand — no minimums
+          </li>
+
         </ul>
 
       </div>
 
+
+      <!-- SIZES -->
+
       <div class="section">
 
-        <h2>Sizes</h2>
+        <h2>
+          Sizes
+        </h2>
+
 
         <div class="sizes">
-          <span class="size">2T</span>
-          <span class="size">4T</span>
-          <span class="size">5–6T</span>
+
+          <span class="size">
+            2T
+          </span>
+
+          <span class="size">
+            4T
+          </span>
+
+          <span class="size">
+            5–6T
+          </span>
+
         </div>
 
       </div>
 
+
+      <!-- EMBROIDERY -->
+
       <div class="section">
 
-        <h2>Embroidery</h2>
+        <h2>
+          Embroidery
+        </h2>
+
 
         <p>
-          Embroidery placement: <strong>Center Chest</strong>
+          Embroidery placement:
+          <strong>Center Chest</strong>
         </p>
 
       </div>
 
+
+      <!-- TRACEABILITY -->
+
       <div class="section">
 
-        <h2>Traceability</h2>
+        <h2>
+          Traceability
+        </h2>
+
 
         <ul>
-          <li>Weaving — India</li>
-          <li>Dyeing — India</li>
-          <li>Manufacturing — India</li>
-          <li>Contains 0% recycled materials</li>
-          <li>Contains 0% dangerous substances</li>
+
+          <li>
+            Weaving — India
+          </li>
+
+          <li>
+            Dyeing — India
+          </li>
+
+          <li>
+            Manufacturing — India
+          </li>
+
+          <li>
+            Contains 0% recycled materials
+          </li>
+
+          <li>
+            Contains 0% dangerous substances
+          </li>
+
         </ul>
 
       </div>
 
+
       <div class="shipping">
-        🌍 <strong>Worldwide Shipping</strong><br>
+
+        🌍
+        <strong>
+          Worldwide Shipping
+        </strong>
+
+        <br>
+
         Made on demand for @Tenacious.
+
       </div>
 
-      <a class="continue-link" href="index.html#shop">
+
+      <a
+        class="continue-link"
+        href="index.html#shop">
+
         Continue Shopping
+
       </a>
 
     </section>
 
   </main>
 
+
   <footer>
+
     © 2026 @Tenacious — Resilient by choice.
+
   </footer>
+
 
   <script>
 
-    function updatePrice() {
+    /*
+      PRODUCT IMAGE DATA
+    */
 
-      const sizeSelect =
-        document.getElementById("size");
+    const colorImages = {
 
-      const selectedOption =
-        sizeSelect.options[sizeSelect.selectedIndex];
+      Navy:
+        "toddler-pullover-fleece-hoodie-navy-front-6a5ee363f3df9.png",
 
-      const price =
-        parseFloat(
-          selectedOption.getAttribute("data-price")
-        );
+      Kelly:
+        "toddler-pullover-fleece-hoodie-kelly-back-6a5ee36400010.png",
 
-      document.getElementById("display-price").textContent =
-        "$" + price.toFixed(2);
-    }
+      Heather:
+        "toddler-pullover-fleece-hoodie-heather-front-6a5ee364003f0.png",
 
+      Black:
+        "toddler-pullover-fleece-hoodie-black-front-6a5ee363f3c77.png",
 
-    function updateColor() {
+      Pink:
+        "toddler-pullover-fleece-hoodie-pink-front-6a5ee36400532.png",
 
-      const colorSelect =
-        document.getElementById("color");
+      Raspberry:
+        "toddler-pullover-fleece-hoodie-raspberry-back-2-6a5ee3640028d.png",
 
-      const selectedOption =
-        colorSelect.options[colorSelect.selectedIndex];
+      Red:
+        "toddler-pullover-fleece-hoodie-red-back-6a5ee363f3f14.png",
 
-      const image =
-        selectedOption.getAttribute("data-image");
+      Royal:
+        "toddler-pullover-fleece-hoodie-royal-front-6a5ee363f41b7.png",
 
-      /*
-        Change the first gallery image to the
-        selected colour image so the customer
-        immediately sees their selection.
-      */
+      White:
+        "toddler-pullover-fleece-hoodie-white-front-6a5ee36400560.png"
 
-      const firstImage =
-        document.querySelector(".gallery img");
-
-      if (firstImage) {
-        firstImage.src = image;
-      }
-
-    }
+    };
 
 
-    function selectColor(color) {
+    /*
+      CHANGE MAIN IMAGE
+    */
 
-      const colorSelect =
-        document.getElementById("color");
+    function changeMainImage(image) {
 
-      colorSelect.value = color;
-
-      updateColor();
-
-      window.scrollTo({
-        top: document.querySelector(".product-info").offsetTop - 20,
-        behavior: "smooth"
-      });
+      document.getElementById(
+        "mainProductImage"
+      ).src = image;
 
     }
 
 
-    function addToCart() {
+    /*
+      HIGHLIGHT CORRESPONDING THUMBNAIL
+    */
 
-      const sizeSelect =
-        document.getElementById("size");
+    function highlightThumbnail(color) {
 
-      const selectedSize =
-        sizeSelect.options[sizeSelect.selectedIndex];
+      document
+        .querySelectorAll(".thumbnail")
+        .forEach(function(thumbnail) {
 
-      const size =
-        selectedSize.value;
+          thumbnail.classList.remove("active");
 
-      const price =
-        parseFloat(
-          selectedSize.getAttribute("data-price")
-        );
+          if (
+            thumbnail.dataset.color === color
+          ) {
+
+            thumbnail.classList.add("active");
+
+          }
+
+        });
+
+    }
+
+
+    /*
+      COLOUR SELECTOR
+    */
+
+    function updateColorFromSelector() {
 
       const colorSelect =
         document.getElementById("color");
@@ -620,11 +939,120 @@
       const color =
         colorSelect.value;
 
-      const selectedColor =
-        colorSelect.options[colorSelect.selectedIndex];
+      const image =
+        colorImages[color];
+
+      if (image) {
+
+        changeMainImage(image);
+
+        highlightThumbnail(color);
+
+      }
+
+    }
+
+
+    /*
+      THUMBNAIL CLICK
+    */
+
+    function selectThumbnail(button) {
+
+      const color =
+        button.dataset.color;
 
       const image =
-        selectedColor.getAttribute("data-image");
+        colorImages[color];
+
+      if (!image) {
+        return;
+      }
+
+      /*
+        Change main image
+      */
+
+      changeMainImage(image);
+
+
+      /*
+        Change colour selector
+      */
+
+      document.getElementById(
+        "color"
+      ).value = color;
+
+
+      /*
+        Highlight thumbnail
+      */
+
+      highlightThumbnail(color);
+
+    }
+
+
+    /*
+      SIZE PRICE
+    */
+
+    function updatePrice() {
+
+      const sizeSelect =
+        document.getElementById("size");
+
+      const selectedOption =
+        sizeSelect.options[
+          sizeSelect.selectedIndex
+        ];
+
+      const price =
+        parseFloat(
+          selectedOption.dataset.price
+        );
+
+      document.getElementById(
+        "display-price"
+      ).textContent =
+        "$" + price.toFixed(2);
+
+    }
+
+
+    /*
+      ADD TO CART
+    */
+
+    function addToCart() {
+
+      const sizeSelect =
+        document.getElementById("size");
+
+      const selectedSize =
+        sizeSelect.options[
+          sizeSelect.selectedIndex
+        ];
+
+      const size =
+        selectedSize.value;
+
+      const price =
+        parseFloat(
+          selectedSize.dataset.price
+        );
+
+
+      const colorSelect =
+        document.getElementById("color");
+
+      const color =
+        colorSelect.value;
+
+
+      const image =
+        colorImages[color];
 
 
       const product = {
@@ -657,9 +1085,16 @@
 
 
       if (!Array.isArray(cart)) {
+
         cart = [];
+
       }
 
+
+      /*
+        Same hoodie + same colour +
+        same size = same cart item
+      */
 
       const existingProduct =
         cart.find(function(item) {
@@ -701,4 +1136,4 @@
 
 </body>
 
-          </html>
+        </html>

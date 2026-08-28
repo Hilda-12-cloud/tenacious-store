@@ -4,24 +4,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>@TENACIOUS | Ultra-Luxury Atelier & Ecosystem</title>
+  <title>@TENACIOUS | Maison d'Artisanat</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg-primary: #050505;
-      --bg-secondary: #0a0a0a;
-      --bg-card: #101010;
-      --border-color: #222222;
-      --border-hover: #555555;
-      --text-main: #f5f5f7;
-      --text-muted: #888888;
-      --accent: #d4af37;
-      --accent-hover: #f3e5ab;
-      --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      --hermes-orange: #f37021;
+      --bg-cream: #fbfbfa;
+      --bg-pure: #ffffff;
+      --text-main: #111111;
+      --text-muted: #666666;
+      --border-light: #e5e5e0;
+      --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     * {
@@ -35,226 +32,214 @@
     }
 
     body {
-      background: var(--bg-primary);
+      background: var(--bg-cream);
       color: var(--text-main);
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      line-height: 1.7;
+      font-family: 'Montserrat', sans-serif;
+      line-height: 1.8;
+      font-weight: 300;
+      letter-spacing: 0.02em;
       overflow-x: hidden;
     }
 
-    h1, h2, h3, h4, .brand-font {
-      font-family: 'Cinzel', serif;
-      letter-spacing: 0.15em;
+    h1, h2, h3, h4, .editorial-font {
+      font-family: 'Bodoni Moda', serif;
+      font-weight: 400;
+      letter-spacing: 0.05em;
     }
 
-    /* Navigation */
+    /* Hermès Style Top Announcement & Header */
     header {
-      position: fixed;
+      position: sticky;
       top: 0;
-      left: 0;
-      width: 100%;
       z-index: 1000;
-      background: rgba(5, 5, 5, 0.85);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border-color);
-      transition: var(--transition);
+      background: var(--bg-pure);
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .top-bar {
+      background: var(--text-main);
+      color: var(--bg-pure);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      text-align: center;
+      padding: 8px;
     }
 
     .nav-container {
-      max-width: 1400px;
+      max-width: 1600px;
       margin: 0 auto;
-      padding: 25px 40px;
+      padding: 25px 50px;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
-    .logo {
-      font-family: 'Cinzel', serif;
-      font-size: 24px;
-      font-weight: 700;
-      color: var(--text-main);
-      text-decoration: none;
-      letter-spacing: 0.25em;
-    }
-
     .nav-links {
       display: flex;
-      gap: 40px;
+      gap: 35px;
       list-style: none;
       align-items: center;
     }
 
     .nav-links a {
-      color: var(--text-muted);
+      color: var(--text-main);
       text-decoration: none;
-      font-size: 13px;
+      font-size: 11px;
       text-transform: uppercase;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.25em;
       transition: var(--transition);
     }
 
-    .nav-links a:hover, .nav-links a.active {
-      color: var(--text-main);
+    .nav-links a:hover {
+      color: var(--hermes-orange);
     }
 
-    .cart-trigger {
-      position: relative;
+    .logo {
+      font-family: 'Bodoni Moda', serif;
+      font-size: 26px;
+      font-weight: 500;
+      color: var(--text-main);
+      text-decoration: none;
+      letter-spacing: 0.3em;
+    }
+
+    .cart-btn {
       background: none;
-      border: 1px solid var(--border-color);
-      color: var(--text-main);
-      padding: 10px 20px;
-      cursor: pointer;
-      font-size: 12px;
+      border: none;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
       text-transform: uppercase;
-      letter-spacing: 0.2em;
-      transition: var(--transition);
-    }
-
-    .cart-trigger:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-
-    .cart-count {
-      position: absolute;
-      top: -8px;
-      right: -8px;
-      background: var(--accent);
-      color: #000;
-      font-size: 10px;
-      font-weight: 700;
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
+      letter-spacing: 0.25em;
+      cursor: pointer;
+      color: var(--text-main);
       display: flex;
       align-items: center;
-      justify-content: center;
+      gap: 8px;
+      transition: var(--transition);
     }
 
-    /* Hero Section */
+    .cart-btn:hover {
+      color: var(--hermes-orange);
+    }
+
+    /* Editorial Hero Showcase */
     .hero {
-      height: 100vh;
+      height: 85vh;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
       padding: 0 20px;
-      background: radial-gradient(circle at center, #141414 0%, #050505 100%);
+      background: var(--bg-pure);
+      border-bottom: 1px solid var(--border-light);
       position: relative;
     }
 
     .hero-content {
-      max-width: 900px;
-      animation: fadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      max-width: 800px;
     }
 
     .hero h1 {
-      font-size: clamp(40px, 7vw, 80px);
-      margin-bottom: 25px;
-      font-weight: 500;
+      font-size: clamp(38px, 6vw, 72px);
+      margin-bottom: 20px;
+      line-height: 1.1;
     }
 
     .hero p {
       color: var(--text-muted);
-      font-size: clamp(15px, 2vw, 18px);
-      letter-spacing: 0.1em;
-      margin-bottom: 40px;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
+      font-size: 14px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 35px;
     }
 
-    .btn-lux {
+    .btn-line {
       display: inline-block;
-      padding: 16px 45px;
-      background: var(--text-main);
-      color: var(--bg-primary);
+      padding: 14px 40px;
+      background: transparent;
+      color: var(--text-main);
+      border: 1px solid var(--text-main);
       text-decoration: none;
       text-transform: uppercase;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.25em;
-      border: none;
-      cursor: pointer;
+      font-size: 10px;
+      letter-spacing: 0.3em;
       transition: var(--transition);
     }
 
-    .btn-lux:hover {
-      background: var(--accent);
-      transform: translateY(-2px);
+    .btn-line:hover {
+      background: var(--text-main);
+      color: var(--bg-pure);
     }
 
-    /* Main Shop Container */
-    .shop-section {
-      max-width: 1400px;
+    /* Boutique Gallery Section */
+    .collection-section {
+      max-width: 1600px;
       margin: 0 auto;
-      padding: 120px 40px;
+      padding: 100px 50px;
     }
 
-    .section-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      margin-bottom: 60px;
-      border-bottom: 1px solid var(--border-color);
-      padding-bottom: 25px;
+    .atelier-header {
+      text-align: center;
+      margin-bottom: 70px;
     }
 
-    .section-header h2 {
+    .atelier-header h2 {
       font-size: 32px;
-      font-weight: 400;
+      margin-bottom: 15px;
     }
 
-    .filter-tabs {
+    .filter-menu {
       display: flex;
-      gap: 25px;
+      justify-content: center;
+      gap: 40px;
       list-style: none;
+      margin-top: 25px;
     }
 
-    .filter-tab {
+    .filter-btn {
       background: none;
       border: none;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
       color: var(--text-muted);
       cursor: pointer;
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
       transition: var(--transition);
-      padding-bottom: 5px;
+      padding-bottom: 4px;
     }
 
-    .filter-tab.active, .filter-tab:hover {
+    .filter-btn.active, .filter-btn:hover {
       color: var(--text-main);
-      border-bottom: 1px solid var(--accent);
+      border-bottom: 1px solid var(--text-main);
     }
 
-    /* Product Grid */
+    /* Product Grid Layout */
     .product-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 40px;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 60px 40px;
     }
 
     .product-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      transition: var(--transition);
+      background: var(--bg-pure);
+      border: 1px solid var(--border-light);
       cursor: pointer;
-      position: relative;
+      transition: var(--transition);
       display: flex;
       flex-direction: column;
     }
 
     .product-card:hover {
-      border-color: var(--border-hover);
-      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.04);
+      transform: translateY(-4px);
     }
 
-    .product-image-wrap {
+    .image-frame {
       width: 100%;
-      height: 380px;
-      background: #0d0d0d;
+      height: 420px;
+      background: #f4f4f2;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -262,36 +247,37 @@
       position: relative;
     }
 
-    .product-image-wrap img {
-      width: 85%;
-      height: 85%;
+    .image-frame img {
+      width: 80%;
+      height: 80%;
       object-fit: contain;
       transition: var(--transition);
     }
 
-    .product-card:hover .product-image-wrap img {
-      transform: scale(1.05);
+    .product-card:hover .image-frame img {
+      transform: scale(1.03);
     }
 
-    .product-details {
+    .card-info {
       padding: 30px;
       display: flex;
       flex-direction: column;
-      flex-grow: 1;
       justify-content: space-between;
+      flex-grow: 1;
+      text-align: center;
     }
 
-    .product-title {
-      font-family: 'Cinzel', serif;
-      font-size: 16px;
-      font-weight: 500;
-      margin-bottom: 15px;
-      letter-spacing: 0.05em;
+    .product-name {
+      font-family: 'Bodoni Moda', serif;
+      font-size: 18px;
+      margin-bottom: 12px;
+      letter-spacing: 0.03em;
     }
 
-    .product-description-preview {
+    .product-desc {
       color: var(--text-muted);
-      font-size: 13px;
+      font-size: 12px;
+      line-height: 1.6;
       margin-bottom: 20px;
       display: -webkit-box;
       -webkit-line-clamp: 2;
@@ -299,105 +285,105 @@
       overflow: hidden;
     }
 
-    .product-meta {
+    .product-footer {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-top: 1px solid var(--border-color);
+      flex-direction: column;
+      gap: 15px;
+      border-top: 1px solid var(--border-light);
       padding-top: 20px;
     }
 
     .product-price {
-      font-family: 'Cinzel', serif;
+      font-family: 'Bodoni Moda', serif;
       font-size: 16px;
-      color: var(--accent);
-      font-weight: 600;
+      color: var(--text-main);
+      letter-spacing: 0.05em;
     }
 
-    .explore-btn {
-      background: none;
-      border: none;
-      color: var(--text-muted);
-      font-size: 11px;
+    .discover-link {
+      font-size: 10px;
       text-transform: uppercase;
-      letter-spacing: 0.2em;
-      cursor: pointer;
+      letter-spacing: 0.3em;
+      color: var(--text-muted);
       transition: var(--transition);
     }
 
-    .explore-btn:hover {
+    .product-card:hover .discover-link {
       color: var(--text-main);
+      font-weight: 500;
     }
 
-    /* Luxury Footer */
+    /* Haute Footer */
     footer {
-      border-top: 1px solid var(--border-color);
-      padding: 80px 40px;
-      background: var(--bg-secondary);
+      background: var(--bg-pure);
+      border-top: 1px solid var(--border-light);
+      padding: 80px 50px;
       text-align: center;
     }
 
-    .footer-content {
+    .footer-wrap {
       max-width: 600px;
       margin: 0 auto;
     }
 
-    .footer-content h3 {
-      font-size: 20px;
-      margin-bottom: 20px;
+    .footer-wrap h3 {
+      font-size: 22px;
+      margin-bottom: 15px;
+      letter-spacing: 0.25em;
     }
 
-    .footer-content p {
+    .footer-wrap p {
       color: var(--text-muted);
-      font-size: 14px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
       margin-bottom: 30px;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(15px); }
-      to { opacity: 1; transform: translateY(0); }
     }
 
     @media (max-width: 768px) {
       .nav-links { display: none; }
-      .section-header { flex-direction: column; align-items: flex-start; gap: 20px; }
-      .shop-section { padding: 80px 20px; }
+      .nav-container { padding: 20px; }
+      .collection-section { padding: 60px 20px; }
+      .product-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 
 <body>
 
+  <div class="top-bar">Complimentary Worldwide Shipping on Orders Above $500 — Crafted On Demand</div>
+
   <header>
     <div class="nav-container">
       <a href="#" class="logo">@TENACIOUS</a>
       <ul class="nav-links">
-        <li><a href="#shop" class="active">Atelier</a></li>
-        <li><a href="#shop">Collection</a></li>
-        <li><a href="cart.html">Ecosystem</a></li>
+        <li><a href="#collection" class="active">Collections</a></li>
+        <li><a href="#collection">Atelier</a></li>
+        <li><a href="cart.html">The Bag</a></li>
       </ul>
-      <button class="cart-trigger" onclick="window.location.href='cart.html'">
-        Cart <span class="cart-count" id="cartCount">0</span>
+      <button class="cart-btn" onclick="window.location.href='cart.html'">
+        Bag (<span id="cartCount">0</span>)
       </button>
     </div>
   </header>
 
   <section class="hero">
     <div class="hero-content">
-      <h1>Absolute Craft. Uncompromising Identity.</h1>
-      <p>Explore the master atelier ecosystem featuring all 22 foundational luxury pieces meticulously engineered for the modern vanguard.</p>
-      <a href="#shop" class="btn-lux">Enter Atelier</a>
+      <h1>Contemporary Elegance. Singular Mastery.</h1>
+      <p>Discover the complete architectural ecosystem of 22 foundational luxury editions.</p>
+      <a href="#collection" class="btn-line">Explore Creations</a>
     </div>
   </section>
 
-  <main class="shop-section" id="shop">
-    <div class="section-header">
-      <h2>The Master Ledger</h2>
-      <ul class="filter-tabs">
-        <li><button class="filter-tab active" onclick="filterProducts('all')">All (22)</button></li>
-        <li><button class="filter-tab" onclick="filterProducts('apparel')">Apparel</button></li>
-        <li><button class="filter-tab" onclick="filterProducts('accessories')">Accessories</button></li>
-        <li><button class="filter-tab" onclick="filterProducts('lifestyle')">Lifestyle</button></li>
+  <main class="collection-section" id="collection">
+    <div class="atelier-header">
+      <h2>The Collections</h2>
+      <p style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--text-muted);">Select a category to view masterworks</p>
+      <ul class="filter-menu">
+        <li><button class="filter-btn active" onclick="filterCatalog('all')">All Creations (22)</button></li>
+        <li><button class="filter-btn" onclick="filterCatalog('apparel')">Apparel</button></li>
+        <li><button class="filter-btn" onclick="filterCatalog('accessories')">Accessories</button></li>
+        <li><button class="filter-btn" onclick="filterCatalog('lifestyle')">Lifestyle</button></li>
       </ul>
     </div>
 
@@ -407,109 +393,108 @@
   </main>
 
   <footer>
-    <div class="footer-content">
+    <div class="footer-wrap">
       <h3>@TENACIOUS</h3>
-      <p>Made on demand. Designed for eternity.</p>
-      <a href="cart.html" class="btn-lux" style="font-size: 11px; padding: 12px 30px;">View Active Cart</a>
+      <p>Excellence in every detail. Designed for perpetuity.</p>
+      <a href="cart.html" class="btn-line">Review Your Selection</a>
     </div>
   </footer>
 
   <script>
-    // Master Ecosystem Ledger with Exact File Mappings
-const products = [
-  { 
-    id: 1, 
-    name: "All-Over Print Recycled Long Sleeve Crop Top", 
-    category: "apparel", 
-    price: 52.00, 
-    image: "all-over-print-recycled-long-sleeve-crop-top-white-front-6a4d7ec6e3e18.png", 
-    link: "all-over-print-recycled-long-sleeve-crop-top.html", 
-    desc: "Engineered from sustainable recycled stretch fabric with vivid all-over graphics." 
-  },
-  { 
-    id: 2, 
-    name: "All-Over Print Women's Pajama Shorts", 
-    category: "apparel", 
-    price: 49.00, 
-    image: "all-over-print-womens-pajama-shorts-white-front-6a4d82c5c6b05.png", 
-    link: "all-over-print-womens-pajama-shorts.html", 
-    desc: "Silky comfort designed for relaxed nights and effortless everyday lounging." 
-  },
-  { 
-    id: 3, 
-    name: "All-Over Print Youth Cotton Crew Neck T-Shirt", 
-    category: "apparel", 
-    price: 45.00, 
-    image: "all-over-print-youth-cotton-crew-neck-t-shirt-white-front-6a4d8b6235c50.png", 
-    link: "all-over-print-youth-cotton-crew-neck-t-shirt.html", 
-    desc: "A soft, breathable everyday tee bringing the Tenacious spirit to a younger generation." 
-  },
-  { 
-    id: 4, 
-    name: "White Glossy Mug", 
-    category: "lifestyle", 
-    price: 21.00, 
-    image: "white-glossy-mug-white-15-oz-front-view-6a4d8c8d22ea8.png", 
-    link: "white-glossy-mug.html", 
-    desc: "Classic glossy ceramic mug finished with vivid sublimation graphics." 
-  },
-  { 
-    id: 5, 
-    name: "Classic Dad Hat", 
-    category: "accessories", 
-    price: 34.00, 
-    image: "classic-dad-hat-black-front-6a4d7ea8223a2.png", 
-    link: "classic-dad-hat.html", 
-    desc: "Timeless low-profile essential made from chino cotton twill with an antique buckle." 
-  }
-];
+    const catalog = [
+      { 
+        id: 1, 
+        name: "All-Over Print Recycled Long Sleeve Crop Top", 
+        category: "apparel", 
+        price: 52.00, 
+        image: "all-over-print-recycled-long-sleeve-crop-top-white-front-6a4d7ec6e3e18.png", 
+        link: "all-over-print-recycled-long-sleeve-crop-top.html", 
+        desc: "Engineered from sustainable recycled stretch fabric featuring custom artisan graphics." 
+      },
+      { 
+        id: 2, 
+        name: "All-Over Print Women's Pajama Shorts", 
+        category: "apparel", 
+        price: 49.00, 
+        image: "all-over-print-womens-pajama-shorts-white-front-6a4d82c5c6b05.png", 
+        link: "all-over-print-womens-pajama-shorts.html", 
+        desc: "Exquisite silk-touch comfort designed for refined nocturnal lounging." 
+      },
+      { 
+        id: 3, 
+        name: "All-Over Print Youth Cotton Crew Neck T-Shirt", 
+        category: "apparel", 
+        price: 45.00, 
+        image: "all-over-print-youth-cotton-crew-neck-t-shirt-white-front-6a4d8b6235c50.png", 
+        link: "all-over-print-youth-cotton-crew-neck-t-shirt.html", 
+        desc: "A breathable premium cotton silhouette carrying the Tenacious ethos forward." 
+      },
+      { 
+        id: 4, 
+        name: "White Glossy Mug", 
+        category: "lifestyle", 
+        price: 21.00, 
+        image: "white-glossy-mug-white-15-oz-front-view-6a4d8c8d22ea8.png", 
+        link: "white-glossy-mug.html", 
+        desc: "Vitreous porcelain mug finished with high-definition artisan glazing." 
+      },
+      { 
+        id: 5, 
+        name: "Classic Dad Hat", 
+        category: "accessories", 
+        price: 34.00, 
+        image: "classic-dad-hat-black-front-6a4d7ea8223a2.png", 
+        link: "classic-dad-hat.html", 
+        desc: "Hand-finished chino cotton twill structured with custom custom hardware." 
+      }
+    ];
 
-function renderProducts(filter = 'all') {
-  const grid = document.getElementById('productGrid');
-  grid.innerHTML = '';
+    function renderCatalog(filter = 'all') {
+      const grid = document.getElementById('productGrid');
+      grid.innerHTML = '';
 
-  const filtered = filter === 'all' ? products : products.filter(p => p.category === filter);
+      const items = filter === 'all' ? catalog : catalog.filter(item => item.category === filter);
 
-  filtered.forEach(product => {
-    const card = document.createElement('div');
-    card.className = 'product-card';
-    card.onclick = () => { window.location.href = product.link; };
-    card.innerHTML = `
-      <div class="product-image-wrap">
-        <img src="${product.image}" alt="${product.name}" loading="lazy" onerror="this.onerror=null; this.src='${product.image}';">
-      </div>
-      <div class="product-details">
-        <div>
-          <h3 class="product-title">${product.name}</h3>
-          <p class="product-description-preview">${product.desc}</p>
-        </div>
-        <div class="product-meta">
-          <span class="product-price">$${product.price.toFixed(2)}</span>
-          <button class="explore-btn">Explore →</button>
-        </div>
-      </div>
-    `;
-    grid.appendChild(card);
-  });
-}
+      items.forEach(product => {
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        card.onclick = () => { window.location.href = product.link; };
+        card.innerHTML = `
+          <div class="image-frame">
+            <img src="${product.image}" alt="${product.name}" loading="lazy" onerror="this.onerror=null; this.src='${product.image}';">
+          </div>
+          <div class="card-info">
+            <div>
+              <h3 class="product-name">${product.name}</h3>
+              <p class="product-desc">${product.desc}</p>
+            </div>
+            <div class="product-footer">
+              <span class="product-price">$${product.price.toFixed(2)} USD</span>
+              <span class="discover-link">Discover Details &rarr;</span>
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
 
-function filterProducts(category) {
-  document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
-  event.target.classList.add('active');
-  renderProducts(category);
-}
+    function filterCatalog(category) {
+      document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+      renderCatalog(category);
+    }
 
-function updateCartCount() {
-  const cart = JSON.parse(localStorage.getItem("cart")) || [];
-  const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-  document.getElementById('cartCount').textContent = totalCount;
-}
+    function syncCartBadge() {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const count = cart.reduce((total, item) => total + item.quantity, 0);
+      document.getElementById('cartCount').textContent = count;
+    }
 
-window.addEventListener('DOMContentLoaded', () => {
-  renderProducts();
-  updateCartCount();
-});
+    window.addEventListener('DOMContentLoaded', () => {
+      renderCatalog();
+      syncCartBadge();
+    });
   </script>
 </body>
-  </html>
 
+</html>

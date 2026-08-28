@@ -733,8 +733,9 @@
         grid.appendChild(card);
       });
     }
+    renderCatalog(result);
 
-    function filterCatalog(category) {renderCatalog(fullCatalog);
+    function filterCatalog(category) 
       currentFilter = category;
       document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
       event.target.classList.add('active');
@@ -757,10 +758,10 @@
         result.sort((a, b) => a.name.localeCompare(b.name));
       }
 
-      renderCatalog(result);
+  
     }
 
-    function openModal(modalId) {
+    function openModal(modalId) {{modalId(fullCatalog);
       document.getElementById(modalId).classList.add('active');
     }
 

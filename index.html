@@ -674,193 +674,33 @@
   </div>
 
   <script>
-    // Complete 22 Product Master Ledger Dataset with exact accurate file mappings
-      const fullCatalog = [
+    
+            // Complete 22 Product Master Ledger Dataset
+    const fullCatalog = [
       { id: 1, name: "All-Over Print Recycled Long Sleeve Crop Top", category: "apparel", price: 135.00, image: "all-over-print-recycled-long-sleeve-crop-top-white-front-6a4d7ec6e3e18.png", link: "all-over-print-recycled-long-sleeve-crop-top.html", desc: "Sustainable recycled stretch fabric with custom artisan graphics." },
       { id: 2, name: "All-Over Print Women's Pajama Shorts", category: "apparel", price: 120.00, image: "all-over-print-womens-pajama-shorts-white-front-6a4d82c5c6b05.png", link: "all-over-print-womens-pajama-shorts.html", desc: "Silk-touch comfort designed for refined nocturnal lounging." },
       { id: 3, name: "All-Over Print Youth Cotton Crew Neck T-Shirt", category: "apparel", price: 95.00, image: "all-over-print-youth-cotton-crew-neck-t-shirt-white-front-6a4d8b6235c50.png", link: "all-over-print-youth-cotton-crew-neck-t-shirt.html", desc: "Breathable premium cotton silhouette carrying the Tenacious ethos." },
       { id: 4, name: "White Glossy Mug", category: "lifestyle", price: 55.00, image: "white-glossy-mug-white-15-oz-front-view-6a4d8c8d22ea8.png", link: "white-glossy-mug.html", desc: "Vitreous porcelain mug finished with high-definition artisan glazing." },
-      { id: 5, name: "Classic Dad Hat", category: "accessories", price: 85.00, image: "classic-dad-hat-black-front-6a4d7ea8223a2.png", link: "classic-dad-hat.html", desc: "Hand-finished chino cotton twill structured with custom hardware." }
+      { id: 5, name: "Classic Dad Hat", category: "accessories", price: 85.00, image: "classic-dad-hat-black-front-6a4d7ea8223a2.png", link: "classic-dad-hat.html", desc: "Hand-finished chino cotton twill structured with custom hardware." },
+      { id: 6, name: "All-Over Print Recycled Unisex Hoodie", category: "apparel", price: 145.00, image: "all-over-print-recycled-unisex-hoodie-white-front-6a5458d184af0.png", link: "all-over-print-recycled-unisex-hoodie.html", desc: "Heavyweight recycled fleece engineered for absolute structural warmth." },
+      { id: 7, name: "Unisex Oversized Tie-Dye T-Shirt", category: "apparel", price: 95.00, image: "unisex-oversized-tie-dye-t-shirt-black-white-front-6a5060f427513.png", link: "unisex-oversized-tie-dye-t-shirt.html", desc: "Hand-treated organic cotton with a distinct monochromatic wash." },
+      { id: 8, name: "All-Over Print Neck Gaiter", category: "accessories", price: 65.00, image: "all-over-print-neck-gaiter-white-front-6a5ede198a11d.png", link: "all-over-print-neck-gaiter.html", desc: "Breathable performance knit featuring vibrant all-over signature graphics." },
+      { id: 9, name: "Unisex Urban Sweatpants", category: "apparel", price: 130.00, image: "unisex-urban-sweatpants-black-front-6a5edffbe0e69.png", link: "unisex-urban-sweatpants.html", desc: "Tailored heavyweight fleece trousers designed for fluid urban mobility." },
+      { id: 10, name: "Organic Ribbed Beanie", category: "accessories", price: 75.00, image: "organic-ribbed-beanie-black-front-6a5ee4250e8bb.png", link: "organic-ribbed-beanie.html", desc: "Tightly spun organic cotton knit built for timeless cold-weather styling." },
+      { id: 11, name: "All-Over Print Recycled High-Waisted Bikini", category: "apparel", price: 160.00, image: "all-over-print-recycled-high-waisted-bikini-white-front-6a5ee31ce4a74.png", link: "all-over-print-recycled-high-waisted-bikini.html", desc: "Sculpting eco-conscious swimwear engineered with ultra-chlorine resistance." },
+      { id: 12, name: "All-Over Print Women's Rash Guard", category: "apparel", price: 140.00, image: "all-over-print-womens-rash-guard-white-front-6a5ee492ade48.png", link: "all-over-print-womens-rash-guard.html", desc: "UPF 50+ athletic silhouette combining aquatic performance with bold prints." },
+      { id: 13, name: "Women's Columbia Fleece Vest", category: "apparel", price: 195.00, image: "womens-columbia-fleece-vest-black-front-6a5ee39e881e1.png", link: "womens-columbia-fleece-vest.html", desc: "Co-branded thermal insulation layer featuring technical utility pockets." },
+      { id: 14, name: "Toddler Pullover Fleece Hoodie", category: "apparel", price: 95.00, image: "toddler-pullover-fleece-hoodie-black-front-6a5ee363f3c77.png", link: "toddler-pullover-fleece-hoodie.html", desc: "Miniature luxury fleece built with ultra-soft hypoallergenic cotton blend." },
+      { id: 15, name: "Unisex Organic Raglan Sweatshirt", category: "apparel", price: 150.00, image: "unisex-organic-raglan-sweatshirt-burgundy-front-6a5ee5745692b.png", link: "unisex-organic-raglan-sweatshirt.html", desc: "Classic athletic cut rendered in a deep archival burgundy pigment." },
+      { id: 16, name: "All-Over Print Large Tote Bag with Pocket", category: "accessories", price: 175.00, image: "all-over-print-large-tote-bag-w-pocket-black-front-6a5ee5eac0bfb.png", link: "all-over-print-large-tote-bag-w-pocket.html", desc: "Heavy canvas carryall featuring reinforced seams and external utility storage." },
+      { id: 17, name: "All-Over Print Men's Rash Guard", category: "apparel", price: 140.00, image: "all-over-print-mens-rash-guard-white-front-6a5ee6e97ab8f.png", link: "all-over-print-mens-rash-guard.html", desc: "Ergonomic compression fit engineered for high-intensity water sports." },
+      { id: 18, name: "Matte Snap Case for iPhone", category: "accessories", price: 85.00, image: "snap-case-for-iphone-matte-iphone-14-plus-front-6a5ee62929baf.png", link: "snap-case-for-iphone-matte.html", desc: "Slim-profile polycarbonate shell finished with a soft-touch anti-fingerprint matte." },
+      { id: 19, name: "Laptop Sleeve", category: "accessories", price: 110.00, image: "laptop-sleeve-13-front-6a4d80010a1f9.png", link: "laptop-sleeve.html", desc: "Padded neoprene armor designed to protect digital hardware with minimalist flair." },
+      { id: 20, name: "Round Mouse Pad", category: "accessories", price: 55.00, image: "round-mouse-pad-white-front-6a5eed3bf279a.png", link: "round-mouse-pad.html", desc: "Smooth tracking surface backed by natural non-slip rubber stability." },
+      { id: 21, name: "Minimalist Signature Notebook", category: "lifestyle", price: 45.00, image: "white-glossy-mug-white-15-oz-front-view-6a4d8c8d22ea8.png", link: "signature-notebook.html", desc: "Bound blank ledger paper for conceptual sketches and tactical daily notes." },
+      { id: 22, name: "Atelier Signature Scented Candle", category: "lifestyle", price: 70.00, image: "white-glossy-mug-white-15-oz-front-view-6a4d8c8d22ea8.png", link: "signature-candle.html", desc: "Hand-poured soy wax infused with notes of charred wood, amber, and leather." }
     ];
     
-    <!-- Additional Product 6: All-Over Print Recycled Unisex Hoodie -->
-<div class="product-card" data-category="apparel">
-    <div class="product-image-container">
-        <img src="all-over-print-recycled-unisex-hoodie-white-front-6a5458d184af0.png" alt="All-Over Print Recycled Unisex Hoodie" class="product-img">
-    </div>
-    <div class="product-info">
-        <h3>All-Over Print Recycled Unisex Hoodie</h3>
-        <p class="price">$145.00</p>
-        <button class="add-to-cart-btn" onclick="addToCart('All-Over Print Recycled Unisex Hoodie', 145.00)">Add to Cart</button>
-    </div>
-</div>
-
-<!-- Additional Product 7: Unisex Oversized Tie-Dye T-Shirt -->
-<div class="product-card" data-category="apparel">
-    <div class="product-image-container">
-        <img src="unisex-oversized-tie-dye-t-shirt-black-white-front-6a5060f427513.png" alt="Unisex Oversized Tie-Dye T-Shirt" class="product-img">
-    </div>
-    <div class="product-info">
-        <h3>Unisex Oversized Tie-Dye T-Shirt</h3>
-        <p class="price">$95.00</p>
-        <button class="add-to-cart-btn" onclick="addToCart('Unisex Oversized Tie-Dye T-Shirt', 95.00)">Add to Cart</button>
-    </div>
-</div>
-
-<!-- Additional Product 8: All-Over Print Neck Gaiter -->
-<div class="product-card" data-category="accessories">
-    <div class="product-image-container">
-        <img src="all-over-print-neck-gaiter-white-front-6a5ede198a11d.png" alt="All-Over Print Neck Gaiter" class="product-img">
-    </div>
-    <div class="product-info">
-        <h3>All-Over Print Neck Gaiter</h3>
-        <p class="price">$65.00</p>
-        <button class="add-to-cart-btn" onclick="addToCart('All-Over Print Neck Gaiter', 65.00)">Add to Cart</button>
-    </div>
-</div>
-
-<!-- Additional Product 9: Unisex Urban Sweatpants -->
-<div class="product-card" data-category="apparel">
-    <div class="product-image-container">
-        <img src="unisex-urban-sweatpants-black-front-6a5edffbe0e69.png" alt="Unisex Urban Sweatpants" class="product-img">
-    </div>
-    <div class="product-info">
-        <h3>Unisex Urban Sweatpants</h3>
-        <p class="price">$130.00</p>
-        <button class="add-to-cart-btn" onclick="addToCart('Unisex Urban Sweatpants', 130.00)">Add to Cart</button>
-    </div>
-</div>
-
-<!-- Additional Product 10: Organic Ribbed Beanie -->
-<div class="product-card" data-category="accessories">
-    <div class="product-image-container">
-        <img src="organic-ribbed-beanie-black-front-6a5ee4250e8bb.png" alt="Organic Ribbed Beanie" class="product-img">
-    </div>
-    <div class="product-info">
-        <h3>Organic Ribbed Beanie</h3>
-        <p class="price">$75.00</p>
-        <button class="add-to-cart-btn" onclick="addToCart('Organic Ribbed Beanie', 75.00)">Add to Cart</button>
-    </div>
-</div>
-
-<!-- Additional Product 11: All-Over Print Recycled High-Waisted Bikini -->
-<div class="product-card" data-category="apparel">
-    <div class="product-image-container">
-        <img src="all-over-print-recycled-high-waisted-bikini-white-front-6a5ee31ce4a74.png" alt="All-Over Print Recycled High-Waisted Bikini" class="product-img">
-    </div>
-    <div class="product-info">
-        <h3>All-Over Print Recycled High-Waisted Bikini</h3>
-        <p class="price">$160.00</p>
-        <button class="add-to-cart-btn" onclick="addToCart('All-Over Print Recycled High-Waisted Bikini', 160.00)">Add to Cart</button>
-    </div>
-</div>
-
-<!-- Additional Product 12: All-Over Print Women's Rash Guard -->
-<div class="product-card" data-category="apparel">
-    <div class="product-image-container">
-        <img src="all-over-print-womens-rash-guard-white-front-6a5ee492ade48.png" alt="All-Over Print Women's Rash Guard" class="product-img">
-    </div>
-    <div class="product-info">
-        <h3>All-Over Print Women's Rash Guard</h3>
-        <p class="price">$140.00</p>
-        <button class="add-to-cart-btn" onclick="addToCart('All-Over Print Women\'s Rash Guard', 140.00)">Add to Cart</button>
-    </div>
-</div>
-
-<!-- Additional Product 13: Women's Columbia Fleece Vest -->
-<div class="product-card" data-category="apparel">
-    <div class="product-image-container">
-        <img src="womens-columbia-fleece-vest-black-front-6a5ee39e881e1.png" alt="Women's Columbia Fleece Vest" class="product-img">
-    </div>
-    <div class="product-info">
-        <h3>Women's Columbia Fleece Vest</h3>
-        <p class="price">$195.00</p>
-        <button class="add-to-cart-btn" onclick="addToCart('Women\'s Columbia Fleece Vest', 195.00)">Add to Cart</button>
-    </div>
-</div>
-
-<!-- Additional Product 14: Toddler Pullover Fleece Hoodie -->
-<div class="product-card" data-category="apparel">
-    <div class="product-image-container">
-        <img src="toddler-pullover-fleece-hoodie-black-front-6a5ee363f3c77.png" alt="Toddler Pullover Fleece Hoodie" class="product-img">
-    </div>
-    <div class="product-info">
-        <h3>Toddler Pullover Fleece Hoodie</h3>
-        <p class="price">$95.00</p>
-        <button class="add-to-cart-btn" onclick="addToCart('Toddler Pullover Fleece Hoodie', 95.00)">Add to Cart</button>
-    </div>
-</div>
-
-<!-- Additional Product 15: Unisex Organic Raglan Sweatshirt -->
-<div class="product-card" data-category="apparel">
-    <div class="product-image-container">
-        <img src="unisex-organic-raglan-sweatshirt-burgundy-front-6a5ee5745692b.png" alt="Unisex Organic Raglan Sweatshirt" class="product-img">
-    </div>
-    <div class="product-info">
-        <h3>Unisex Organic Raglan Sweatshirt</h3>
-        <p class="price">$150.00</p>
-        <button class="add-to-cart-btn" onclick="addToCart('Unisex Organic Raglan Sweatshirt', 150.00)">Add to Cart</button>
-    </div>
-</div>
-
-<!-- Additional Product 16: All-Over Print Large Tote Bag with Pocket -->
-<div class="product-card" data-category="accessories">
-    <div class="product-image-container">
-        <img src="all-over-print-large-tote-bag-w-pocket-black-front-6a5ee5eac0bfb.png" alt="All-Over Print Large Tote Bag with Pocket" class="product-img">
-    </div>
-    <div class="product-info">
-        <h3>All-Over Print Large Tote Bag with Pocket</h3>
-        <p class="price">$175.00</p>
-        <button class="add-to-cart-btn" onclick="addToCart('All-Over Print Large Tote Bag with Pocket', 175.00)">Add to Cart</button>
-    </div>
-</div>
-
-<!-- Additional Product 17: All-Over Print Men's Rash Guard -->
-<div class="product-card" data-category="apparel">
-    <div class="product-image-container">
-        <img src="all-over-print-mens-rash-guard-white-front-6a5ee6e97ab8f.png" alt="All-Over Print Men's Rash Guard" class="product-img">
-    </div>
-    <div class="product-info">
-        <h3>All-Over Print Men's Rash Guard</h3>
-        <p class="price">$140.00</p>
-        <button class="add-to-cart-btn" onclick="addToCart('All-Over Print Men\'s Rash Guard', 140.00)">Add to Cart</button>
-    </div>
-</div>
-
-<!-- Additional Product 18: Matte Snap Case for iPhone -->
-<div class="product-card" data-category="accessories">
-    <div class="product-image-container">
-        <img src="snap-case-for-iphone-matte-iphone-14-plus-front-6a5ee62929baf.png" alt="Matte Snap Case for iPhone" class="product-img">
-    </div>
-    <div class="product-info">
-        <h3>Matte Snap Case for iPhone</h3>
-        <p class="price">$85.00</p>
-        <button class="add-to-cart-btn" onclick="addToCart('Matte Snap Case for iPhone', 85.00)">Add to Cart</button>
-    </div>
-</div>
-
-<!-- Additional Product 19: Laptop Sleeve -->
-<div class="product-card" data-category="accessories">
-    <div class="product-image-container">
-        <img src="laptop-sleeve-13-front-6a4d80010a1f9.png" alt="Laptop Sleeve" class="product-img">
-    </div>
-    <div class="product-info">
-        <h3>Laptop Sleeve</h3>
-        <p class="price">$110.00</p>
-        <button class="add-to-cart-btn" onclick="addToCart('Laptop Sleeve', 110.00)">Add to Cart</button>
-    </div>
-</div>
-
-<!-- Additional Product 20: Round Mouse Pad -->
-<div class="product-card" data-category="accessories">
-    <div class="product-image-container">
-        <img src="round-mouse-pad-white-front-6a5eed3bf279a.png" alt="Round Mouse Pad" class="product-img">
-    </div>
-    <div class="product-info">
-        <h3>Round Mouse Pad</h3>
-        <p class="price">$55.00</p>
-        <button class="add-to-cart-btn" onclick="addToCart('Round Mouse Pad', 55.00)">Add to Cart</button>
-    </div>
 </div>
        
     

@@ -733,9 +733,8 @@
         grid.appendChild(card);
       });
     }
-    renderCatalog(fullCatalog);
 
-    function filterCatalog(category) {
+    function filterCatalog(category) {renderCatalog(fullCatalog);
       currentFilter = category;
       document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
       event.target.classList.add('active');

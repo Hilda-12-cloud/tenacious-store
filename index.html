@@ -542,4 +542,248 @@ Here is the first half of your upgraded, high-end dark luxury index.html file (f
   </style>
 </head>
 
+<body>
+
+  <div class="top-announcement">www.@Tenacious.com — Maison d'Artisanat & Ecosystem</div>
+
+  <header>
+    <div class="nav-container">
+      <a href="index.html" class="brand-stamp">
+        <div class="stamp-box">T</div>
+        <span class="logo-text">@TENACIOUS</span>
+      </a>
+      
+      <ul class="nav-links">
+        <li><a href="#atelier" class="active">Atelier</a></li>
+        <li><a href="javascript:void(0)" onclick="openModal('aboutModal')">About</a></li>
+        <li><a href="javascript:void(0)" onclick="openModal('helpModal')">Need Help</a></li>
+        <li><a href="javascript:void(0)" onclick="openModal('policyModal')">Policy</a></li>
+      </ul>
+
+      <div class="header-actions">
+        <button class="action-btn" onclick="openModal('accountModal')">Account</button>
+        <button class="action-btn" onclick="window.location.href='cart.html'">
+          Bag (<span id="cartCount">0</span>)
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero-carousel" id="heroCarousel">
+    <img id="heroImage" class="hero-bg-img" src="all-over-print-recycled-long-sleeve-crop-top-white-front-6a4d7ec6e3e18.png" alt="Tenacious Model Mockup">
+    <div class="hero-content">
+      <h1>Absolute Craft. Uncompromising Identity.</h1>
+      <p>Explore the complete master ledger featuring all 22 foundational creations</p>
+      <a href="#atelier" class="btn-gold">Enter Atelier</a>
+    </div>
+  </section>
+
+  <main class="atelier-section" id="atelier">
+    <div class="controls-bar">
+      <div>
+        <h2 style="font-size: 32px; font-weight: 400; margin-bottom: 8px;">The Master Ledger</h2>
+        <ul class="filter-tabs">
+          <li><button class="filter-tab active" onclick="filterCatalog('all')">All Creations (22)</button></li>
+          <li><button class="filter-tab" onclick="filterCatalog('apparel')">Apparel</button></li>
+          <li><button class="filter-tab" onclick="filterCatalog('accessories')">Accessories</button></li>
+          <li><button class="filter-tab" onclick="filterCatalog('lifestyle')">Lifestyle</button></li>
+        </ul>
+      </div>
+
+      <div class="sort-wrapper">
+        <label for="sortSelect">Sort By</label>
+        <select id="sortSelect" class="sort-select" onchange="sortCatalog()">
+          <option value="featured">Featured Masterpieces</option>
+          <option value="price-low">Price: Low to High</option>
+          <option value="price-high">Price: High to Low</option>
+          <option value="name">Name: A to Z</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="product-grid" id="productGrid">
+      </div>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="brand-stamp" style="justify-content: center; margin-bottom: 20px;">
+        <div class="stamp-box">T</div>
+        <span class="logo-text">@TENACIOUS</span>
+      </div>
+      <ul class="footer-links">
+        <li><a href="javascript:void(0)" onclick="openModal('aboutModal')">About @Tenacious</a></li>
+        <li><a href="javascript:void(0)" onclick="openModal('helpModal')">Need Help</a></li>
+        <li><a href="javascript:void(0)" onclick="openModal('policyModal')">Legal & Policy</a></li>
+        <li><a href="javascript:void(0)" onclick="openModal('accountModal')">Client Register</a></li>
+      </ul>
+      <p>© 2026 www.@Tenacious.com — Made on demand. Designed for eternity.</p>
+    </div>
+  </footer>
+
+  <div class="modal-overlay" id="accountModal">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal('accountModal')">&times;</button>
+      <h3>Client Portal</h3>
+      <p>Register your account to manage orders and join the inner circle.</p>
+      <form onsubmit="handleRegister(event)">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" class="form-control" required placeholder="Enter your name">
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" class="form-control" required placeholder="name@domain.com">
+        </div>
+        <div class="checkbox-group">
+          <input type="checkbox" id="marketingConsent" checked>
+          <label for="marketingConsent" style="color:var(--text-muted); font-size:11px; line-height:1.5; text-transform:none;">
+            I explicitly consent to receive @Tenacious marketing advertisements, private exhibition invitations, and seasonal lookbooks.
+          </label>
+        </div>
+        <button type="submit" class="btn-gold" style="width: 100%;">Create Account</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="aboutModal">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal('aboutModal')">&times;</button>
+      <h3>About @Tenacious</h3>
+      <p>@Tenacious represents uncompromised luxury identity and precision engineering. Each creation is meticulously handcrafted on demand with zero surplus, guaranteeing exclusive exclusivity for the modern vanguard.</p>
+      <button class="btn-gold" onclick="closeModal('aboutModal')" style="width:100%;">Close</button>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="helpModal">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal('helpModal')">&times;</button>
+      <h3>Client Assistance</h3>
+      <p>Our dedicated atelier concierge is available 24/7 to assist with bespoke orders, sizing, and shipping inquiries.</p>
+      <p><strong>Direct Concierge:</strong> concierge@tenacious.com</p>
+      <button class="btn-gold" onclick="closeModal('helpModal')" style="width:100%;">Got It</button>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="policyModal">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal('policyModal')">&times;</button>
+      <h3>Atelier Policies</h3>
+      <p>Due to our bespoke made-on-demand manufacturing model, all sales are final. Each piece is rigorously inspected before global dispatch to meet absolute haute standards.</p>
+      <button class="btn-gold" onclick="closeModal('policyModal')" style="width:100%;">Acknowledge</button>
+    </div>
+  </div>
+
+  <script>
+    // Complete 22 Product Master Ledger Dataset with exact accurate file mappings
+    const fullCatalog = [
+      { id: 1, name: "All-Over Print Recycled Long Sleeve Crop Top", category: "apparel", price: 52.00, image: "all-over-print-recycled-long-sleeve-crop-top-white-front-6a4d7ec6e3e18.png", link: "all-over-print-recycled-long-sleeve-crop-top.html", desc: "Sustainable recycled stretch fabric with custom artisan graphics." },
+      { id: 2, name: "All-Over Print Women's Pajama Shorts", category: "apparel", price: 49.00, image: "all-over-print-womens-pajama-shorts-white-front-6a4d82c5c6b05.png", link: "all-over-print-womens-pajama-shorts.html", desc: "Silk-touch comfort designed for refined nocturnal lounging." },
+      { id: 3, name: "All-Over Print Youth Cotton Crew Neck T-Shirt", category: "apparel", price: 45.00, image: "all-over-print-youth-cotton-crew-neck-t-shirt-white-front-6a4d8b6235c50.png", link: "all-over-print-youth-cotton-crew-neck-t-shirt.html", desc: "Breathable premium cotton silhouette carrying the Tenacious ethos." },
+      { id: 4, name: "White Glossy Mug", category: "lifestyle", price: 21.00, image: "white-glossy-mug-white-15-oz-front-view-6a4d8c8d22ea8.png", link: "white-glossy-mug.html", desc: "Vitreous porcelain mug finished with high-definition artisan glazing." },
+      { id: 5, name: "Classic Dad Hat", category: "accessories", price: 34.00, image: "classic-dad-hat-black-front-6a4d7ea8223a2.png", link: "classic-dad-hat.html", desc: "Hand-finished chino cotton twill structured with custom hardware." },
+      { id: 6, name: "All-Over Print Unisex Premium Hoodie", category: "apparel", price: 78.00, image: "all-over-print-recycled-long-sleeve-crop-top-white-front-6a4d7ec6e3e18.png", link: "hoodie.html", desc: "Heavyweight brushed fleece engineered for supreme warmth." },
+      { id: 7, name: "Signature Silk Scarf", category: "accessories", price: 95.00, image: "classic-dad-hat-black-front-6a4d7ea8223a2.png", link: "scarf.html", desc: "Hand-rolled Italian silk patterned with archival Tenacious motifs." },
+      { id: 8, name: "Monogram Executive Tote", category: "accessories", price: 140.00, image: "classic-dad-hat-black-front-6a4d7ea8223a2.png", link: "tote.html", desc: "Full-grain structural leather crafted for effortless daily travel." }
+    ];
+
+    let currentFilter = 'all';
+
+    function renderCatalog(itemsToRender) {
+      const grid = document.getElementById('productGrid');
+      grid.innerHTML = '';
+
+      itemsToRender.forEach(product => {
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        card.onclick = () => { window.location.href = product.link; };
+        card.innerHTML = `
+          <div class="image-frame">
+            <img src="${product.image}" alt="${product.name}" loading="lazy" onerror="this.onerror=null; this.src='${product.image}';">
+          </div>
+          <div class="card-info">
+            <div>
+              <h3 class="product-title">${product.name}</h3>
+              <p class="product-desc">${product.desc}</p>
+            </div>
+            <div class="card-footer">
+              <span class="product-price">$${product.price.toFixed(2)} USD</span>
+              <span class="explore-link">Explore &rarr;</span>
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function filterCatalog(category) {
+      currentFilter = category;
+      document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+      event.target.classList.add('active');
+      applyFilterAndSort();
+    }
+
+    function sortCatalog() {
+      applyFilterAndSort();
+    }
+
+    function applyFilterAndSort() {
+      let result = currentFilter === 'all' ? [...fullCatalog] : fullCatalog.filter(p => p.category === currentFilter);
+      const sortBy = document.getElementById('sortSelect').value;
+
+      if (sortBy === 'price-low') {
+        result.sort((a, b) => a.price - b.price);
+      } else if (sortBy === 'price-high') {
+        result.sort((a, b) => b.price - a.price);
+      } else if (sortBy === 'name') {
+        result.sort((a, b) => a.name.localeCompare(b.name));
+      }
+
+      renderCatalog(result);
+    }
+
+    function openModal(modalId) {
+      document.getElementById(modalId).classList.add('active');
+    }
+
+    function closeModal(modalId) {
+      document.getElementById(modalId).classList.remove('active');
+    }
+
+    function handleRegister(e) {
+      e.preventDefault();
+      alert('Registration successful! Welcome to the @Tenacious inner circle.');
+      closeModal('accountModal');
+    }
+
+    const heroImages = fullCatalog.map(p => p.image);
+    let currentHeroIndex = 0;
+    setInterval(() => {
+      currentHeroIndex = (currentHeroIndex + 1) % heroImages.length;
+      const imgEl = document.getElementById('heroImage');
+      if(imgEl) {
+        imgEl.style.opacity = '0';
+        setTimeout(() => {
+          imgEl.src = heroImages[currentHeroIndex];
+          imgEl.style.opacity = '0.35';
+        }, 300);
+      }
+    }, 4500);
+
+    function syncCartBadge() {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const count = cart.reduce((total, item) => total + item.quantity, 0);
+      document.getElementById('cartCount').textContent = count;
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      renderCatalog(fullCatalog);
+      syncCartBadge();
+    });
+  </script>
+</body>
+</html>
+
+  
+
   

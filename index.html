@@ -1,24 +1,28 @@
+Here is the first half of your upgraded, high-end dark luxury index.html file (from the top down to the main section):
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>@TENACIOUS | Maison d'Artisanat</title>
+  <title>@TENACIOUS | Haute Atelier Ecosystem</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --hermes-orange: #f37021;
-      --bg-cream: #fbfbfa;
-      --bg-pure: #ffffff;
-      --text-main: #111111;
-      --text-muted: #666666;
-      --border-light: #e5e5e0;
-      --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      --bg-primary: #070707;
+      --bg-surface: #121212;
+      --bg-elevated: #1a1a1a;
+      --border-color: #2a2a2a;
+      --border-hover: #555555;
+      --text-main: #f5f5f5;
+      --text-muted: #888888;
+      --gold: #c5a059;
+      --gold-hover: #e6c584;
+      --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     * {
@@ -32,47 +36,83 @@
     }
 
     body {
-      background: var(--bg-cream);
+      background: var(--bg-primary);
       color: var(--text-main);
       font-family: 'Montserrat', sans-serif;
-      line-height: 1.8;
+      line-height: 1.7;
       font-weight: 300;
-      letter-spacing: 0.02em;
+      letter-spacing: 0.03em;
       overflow-x: hidden;
     }
 
-    h1, h2, h3, h4, .editorial-font {
+    h1, h2, h3, h4, .brand-font {
       font-family: 'Bodoni Moda', serif;
-      font-weight: 400;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.08em;
     }
 
-    /* Hermès Style Top Announcement & Header */
+    /* Top Announcement Bar */
+    .top-announcement {
+      background: #000;
+      color: var(--text-muted);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      text-align: center;
+      padding: 10px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    /* Header & Navigation */
     header {
       position: sticky;
       top: 0;
       z-index: 1000;
-      background: var(--bg-pure);
-      border-bottom: 1px solid var(--border-light);
-    }
-
-    .top-bar {
-      background: var(--text-main);
-      color: var(--bg-pure);
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.25em;
-      text-align: center;
-      padding: 8px;
+      background: rgba(7, 7, 7, 0.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-color);
     }
 
     .nav-container {
       max-width: 1600px;
       margin: 0 auto;
-      padding: 25px 50px;
+      padding: 22px 40px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+    }
+
+    /* Wordmark Stamp Logo Style */
+    .brand-stamp {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .stamp-box {
+      width: 38px;
+      height: 38px;
+      border: 1px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Bodoni Moda', serif;
+      font-size: 20px;
+      color: var(--gold);
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    .brand-stamp:hover .stamp-box {
+      background: var(--gold);
+      color: #000;
+    }
+
+    .logo-text {
+      font-family: 'Bodoni Moda', serif;
+      font-size: 20px;
+      color: var(--text-main);
+      letter-spacing: 0.25em;
     }
 
     .nav-links {
@@ -83,7 +123,7 @@
     }
 
     .nav-links a {
-      color: var(--text-main);
+      color: var(--text-muted);
       text-decoration: none;
       font-size: 11px;
       text-transform: uppercase;
@@ -91,140 +131,182 @@
       transition: var(--transition);
     }
 
-    .nav-links a:hover {
-      color: var(--hermes-orange);
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--text-main);
     }
 
-    .logo {
-      font-family: 'Bodoni Moda', serif;
-      font-size: 26px;
-      font-weight: 500;
-      color: var(--text-main);
-      text-decoration: none;
-      letter-spacing: 0.3em;
-    }
-
-    .cart-btn {
-      background: none;
-      border: none;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.25em;
-      cursor: pointer;
-      color: var(--text-main);
+    .header-actions {
       display: flex;
+      gap: 20px;
       align-items: center;
-      gap: 8px;
+    }
+
+    .action-btn {
+      background: none;
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 10px 20px;
+      cursor: pointer;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
       transition: var(--transition);
     }
 
-    .cart-btn:hover {
-      color: var(--hermes-orange);
+    .action-btn:hover {
+      border-color: var(--gold);
+      color: var(--gold);
     }
 
-    /* Editorial Hero Showcase */
-    .hero {
-      height: 85vh;
+    /* Hero Carousel / Mock-up Showcase */
+    .hero-carousel {
+      height: 90vh;
+      position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 0 20px;
-      background: var(--bg-pure);
-      border-bottom: 1px solid var(--border-light);
-      position: relative;
+      overflow: hidden;
+      background: #000;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .hero-bg-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.35;
+      filter: contrast(1.1);
+      transition: opacity 1s ease-in-out;
     }
 
     .hero-content {
-      max-width: 800px;
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      padding: 0 20px;
     }
 
-    .hero h1 {
-      font-size: clamp(38px, 6vw, 72px);
+    .hero-content h1 {
+      font-size: clamp(40px, 6vw, 75px);
       margin-bottom: 20px;
-      line-height: 1.1;
+      font-weight: 400;
+      color: #fff;
     }
 
-    .hero p {
+    .hero-content p {
       color: var(--text-muted);
-      font-size: 14px;
-      letter-spacing: 0.15em;
+      font-size: 13px;
       text-transform: uppercase;
+      letter-spacing: 0.3em;
       margin-bottom: 35px;
     }
 
-    .btn-line {
+    .btn-gold {
       display: inline-block;
-      padding: 14px 40px;
-      background: transparent;
-      color: var(--text-main);
-      border: 1px solid var(--text-main);
+      padding: 16px 45px;
+      background: var(--gold);
+      color: #000;
       text-decoration: none;
       text-transform: uppercase;
-      font-size: 10px;
+      font-size: 11px;
+      font-weight: 600;
       letter-spacing: 0.3em;
+      border: none;
+      cursor: pointer;
       transition: var(--transition);
     }
 
-    .btn-line:hover {
-      background: var(--text-main);
-      color: var(--bg-pure);
+    .btn-gold:hover {
+      background: var(--gold-hover);
+      transform: translateY(-2px);
     }
 
-    /* Boutique Gallery Section */
-    .collection-section {
+    /* Atelier Section (Master Ledger with Sort & Filter) */
+    .atelier-section {
       max-width: 1600px;
       margin: 0 auto;
-      padding: 100px 50px;
+      padding: 100px 40px;
     }
 
-    .atelier-header {
-      text-align: center;
-      margin-bottom: 70px;
-    }
-
-    .atelier-header h2 {
-      font-size: 32px;
-      margin-bottom: 15px;
-    }
-
-    .filter-menu {
+    .controls-bar {
       display: flex;
-      justify-content: center;
-      gap: 40px;
-      list-style: none;
-      margin-top: 25px;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 50px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 25px;
+      flex-wrap: wrap;
+      gap: 25px;
     }
 
-    .filter-btn {
+    .filter-tabs {
+      display: flex;
+      gap: 30px;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    .filter-tab {
       background: none;
       border: none;
-      font-family: 'Montserrat', sans-serif;
+      color: var(--text-muted);
+      cursor: pointer;
       font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.25em;
-      color: var(--text-muted);
-      cursor: pointer;
       transition: var(--transition);
-      padding-bottom: 4px;
+      padding-bottom: 6px;
     }
 
-    .filter-btn.active, .filter-btn:hover {
+    .filter-tab.active, .filter-tab:hover {
       color: var(--text-main);
-      border-bottom: 1px solid var(--text-main);
+      border-bottom: 1px solid var(--gold);
     }
 
-    /* Product Grid Layout */
+    .sort-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .sort-wrapper label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--text-muted);
+    }
+
+    .sort-select {
+      background: var(--bg-surface);
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+      padding: 10px 15px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      outline: none;
+    }
+
+    .sort-select:focus {
+      border-color: var(--gold);
+    }
+
+    /* Product Grid */
     .product-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-      gap: 60px 40px;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 45px 30px;
     }
 
     .product-card {
-      background: var(--bg-pure);
-      border: 1px solid var(--border-light);
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
       cursor: pointer;
       transition: var(--transition);
       display: flex;
@@ -232,14 +314,14 @@
     }
 
     .product-card:hover {
-      box-shadow: 0 20px 40px rgba(0,0,0,0.04);
-      transform: translateY(-4px);
+      border-color: var(--border-hover);
+      transform: translateY(-5px);
     }
 
     .image-frame {
       width: 100%;
-      height: 420px;
-      background: #f4f4f2;
+      height: 400px;
+      background: #0d0d0d;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -248,36 +330,34 @@
     }
 
     .image-frame img {
-      width: 80%;
-      height: 80%;
+      width: 82%;
+      height: 82%;
       object-fit: contain;
       transition: var(--transition);
     }
 
     .product-card:hover .image-frame img {
-      transform: scale(1.03);
+      transform: scale(1.05);
     }
 
     .card-info {
-      padding: 30px;
+      padding: 25px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       flex-grow: 1;
-      text-align: center;
     }
 
-    .product-name {
+    .product-title {
       font-family: 'Bodoni Moda', serif;
-      font-size: 18px;
+      font-size: 16px;
       margin-bottom: 12px;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.05em;
     }
 
     .product-desc {
       color: var(--text-muted);
       font-size: 12px;
-      line-height: 1.6;
       margin-bottom: 20px;
       display: -webkit-box;
       -webkit-line-clamp: 2;
@@ -285,216 +365,181 @@
       overflow: hidden;
     }
 
-    .product-footer {
+    .card-footer {
       display: flex;
-      flex-direction: column;
-      gap: 15px;
-      border-top: 1px solid var(--border-light);
-      padding-top: 20px;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--border-color);
+      padding-top: 15px;
     }
 
     .product-price {
       font-family: 'Bodoni Moda', serif;
       font-size: 16px;
-      color: var(--text-main);
-      letter-spacing: 0.05em;
+      color: var(--gold);
     }
 
-    .discover-link {
+    .explore-link {
       font-size: 10px;
       text-transform: uppercase;
-      letter-spacing: 0.3em;
+      letter-spacing: 0.25em;
       color: var(--text-muted);
       transition: var(--transition);
     }
 
-    .product-card:hover .discover-link {
+    .product-card:hover .explore-link {
       color: var(--text-main);
-      font-weight: 500;
     }
 
-    /* Haute Footer */
+    /* Modals & Drawers Styling */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(12px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: var(--transition);
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-box {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      width: 90%;
+      max-width: 550px;
+      padding: 45px;
+      position: relative;
+      transform: translateY(20px);
+      transition: var(--transition);
+    }
+
+    .modal-overlay.active .modal-box {
+      transform: translateY(0);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: none;
+      border: none;
+      color: var(--text-main);
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .modal-box h3 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .modal-box p {
+      color: var(--text-muted);
+      font-size: 13px;
+      margin-bottom: 25px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 14px;
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      outline: none;
+    }
+
+    .form-control:focus {
+      border-color: var(--gold);
+    }
+
+    .checkbox-group {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 25px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .checkbox-group input {
+      margin-top: 3px;
+      accent-color: var(--gold);
+    }
+
+    /* Footer */
     footer {
-      background: var(--bg-pure);
-      border-top: 1px solid var(--border-light);
-      padding: 80px 50px;
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border-color);
+      padding: 80px 40px;
       text-align: center;
     }
 
-    .footer-wrap {
-      max-width: 600px;
+    .footer-content {
+      max-width: 700px;
       margin: 0 auto;
     }
 
-    .footer-wrap h3 {
-      font-size: 22px;
-      margin-bottom: 15px;
-      letter-spacing: 0.25em;
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      list-style: none;
+      margin: 25px 0;
+      flex-wrap: wrap;
     }
 
-    .footer-wrap p {
+    .footer-links a {
       color: var(--text-muted);
-      font-size: 12px;
+      text-decoration: none;
+      font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.2em;
-      margin-bottom: 30px;
+      transition: var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: var(--text-main);
+    }
+
+    .footer-content p {
+      color: var(--text-muted);
+      font-size: 12px;
+      letter-spacing: 0.1em;
     }
 
     @media (max-width: 768px) {
       .nav-links { display: none; }
-      .nav-container { padding: 20px; }
-      .collection-section { padding: 60px 20px; }
-      .product-grid { grid-template-columns: 1fr; }
+      .controls-bar { flex-direction: column; align-items: flex-start; }
+      .atelier-section { padding: 60px 20px; }
     }
   </style>
 </head>
 
-<body>
-
-  <div class="top-bar">Complimentary Worldwide Shipping on Orders Above $500 — Crafted On Demand</div>
-
-  <header>
-    <div class="nav-container">
-      <a href="#" class="logo">@TENACIOUS</a>
-      <ul class="nav-links">
-        <li><a href="#collection" class="active">Collections</a></li>
-        <li><a href="#collection">Atelier</a></li>
-        <li><a href="cart.html">The Bag</a></li>
-      </ul>
-      <button class="cart-btn" onclick="window.location.href='cart.html'">
-        Bag (<span id="cartCount">0</span>)
-      </button>
-    </div>
-  </header>
-
-  <section class="hero">
-    <div class="hero-content">
-      <h1>Contemporary Elegance. Singular Mastery.</h1>
-      <p>Discover the complete architectural ecosystem of 22 foundational luxury editions.</p>
-      <a href="#collection" class="btn-line">Explore Creations</a>
-    </div>
-  </section>
-
-  <main class="collection-section" id="collection">
-    <div class="atelier-header">
-      <h2>The Collections</h2>
-      <p style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--text-muted);">Select a category to view masterworks</p>
-      <ul class="filter-menu">
-        <li><button class="filter-btn active" onclick="filterCatalog('all')">All Creations (22)</button></li>
-        <li><button class="filter-btn" onclick="filterCatalog('apparel')">Apparel</button></li>
-        <li><button class="filter-btn" onclick="filterCatalog('accessories')">Accessories</button></li>
-        <li><button class="filter-btn" onclick="filterCatalog('lifestyle')">Lifestyle</button></li>
-      </ul>
-    </div>
-
-    <div class="product-grid" id="productGrid">
-      <!-- Injected Dynamically -->
-    </div>
-  </main>
-
-  <footer>
-    <div class="footer-wrap">
-      <h3>@TENACIOUS</h3>
-      <p>Excellence in every detail. Designed for perpetuity.</p>
-      <a href="cart.html" class="btn-line">Review Your Selection</a>
-    </div>
-  </footer>
-
-  <script>
-    const catalog = [
-      { 
-        id: 1, 
-        name: "All-Over Print Recycled Long Sleeve Crop Top", 
-        category: "apparel", 
-        price: 52.00, 
-        image: "all-over-print-recycled-long-sleeve-crop-top-white-front-6a4d7ec6e3e18.png", 
-        link: "all-over-print-recycled-long-sleeve-crop-top.html", 
-        desc: "Engineered from sustainable recycled stretch fabric featuring custom artisan graphics." 
-      },
-      { 
-        id: 2, 
-        name: "All-Over Print Women's Pajama Shorts", 
-        category: "apparel", 
-        price: 49.00, 
-        image: "all-over-print-womens-pajama-shorts-white-front-6a4d82c5c6b05.png", 
-        link: "all-over-print-womens-pajama-shorts.html", 
-        desc: "Exquisite silk-touch comfort designed for refined nocturnal lounging." 
-      },
-      { 
-        id: 3, 
-        name: "All-Over Print Youth Cotton Crew Neck T-Shirt", 
-        category: "apparel", 
-        price: 45.00, 
-        image: "all-over-print-youth-cotton-crew-neck-t-shirt-white-front-6a4d8b6235c50.png", 
-        link: "all-over-print-youth-cotton-crew-neck-t-shirt.html", 
-        desc: "A breathable premium cotton silhouette carrying the Tenacious ethos forward." 
-      },
-      { 
-        id: 4, 
-        name: "White Glossy Mug", 
-        category: "lifestyle", 
-        price: 21.00, 
-        image: "white-glossy-mug-white-15-oz-front-view-6a4d8c8d22ea8.png", 
-        link: "white-glossy-mug.html", 
-        desc: "Vitreous porcelain mug finished with high-definition artisan glazing." 
-      },
-      { 
-        id: 5, 
-        name: "Classic Dad Hat", 
-        category: "accessories", 
-        price: 34.00, 
-        image: "classic-dad-hat-black-front-6a4d7ea8223a2.png", 
-        link: "classic-dad-hat.html", 
-        desc: "Hand-finished chino cotton twill structured with custom custom hardware." 
-      }
-    ];
-
-    function renderCatalog(filter = 'all') {
-      const grid = document.getElementById('productGrid');
-      grid.innerHTML = '';
-
-      const items = filter === 'all' ? catalog : catalog.filter(item => item.category === filter);
-
-      items.forEach(product => {
-        const card = document.createElement('div');
-        card.className = 'product-card';
-        card.onclick = () => { window.location.href = product.link; };
-        card.innerHTML = `
-          <div class="image-frame">
-            <img src="${product.image}" alt="${product.name}" loading="lazy" onerror="this.onerror=null; this.src='${product.image}';">
-          </div>
-          <div class="card-info">
-            <div>
-              <h3 class="product-name">${product.name}</h3>
-              <p class="product-desc">${product.desc}</p>
-            </div>
-            <div class="product-footer">
-              <span class="product-price">$${product.price.toFixed(2)} USD</span>
-              <span class="discover-link">Discover Details &rarr;</span>
-            </div>
-          </div>
-        `;
-        grid.appendChild(card);
-      });
-    }
-
-    function filterCatalog(category) {
-      document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-      event.target.classList.add('active');
-      renderCatalog(category);
-    }
-
-    function syncCartBadge() {
-      const cart = JSON.parse(localStorage.getItem("cart")) || [];
-      const count = cart.reduce((total, item) => total + item.quantity, 0);
-      document.getElementById('cartCount').textContent = count;
-    }
-
-    window.addEventListener('DOMContentLoaded', () => {
-      renderCatalog();
-      syncCartBadge();
-    });
-  </script>
-</body>
-
-</html>
+  

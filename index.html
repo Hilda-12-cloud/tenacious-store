@@ -415,63 +415,99 @@
   </footer>
 
   <script>
-    // Master Ledger of all 22 integrated products with exact names, price points, categories, and preview image links
-    const products = [
-      { id: 1, name: "All-Over Print Recycled Long Sleeve Crop Top", category: "apparel", price: 52.00, image: "all-over-print-recycled-long-sleeve-crop-top-white-front-6a4d7ec6e3e18.png", link: "crop-top.html", desc: "Engineered from sustainable recycled stretch fabric with vivid all-over graphics." },
-      { id: 2, name: "All-Over Print Women's Pajama Shorts", category: "apparel", price: 49.00, image: "all-over-print-womens-pajama-shorts-white-front-6a4d82c5c6b05.png", link: "pajama-shorts.html", desc: "Silky comfort designed for relaxed nights and effortless everyday lounging." },
-      { id: 3, name: "All-Over Print Youth Cotton Crew Neck T-Shirt", category: "apparel", price: 45.00, image: "all-over-print-youth-cotton-crew-neck-t-shirt-white-front-6a4d8b6235c50.png", link: "youth-tshirt.html", desc: "A soft, breathable everyday tee bringing the Tenacious spirit to a younger generation." },
-      { id: 4, name: "White Glossy Mug", category: "lifestyle", price: 21.00, image: "white-glossy-mug-white-15-oz-front-view-6a4d8c8d22ea8.png", link: "mug.html", desc: "Classic glossy ceramic mug finished with vivid sublimation graphics." },
-      { id: 5, name: "Classic Dad Hat", category: "accessories", price: 34.00, image: "classic-dad-hat-black-front-6a4d7ea8223a2.png", link: "dad-hat.html", desc: "Timeless low-profile essential made from chino cotton twill with an antique buckle." }
-      // Fully scalable list representing all 22 products across the architecture
-    ];
+    // Master Ecosystem Ledger with Exact File Mappings
+const products = [
+  { 
+    id: 1, 
+    name: "All-Over Print Recycled Long Sleeve Crop Top", 
+    category: "apparel", 
+    price: 52.00, 
+    image: "all-over-print-recycled-long-sleeve-crop-top-white-front-6a4d7ec6e3e18.png", 
+    link: "all-over-print-recycled-long-sleeve-crop-top.html", 
+    desc: "Engineered from sustainable recycled stretch fabric with vivid all-over graphics." 
+  },
+  { 
+    id: 2, 
+    name: "All-Over Print Women's Pajama Shorts", 
+    category: "apparel", 
+    price: 49.00, 
+    image: "all-over-print-womens-pajama-shorts-white-front-6a4d82c5c6b05.png", 
+    link: "all-over-print-womens-pajama-shorts.html", 
+    desc: "Silky comfort designed for relaxed nights and effortless everyday lounging." 
+  },
+  { 
+    id: 3, 
+    name: "All-Over Print Youth Cotton Crew Neck T-Shirt", 
+    category: "apparel", 
+    price: 45.00, 
+    image: "all-over-print-youth-cotton-crew-neck-t-shirt-white-front-6a4d8b6235c50.png", 
+    link: "all-over-print-youth-cotton-crew-neck-t-shirt.html", 
+    desc: "A soft, breathable everyday tee bringing the Tenacious spirit to a younger generation." 
+  },
+  { 
+    id: 4, 
+    name: "White Glossy Mug", 
+    category: "lifestyle", 
+    price: 21.00, 
+    image: "white-glossy-mug-white-15-oz-front-view-6a4d8c8d22ea8.png", 
+    link: "white-glossy-mug.html", 
+    desc: "Classic glossy ceramic mug finished with vivid sublimation graphics." 
+  },
+  { 
+    id: 5, 
+    name: "Classic Dad Hat", 
+    category: "accessories", 
+    price: 34.00, 
+    image: "classic-dad-hat-black-front-6a4d7ea8223a2.png", 
+    link: "classic-dad-hat.html", 
+    desc: "Timeless low-profile essential made from chino cotton twill with an antique buckle." 
+  }
+];
 
-    function renderProducts(filter = 'all') {
-      const grid = document.getElementById('productGrid');
-      grid.innerHTML = '';
+function renderProducts(filter = 'all') {
+  const grid = document.getElementById('productGrid');
+  grid.innerHTML = '';
 
-      const filtered = filter === 'all' ? products : products.filter(p => p.category === filter);
+  const filtered = filter === 'all' ? products : products.filter(p => p.category === filter);
 
-      filtered.forEach(product => {
-        const card = document.createElement('div');
-        card.className = 'product-card';
-        card.onclick = () => { window.location.href = product.link; };
-        card.innerHTML = `
-          <div class="product-image-wrap">
-            <img src="${product.image}" alt="${product.name}" loading="lazy">
-          </div>
-          <div class="product-details">
-            <div>
-              <h3 class="product-title">${product.name}</h3>
-              <p class="product-description-preview">${product.desc}</p>
-            </div>
-            <div class="product-meta">
-              <span class="product-price">$${product.price.toFixed(2)}</span>
-              <button class="explore-btn">Explore →</button>
-            </div>
-          </div>
-        `;
-        grid.appendChild(card);
-      });
-    }
+  filtered.forEach(product => {
+    const card = document.createElement('div');
+    card.className = 'product-card';
+    card.onclick = () => { window.location.href = product.link; };
+    card.innerHTML = `
+      <div class="product-image-wrap">
+        <img src="${product.image}" alt="${product.name}" loading="lazy" onerror="this.onerror=null; this.src='${product.image}';">
+      </div>
+      <div class="product-details">
+        <div>
+          <h3 class="product-title">${product.name}</h3>
+          <p class="product-description-preview">${product.desc}</p>
+        </div>
+        <div class="product-meta">
+          <span class="product-price">$${product.price.toFixed(2)}</span>
+          <button class="explore-btn">Explore →</button>
+        </div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
 
-    function filterProducts(category) {
-      document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
-      event.target.classList.add('active');
-      renderProducts(category);
-    }
+function filterProducts(category) {
+  document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+  event.target.classList.add('active');
+  renderProducts(category);
+}
 
-    function updateCartCount() {
-      const cart = JSON.parse(localStorage.getItem("cart")) || [];
-      const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-      document.getElementById('cartCount').textContent = totalCount;
-    }
+function updateCartCount() {
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+  document.getElementById('cartCount').textContent = totalCount;
+}
 
-    window.addEventListener('DOMContentLoaded', () => {
-      renderProducts();
-      updateCartCount();
-    });
-  </script>
-</body>
-
-                                           </html>
+window.addEventListener('DOMContentLoaded', () => {
+  renderProducts();
+  updateCartCount();
+});
+  </html>
 

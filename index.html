@@ -674,13 +674,13 @@
     </div>
   </div>
     <script>
-    // Complete 22 Product Master Ledger Dataset
+    // Complete 20 Product Master Ledger Dataset
     const fullCatalog = [
-      { id: 1, name: "All-Over Print Recycled Long Sleeve Crop Top", category: "apparel", price: 135.00, image: "all-over-print-recycled-long-sleeve-crop-top-white-front-6a4d7ec6e3e18.png", link: "all-over-print-recycled-long-sleeve-crop-top.html", desc: "Sustainable recycled stretch fabric with custom artisan graphics." },
+      { id: 1, name: "All-Over Print Recycled Long Sleeve Crop Top", category: "apparel", price: 59.00, image: "all-over-print-recycled-long-sleeve-crop-top-white-front-6a4d7ec6e3e18.png", link: "all-over-print-recycled-long-sleeve-crop-top.html", desc: "A versatile statement piece made for movement, athletic wear, swimwear and elevated streetwear." },
       { id: 2, name: "All-Over Print Women's Pajama Shorts", category: "apparel", price: 120.00, image: "all-over-print-womens-pajama-shorts-white-front-6a4d82c5c6b05.png", link: "all-over-print-womens-pajama-shorts.html", desc: "Silk-touch comfort designed for refined nocturnal lounging." },
       { id: 3, name: "All-Over Print Youth Cotton Crew Neck T-Shirt", category: "apparel", price: 95.00, image: "all-over-print-youth-cotton-crew-neck-t-shirt-white-front-6a4d8b6235c50.png", link: "all-over-print-youth-cotton-crew-neck-t-shirt.html", desc: "Breathable premium cotton silhouette carrying the Tenacious ethos." },
       { id: 4, name: "White Glossy Mug", category: "lifestyle", price: 55.00, image: "white-glossy-mug-white-15-oz-front-view-6a4d8c8d22ea8.png", link: "white-glossy-mug.html", desc: "Vitreous porcelain mug finished with high-definition artisan glazing." },
-      { id: 5, name: "Classic Dad Hat", category: "accessories", price: 85.00, image: "classic-dad-hat-black-front-6a4d7ea8223a2.png", link: "classic-dad-hat.html", desc: "Hand-finished chino cotton twill structured with custom hardware." },
+      { id: 5, name: "Classic Dad Hat", category: "accessories", price: 34.00, image: "classic-dad-hat-black-front-6a4d7ea8223a2.png", link: "classic-dad-hat.html", desc: "A timeless low profile essential made from cotton twill, designed for relaxed everyday wear." },
       { id: 6, name: "All-Over Print Recycled Unisex Hoodie", category: "apparel", price: 145.00, image: "all-over-print-recycled-unisex-hoodie-white-front-6a5458d184af0.png", link: "all-over-print-recycled-unisex-hoodie.html", desc: "Heavyweight recycled fleece engineered for absolute structural warmth." },
       { id: 7, name: "Unisex Oversized Tie-Dye T-Shirt", category: "apparel", price: 95.00, image: "unisex-oversized-tie-dye-t-shirt-black-white-front-6a5060f427513.png", link: "unisex-oversized-tie-dye-t-shirt.html", desc: "Hand-treated organic cotton with a distinct monochromatic wash." },
       { id: 8, name: "All-Over Print Neck Gaiter", category: "accessories", price: 65.00, image: "all-over-print-neck-gaiter-white-front-6a5ede198a11d.png", link: "all-over-print-neck-gaiter.html", desc: "Breathable performance knit featuring vibrant all-over signature graphics." },
@@ -695,9 +695,7 @@
       { id: 17, name: "All-Over Print Men's Rash Guard", category: "apparel", price: 140.00, image: "all-over-print-mens-rash-guard-white-front-6a5ee6e97ab8f.png", link: "all-over-print-mens-rash-guard.html", desc: "Ergonomic compression fit engineered for high-intensity water sports." },
       { id: 18, name: "Matte Snap Case for iPhone", category: "accessories", price: 85.00, image: "snap-case-for-iphone-matte-iphone-14-plus-front-6a5ee62929baf.png", link: "snap-case-for-iphone-matte.html", desc: "Slim-profile polycarbonate shell finished with a soft-touch anti-fingerprint matte." },
       { id: 19, name: "Laptop Sleeve", category: "accessories", price: 110.00, image: "laptop-sleeve-13-front-6a4d80010a1f9.png", link: "laptop-sleeve.html", desc: "Padded neoprene armor designed to protect digital hardware with minimalist flair." },
-      { id: 20, name: "Round Mouse Pad", category: "accessories", price: 55.00, image: "round-mouse-pad-white-front-6a5eed3bf279a.png", link: "round-mouse-pad.html", desc: "Smooth tracking surface backed by natural non-slip rubber stability." },
-      { id: 21, name: "Minimalist Signature Notebook", category: "lifestyle", price: 45.00, image: "white-glossy-mug-white-15-oz-front-view-6a4d8c8d22ea8.png", link: "signature-notebook.html", desc: "Bound blank ledger paper for conceptual sketches and tactical daily notes." },
-      { id: 22, name: "Atelier Signature Scented Candle", category: "lifestyle", price: 70.00, image: "white-glossy-mug-white-15-oz-front-view-6a4d8c8d22ea8.png", link: "signature-candle.html", desc: "Hand-poured soy wax infused with notes of charred wood, amber, and leather." }
+      { id: 20, name: "Round Mouse Pad", category: "accessories", price: 55.00, image: "round-mouse-pad-white-front-6a5eed3bf279a.png", link: "round-mouse-pad.html", desc: "Smooth tracking surface backed by natural non-slip rubber stability." }
     ];
 
     let currentFilter = 'all';
@@ -712,7 +710,7 @@
         card.onclick = () => { window.location.href = product.link; };
         card.innerHTML = `
           <div class="image-frame">
-            <img src="${product.image}" alt="${product.name}" loading="lazy" onerror="this.onerror=null; this.src='${product.image}';">
+            <img src="${product.image}" alt="${product.name}" loading="lazy">
           </div>
           <div class="card-info">
             <div>
@@ -793,7 +791,7 @@
       renderCatalog(fullCatalog);
       syncCartBadge();
     });
-    </script>
+                    </script>
   
 
 </body>

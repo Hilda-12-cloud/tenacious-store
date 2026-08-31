@@ -567,4 +567,109 @@
       </div>
     </div>
   </header>
+    <section class="hero-carousel" id="heroCarousel">
+    <img id="heroImage" class="hero-bg-img" src="all-over-print-recycled-long-sleeve-crop-top-white-front-6a4d7ec6e3e18.png" alt="Tenacious Model Mockup">
+    <div class="hero-content">
+      <h1>Absolute Craft. Uncompromising Identity.</h1>
+      <p>Explore the complete master ledger featuring all 22 foundational creations</p>
+      <a href="#atelier" class="btn-gold">Enter Atelier</a>
+    </div>
+  </section>
+
+  <main class="atelier-section" id="atelier">
+    <div class="controls-bar">
+      <div>
+        <h2 style="font-size: 32px; font-weight: 400; margin-bottom: 8px;">The Master Ledger</h2>
+        <ul class="filter-tabs">
+          <li><button class="filter-tab active" onclick="filterCatalog('all')">All Creations (22)</button></li>
+          <li><button class="filter-tab" onclick="filterCatalog('apparel')">Apparel</button></li>
+          <li><button class="filter-tab" onclick="filterCatalog('accessories')">Accessories</button></li>
+          <li><button class="filter-tab" onclick="filterCatalog('lifestyle')">Lifestyle</button></li>
+        </ul>
+      </div>
+
+      <div class="sort-wrapper">
+        <label for="sortSelect">Sort By</label>
+        <select id="sortSelect" class="sort-select" onchange="sortCatalog()">
+          <option value="featured">Featured Masterpieces</option>
+          <option value="price-low">Price: Low to High</option>
+          <option value="price-high">Price: High to Low</option>
+          <option value="name">Name: A to Z</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- The product grid where your 22 items will automatically inject -->
+    <div class="product-grid" id="productGrid"></div>
+  </main>
+  
+  <footer>
+    <div class="footer-content">
+      <div class="brand-stamp" style="justify-content: center; margin-bottom: 20px;">
+        <div class="stamp-box">T</div>
+        <span class="logo-text">@TENACIOUS</span>
+      </div>
+      <ul class="footer-links">
+        <li><a href="javascript:void(0)" onclick="openModal('aboutModal')">About @Tenacious</a></li>
+        <li><a href="javascript:void(0)" onclick="openModal('helpModal')">Need Help</a></li>
+        <li><a href="javascript:void(0)" onclick="openModal('policyModal')">Legal & Policy</a></li>
+        <li><a href="javascript:void(0)" onclick="openModal('accountModal')">Client Register</a></li>
+      </ul>
+      <p>© 2026 www.@Tenacious.com — Made on demand. Designed for eternity.</p>
+    </div>
+  </footer>
+
+  <div class="modal-overlay" id="accountModal">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal('accountModal')">&times;</button>
+      <h3>Client Portal</h3>
+      <p>Register your account to manage orders and join the inner circle.</p>
+      <form onsubmit="handleRegister(event)">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" class="form-control" required placeholder="Enter your name">
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" class="form-control" required placeholder="name@domain.com">
+        </div>
+        <div class="checkbox-group">
+          <input type="checkbox" id="marketingConsent" checked>
+          <label for="marketingConsent" style="color:var(--text-muted); font-size:11px; line-height:1.5; text-transform:none;">
+            I explicitly consent to receive @Tenacious marketing advertisements, private exhibition invitations, and seasonal lookbooks.
+          </label>
+        </div>
+        <button type="submit" class="btn-gold" style="width: 100%;">Create Account</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="aboutModal">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal('aboutModal')">&times;</button>
+      <h3>About @Tenacious</h3>
+      <p>@Tenacious represents uncompromised luxury identity and precision engineering. Each creation is meticulously handcrafted on demand with zero surplus, guaranteeing exclusive exclusivity for the modern vanguard.</p>
+      <button class="btn-gold" onclick="closeModal('aboutModal')" style="width:100%;">Close</button>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="helpModal">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal('helpModal')">&times;</button>
+      <h3>Client Assistance</h3>
+      <p>Our dedicated atelier concierge is available 24/7 to assist with bespoke orders, sizing, and shipping inquiries.</p>
+      <p><strong>Direct Concierge:</strong> concierge@tenacious.com</p>
+      <button class="btn-gold" onclick="closeModal('helpModal')" style="width:100%;">Got It</button>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="policyModal">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal('policyModal')">&times;</button>
+      <h3>Atelier Policies</h3>
+      <p>Due to our bespoke made-on-demand manufacturing model, all sales are final. Each piece is rigorously inspected before global dispatch to meet absolute haute standards.</p>
+      <button class="btn-gold" onclick="closeModal('policyModal')" style="width:100%;">Acknowledge</button>
+    </div>
+  </div>
+  
   

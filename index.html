@@ -797,7 +797,71 @@
     });
                     </script>
   
+document.addEventListener('DOMContentLoaded', () => {
+  // Mobile Menu Toggle & Lock
+  const hamburgerBtn = document.getElementById('hamburgerBtn');
+  const mobileNavDrawer = document.getElementById('mobileNavDrawer');
+  const bodyEl = document.body;
 
+  if (hamburgerBtn && mobileNavDrawer) {
+    hamburgerBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = mobileNavDrawer.classList.toggle('active');
+      hamburgerBtn.classList.toggle('active', isOpen);
+      if (isOpen) {
+        bodyEl.style.overflow = 'hidden';
+      } else {
+        bodyEl.style.overflow = '';
+      }
+    });
+
+    // Close when tapping outside the drawer
+    document.addEventListener('click', (e) => {
+      if (mobileNavDrawer.classList.contains('active') && 
+          !mobileNavDrawer.contains(e.target) && 
+          !hamburgerBtn.contains(e.target)) {
+        mobileNavDrawer.classList.remove('active');
+        hamburgerBtn.classList.remove('active');
+        bodyEl.style.overflow = '';
+      }
+    });
+
+    // Close when selecting any link inside the drawer
+    mobileNavDrawer.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileNavDrawer.classList.remove('active');
+        hamburgerBtn.classList.remove('active');
+        bodyEl.style.overflow = '';
+      });
+    });
+  }
+
+  // Scroll Progress Bar
+  window.addEventListener('scroll', () => {
+    const scrollProgress = document.getElementById('scrollProgress');
+    if (scrollProgress) {
+      const totalHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const progress = (window.scrollY / totalHeight) * 100;
+      scrollProgress.style.width = `${progress}%`;
+    }
+  });
+
+  // IntersectionObserver for Fade-in Animations
+  const fadeElements = document.querySelectorAll('.fade-in');
+  if ('IntersectionObserver' in window && fadeElements.length > 0) {
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    fadeElements.forEach(el => observer.observe(el));
+  }
+});
+  
 </body>
 </html>
 

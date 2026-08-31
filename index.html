@@ -673,10 +673,8 @@
       <button class="btn-gold" onclick="closeModal('policyModal')" style="width:100%;">Acknowledge</button>
     </div>
   </div>
-
-  <script>
-    
-            // Complete 22 Product Master Ledger Dataset
+    <script>
+    // Complete 22 Product Master Ledger Dataset
     const fullCatalog = [
       { id: 1, name: "All-Over Print Recycled Long Sleeve Crop Top", category: "apparel", price: 135.00, image: "all-over-print-recycled-long-sleeve-crop-top-white-front-6a4d7ec6e3e18.png", link: "all-over-print-recycled-long-sleeve-crop-top.html", desc: "Sustainable recycled stretch fabric with custom artisan graphics." },
       { id: 2, name: "All-Over Print Women's Pajama Shorts", category: "apparel", price: 120.00, image: "all-over-print-womens-pajama-shorts-white-front-6a4d82c5c6b05.png", link: "all-over-print-womens-pajama-shorts.html", desc: "Silk-touch comfort designed for refined nocturnal lounging." },
@@ -701,10 +699,7 @@
       { id: 21, name: "Minimalist Signature Notebook", category: "lifestyle", price: 45.00, image: "white-glossy-mug-white-15-oz-front-view-6a4d8c8d22ea8.png", link: "signature-notebook.html", desc: "Bound blank ledger paper for conceptual sketches and tactical daily notes." },
       { id: 22, name: "Atelier Signature Scented Candle", category: "lifestyle", price: 70.00, image: "white-glossy-mug-white-15-oz-front-view-6a4d8c8d22ea8.png", link: "signature-candle.html", desc: "Hand-poured soy wax infused with notes of charred wood, amber, and leather." }
     ];
-    
-</div>
-       
-    
+
     let currentFilter = 'all';
 
     function renderCatalog(itemsToRender) {
@@ -733,9 +728,8 @@
         grid.appendChild(card);
       });
     }
-    renderCatalog(result);
 
-    function filterCatalog(category) 
+    function filterCatalog(category) {
       currentFilter = category;
       document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
       event.target.classList.add('active');
@@ -758,10 +752,10 @@
         result.sort((a, b) => a.name.localeCompare(b.name));
       }
 
-  
+      renderCatalog(result);
     }
 
-    function openModal(modalId) {{modalId(fullCatalog);
+    function openModal(modalId) {
       document.getElementById(modalId).classList.add('active');
     }
 
@@ -799,7 +793,9 @@
       renderCatalog(fullCatalog);
       syncCartBadge();
     });
-  </script>
+    </script>
+  
+
 </body>
 </html>
 

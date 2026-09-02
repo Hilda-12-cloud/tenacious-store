@@ -1851,3 +1851,194 @@
       }
 
 
+        .quick-view {
+
+      position:
+        absolute;
+
+      left:
+        50%;
+
+      bottom:
+        20px;
+
+      transform:
+        translate(-50%, 80px);
+
+      opacity:
+        0;
+
+      width:
+        calc(100% - 40px);
+
+      transition:
+        var(--transition);
+
+    }
+
+
+    .product-card:hover .quick-view {
+
+      transform:
+        translate(-50%, 0);
+
+      opacity:
+        1;
+
+    }
+
+
+    .product-info {
+
+      padding-top:
+        16px;
+
+      display:
+        flex;
+
+      justify-content:
+        space-between;
+
+      gap:
+        15px;
+
+    }
+
+
+    .product-name {
+
+      font-size:
+        11px;
+
+      letter-spacing:
+        0.8px;
+
+      text-transform:
+        uppercase;
+
+      font-weight:
+        500;
+
+      line-height:
+        1.5;
+
+    }
+
+
+    .product-category {
+
+      color:
+        var(--gray);
+
+      font-size:
+        9px;
+
+      text-transform:
+        uppercase;
+
+      letter-spacing:
+        1.5px;
+
+      margin-top:
+        5px;
+
+    }
+
+
+    .product-price {
+
+      color:
+        var(--gold);
+
+      font-size:
+        12px;
+
+      white-space:
+        nowrap;
+
+    }
+
+
+    /* =========================
+       LOADER
+    ========================== */
+
+    .page-loader {
+
+      position:
+        fixed;
+
+      inset:
+        0;
+
+      background:
+        #050505;
+
+      z-index:
+        9999;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      transition:
+        opacity 0.7s ease,
+        visibility 0.7s ease;
+
+    }
+
+
+    .page-loader.hide {
+
+      opacity:
+        0;
+
+      visibility:
+        hidden;
+
+    }
+
+
+    .loader-logo {
+
+      font-family:
+        "Cinzel",
+        serif;
+
+      font-size:
+        28px;
+
+      letter-spacing:
+        5px;
+
+      animation:
+        pulse 1.5s infinite;
+
+    }
+
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+
+        opacity:
+          0.3;
+
+      }
+
+      50% {
+
+        opacity:
+          1;
+
+      }
+
+    }
+
+

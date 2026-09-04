@@ -5454,6 +5454,36 @@
   ========================== -->
 
   <script>
+    /* =========================================
+   EMERGENCY PAGE LOADER
+========================================= */
+
+(function () {
+
+  function hideLoader() {
+
+    const loader =
+      document.getElementById("pageLoader");
+
+    if (loader) {
+
+      loader.classList.add("hide");
+
+    }
+
+  }
+
+  window.addEventListener(
+    "load",
+    hideLoader
+  );
+
+  setTimeout(
+    hideLoader,
+    1500
+  );
+
+})();
 
 
     /* =========================================

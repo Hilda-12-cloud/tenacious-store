@@ -6684,8 +6684,7 @@ if (currencySelector) {
           "flex";
 
         discountAmount.textContent =
-          `-$${discount.toFixed(2)}`;
-
+  `-${formatPrice(discount)}`;
 
         bulkNoticeContainer.innerHTML = `
 
@@ -6724,12 +6723,10 @@ if (currencySelector) {
 
 
       cartSubtotal.textContent =
-        `$${subtotal.toFixed(2)}`;
-
+  formatPrice(subtotal);
 
       cartTotal.textContent =
-        `$${finalTotal.toFixed(2)}`;
-
+  formatPrice(finalTotal);
     }
 
 

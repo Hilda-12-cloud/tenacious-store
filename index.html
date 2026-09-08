@@ -5878,6 +5878,128 @@
     const whatsappButton =
       document.getElementById("whatsappButton");
 
+    /* =========================================
+   CURRENCY SYSTEM
+========================================= */
+
+
+/*
+  Base currency for all product prices.
+*/
+
+let selectedCurrency =
+  localStorage.getItem(
+    "tenaciousCurrency"
+  ) || "USD";
+
+
+/*
+  Temporary conversion rates.
+
+  These can later be replaced with
+  live exchange-rate API data.
+*/
+
+const currencyRates = {
+
+  USD: 1,
+
+  GBP: 0.79,
+
+  EUR: 0.92,
+
+  GHS: 15.50
+
+};
+
+
+/*
+  Currency symbols.
+*/
+
+const currencySymbols = {
+
+  USD: "$",
+
+  GBP: "£",
+
+  EUR: "€",
+
+  GHS: "₵"
+
+};
+
+
+/*
+  FORMAT PRICE
+*/
+
+function formatPrice(price) {
+
+  const convertedPrice =
+    price *
+    currencyRates[selectedCurrency];
+
+
+  return (
+    currencySymbols[selectedCurrency] +
+    convertedPrice.toFixed(2)
+  );
+
+}
+
+
+/*
+  UPDATE CURRENCY SELECTOR
+*/
+
+const currencySelector =
+  document.getElementById(
+    "currencySelector"
+  );
+
+
+if (currencySelector) {
+
+  currencySelector.value =
+    selectedCurrency;
+
+
+  currencySelector.addEventListener(
+    "change",
+    function(event) {
+
+      selectedCurrency =
+        event.target.value;
+
+
+      localStorage.setItem(
+        "tenaciousCurrency",
+        selectedCurrency
+      );
+
+
+      renderProducts();
+
+      renderCart();
+
+
+      if (currentProduct) {
+
+        document
+          .getElementById("modalPrice")
+          .textContent =
+            formatPrice(
+              currentProduct.price
+            );
+
+      }
+
+    }
+  );
+
+    }
+
 
     /* =========================================
        RENDER PRODUCTS

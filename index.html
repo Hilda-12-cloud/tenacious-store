@@ -6872,13 +6872,13 @@ if (currencySelector) {
             `%0ATotal Items: ${totalQuantity}`;
 
           message +=
-            `%0ASubtotal: $${subtotal.toFixed(2)}`;
-
+  `%0ASubtotal: ${formatPrice(subtotal)}`;
+          
+message +=
+  `%0ABulk Discount (5%): -${formatPrice(discount)}`;
+          
           message +=
-            `%0ABulk Discount (5%): -$${discount.toFixed(2)}`;
-
-          message +=
-            `%0AFinal Total: $${total.toFixed(2)}`;
+  `%0AFinal Total: ${formatPrice(total)}`;
 
           message +=
             `%0A%0AI would like assistance completing this bulk order.`;

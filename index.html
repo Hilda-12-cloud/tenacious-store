@@ -6263,10 +6263,11 @@ if (currencySelector) {
 
 
       document
-        .getElementById("modalPrice")
-        .textContent =
-          `$${product.price.toFixed(2)}`;
-
+  .getElementById("modalPrice")
+  .textContent =
+    formatPrice(
+      product.price
+    );
 
       document
         .getElementById("modalDescription")

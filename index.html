@@ -8294,7 +8294,7 @@ message +=
         }
       );
 
-    /* =========================================
+         /* =========================================
        CHECKOUT
     ========================================= */
 
@@ -8310,6 +8310,18 @@ message +=
       );
 
 
+    const checkoutBack =
+      document.getElementById(
+        "checkoutBack"
+      );
+
+
+    const checkoutClose =
+      document.getElementById(
+        "checkoutClose"
+      );
+
+
     function openCheckout() {
 
       if (cart.length === 0) {
@@ -8322,10 +8334,6 @@ message +=
 
       }
 
-
-      /*
-        Calculate checkout totals.
-      */
 
       const totalQuantity =
         getCartQuantity();
@@ -8367,39 +8375,19 @@ message +=
         subtotal - discount;
 
 
-      /*
-        Fill checkout order summary
-        if the corresponding elements
-        exist in the checkout overlay.
-      */
+      /* =========================
+         CHECKOUT ORDER ITEMS
+      ========================== */
 
-      const checkoutItems =
+      const checkoutOrderItems =
         document.getElementById(
-          "checkoutItems"
+          "checkoutOrderItems"
         );
 
 
-      const checkoutSubtotal =
-        document.getElementById(
-          "checkoutSubtotal"
-        );
+      if (checkoutOrderItems) {
 
-
-      const checkoutDiscount =
-        document.getElementById(
-          "checkoutDiscount"
-        );
-
-
-      const checkoutTotal =
-        document.getElementById(
-          "checkoutTotal"
-        );
-
-
-      if (checkoutItems) {
-
-        checkoutItems.innerHTML = "";
+        checkoutOrderItems.innerHTML = "";
 
 
         cart.forEach(item => {
@@ -8414,15 +8402,15 @@ message +=
           if (!product) return;
 
 
-          const itemElement =
+          const checkoutItem =
             document.createElement("div");
 
 
-          itemElement.className =
-            "checkout-item";
+          checkoutItem.className =
+            "checkout-order-item";
 
 
-          itemElement.innerHTML = `
+          checkoutItem.innerHTML = `
 
             <div>
 
@@ -8430,32 +8418,61 @@ message +=
                 ${product.name}
               </strong>
 
-              <div>
-                Quantity: ${item.quantity}
-              </div>
+              <span>
+                × ${item.quantity}
+              </span>
 
             </div>
 
-
             <div>
-
               ${formatPrice(
                 product.price *
                 item.quantity
               )}
-
             </div>
 
           `;
 
 
-          checkoutItems.appendChild(
-            itemElement
+          checkoutOrderItems.appendChild(
+            checkoutItem
           );
 
         });
 
       }
+
+
+      /* =========================
+         ITEM COUNT
+      ========================== */
+
+      const checkoutItemCount =
+        document.getElementById(
+          "checkoutItemCount"
+        );
+
+
+      if (checkoutItemCount) {
+
+        checkoutItemCount.textContent =
+          `${totalQuantity} ${
+            totalQuantity === 1
+              ? "ITEM"
+              : "ITEMS"
+          }`;
+
+      }
+
+
+      /* =========================
+         SUBTOTAL
+      ========================== */
+
+      const checkoutSubtotal =
+        document.getElementById(
+          "checkoutSubtotal"
+        );
 
 
       if (checkoutSubtotal) {
@@ -8466,12 +8483,61 @@ message +=
       }
 
 
-      if (checkoutDiscount) {
+      /* =========================
+         DISCOUNT
+      ========================== */
 
-        checkoutDiscount.textContent =
-          `-${formatPrice(discount)}`;
+      const checkoutDiscountRow =
+        document.getElementById(
+          "checkoutDiscountRow"
+        );
+
+
+      const checkoutDiscount =
+        document.getElementById(
+          "checkoutDiscount"
+        );
+
+
+      if (qualifiesForBulk) {
+
+        if (checkoutDiscountRow) {
+
+          checkoutDiscountRow.style.display =
+            "flex";
+
+        }
+
+
+        if (checkoutDiscount) {
+
+          checkoutDiscount.textContent =
+            `-${formatPrice(discount)}`;
+
+        }
 
       }
+
+      else {
+
+        if (checkoutDiscountRow) {
+
+          checkoutDiscountRow.style.display =
+            "none";
+
+        }
+
+      }
+
+
+      /* =========================
+         FINAL TOTAL
+      ========================== */
+
+      const checkoutTotal =
+        document.getElementById(
+          "checkoutTotal"
+        );
 
 
       if (checkoutTotal) {
@@ -8482,9 +8548,27 @@ message +=
       }
 
 
-      /*
-        Open checkout overlay.
-      */
+      /* =========================
+         CURRENCY
+      ========================== */
+
+      const checkoutCurrency =
+        document.getElementById(
+          "checkoutCurrency"
+        );
+
+
+      if (checkoutCurrency) {
+
+        checkoutCurrency.textContent =
+          selectedCurrency;
+
+      }
+
+
+      /* =========================
+         OPEN CHECKOUT
+      ========================== */
 
       checkoutOverlay.classList.add(
         "active"
@@ -8498,29 +8582,9 @@ message +=
     }
 
 
-    /*
-      Checkout button.
-    */
-
-    if (checkoutButton) {
-
-      checkoutButton.addEventListener(
-        "click",
-        openCheckout
-      );
-
-    }
-
-
-    /*
-      Close checkout overlay.
-    */
-
-    const closeCheckoutButton =
-  document.getElementById(
-    "checkoutBack"
-  );
-
+    /* =========================
+       CLOSE CHECKOUT
+    ========================== */
 
     function closeCheckout() {
 
@@ -8536,20 +8600,69 @@ message +=
     }
 
 
-    if (closeCheckoutButton) {
+    /* =========================
+       CHECKOUT BUTTON
+    ========================== */
 
-      closeCheckoutButton.addEventListener(
+    if (checkoutButton) {
+
+      checkoutButton.addEventListener(
         "click",
-        closeCheckout
+        function(event) {
+
+          event.preventDefault();
+
+          openCheckout();
+
+        }
       );
 
     }
 
 
-    /*
-      Close checkout when clicking
-      outside the checkout page.
-    */
+    /* =========================
+       BACK BUTTON
+    ========================== */
+
+    if (checkoutBack) {
+
+      checkoutBack.addEventListener(
+        "click",
+        function(event) {
+
+          event.preventDefault();
+
+          closeCheckout();
+
+        }
+      );
+
+    }
+
+
+    /* =========================
+       CLOSE BUTTON
+    ========================== */
+
+    if (checkoutClose) {
+
+      checkoutClose.addEventListener(
+        "click",
+        function(event) {
+
+          event.preventDefault();
+
+          closeCheckout();
+
+        }
+      );
+
+    }
+
+
+    /* =========================
+       CLICK OUTSIDE CHECKOUT
+    ========================== */
 
     if (checkoutOverlay) {
 
@@ -8569,8 +8682,8 @@ message +=
         }
       );
 
-              }
-
+    }                   
+      
 
     /* =========================================
        MOBILE MENU

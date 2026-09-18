@@ -10179,7 +10179,196 @@ console.log("Checkout overlay:", document.getElementById("checkoutOverlay"));
 
     renderCart();
 
+/* =========================
+   CHECKOUT SYSTEM
+========================= */
 
+const checkoutOverlay =
+  document.getElementById("checkoutOverlay");
+
+const checkoutBack =
+  document.getElementById("checkoutBack");
+
+
+/* =========================
+   OPEN CHECKOUT
+========================= */
+
+function openCheckout() {
+
+  if (!checkoutOverlay) return;
+
+  if (!cart || cart.length === 0) {
+
+    alert("Your cart is empty.");
+
+    return;
+
+  }
+
+  checkoutOverlay.classList.add("active");
+
+  document.body.style.overflow = "hidden";
+
+  renderCheckout();
+
+}
+
+
+/* =========================
+   CLOSE CHECKOUT
+========================= */
+
+function closeCheckout() {
+
+  if (!checkoutOverlay) return;
+
+  checkoutOverlay.classList.remove("active");
+
+  document.body.style.overflow = "";
+
+}
+
+
+if (checkoutBack) {
+
+  checkoutBack.addEventListener(
+    "click",
+    closeCheckout
+  );
+
+}
+
+
+/* =========================
+   RENDER CHECKOUT
+========================= */
+
+function renderCheckout() {
+
+  const checkoutItems =
+    document.getElementById("checkoutItems");
+
+  const checkoutSubtotal =
+    document.getElementById("checkoutSubtotal");
+
+  const checkoutDiscount =
+    document.getElementById("checkoutDiscount");
+
+  const checkoutTotal =
+    document.getElementById("checkoutTotal");
+
+
+  if (!checkoutItems) return;
+
+
+  checkoutItems.innerHTML = "";
+
+
+  let subtotal = 0;
+
+
+  cart.forEach(item => {
+
+    const quantity =
+      Number(item.quantity) || 1;
+
+    const price =
+      Number(item.price) || 0;
+
+    subtotal += price * quantity;
+
+
+    const itemElement =
+      document.createElement("div");
+
+    itemElement.className =
+      "checkout-item";
+
+
+    itemElement.innerHTML = `
+
+      <img
+        class="checkout-item-image"
+        src="${item.image || ""}"
+        alt="${item.name || "Product"}"
+      >
+
+      <div class="checkout-item-info">
+
+        <p class="checkout-item-name">
+          ${item.name || "Product"}
+        </p>
+
+        <div class="checkout-item-meta">
+          Qty: ${quantity}
+        </div>
+
+      </div>
+
+      <div class="checkout-item-price">
+        ${formatPrice(price * quantity)}
+      </div>
+
+    `;
+
+
+    checkoutItems.appendChild(itemElement);
+
+  });
+
+
+  /* =========================
+     BULK DISCOUNT
+  ========================= */
+
+  const totalQuantity =
+    cart.reduce(
+      (total, item) =>
+        total + (Number(item.quantity) || 1),
+      0
+    );
+
+
+  let discount = 0;
+
+
+  if (totalQuantity >= 10) {
+
+    discount =
+      subtotal * 0.05;
+
+  }
+
+
+  const total =
+    subtotal - discount;
+
+
+  if (checkoutSubtotal) {
+
+    checkoutSubtotal.textContent =
+      formatPrice(subtotal);
+
+  }
+
+
+  if (checkoutDiscount) {
+
+    checkoutDiscount.textContent =
+      formatPrice(discount);
+
+  }
+
+
+  if (checkoutTotal) {
+
+    checkoutTotal.textContent =
+      formatPrice(total);
+
+  }
+
+    }
   </script>
 
 

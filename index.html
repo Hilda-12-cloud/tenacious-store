@@ -10369,6 +10369,49 @@ function renderCheckout() {
   }
 
     }
+     
+/* =========================
+   CONNECT CHECKOUT BUTTON
+========================= */
+
+const checkoutButton =
+  document.getElementById("checkoutButton");
+
+
+if (checkoutButton) {
+
+  checkoutButton.addEventListener(
+    "click",
+    function () {
+
+      openCheckout();
+
+    }
+  );
+
+}
+
+
+/* =========================
+   ESC KEY CLOSE
+========================= */
+
+document.addEventListener(
+  "keydown",
+  function (event) {
+
+    if (
+      event.key === "Escape" &&
+      checkoutOverlay &&
+      checkoutOverlay.classList.contains("active")
+    ) {
+
+      closeCheckout();
+
+    }
+
+  }
+);
   </script>
 
 

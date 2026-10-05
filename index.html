@@ -8622,6 +8622,140 @@
 
 </div>
 
+<div class="product-container">  
+
+  <!-- PRODUCT GALLERY -->  
+
+  <div class="product-gallery">  
+
+    <div class="main-product-image">  
+
+      <img  
+        id="mainProductImage"  
+        src="unisex-oversized-tie-dye-t-shirt-milky-way-front-6a5060f41d078.png"  
+        alt="Unisex Oversized Tie-Dye T-Shirt">  
+
+    </div>  
+
+
+    <div class="product-thumbnails">  
+
+      <img  
+        src="unisex-oversized-tie-dye-t-shirt-milky-way-front-6a5060f41d078.png"  
+        alt="Milky Way front"  
+        onclick="changeProductImage(this.src)">  
+
+      <img  
+        src="unisex-oversized-tie-dye-t-shirt-navy-white-back-6a5060f41e530.png"  
+        alt="Navy white back"  
+        onclick="changeProductImage(this.src)">  
+
+      <img  
+        src="unisex-oversized-tie-dye-t-shirt-sherbet-rainbow-product-details-6a5060f4207ce.png"  
+        alt="Sherbet Rainbow product details"  
+        onclick="changeProductImage(this.src)">  
+
+      <img  
+        src="unisex-oversized-tie-dye-t-shirt-black-white-front-6a5060f427513.png"  
+        alt="Black white front"  
+        onclick="changeProductImage(this.src)">  
+
+      <img  
+        src="unisex-oversized-tie-dye-t-shirt-classic-rainbow-zoomed-in-6a5060f424bed.png"  
+        alt="Classic Rainbow detail"  
+        onclick="changeProductImage(this.src)">  
+
+    </div>  
+
+  </div>  
+
+
+  <!-- PRODUCT INFORMATION -->  
+
+  <div class="product-info">  
+
+    <h1>Unisex Oversized Tie-Dye T-Shirt</h1>  
+
+    <p class="description">  
+      An expressive oversized layer made for individuality,  
+      confidence, and the @Tenacious spirit.  
+    </p>  
+
+    <p class="price">$75.00</p>  
+
+
+    <button class="order-button" onclick="addToCart()">  
+      Add to Cart  
+    </button>  
+
+
+    <a href="#" class="whatsapp-button">  
+      Order via WhatsApp  
+    </a>  
+
+
+    <div class="details">  
+
+      <h2>Product Details</h2>  
+
+      <p>• Oversized unisex fit</p>  
+      <p>• Soft, comfortable fabric</p>  
+      <p>• Bold tie-dye finish</p>  
+      <p>• Designed for everyday expression</p>  
+
+    </div>  
+
+  </div>  
+
+</div>
+
+  </main>    <script>  
+  
+    function addToCart() {  
+  
+      const product = {  
+        name: "Unisex Oversized Tie-Dye T-Shirt",  
+        price: 75,  
+        image: "unisex-oversized-tie-dye-t-shirt-milky-way-front-6a5060f41d078.png",  
+        quantity: 1  
+      };  
+  
+      let cart =  
+        JSON.parse(localStorage.getItem("cart")) || [];  
+  
+      const existingProduct =  
+        cart.find(item => item.name === product.name);  
+  
+      if (existingProduct) {  
+  
+        existingProduct.quantity += 1;  
+  
+      } else {  
+  
+        cart.push(product);  
+  
+      }  
+  
+      localStorage.setItem(  
+        "cart",  
+        JSON.stringify(cart)  
+      );  
+  
+      window.location.href = "cart.html";  
+  
+    }  
+  
+  
+    function changeProductImage(imageSource) {  
+  
+      document.getElementById(  
+        "mainProductImage"  
+      ).src = imageSource;  
+  
+    }  
+  
+  </script>  </body>  </html>
+
 
 
 

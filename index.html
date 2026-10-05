@@ -8406,6 +8406,173 @@
           "A limited statement piece created for those who choose to stand apart."
       }
 
+    }  
+  
+    
+    
+
+  <!-- PRODUCT GALLERY -->  
+
+  <div class="product-gallery">  
+
+    <!-- MAIN IMAGE -->  
+    <div class="main-product-image">  
+
+      <img  
+        id="mainProductImage"  
+        src="embroidered-premium-sherpa-blanket-black-front-6a5eed73c1ced.png"  
+        alt="Premium Sherpa Blanket">  
+
+    </div>  
+
+
+    <!-- 7 THUMBNAILS -->  
+
+    <div class="product-thumbnails">  
+
+      <!-- THUMBNAIL 1 — ORIGINAL MAIN BLANKET -->  
+      <img  
+        src="embroidered-premium-sherpa-blanket-black-front-6a5eed73c1ced.png"  
+        alt="Premium Sherpa Blanket main view"  
+        onclick="changeProductImage(this.src)">  
+
+
+      <!-- THUMBNAIL 2 -->  
+      <img  
+        src="embroidered-premium-sherpa-blanket-black-front-2-6a5eed73c1c08.png"  
+        alt="Premium Sherpa Blanket front"  
+        onclick="changeProductImage(this.src)">  
+
+
+      <!-- THUMBNAIL 3 -->  
+      <img  
+        src="embroidered-premium-sherpa-blanket-black-front-2-6a5eed73c1c89.png"  
+        alt="Premium Sherpa Blanket front view"  
+        onclick="changeProductImage(this.src)">  
+
+
+      <!-- THUMBNAIL 4 -->  
+      <img  
+        src="embroidered-premium-sherpa-blanket-black-product-details-2-6a5eed73c1b96.png"  
+        alt="Premium Sherpa Blanket details"  
+        onclick="changeProductImage(this.src)">  
+
+
+      <!-- THUMBNAIL 5 -->  
+      <img  
+        src="embroidered-premium-sherpa-blanket-black-product-details-6a5eed73c1afd.png"  
+        alt="Premium Sherpa Blanket product details"  
+        onclick="changeProductImage(this.src)">  
+
+
+      <!-- THUMBNAIL 6 -->  
+      <img  
+        src="embroidered-premium-sherpa-blanket-black-front-6a5eed73c1a75.png"  
+        alt="Premium Sherpa Blanket front"  
+        onclick="changeProductImage(this.src)">  
+
+
+      <!-- THUMBNAIL 7 -->  
+      <img  
+        src="embroidered-premium-sherpa-blanket-black-back-6a5eed73c1ac8.png"  
+        alt="Premium Sherpa Blanket back"  
+        onclick="changeProductImage(this.src)">  
+
+    </div>  
+
+  </div>  
+
+
+  <!-- PRODUCT INFORMATION -->  
+
+  <div class="product-info">  
+
+    <h1>Premium Sherpa Blanket</h1>  
+
+    <p class="description">  
+      Wrap yourself in comfort and the @Tenacious spirit — softness  
+      designed for those who remain resilient by choice.  
+    </p>  
+
+    <p class="price">$90.00</p>  
+
+
+    <button  
+      class="order-button"  
+      onclick="addToCart()">  
+
+      Add to Cart  
+
+    </button>  
+
+
+    <a href="#" class="whatsapp-button">  
+      Order via WhatsApp  
+    </a>  
+
+
+    <div class="details">  
+
+      <h2>Product Details</h2>  
+
+      <p>• Premium sherpa fabric</p>  
+      <p>• Ultra-soft & comfortable</p>  
+      <p>• @Tenacious design</p>  
+
+    </div>  
+
+  </div>  
+
+</div>
+
+  </main>    <script>  
+  
+    function addToCart() {  
+  
+      const product = {  
+        name: "Premium Sherpa Blanket",  
+        price: 90,  
+        image: "embroidered-premium-sherpa-blanket-black-front-6a5eed73c1ced.png",  
+        quantity: 1  
+      };  
+  
+      let cart =  
+        JSON.parse(localStorage.getItem("cart")) || [];  
+  
+      const existingProduct =  
+        cart.find(item => item.name === product.name);  
+  
+      if (existingProduct) {  
+  
+        existingProduct.quantity += 1;  
+  
+      } else {  
+  
+        cart.push(product);  
+  
+      }  
+  
+      localStorage.setItem(  
+        "cart",  
+        JSON.stringify(cart)  
+      );  
+  
+      window.location.href = "cart.html";  
+  
+    }  
+  
+  
+    function changeProductImage(imageSource) {  
+  
+      document.getElementById(  
+        "mainProductImage"  
+      ).src = imageSource;  
+  
+    }  
+  
+  </script>  </body>  </html>  
+
+    
     ];
 
 

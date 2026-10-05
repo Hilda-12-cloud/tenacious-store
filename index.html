@@ -8172,965 +8172,445 @@
     /* =========================================
        PRODUCTS
     ========================================= */
+const products = [
 
-    const products = [  
+  {
+    id: 1,
+    name: "Embroidered Premium Sherpa Blanket",
+    price: 47,
+    minPrice: 47,
+    maxPrice: 99,
+    priceLabel: "$47.00 – $99.00",
+    category: "Home & Lifestyle",
+    badge: "Premium",
+    image: "embroidered-premium-sherpa-blanket-black-front-6a5eed73c1ced.png",
+    images: [
+      "embroidered-premium-sherpa-blanket-black-front-6a5eed73c1ced.png",
+      "embroidered-premium-sherpa-blanket-black-front-2-6a5eed73c1c08.png",
+      "embroidered-premium-sherpa-blanket-black-front-2-6a5eed73c1c89.png",
+      "embroidered-premium-sherpa-blanket-black-product-details-2-6a5eed73c1b96.png",
+      "embroidered-premium-sherpa-blanket-black-product-details-6a5eed73c1afd.png",
+      "embroidered-premium-sherpa-blanket-black-front-6a5eed73c1a75.png",
+      "embroidered-premium-sherpa-blanket-black-back-6a5eed73c1ac8.png"
+    ],
+    colors: ["Black"],
+    sizes: ["50 × 60", "60 × 80"],
+    link: "blanket.html"
+  },
+
+  {
+    id: 2,
+    name: "Laptop Sleeve",
+    price: 24,
+    minPrice: 24,
+    maxPrice: 58,
+    priceLabel: "$24.00 – $58.00",
+    category: "Accessories",
+    badge: "Essential",
+    image: "laptop-sleeve-black-front.png",
+    images: ["laptop-sleeve-black-front.png"],
+    colors: ["Black"],
+    sizes: ["13″", "15″"],
+    link: "laptop-sleeve.html"
+  },
+
+  {
+    id: 3,
+    name: "All-Over Print Recycled Unisex Hoodie",
+    price: 51,
+    minPrice: 51,
+    maxPrice: 114,
+    priceLabel: "$51.00 – $114.00",
+    category: "Apparel",
+    badge: "New",
+    image: "all-over-print-recycled-unisex-hoodie-white-front-6a5458d182faa.png",
+    images: [
+      "all-over-print-recycled-unisex-hoodie-white-front-6a5458d182faa.png"
+    ],
+    colors: ["White", "Black"],
+    sizes: ["XS", "S", "M", "L", "XL", "2XL", "3XL"],
+    link: "hoodie.html"
+  },
+
+  {
+    id: 4,
+    name: "Unisex Oversized Tie-Dye T-Shirt",
+    price: 26,
+    minPrice: 26,
+    maxPrice: 68,
+    priceLabel: "$26.00 – $68.00",
+    category: "Apparel",
+    badge: "New",
+    image: "unisex-oversized-tie-dye-t-shirt-milky-way-front-6a5060f41d078.png",
+    images: [
+      "unisex-oversized-tie-dye-t-shirt-milky-way-front-6a5060f41d078.png",
+      "unisex-oversized-tie-dye-t-shirt-navy-white-back-6a5060f41e530.png",
+      "unisex-oversized-tie-dye-t-shirt-sherbet-rainbow-product-details-6a5060f4207ce.png",
+      "unisex-oversized-tie-dye-t-shirt-black-white-front-6a5060f427513.png",
+      "unisex-oversized-tie-dye-t-shirt-classic-rainbow-zoomed-in-6a5060f424bed.png"
+    ],
+    colors: ["Milky Way", "Navy/White", "Sherbet Rainbow", "Black/White"],
+    sizes: ["S", "M", "L", "XL", "2XL", "3XL"],
+    link: "tie-dye-t-shirt.html"
+  },
+
+  {
+    id: 5,
+    name: "All-Over-Print Neck Gaiter",
+    price: 11,
+    minPrice: 11,
+    maxPrice: 41,
+    priceLabel: "$11.00 – $41.00",
+    category: "Accessories",
+    badge: "Essential",
+    image: "all-over-print-neck-gaiter-white-front-6a5ede198a11d.png",
+    images: [
+      "all-over-print-neck-gaiter-white-front-6a5ede198a11d.png"
+    ],
+    colors: ["White"],
+    sizes: ["One Size"],
+    link: "neck-gaiter.html"
+  },
+
+  {
+    id: 6,
+    name: "Unisex Urban Sweatpants",
+    price: 40,
+    minPrice: 40,
+    maxPrice: 153,
+    priceLabel: "$40.00 – $153.00",
+    category: "Apparel",
+    badge: "Premium",
+    image: "unisex-urban-sweatpants-black-front-6a5edffbe0e69.png",
+    images: [
+      "unisex-urban-sweatpants-black-front-6a5edffbe0e69.png"
+    ],
+    colors: ["Black"],
+    sizes: ["XS", "S", "M", "L", "XL", "2XL", "3XL"],
+    link: "urban-sweatpants.html"
+  },
+
+  {
+    id: 7,
+    name: "Organic Ribbed Beanie",
+    price: 20,
+    minPrice: 20,
+    maxPrice: 64,
+    priceLabel: "$20.00 – $64.00",
+    category: "Accessories",
+    badge: "Classic",
+    image: "organic-ribbed-beanie-burgundy-left-6a5ee4250f7ad.png",
+    images: [
+      "organic-ribbed-beanie-burgundy-left-6a5ee4250f7ad.png",
+      "organic-ribbed-beanie-oxford-navy-product-details-2-6a5ee4250f634.png",
+      "organic-ribbed-beanie-mustard-yellow-product-details-6a5ee4250fc43.png",
+      "organic-ribbed-beanie-light-grey-front-6a5ee4250fe13.png",
+      "organic-ribbed-beanie-light-avio-blue-front-6a5ee4250f920.png",
+      "organic-ribbed-beanie-leaf-green-front-6a5ee4251007f.png",
+      "organic-ribbed-beanie-burgundy-back-6a5ee4250f7d5.png",
+      "organic-ribbed-beanie-black-front-6a5ee4250e8bb.png"
+    ],
+    colors: [
+      "Burgundy",
+      "Oxford Navy",
+      "Mustard Yellow",
+      "Light Grey",
+      "Light Avio Blue",
+      "Leaf Green",
+      "Black"
+    ],
+    sizes: ["One Size"],
+    link: "organic-ribbed-beanie.html"
+  },
+
+  {
+    id: 8,
+    name: "All-Over Print Large Tote Bag",
+    price: 24,
+    minPrice: 24,
+    maxPrice: 42,
+    priceLabel: "$24.00 – $42.00",
+    category: "Accessories",
+    badge: "Essential",
+    image: "all-over-print-large-tote-bag-w-pocket-black-front-6a5ee5eac0bfb.png",
+    images: [
+      "all-over-print-large-tote-bag-w-pocket-black-front-6a5ee5eac0bfb.png"
+    ],
+    colors: ["Black"],
+    sizes: ["One Size"],
+    link: "all-over-print-large-tote-bag.html"
+  },
+
+  {
+    id: 9,
+    name: "Travel Mug with Handle",
+    price: 24,
+    minPrice: 24,
+    maxPrice: 45,
+    priceLabel: "$24.00 – $45.00",
+    category: "Home & Lifestyle",
+    badge: "Essential",
+    image: "travel-mug-with-handle.png",
+    images: ["travel-mug-with-handle.png"],
+    colors: ["White"],
+    sizes: ["25 oz"],
+    link: "travel-mug-with-handle.html"
+  },
+
+  {
+    id: 10,
+    name: "Women's Columbia Fleece Vest",
+    price: 51,
+    minPrice: 51,
+    maxPrice: 119,
+    priceLabel: "$51.00 – $119.00",
+    category: "Apparel",
+    badge: "Premium",
+    image: "womens-columbia-fleece-vest.png",
+    images: ["womens-columbia-fleece-vest.png"],
+    colors: ["Black"],
+    sizes: ["XS", "S", "M", "L", "XL", "2XL"],
+    link: "womens-columbia-fleece-vest.html"
+  },
+
+  {
+    id: 11,
+    name: "Unisex Organic Raglan Sweatshirt",
+    price: 41,
+    minPrice: 41,
+    maxPrice: 148,
+    priceLabel: "$41.00 – $148.00",
+    category: "Apparel",
+    badge: "Premium",
+    image: "unisex-organic-raglan-sweatshirt-burnt-orange-front-6a5ee574c940c.png",
+    images: [
+      "unisex-organic-raglan-sweatshirt-bottle-green-product-details-6a5ee574770d6.png",
+      "unisex-organic-raglan-sweatshirt-burgundy-front-6a5ee5745692b.png",
+      "unisex-organic-raglan-sweatshirt-burnt-orange-right-front-6a5ee574c7dba.png",
+      "unisex-organic-raglan-sweatshirt-charcoal-melange-back-2-6a5ee5746990a.png",
+      "unisex-organic-raglan-sweatshirt-white-left-6a5ee57501ab9.png",
+      "unisex-organic-raglan-sweatshirt-white-product-details-3-6a5ee5751b480.png",
+      "unisex-organic-raglan-sweatshirt-white-product-details-4-6a5ee575027cc.png"
+    ],
+    colors: [
+      "Bottle Green",
+      "Burgundy",
+      "Burnt Orange",
+      "Charcoal Melange",
+      "White"
+    ],
+    sizes: ["XS", "S", "M", "L", "XL", "2XL", "3XL"],
+    link: "unisex-organic-raglan-sweatshirt.html"
+  },
+
+  {
+    id: 12,
+    name: "Round Mouse Pad",
+    price: 10,
+    minPrice: 10,
+    maxPrice: 32,
+    priceLabel: "$10.00 – $32.00",
+    category: "Accessories",
+    badge: "Essential",
+    image: "round-mouse-pad.png",
+    images: ["round-mouse-pad.png"],
+    colors: ["Black"],
+    sizes: ["One Size"],
+    link: "round-mouse-pad.html"
+  },
+
+  {
+    id: 13,
+    name: "Toddler Pullover Fleece Hoodie",
+    price: 25,
+    minPrice: 25,
+    maxPrice: 71,
+    priceLabel: "$25.00 – $71.00",
+    category: "Kids",
+    badge: "Cozy",
+    image: "toddler-pullover-fleece-hoodie-navy-front-6a5ee363f3df9.png",
+    images: [
+      "toddler-pullover-fleece-hoodie-navy-front-6a5ee363f3df9.png"
+    ],
+    colors: ["Navy"],
+    sizes: ["2T", "3T", "4T", "5T"],
+    link: "toddler-pullover-fleece-hoodie.html"
+  },
+
+  {
+    id: 14,
+    name: "Women's Pajama Shorts",
+    price: 27,
+    minPrice: 27,
+    maxPrice: 68,
+    priceLabel: "$27.00 – $68.00",
+    category: "Apparel",
+    badge: "Cozy",
+    image: "all-over-print-womens-pajama-shorts-white-front-6a4d82c5c6b05.png",
+    images: [
+      "all-over-print-womens-pajama-shorts-white-front-6a4d82c5c6b05.png"
+    ],
+    colors: ["White"],
+    sizes: ["XS", "S", "M", "L", "XL", "2XL"],
+    link: "all-over-print-womens-pajama-shorts.html"
+  },
+
+  {
+    id: 15,
+    name: "Youth Cotton Crew Neck T-Shirt",
+    price: 23,
+    minPrice: 23,
+    maxPrice: 72,
+    priceLabel: "$23.00 – $72.00",
+    category: "Kids",
+    badge: "Classic",
+    image: "all-over-print-youth-cotton-crew-neck-t-shirt-white-front-6a4d8b6235c50.png",
+    images: [
+      "all-over-print-youth-cotton-crew-neck-t-shirt-white-front-6a4d8b6235c50.png"
+    ],
+    colors: ["White"],
+    sizes: ["XS", "S", "M", "L", "XL"],
+    link: "all-over-print-youth-cotton-crew-neck-t-shirt.html"
+  },
+
+  {
+    id: 16,
+    name: "Classic Dad Hat",
+    price: 24,
+    minPrice: 24,
+    maxPrice: 51,
+    priceLabel: "$24.00 – $51.00",
+    category: "Accessories",
+    badge: "Classic",
+    image: "classic-dad-hat-black-front-6a4d7ea8223a2.png",
+    images: [
+      "classic-dad-hat-black-front-6a4d7ea8223a2.png",
+      "classic-dad-hat-black-back-6a4d7ea8224b7.png",
+      "classic-dad-hat-black-product-details-6a4d7ea8228ee.png",
+      "classic-dad-hat-cranberry-front-6a8e444db.png"
+    ],
+    colors: ["Black", "Cranberry"],
+    sizes: ["One Size"],
+    link: "classic-dad-hat.html"
+  },
+
+  {
+    id: 17,
+    name: "Snap Case",
+    price: 14,
+    minPrice: 14,
+    maxPrice: 38,
+    priceLabel: "$14.00 – $38.00",
+    category: "Accessories",
+    badge: "Essential",
+    image: "snap-case-for-iphone-matte-iphone-16-pro-max-front-6a5ee6292cd23.png",
+    images: [
+      "snap-case-for-iphone-matte-iphone-16-pro-max-front-6a5ee6292cd23.png"
+    ],
+    colors: ["Black"],
+    sizes: [
+      "iPhone 11",
+      "iPhone 12",
+      "iPhone 13",
+      "iPhone 14",
+      "iPhone 15",
+      "iPhone 16"
+    ],
+    link: "iphone-snap-case.html"
+  },
+
+  {
+    id: 18,
+    name: "Recycled Long Sleeve Crop Top",
+    price: 43,
+    minPrice: 43,
+    maxPrice: 115,
+    priceLabel: "$43.00 – $115.00",
+    category: "Apparel",
+    badge: "New",
+    image: "all-over-print-recycled-long-sleeve-crop-top-white-front-6a5ee4c28b881.png",
+    images: [
+      "all-over-print-recycled-long-sleeve-crop-top-white-front-6a5ee4c28b881.png"
+    ],
+    colors: ["White"],
+    sizes: ["XS", "S", "M", "L", "XL", "2XL"],
+    link: "all-over-print-recycled-long-sleeve-crop-top.html"
+  },
+
+  {
+    id: 19,
+    name: "Recycled High-Waisted Bikini",
+    price: 41,
+    minPrice: 41,
+    maxPrice: 118,
+    priceLabel: "$41.00 – $118.00",
+    category: "Apparel",
+    badge: "New",
+    image: "all-over-print-recycled-high-waisted-bikini-white-front-6a5ee31ce4a74.png",
+    images: [
+      "all-over-print-recycled-high-waisted-bikini-white-front-6a5ee31ce4a74.png"
+    ],
+    colors: ["White"],
+    sizes: ["XS", "S", "M", "L", "XL", "2XL", "3XL"],
+    link: "high-waisted-bikini.html"
+  },
+
+  {
+    id: 20,
+    name: "Men's Rash Guard",
+    price: 40,
+    minPrice: 40,
+    maxPrice: 105,
+    priceLabel: "$40.00 – $105.00",
+    category: "Apparel",
+    badge: "Essential",
+    image: "all-over-print-mens-rash-guard-white-front-6a5ee6e97ab8f.png",
+    images: [
+      "all-over-print-mens-rash-guard-white-front-6a5ee6e97ab8f.png"
+    ],
+    colors: ["White"],
+    sizes: ["XS", "S", "M", "L", "XL", "2XL", "3XL"],
+    link: "mens-rash-guard.html"
+  },
+
+  {
+    id: 21,
+    name: "Women's Rash Guard",
+    price: 40,
+    minPrice: 40,
+    maxPrice: 105,
+    priceLabel: "$40.00 – $105.00",
+    category: "Apparel",
+    badge: "Essential",
+    image: "all-over-print-womens-rash-guard-white-front-6a5ee492af4e7.png",
+    images: [
+      "all-over-print-womens-rash-guard-white-front-6a5ee492af4e7.png"
+    ],
+    colors: ["White"],
+    sizes: ["XS", "S", "M", "L", "XL", "2XL", "3XL"],
+    link: "womens-rash-guard.html"
+  },
+
+  {
+    id: 22,
+    name: "White Glossy Mug",
+    price: 10,
+    minPrice: 10,
+    maxPrice: 34,
+    priceLabel: "$10.00 – $34.00",
+    category: "Home & Lifestyle",
+    badge: "Classic",
+    image: "white-glossy-mug-white-15-oz-front-view-6a4d8c8d22ea8.png",
+    images: [
+      "white-glossy-mug-white-15-oz-front-view-6a4d8c8d22ea8.png"
+    ],
+    colors: ["White"],
+    sizes: ["11 oz", "15 oz"],
+    link: "white-glossy-mug.html"
+  }
+
+];
     
-  <!-- PRODUCT GALLERY -->  
-
-  <div class="product-gallery">  
-
-    <!-- MAIN IMAGE -->  
-    <div class="main-product-image">  
-
-      <img  
-        id="mainProductImage"  
-        src="embroidered-premium-sherpa-blanket-black-front-6a5eed73c1ced.png"  
-        alt="Premium Sherpa Blanket">  
-
-    </div>  
-
-
-    <!-- 7 THUMBNAILS -->  
-
-    <div class="product-thumbnails">  
-
-      <!-- THUMBNAIL 1 — ORIGINAL MAIN BLANKET -->  
-      <img  
-        src="embroidered-premium-sherpa-blanket-black-front-6a5eed73c1ced.png"  
-        alt="Premium Sherpa Blanket main view"  
-        onclick="changeProductImage(this.src)">  
-
-
-      <!-- THUMBNAIL 2 -->  
-      <img  
-        src="embroidered-premium-sherpa-blanket-black-front-2-6a5eed73c1c08.png"  
-        alt="Premium Sherpa Blanket front"  
-        onclick="changeProductImage(this.src)">  
-
-
-      <!-- THUMBNAIL 3 -->  
-      <img  
-        src="embroidered-premium-sherpa-blanket-black-front-2-6a5eed73c1c89.png"  
-        alt="Premium Sherpa Blanket front view"  
-        onclick="changeProductImage(this.src)">  
-
-
-      <!-- THUMBNAIL 4 -->  
-      <img  
-        src="embroidered-premium-sherpa-blanket-black-product-details-2-6a5eed73c1b96.png"  
-        alt="Premium Sherpa Blanket details"  
-        onclick="changeProductImage(this.src)">  
-
-
-      <!-- THUMBNAIL 5 -->  
-      <img  
-        src="embroidered-premium-sherpa-blanket-black-product-details-6a5eed73c1afd.png"  
-        alt="Premium Sherpa Blanket product details"  
-        onclick="changeProductImage(this.src)">  
-
-
-      <!-- THUMBNAIL 6 -->  
-      <img  
-        src="embroidered-premium-sherpa-blanket-black-front-6a5eed73c1a75.png"  
-        alt="Premium Sherpa Blanket front"  
-        onclick="changeProductImage(this.src)">  
-
-
-      <!-- THUMBNAIL 7 -->  
-      <img  
-        src="embroidered-premium-sherpa-blanket-black-back-6a5eed73c1ac8.png"  
-        alt="Premium Sherpa Blanket back"  
-        onclick="changeProductImage(this.src)">  
-
-    </div>  
-
-  </div>  
-
-
-  <!-- PRODUCT INFORMATION -->  
-
-  <div class="product-info">  
-
-    <h1>Premium Sherpa Blanket</h1>  
-
-    <p class="description">  
-      Wrap yourself in comfort and the @Tenacious spirit — softness  
-      designed for those who remain resilient by choice.  
-    </p>  
-
-    <p class="price">$90.00</p>  
-
-
-    <button  
-      class="order-button"  
-      onclick="addToCart()">  
-
-      Add to Cart  
-
-    </button>  
-
-
-    <a href="#" class="whatsapp-button">  
-      Order via WhatsApp  
-    </a>  
-
-
-    <div class="details">  
-
-      <h2>Product Details</h2>  
-
-      <p>• Premium sherpa fabric</p>  
-      <p>• Ultra-soft & comfortable</p>  
-      <p>• @Tenacious design</p>  
-
-    </div>  
-
-  </div>  
-
-</div>
-
-  </main>    <script>  
-  
-    function addToCart() {  
-  
-      const product = {  
-        name: "Premium Sherpa Blanket",  
-        price: 90,  
-        image: "embroidered-premium-sherpa-blanket-black-front-6a5eed73c1ced.png",  
-        quantity: 1  
-      };  
-  
-      let cart =  
-        JSON.parse(localStorage.getItem("cart")) || [];  
-  
-      const existingProduct =  
-        cart.find(item => item.name === product.name);  
-  
-      if (existingProduct) {  
-  
-        existingProduct.quantity += 1;  
-  
-      } else {  
-  
-        cart.push(product);  
-  
-      }  
-  
-      localStorage.setItem(  
-        "cart",  
-        JSON.stringify(cart)  
-      );  
-  
-      window.location.href = "cart.html";  
-  
-    }  
-  
-  
-    function changeProductImage(imageSource) {  
-  
-      document.getElementById(  
-        "mainProductImage"  
-      ).src = imageSource;  
-  
-    }  
-  
-  </script>  </body>  </html>  
-  
-
-</div>
-
-<div class="product">
-
-  <div class="product-image">
-    <img
-      src="all-over-print-recycled-high-waisted-bikini-white-front-6a5ee31ce4a74.png"
-      alt="All-Over Print Recycled High-Waisted Bikini">
-  </div>
-
-  <h3>All-Over Print Recycled High-Waisted Bikini</h3>
-
-  <p>
-    A flattering high-waisted bikini made with recycled materials —
-    designed for comfort, confidence and the @Tenacious spirit.
-  </p>
-
-  <p class="price">$78.00 – $80.00</p>
-
-  <a href="high-waisted-bikini.html" class="shop-button">
-    View Product
-  </a>
-
-</div>
-
-</section>
-
-<div class="product">
-
-  <div class="product-image">
-    <img
-      src="all-over-print-recycled-unisex-hoodie-white-front-6a5458d182faa.png"
-      alt="All-Over Print Recycled Unisex Hoodie">
-  </div>
-
-  <h3>All-Over Print Recycled Unisex Hoodie</h3>
-
-  <p>
-    A statement layer made for movement, resilience and everyday confidence.
-  </p>
-
-  <p class="price">$79.00</p>
-
-  <a href="hoodie.html" class="shop-button">
-    View Product
-  </a>
-
-</div>
-
-<div class="product-container">  
-
-  <!-- PRODUCT GALLERY -->  
-
-  <div class="product-gallery">  
-
-    <div class="main-product-image">  
-
-      <img  
-        id="mainProductImage"  
-        src="unisex-oversized-tie-dye-t-shirt-milky-way-front-6a5060f41d078.png"  
-        alt="Unisex Oversized Tie-Dye T-Shirt">  
-
-    </div>  
-
-
-    <div class="product-thumbnails">  
-
-      <img  
-        src="unisex-oversized-tie-dye-t-shirt-milky-way-front-6a5060f41d078.png"  
-        alt="Milky Way front"  
-        onclick="changeProductImage(this.src)">  
-
-      <img  
-        src="unisex-oversized-tie-dye-t-shirt-navy-white-back-6a5060f41e530.png"  
-        alt="Navy white back"  
-        onclick="changeProductImage(this.src)">  
-
-      <img  
-        src="unisex-oversized-tie-dye-t-shirt-sherbet-rainbow-product-details-6a5060f4207ce.png"  
-        alt="Sherbet Rainbow product details"  
-        onclick="changeProductImage(this.src)">  
-
-      <img  
-        src="unisex-oversized-tie-dye-t-shirt-black-white-front-6a5060f427513.png"  
-        alt="Black white front"  
-        onclick="changeProductImage(this.src)">  
-
-      <img  
-        src="unisex-oversized-tie-dye-t-shirt-classic-rainbow-zoomed-in-6a5060f424bed.png"  
-        alt="Classic Rainbow detail"  
-        onclick="changeProductImage(this.src)">  
-
-    </div>  
-
-  </div>  
-
-
-  <!-- PRODUCT INFORMATION -->  
-
-  <div class="product-info">  
-
-    <h1>Unisex Oversized Tie-Dye T-Shirt</h1>  
-
-    <p class="description">  
-      An expressive oversized layer made for individuality,  
-      confidence, and the @Tenacious spirit.  
-    </p>  
-
-    <p class="price">$75.00</p>  
-
-
-    <button class="order-button" onclick="addToCart()">  
-      Add to Cart  
-    </button>  
-
-
-    <a href="#" class="whatsapp-button">  
-      Order via WhatsApp  
-    </a>  
-
-
-    <div class="details">  
-
-      <h2>Product Details</h2>  
-
-      <p>• Oversized unisex fit</p>  
-      <p>• Soft, comfortable fabric</p>  
-      <p>• Bold tie-dye finish</p>  
-      <p>• Designed for everyday expression</p>  
-
-    </div>  
-
-  </div>  
-
-</div>
-
-  </main>    <script>  
-  
-    function addToCart() {  
-  
-      const product = {  
-        name: "Unisex Oversized Tie-Dye T-Shirt",  
-        price: 75,  
-        image: "unisex-oversized-tie-dye-t-shirt-milky-way-front-6a5060f41d078.png",  
-        quantity: 1  
-      };  
-  
-      let cart =  
-        JSON.parse(localStorage.getItem("cart")) || [];  
-  
-      const existingProduct =  
-        cart.find(item => item.name === product.name);  
-  
-      if (existingProduct) {  
-  
-        existingProduct.quantity += 1;  
-  
-      } else {  
-  
-        cart.push(product);  
-  
-      }  
-  
-      localStorage.setItem(  
-        "cart",  
-        JSON.stringify(cart)  
-      );  
-  
-      window.location.href = "cart.html";  
-  
-    }  
-  
-  
-    function changeProductImage(imageSource) {  
-  
-      document.getElementById(  
-        "mainProductImage"  
-      ).src = imageSource;  
-  
-    }  
-  
-  </script>  </body>  </html>
-
-</div>
-
-<div class="product">
-
-  <div class="product-image">
-    <img
-      src="all-over-print-neck-gaiter-white-front-6a5ede198a11d.png"
-      alt="All-Over-Print Neck Gaiter">
-  </div>
-
-  <h3>All-Over-Print Neck Gaiter</h3>
-
-  <p>
-    A versatile statement piece made for movement, comfort and everyday
-    resilience — designed for those who remain tenacious by choice.
-  </p>
-
-  <p class="price">$35.00</p>
-
-  <a href="neck-gaiter.html" class="shop-button">
-    View Product
-  </a>
-
-</div>
-
-</section>
-<section class="magazine" id="magazine">
-
-  <div class="product">
-
-  <div class="product-image">
-    <img
-      src="unisex-urban-sweatpants-black-front-6a5edffbe0e69.png"
-      alt="Unisex Urban Sweatpants">
-  </div>
-
-  <h3>Unisex Urban Sweatpants</h3>
-
-  <p>
-    Elevated streetwear with a relaxed fit — heavyweight fleece,
-    durable construction and everyday comfort for those who move
-    with the @Tenacious spirit.
-  </p>
-
-  <p class="price">$75.00 – $77.00</p>
-
-  <a href="urban-sweatpants.html" class="shop-button">
-    View Product
-  </a>
-
-  </div>
-
-  <div class="product">
-
-  <div class="product-image">
-    <img
-      src="all-over-print-large-tote-bag-w-pocket-black-front-6a5ee5eac0bfb.png"
-      alt="All-Over Print Large Tote Bag w/ Pocket">
-  </div>
-
-  <h3>All-Over Print Large Tote Bag w/ Pocket</h3>
-
-  <p>
-    A spacious everyday essential designed for movement, style and
-    resilience — combining practical space with a bold @Tenacious look.
-  </p>
-
-  <p class="price">$49.00</p>
-
-  <a
-    href="all-over-print-large-tote-bag.html"
-    class="shop-button">
-    View Product
-  </a>
-
-  </div>
-
-  </div>
-
-<div class="product">
-
-  <div class="product-image">
-    <img
-      src="travel-mug-with-a-handle-white-25-oz-front-6a5edf4b87dd1.png"
-      alt="Travel Mug with a Handle">
-  </div>
-
-  <h3>Travel Mug with a Handle</h3>
-
-  <p>
-    Carry your drink with confidence — a practical @Tenacious
-    travel companion designed for movement, ambition and everyday life.
-  </p>
-
-  <p class="price">From $45.00</p>
-
-  <a href="travel-mug-with-a-handle.html" class="shop-button">
-    View Product
-  </a>
-
-</div>
-
-</section>
-<section class="magazine" id="magazine">
-
-  </div>
-
-<div class="product">
-
-  <div class="product-image">
-    <img
-      src="womens-columbia-fleece-vest-black-front-6a5ee39e881e1.png"
-      alt="Women's Columbia Fleece Vest">
-  </div>
-
-  <h3>Women's Columbia Fleece Vest</h3>
-
-  <p>
-    A soft, versatile fleece layer made for cold-weather movement,
-    everyday adventures and the @Tenacious spirit.
-  </p>
-
-  <p class="price">$89.00</p>
-
-  <a href="womens-columbia-fleece-vest.html" class="shop-button">
-    View Product
-  </a>
-
-</div>
-
-</section>
-<section class="magazine" id="magazine">
-
-<div class="product-container">  
-
-  <div class="product-image">  
-
-    <!-- MAIN PRODUCT IMAGE -->  
-    <img  
-      id="mainProductImage"  
-      src="unisex-organic-raglan-sweatshirt-burnt-orange-front-6a5ee574c940c.png"  
-      alt="Unisex Organic Raglan Sweatshirt">  
-
-    <!-- THUMBNAIL GALLERY -->  
-    <div class="thumbnail-gallery">  
-
-      <img  
-        src="unisex-organic-raglan-sweatshirt-burnt-orange-front-6a5ee574c940c.png"  
-        alt="Burnt Orange Sweatshirt Front"  
-        onclick="changeImage(this.src)">  
-
-      <img  
-        src="unisex-organic-raglan-sweatshirt-white-front-6a5ee5752b69d.png"  
-        alt="White Sweatshirt Front"  
-        onclick="changeImage(this.src)">  
-
-      <img  
-        src="unisex-organic-raglan-sweatshirt-black-back-6a5ee5744240c.png"  
-        alt="Black Sweatshirt Back"  
-        onclick="changeImage(this.src)">  
-
-      <img  
-        src="unisex-organic-raglan-sweatshirt-black-product-details-2-6a5ee57444858.png"  
-        alt="Black Sweatshirt Product Details"  
-        onclick="changeImage(this.src)">  
-
-      <img  
-        src="unisex-organic-raglan-sweatshirt-bottle-green-product-details-6a5ee574770d6.png"  
-        alt="Bottle Green Sweatshirt"  
-        onclick="changeImage(this.src)">  
-
-      <img  
-        src="unisex-organic-raglan-sweatshirt-burgundy-front-6a5ee5745692b.png"  
-        alt="Burgundy Sweatshirt Front"  
-        onclick="changeImage(this.src)">  
-
-      <img  
-        src="unisex-organic-raglan-sweatshirt-burnt-orange-right-front-6a5ee574c7dba.png"  
-        alt="Burnt Orange Sweatshirt Right Front"  
-        onclick="changeImage(this.src)">  
-
-      <img  
-        src="unisex-organic-raglan-sweatshirt-charcoal-melange-back-2-6a5ee5746990a.png"  
-        alt="Charcoal Melange Sweatshirt Back"  
-        onclick="changeImage(this.src)">  
-
-      <img  
-        src="unisex-organic-raglan-sweatshirt-white-left-6a5ee57501ab9.png"  
-        alt="White Sweatshirt Left"  
-        onclick="changeImage(this.src)">  
-
-      <img  
-        src="unisex-organic-raglan-sweatshirt-white-product-details-3-6a5ee5751b480.png"  
-        alt="White Sweatshirt Product Details"  
-        onclick="changeImage(this.src)">  
-
-      <img  
-        src="unisex-organic-raglan-sweatshirt-white-product-details-4-6a5ee575027cc.png"  
-        alt="White Sweatshirt Product Details"  
-        onclick="changeImage(this.src)">  
-
-    </div>  
-
-  </div>  
-
-  <div class="product-info">  
-
-    <h1>Unisex Organic Raglan Sweatshirt</h1>  
-
-    <p class="description">  
-      A premium organic sweatshirt made for everyday movement and  
-      resilience. With a soft brushed-fleece interior, smooth organic  
-      cotton exterior and a clean raglan silhouette, it delivers  
-      comfort without sacrificing style.  
-    </p>  
-
-    <label class="size-label" for="size">Select Size</label>  
-
-    <select id="size" class="size-select" onchange="updatePrice()">  
-      <option value="XS" data-price="69">XS — $69.00</option>  
-      <option value="S" data-price="69">S — $69.00</option>  
-      <option value="M" data-price="69">M — $69.00</option>  
-      <option value="L" data-price="69">L — $69.00</option>  
-      <option value="XL" data-price="72">XL — $72.00</option>  
-      <option value="2XL" data-price="75">2XL — $75.00</option>  
-      <option value="3XL" data-price="78">3XL — $78.00</option>  
-    </select>  
-
-    <p class="price" id="productPrice">$69.00</p>  
-
-    <button class="order-button" onclick="addToCart()">  
-      Add to Cart  
-    </button>  
-
-    <a href="#" class="whatsapp-button">Order via WhatsApp</a>  
-
-    <div class="details">  
-
-      <h2>Product Details</h2>  
-
-      <p>• 100% organic cotton exterior</p>  
-      <p>• 80% organic cotton, 20% recycled polyester interior</p>  
-      <p>• Charcoal Melange: 60% organic cotton, 40% recycled polyester exterior</p>  
-      <p>• 97% organic cotton, 3% elastane ribs</p>  
-      <p>• Fabric weight: 8.3 oz/yd² (280 g/m²)</p>  
-      <p>• Charcoal Melange: 10.3 oz/yd² (348 g/m²)</p>  
-      <p>• Raglan sleeves</p>  
-      <p>• Brushed fleece lining</p>  
-      <p>• 2 × 2 ribbed cuffs, collar and hem</p>  
-      <p>• Side-seamed construction</p>  
-      <p>• Front print + left wrist placement</p>  
-      <p>• DTG printing</p>  
-      <p>• GOTS and OCS certified organic cotton</p>  
-      <p>• OEKO-TEX® STANDARD 100 certified</p>  
-      <p>• PETA-Approved Vegan</p>  
-      <p>• Made on demand — no minimums</p>  
-      <p>• Available in XS–3XL</p>  
-      <p>• Product: SOL'S 03567</p>  
-
-    </div>  
-
-  </div>  
-
-</div>
-
-  </main>    <script>  
-  
-    function updatePrice() {  
-  
-      const sizeSelect = document.getElementById("size");  
-      const selectedOption =  
-        sizeSelect.options[sizeSelect.selectedIndex];  
-  
-      const price = selectedOption.dataset.price;  
-  
-      document.getElementById("productPrice").textContent =  
-        "$" + Number(price).toFixed(2);  
-    }  
-  
-    function addToCart() {  
-  
-      const sizeSelect = document.getElementById("size");  
-      const selectedOption =  
-        sizeSelect.options[sizeSelect.selectedIndex];  
-  
-      const size = selectedOption.value;  
-      const price = Number(selectedOption.dataset.price);  
-  
-      const product = {  
-        name: "Unisex Organic Raglan Sweatshirt",  
-        size: size,  
-        price: price,  
-        image: "unisex-organic-raglan-sweatshirt-burnt-orange-front-6a5ee574c940c.png",  
-        quantity: 1  
-      };  
-  
-      let cart =  
-        JSON.parse(localStorage.getItem("cart")) || [];  
-  
-      const existingProduct = cart.find(  
-        item =>  
-          item.name === product.name &&  
-          item.size === product.size  
-      );  
-  
-      if (existingProduct) {  
-        existingProduct.quantity += 1;  
-      } else {  
-        cart.push(product);  
-      }  
-  
-      localStorage.setItem(  
-        "cart",  
-        JSON.stringify(cart)  
-      );  
-  
-      window.location.href = "cart.html";  
-    }  
-  
-    function changeImage(imageSrc) {  
-      document.getElementById("mainProductImage").src = imageSrc;  
-    }  
-  
-  </script>  </body>  </html>
-
-  <div class="product">
-
-  <div class="product-image">
-    <img
-      src="toddler-pullover-fleece-hoodie-navy-front-6a5ee363f3df9.png"
-      alt="Toddler Pullover Fleece Hoodie">
-  </div>
-
-  <h3>Toddler Pullover Fleece Hoodie</h3>
-
-  <p>
-    Soft, cozy and made for everyday play — a comfortable fleece hoodie
-    designed for little ones with the @Tenacious spirit.
-  </p>
-
-  <p class="price">$34.95 – $38.95</p>
-
-  <a href="toddler-pullover-fleece-hoodie.html" class="shop-button">
-    View Product
-  </a>
-
-</div>
-
-
-<div class="product">
-
-  <div class="product-image">
-    <img
-      src="all-over-print-large-tote-bag-w-pocket-black-front-6a5ee5eac0bfb.png"
-      alt="All-Over Print Large Tote Bag w/ Pocket"
-      style="width: 100%; height: auto; display: block; margin: 0;">
-  </div>
-
-  <h3>All-Over Print Large Tote Bag w/ Pocket</h3>
-
-  <p>
-    A spacious everyday essential designed for movement, style and
-    resilience — combining practical space with a bold @Tenacious look.
-  </p>
-
-  <p class="price">$49.00</p>
-
-  <a href="all-over-print-large-tote-bag.html" class="shop-button">
-    View Product
-  </a>
-
-</div>
-
-
-<div class="product">
-
-  <div class="product-image">
-    <img
-      src="unisex-organic-raglan-sweatshirt-burnt-orange-front-6a5ee574c940c.png"
-      alt="Unisex Organic Raglan Sweatshirt"
-      style="width: 100%; height: auto; display: block; margin: 0;">
-  </div>
-
-  <h3>Unisex Organic Raglan Sweatshirt</h3>
-
-  <p>
-    A premium organic sweatshirt with a soft fleece interior,
-    smooth organic cotton exterior and a clean raglan silhouette.
-  </p>
-
-  <p class="price">From $69.00</p>
-
-  <a href="unisex-organic-raglan-sweatshirt.html" class="shop-button">
-    View Product
-  </a>
-
-</div>
-
-
-<div class="product">
-
-  <div class="product-image">
-    <img
-      src="all-over-print-recycled-long-sleeve-crop-top-white-front-6a5ee4c28b881.png"
-      alt="All-Over Print Recycled Long Sleeve Crop Top">
-  </div>
-
-  <h3>All-Over Print Recycled Long Sleeve Crop Top</h3>
-
-  <p>
-    A versatile recycled crop top made for movement, athletic wear,
-    swimwear and elevated streetwear.
-  </p>
-
-  <p class="price">From $59.00</p>
-
-  <a href="all-over-print-recycled-long-sleeve-crop-top.html" class="shop-button">
-    View Product
-  </a>
-
-</div>
-
-</section>
-<div class="product">
-
-  <div class="product-image">
-    <img
-      src="all-over-print-womens-pajama-shorts-white-front-6a4d82c5c6b05.png"
-      alt="All-Over Print Women's Pajama Shorts">
-  </div>
-
-  <h3>All-Over Print Women's Pajama Shorts</h3>
-
-  <p>
-    Silky, relaxed and effortlessly comfortable — designed for cozy
-    nights, laid-back mornings and the @Tenacious spirit.
-  </p>
-
-  <p class="price">From $49.00</p>
-
-  <a
-    href="all-over-print-womens-pajama-shorts.html"
-    class="shop-button">
-    View Product
-  </a>
-
-</div>
-
-<div class="product">
-
-  <div class="product-image">
-    <img
-      src="all-over-print-youth-cotton-crew-neck-t-shirt-white-front-6a4d8b6235c50.png"
-      alt="All-Over Print Youth Cotton Crew Neck T-Shirt">
-  </div>
-
-  <h3>All-Over Print Youth Cotton Crew Neck T-Shirt</h3>
-
-  <p>
-    A soft, breathable everyday tee made for school days,
-    playground adventures and everything in between — bringing
-    the @Tenacious spirit to a younger generation.
-  </p>
-
-  <p class="price">From $45.00</p>
-
-  <a
-    href="all-over-print-youth-cotton-crew-neck-t-shirt.html"
-    class="shop-button">
-    View Product
-  </a>
-
-</div>
-
-<div class="product">
-
-  <div class="product-image">
-    <img
-      src="classic-dad-hat-black-front-6a4d7ea8223a2.png"
-      alt="Classic Dad Hat">
-  </div>
-
-  <h3>Classic Dad Hat</h3>
-
-  <p>
-    A timeless low-profile essential made from cotton twill —
-    relaxed, versatile and finished with the @Tenacious spirit.
-  </p>
-
-  <p class="price">$34.00</p>
-
-  <a
-    href="classic-dad-hat.html"
-    class="shop-button">
-    View Product
-  </a>
-
-</div>
-
-</div>
-
-<div class="product">
-
-  <div class="product-image">
-    <img
-      src="snap-case-for-iphone-matte-iphone-16-pro-max-front-6a5ee6292cd23.png"
-      alt="Snap Case for iPhone">
-  </div>
-
-  <h3>Snap Case for iPhone</h3>
-
-  <p>
-    A slim, lightweight case with a premium finish — protection
-    designed to carry the @Tenacious spirit everywhere you go.
-  </p>
-
-  <p class="price">$34.00</p>
-
-  <a href="iphone-snap-case.html" class="shop-button">
-    View Product
-  </a>
-
-</div>
-
-</section>
-<section class="magazine" id="magazine">
-
-  </div>
-
-<div class="product">
-
-  <div class="product-image">
-    <img
-      src="all-over-print-mens-rash-guard-white-front-6a5ee6e97ab8f.png"
-      alt="All-Over Print Men's Rash Guard">
-  </div>
-
-  <h3>All-Over Print Men's Rash Guard</h3>
-
-  <p>
-    A smooth, fitted long-sleeve layer made for active days outdoors —
-    combining comfort, bold all-over printing and the @Tenacious spirit.
-  </p>
-
-  <p class="price">$79.00 – $81.00</p>
-
-  <a href="mens-rash-guard.html" class="shop-button">
-    View Product
-  </a>
-
-</div>
-
-</section>
-<section class="magazine" id="magazine">
-
-  </div>
-
-<div class="product">
-
-  <div class="product-image">
-    <img
-      src="all-over-print-womens-rash-guard-white-front-6a5ee492af4e7.png"
-      alt="All-Over Print Women's Rash Guard">
-  </div>
-
-  <h3>All-Over Print Women's Rash Guard</h3>
-
-  <p>
-    A smooth and versatile long-sleeve layer made for active days —
-    combining comfort, bold all-over printing and the @Tenacious spirit.
-  </p>
-
-  <p class="price">$79.00 – $81.00</p>
-
-  <a href="womens-rash-guard.html" class="shop-button">
-    View Product
-  </a>
-
-</div>
-
-</section>
-<section class="magazine" id="magazine">
-
-  <div class="product">
-
-  <div class="product-image">
-    <img
-      src="white-glossy-mug-white-15-oz-front-view-6a4d8c8d22ea8.png"
-      alt="White Glossy Mug">
-  </div>
-
-  <h3>White Glossy Mug</h3>
-
-  <p>
-    A classic glossy ceramic mug made for coffee, tea and everyday
-    moments — finished with vivid @Tenacious designs.
-  </p>
-
-  <p class="price">From $18.00</p>
-
-  <a
-    href="white-glossy-mug.html"
-    class="shop-button">
-    View Product
-  </a>
-
-  </div>
-  
-    ];
-
-
     /* =========================================
        CART DATA
     ========================================= */

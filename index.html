@@ -8966,18 +8966,22 @@ if (currencySelector) {
             else {
 
               renderProducts(
-                products.filter(
-                  product =>
-                    product.category === filter
-                )
-              );
+  products.filter(product => {
 
-            }
+    const productCategory =
+      product.category.toLowerCase();
 
-          }
-        );
+    const selectedCategory =
+      filter.toLowerCase();
 
-      });
+    if (selectedCategory === "lifestyle") {
+      return productCategory === "home & lifestyle";
+    }
+
+    return productCategory === selectedCategory;
+
+  })
+);
 
 
     /* =========================================

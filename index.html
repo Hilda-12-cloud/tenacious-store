@@ -9026,74 +9026,212 @@ if (currencySelector) {
 
 
     
-    /* =========================================
-       PRODUCT MODAL
+        /* =========================================
+       PRODUCT MODAL — GALLERY & OPTIONS
     ========================================= */
+
+    let modalSelectedImage = "";
 
     function openProduct(id) {
 
-      const product =
-        products.find(
-          item => item.id === id
-        );
-
+      const product = products.find(
+        item => item.id === Number(id)
+      );
 
       if (!product) return;
 
-
       currentProduct = product;
 
+      document.getElementById("modalCategory").textContent =
+        product.category || "";
 
-      document
-        .getElementById("modalCategory")
-        .textContent =
-          product.category;
+      document.getElementById("modalName").textContent =
+        product.name || "";
 
+      document.getElementById("modalPrice").textContent =
+        product.priceLabel ||
+        formatPrice(product.price);
 
-      document
-        .getElementById("modalName")
-        .textContent =
-          product.name;
+      document.getElementById("modalDescription").textContent =
+        product.description || "";
 
-
-      document
-  .getElementById("modalPrice")
-  .textContent =
-    formatPrice(
-      product.price
-    );
-
-      document
-        .getElementById("modalDescription")
-        .textContent =
-          product.description;
-
+      /* PRODUCT GALLERY */
 
       const modalImage =
         document.getElementById("modalImage");
 
+      const thumbnailContainer =
+        document.getElementById("modalThumbnails");
 
-      modalImage.innerHTML = `
-        <img
-          src="${product.image}"
-          alt="${product.name}"
-          onerror="
-            this.style.display='none';
-            this.parentElement.innerHTML='@TENACIOUS';
-          "
-        >
-      `;
+      const productImages = [
+        product.image,
+        ...(Array.isArray(product.images) ? product.images : [])
+      ].filter((image, index, images) =>
+        image && images.indexOf(image) === index
+      );
 
+      modalSelectedImage = productImages[0] || "";
 
-      document
-        .getElementById("productModal")
+      function showModalImage(image) {
+
+        modalSelectedImage = image;
+
+        modalImage.innerHTML = "";
+
+        const img = document.createElement("img");
+
+        img.src = image;
+        img.alt = product.name || "Product mockup";
+
+        img.onerror = function() {
+          this.style.display = "none";
+          modalImage.textContent = "@TENACIOUS";
+        };
+
+        modalImage.appendChild(img);
+
+        thumbnailContainer
+          .querySelectorAll("button")
+          .forEach(button => {
+            button.classList.toggle(
+              "active",
+              button.dataset.image === image
+            );
+          });
+      }
+
+      thumbnailContainer.innerHTML = "";
+
+      productImages.forEach((image, index) => {
+
+        const thumbnail = document.createElement("button");
+
+        thumbnail.type = "button";
+        thumbnail.className = "modal-thumbnail";
+        thumbnail.dataset.image = image;
+        thumbnail.setAttribute(
+          "aria-label",
+          "View product image " + (index + 1)
+        );
+
+        const thumbImage = document.createElement("img");
+
+        thumbImage.src = image;
+        thumbImage.alt = "";
+
+        thumbImage.onerror = function() {
+          thumbnail.style.display = "none";
+        };
+
+        thumbnail.appendChild(thumbImage);
+
+        thumbnail.addEventListener("click", function() {
+          showModalImage(image);
+        });
+
+        thumbnailContainer.appendChild(thumbnail);
+      });
+
+      if (modalSelectedImage) {
+        showModalImage(modalSelectedImage);
+      } else {
+        modalImage.textContent = "@TENACIOUS";
+      }
+
+      /* COLOUR SELECTOR */
+
+      const colorContainer =
+        document.getElementById("modalColorContainer");
+
+      const colorSelect =
+        document.getElementById("modalColor");
+
+      colorSelect.innerHTML = "";
+
+      const colors = Array.isArray(product.colors)
+        ? product.colors
+        : [];
+
+      colorContainer.style.display =
+        colors.length ? "" : "none";
+
+      if (colors.length) {
+
+        const colorPlaceholder = document.createElement("option");
+
+        colorPlaceholder.value = "";
+        colorPlaceholder.textContent = "Choose a colour";
+
+        colorSelect.appendChild(colorPlaceholder);
+
+        colors.forEach(color => {
+
+          const option = document.createElement("option");
+
+          option.value = color;
+          option.textContent = color;
+
+          colorSelect.appendChild(option);
+        });
+      }
+
+      /* SIZE SELECTOR */
+
+      const sizeContainer =
+        document.getElementById("modalSizeContainer");
+
+      const sizeSelect =
+        document.getElementById("modalSize");
+
+      sizeSelect.innerHTML = "";
+
+      const sizes = Array.isArray(product.sizes)
+        ? product.sizes
+        : [];
+
+      sizeContainer.style.display =
+        sizes.length ? "" : "none";
+
+      if (sizes.length) {
+
+        const sizePlaceholder = document.createElement("option");
+
+        sizePlaceholder.value = "";
+        sizePlaceholder.textContent = "Choose a size";
+
+        sizeSelect.appendChild(sizePlaceholder);
+
+        sizes.forEach(size => {
+
+          const option = document.createElement("option");
+
+          option.value = size;
+          option.textContent = size;
+
+          sizeSelect.appendChild(option);
+        });
+      }
+
+      /* FULL PRODUCT PAGE */
+
+      const fullDetailsLink =
+        document.getElementById("modalFullDetails");
+
+      if (product.link) {
+        fullDetailsLink.href = product.link;
+        fullDetailsLink.style.display = "";
+      } else {
+        fullDetailsLink.style.display = "none";
+      }
+
+      /* OPEN MODAL */
+
+      document.getElementById("productModal")
         .classList.add("active");
 
-
       document.body.classList.add("no-scroll");
-
     }
-
+    
 
     function closeProduct() {
 

@@ -8058,58 +8058,69 @@
 
   </div>
 
-
-  <!-- =========================
+    <!-- =========================
        PRODUCT MODAL
   ========================== -->
 
-  <div class="product-modal"
-       id="productModal">
+  <div class="product-modal" id="productModal">
 
     <div class="modal-content">
 
       <button class="modal-close"
-              id="modalClose">
-
+              id="modalClose"
+              aria-label="Close product details">
         ×
-
       </button>
 
+      <!-- PRODUCT GALLERY -->
+      <div class="modal-gallery">
 
-      <div class="modal-image"
-           id="modalImage">
+        <div class="modal-image" id="modalImage">
+          @TENACIOUS
+        </div>
 
-        @TENACIOUS
+        <div class="modal-thumbnails" id="modalThumbnails"></div>
 
       </div>
 
-
+      <!-- PRODUCT DETAILS -->
       <div class="modal-details">
 
-        <div class="modal-category"
-             id="modalCategory">
+        <div class="modal-category" id="modalCategory"></div>
 
+        <h2 id="modalName"></h2>
+
+        <div class="modal-price" id="modalPrice"></div>
+
+        <p class="modal-description" id="modalDescription"></p>
+
+        <!-- COLOUR SELECTOR -->
+        <div class="modal-option" id="modalColorContainer">
+          <label for="modalColor">Colour</label>
+          <select id="modalColor">
+            <option value="">Choose a colour</option>
+          </select>
         </div>
 
-        <h2 id="modalName">
-
-        </h2>
-
-        <div class="modal-price"
-             id="modalPrice">
-
+        <!-- SIZE SELECTOR -->
+        <div class="modal-option" id="modalSizeContainer">
+          <label for="modalSize">Size</label>
+          <select id="modalSize">
+            <option value="">Choose a size</option>
+          </select>
         </div>
 
-        <p class="modal-description"
-           id="modalDescription">
+        <!-- FULL PRODUCT PAGE -->
+        <a class="btn btn-secondary modal-full-details"
+           id="modalFullDetails"
+           href="#">
+          View Full Details
+        </a>
 
-        </p>
-
+        <!-- ADD TO CART -->
         <button class="btn btn-primary modal-add"
                 id="modalAddButton">
-
           Add to Selection
-
         </button>
 
       </div>
@@ -8117,7 +8128,7 @@
     </div>
 
   </div>
-
+  
 
   <!-- =========================
        BACK TO TOP

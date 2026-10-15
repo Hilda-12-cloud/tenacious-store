@@ -252,7 +252,7 @@
           everyday adventures and the @Tenacious spirit.
         </p>
 
-        <p class="price">$89.00</p>
+        <p class="price">$119.00</p>
 
         <label class="size-label" for="size">
           Choose Size
@@ -340,6 +340,15 @@
     function changeImage(imageSrc) {
       document.getElementById("mainProductImage").src =
         imageSrc;
+    }
+    
+    function updatePrice() {
+  const sizeSelect = document.getElementById("size");
+  const selectedOption = sizeSelect.options[sizeSelect.selectedIndex];
+  const price = Number(selectedOption.dataset.price);
+
+  document.getElementById("productPrice").textContent =
+    "$" + price.toFixed(2);
     }
 
   </script>

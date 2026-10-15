@@ -309,7 +309,9 @@
       const product = {
         name: "Women's Columbia Fleece Vest",
         size: size,
-        price: 89,
+        price: Number(
+  document.getElementById("size").selectedOptions[0].dataset.price
+),
         image: "womens-columbia-fleece-vest-black-front-6a5ee39e881e1.png",
         quantity: 1
       };

@@ -347,7 +347,16 @@
         "$" + price.toFixed(2);
 
     }
+    
+    function updateSizeImage() {
+  const size = document.getElementById("size").value;
 
+  const image = size === "13"
+    ? "laptop-sleeve-13-front-6a4d80010a1f9.png"
+    : "laptop-sleeve-15-front-6a4d80010a52c.png";
+
+  document.getElementById("mainProductImage").src = image;
+    }
 
     function addToCart() {
 

@@ -288,37 +288,37 @@
         <label class="size-label" for="size">
           Select Size
         </label>
+        
+<select id="size" class="size-select" onchange="updatePrice()">
 
-        <select id="size" class="size-select" onchange="updatePrice()">
+  <option value="XS" data-price="68">
+    XS — $68.00
+  </option>
 
-          <option value="XS" data-price="49">
-            XS — $49.00
-          </option>
+  <option value="S" data-price="68">
+    S — $68.00
+  </option>
 
-          <option value="S" data-price="49">
-            S — $49.00
-          </option>
+  <option value="M" data-price="69">
+    M — $69.00
+  </option>
 
-          <option value="M" data-price="49">
-            M — $49.00
-          </option>
+  <option value="L" data-price="70">
+    L — $70.00
+  </option>
 
-          <option value="L" data-price="51">
-            L — $51.00
-          </option>
+  <option value="XL" data-price="72">
+    XL — $72.00
+  </option>
 
-          <option value="XL" data-price="53">
-            XL — $53.00
-          </option>
+  <option value="2XL" data-price="73">
+    2XL — $73.00
+  </option>
 
-          <option value="2XL" data-price="55">
-            2XL — $55.00
-          </option>
-
-        </select>
+</select>
 
         <p class="price" id="productPrice">
-          $49.00
+          $68.00
         </p>
 
         <button class="order-button" onclick="addToCart()">

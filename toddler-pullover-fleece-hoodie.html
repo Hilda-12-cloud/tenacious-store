@@ -457,7 +457,7 @@
         class="price"
         id="display-price">
 
-        $34.95
+        $71.95
 
       </div>
 
@@ -583,40 +583,28 @@
 
         </label>
 
+<select
+  id="size"
+  class="size-select"
+  onchange="updatePrice()">
 
-        <select
-          id="size"
-          class="size-select"
-          onchange="updatePrice()">
+  <option value="2T" data-price="71">
+    2T — $71.00
+  </option>
 
-          <option
-            value="2T"
-            data-price="34.95">
+  <option value="3T" data-price="72">
+    3T — $72.00
+  </option>
 
-            2T — $34.95
+  <option value="4T" data-price="73">
+    4T — $73.00
+  </option>
 
-          </option>
+  <option value="5T" data-price="74">
+    5T — $74.00
+  </option>
 
-
-          <option
-            value="4T"
-            data-price="36.95">
-
-            4T — $36.95
-
-          </option>
-
-
-          <option
-            value="5-6T"
-            data-price="38.95">
-
-            5–6T — $38.95
-
-          </option>
-
-        </select>
-
+</select>
 
         <button
           type="button"

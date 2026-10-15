@@ -364,40 +364,18 @@
         <!-- SIZE -->
 
         <label class="size-label" for="size">Select Size</label>
+              
+<select id="size" class="size-select" onchange="updatePrice()">
+  <option value="XS" data-price="148">XS — $148.00</option>
+  <option value="S" data-price="148">S — $148.00</option>
+  <option value="M" data-price="149">M — $149.00</option>
+  <option value="L" data-price="150">L — $150.00</option>
+  <option value="XL" data-price="151">XL — $151.00</option>
+  <option value="2XL" data-price="153">2XL — $153.00</option>
+  <option value="3XL" data-price="154">3XL — $154.00</option>
+</select>
 
-        <select id="size" class="size-select" onchange="updatePrice()">
-
-          <option value="XS" data-price="69">
-            XS — $69.00
-          </option>
-
-          <option value="S" data-price="69">
-            S — $69.00
-          </option>
-
-          <option value="M" data-price="69">
-            M — $69.00
-          </option>
-
-          <option value="L" data-price="69">
-            L — $69.00
-          </option>
-
-          <option value="XL" data-price="72">
-            XL — $72.00
-          </option>
-
-          <option value="2XL" data-price="75">
-            2XL — $75.00
-          </option>
-
-          <option value="3XL" data-price="78">
-            3XL — $78.00
-          </option>
-
-        </select>
-
-        <p class="price" id="productPrice">$69.00</p>
+        <p class="price" id="productPrice">$148.00</p>
 
         <button class="order-button" onclick="addToCart()">
           Add to Cart

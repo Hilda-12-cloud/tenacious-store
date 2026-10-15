@@ -246,7 +246,7 @@
           @Tenacious look with practical space for wherever the day takes you.
         </p>
 
-        <p class="price">$49.00</p>
+        <p class="price">$42.00</p>
 
         <button class="order-button" onclick="addToCart()">
           Add to Cart
@@ -281,13 +281,14 @@
   <script>
 
     function addToCart() {
-
-      const product = {
-        name: "All-Over Print Large Tote Bag w/ Pocket",
-        price: 49,
-        image: "all-over-print-large-tote-bag-w-pocket-black-front-6a5ee5eac0bfb.png",
-        quantity: 1
-      };
+const product = {
+  name: "All-Over Print Large Tote Bag",
+  price: 42,
+  image: "all-over-print-large-tote-bag-w-pocket-black-front-6a5ee5eac0bfb.png",
+  quantity: 1,
+  color: "Black",
+  size: "One Size"
+};
 
       let cart = JSON.parse(localStorage.getItem("cart")) || [];
 

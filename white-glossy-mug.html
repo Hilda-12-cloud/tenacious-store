@@ -291,28 +291,27 @@
         <label class="size-label" for="size">
           Select Size
         </label>
+<select
+  id="size"
+  class="size-select"
+  onchange="updatePrice()">
 
-        <select
-          id="size"
-          class="size-select"
-          onchange="updatePrice()">
+  <option value="11 oz" data-price="34">
+    11 oz — $34.00
+  </option>
 
-          <option value="11 oz" data-price="18">
-            11 oz — $18.00
-          </option>
+  <option value="15 oz" data-price="36" selected>
+    15 oz — $36.00
+  </option>
 
-          <option value="15 oz" data-price="21" selected>
-            15 oz — $21.00
-          </option>
+  <option value="20 oz" data-price="38">
+    20 oz — $38.00
+  </option>
 
-          <option value="20 oz" data-price="24">
-            20 oz — $24.00
-          </option>
-
-        </select>
+</select>
 
         <p class="price" id="productPrice">
-          $21.00
+          $34.00
         </p>
 
         <button

@@ -254,23 +254,22 @@
           combining comfort, bold all-over printing and the @Tenacious spirit.
         </p>
 
-        <p class="price" id="price">$79.00</p>
+        <p class="price" id="price">$105.00</p>
 
         <label class="size-label" for="size">
           Choose Size
         </label>
+<select id="size" class="size-select" onchange="updatePrice()">
 
-        <select id="size" class="size-select" onchange="updatePrice()">
+  <option value="XS" data-price="105">XS — $105.00</option>
+  <option value="S" data-price="106">S — $106.00</option>
+  <option value="M" data-price="107">M — $107.00</option>
+  <option value="L" data-price="108">L — $108.00</option>
+  <option value="XL" data-price="109">XL — $109.00</option>
+  <option value="2XL" data-price="110">2XL — $110.00</option>
+  <option value="3XL" data-price="111">3XL — $111.00</option>
 
-          <option value="XS" data-price="79">XS — $79.00</option>
-          <option value="S" data-price="79">S — $79.00</option>
-          <option value="M" data-price="79">M — $79.00</option>
-          <option value="L" data-price="79">L — $79.00</option>
-          <option value="XL" data-price="79">XL — $79.00</option>
-          <option value="2XL" data-price="81">2XL — $81.00</option>
-          <option value="3XL" data-price="81">3XL — $81.00</option>
-
-        </select>
+</select>
 
         <p class="size-note">
           2XL and 3XL are priced slightly higher.

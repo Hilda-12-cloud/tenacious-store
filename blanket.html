@@ -409,14 +409,14 @@ const blanketCurrencySelector =
 if (blanketCurrencySelector) {
   blanketCurrencySelector.value =
     blanketCurrencyRates[savedBlanketCurrency] !== undefined
+    [savedBlanketCurrency] !== undefined
       ? savedBlanketCurrency
       : "USD";
 }
-</script>
-updateBlanketPrice();
-  </script>
 
- function addToCart() {
+updateBlanketPrice();
+
+function addToCart() {
   const sizeSelect = document.getElementById("blanketSize");
   const selectedOption =
     sizeSelect.options[sizeSelect.selectedIndex];

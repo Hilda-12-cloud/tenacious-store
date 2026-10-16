@@ -329,57 +329,92 @@ style="width:100%; padding:14px; background:#111; color:white; border:1px solid 
   </main>
 
   <script>
-    const blanketCurrencyRates = {
-USD: 1,
-GBP: 0.79,
-EUR: 0.92,
-GHS: 15.50
+const blanketCurrencyRates = {
+  USD: 1,
+  GBP: 0.79,
+  EUR: 0.92,
+  GHS: 15.50
 };
 
 const blanketCurrencySymbols = {
-USD: "$",
-GBP: "£",
-EUR: "€",
-GHS: "₵"
+  USD: "$",
+  GBP: "£",
+  EUR: "€",
+  GHS: "₵"
 };
 
 function updateBlanketPrice() {
-const sizeSelect = document.getElementById("blanketSize");
-const currencySelect = document.getElementById("blanketCurrency");
-const priceDisplay = document.getElementById("blanketPrice");
+  const sizeSelect = document.getElementById("blanketSize");
+  const currencySelect = document.getElementById("blanketCurrency");
+  const priceDisplay = document.getElementById("blanketPrice");
 
-if (!sizeSelect || !currencySelect || !priceDisplay) {
-return;
+  if (!sizeSelect || !currencySelect || !priceDisplay) {
+    return;
+  }
+
+  const selectedOption = sizeSelect.options[sizeSelect.selectedIndex];
+  const basePrice = Number(selectedOption.dataset.price);
+  const currency = currencySelect.value;
+
+  localStorage.setItem("tenaciousCurrency", currency);
+
+  const rate = blanketCurrencyRates[currency] || 1;
+  const symbol = blanketCurrencySymbols[currency] || "$";
+
+  priceDisplay.textContent =
+    symbol + (basePrice * rate).toFixed(2);
 }
 
-const selectedOption = sizeSelect.options[sizeSelect.selectedIndex];
-const basePrice = Number(selectedOption.dataset.price);
-const currency = currencySelect.value;
+function changeProductImage(imageSource) {
+  document.getElementById("mainProductImage").src = imageSource;
+}
 
-localStorage.setItem("tenaciousCurrency", currency);
+function addToCart() {
+  const sizeSelect = document.getElementById("blanketSize");
+  const selectedOption = sizeSelect.options[sizeSelect.selectedIndex];
 
-const rate = blanketCurrencyRates[currency] || 1;
-const symbol = blanketCurrencySymbols[currency] || "$";
+  const product = {
+    name: "Embroidered Premium Sherpa Blanket",
+    size: selectedOption.value,
+    price: Number(selectedOption.dataset.price),
+    image: "embroidered-premium-sherpa-blanket-black-front-6a5eed73c1ced.png",
+    quantity: 1
+  };
 
-priceDisplay.textContent =
-symbol + (basePrice * rate).toFixed(2);
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  const existingProduct = cart.find(
+    item =>
+      item.name === product.name &&
+      item.size === product.size
+  );
+
+  if (existingProduct) {
+    existingProduct.quantity += 1;
+  } else {
+    cart.push(product);
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+
+  window.location.href = "cart.html";
 }
 
 const savedBlanketCurrency =
-localStorage.getItem("tenaciousCurrency") || "USD";
+  localStorage.getItem("tenaciousCurrency") || "USD";
 
 const blanketCurrencySelector =
-document.getElementById("blanketCurrency");
+  document.getElementById("blanketCurrency");
 
 if (blanketCurrencySelector) {
-blanketCurrencySelector.value =
-blanketCurrencyRates[savedBlanketCurrency]
-? savedBlanketCurrency
-: "USD";
+  blanketCurrencySelector.value =
+    blanketCurrencyRates[savedBlanketCurrency] !== undefined
+      ? savedBlanketCurrency
+      : "USD";
 }
 
 updateBlanketPrice();
-</script>
+  </script>
 
  function addToCart() {
   const sizeSelect = document.getElementById("blanketSize");

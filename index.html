@@ -8909,53 +8909,94 @@ function formatPrice(price) {
 
 }
 
-
 /*
-  UPDATE CURRENCY SELECTOR
+  UPDATE CURRENCY SELECTORS
 */
 
 const currencySelector =
-  document.getElementById(
-    "currencySelector"
+  document.getElementById("currencySelector");
+
+const modalCurrencySelector =
+  document.getElementById("modalCurrencySelector");
+
+
+/*
+  APPLY SELECTED CURRENCY
+*/
+
+function applyCurrency(currency) {
+
+  selectedCurrency = currency;
+
+  localStorage.setItem(
+    "tenaciousCurrency",
+    selectedCurrency
   );
 
+  // Keep both selectors synchronized.
+  if (currencySelector) {
+    currencySelector.value = selectedCurrency;
+  }
+
+  if (modalCurrencySelector) {
+    modalCurrencySelector.value = selectedCurrency;
+  }
+
+  // Refresh homepage products and cart.
+  if (typeof renderProducts === "function") {
+    renderProducts();
+  }
+
+  if (typeof renderCart === "function") {
+    renderCart();
+  }
+
+  // Refresh the currently open Quick View price.
+  if (currentProduct) {
+
+    const modalPrice =
+      document.getElementById("modalPrice");
+
+    if (modalPrice) {
+      modalPrice.textContent =
+        formatPrice(currentProduct.price);
+    }
+
+  }
+
+}
+
+
+/*
+  HOMEPAGE CURRENCY SELECTOR
+*/
 
 if (currencySelector) {
 
-  currencySelector.value =
-    selectedCurrency;
-
+  currencySelector.value = selectedCurrency;
 
   currencySelector.addEventListener(
     "change",
     function(event) {
+      applyCurrency(event.target.value);
+    }
+  );
 
-      selectedCurrency =
-        event.target.value;
-
-
-      localStorage.setItem(
-        "tenaciousCurrency",
-        selectedCurrency
-      );
+}
 
 
-      renderProducts();
+/*
+  QUICK VIEW CURRENCY SELECTOR
+*/
 
-      renderCart();
+if (modalCurrencySelector) {
 
+  modalCurrencySelector.value = selectedCurrency;
 
-      if (currentProduct) {
-
-        document
-          .getElementById("modalPrice")
-          .textContent =
-            formatPrice(
-              currentProduct.price
-            );
-
-      }
-
+  modalCurrencySelector.addEventListener(
+    "change",
+    function(event) {
+      applyCurrency(event.target.value);
     }
   );
 

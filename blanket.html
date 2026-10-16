@@ -381,39 +381,37 @@ blanketCurrencyRates[savedBlanketCurrency]
 updateBlanketPrice();
 </script>
 
-    function addToCart() {
+ function addToCart() {
+  const sizeSelect = document.getElementById("blanketSize");
+  const selectedOption =
+    sizeSelect.options[sizeSelect.selectedIndex];
 
-      const product = {
-  name: "Embroidered Premium Sherpa Blanket",
-  price: 99,
-  image: "embroidered-premium-sherpa-blanket-black-front-6a5eed73c1ced.png",
-  quantity: 1
-};
+  const product = {
+    name: "Embroidered Premium Sherpa Blanket",
+    size: selectedOption.value,
+    price: Number(selectedOption.dataset.price),
+    image: "embroidered-premium-sherpa-blanket-black-front-6a5eed73c1ced.png",
+    quantity: 1
+  };
 
-      let cart =
-        JSON.parse(localStorage.getItem("cart")) || [];
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-      const existingProduct =
-        cart.find(item => item.name === product.name);
+  const existingProduct = cart.find(
+    item =>
+      item.name === product.name &&
+      item.size === product.size
+  );
 
-      if (existingProduct) {
-        existingProduct.quantity += 1;
-      } else {
-        cart.push(product);
-      }
+  if (existingProduct) {
+    existingProduct.quantity += 1;
+  } else {
+    cart.push(product);
+  }
 
-      localStorage.setItem(
-        "cart",
-        JSON.stringify(cart)
-      );
+  localStorage.setItem("cart", JSON.stringify(cart));
 
-      window.location.href = "cart.html";
-    }
-
-    function changeProductImage(imageSource) {
-      document.getElementById("mainProductImage").src = imageSource;
-    }
-
+  window.location.href = "cart.html";
+}
   </script>
 
 </body>

@@ -279,23 +279,23 @@
           designed for bold expression, comfort and the @Tenacious spirit.
         </p>
 
-        <p class="price" id="price">$78.00</p>
+        <p class="price" id="price">$118.00</p>
 
         <label class="size-label" for="size">
           Choose Size
         </label>
+        
+<select id="size" class="size-select" onchange="updatePrice()">
 
-        <select id="size" class="size-select" onchange="updatePrice()">
+  <option value="XS" data-price="118">XS — $118.00</option>
+  <option value="S" data-price="119">S — $119.00</option>
+  <option value="M" data-price="120">M — $120.00</option>
+  <option value="L" data-price="121">L — $121.00</option>
+  <option value="XL" data-price="122">XL — $122.00</option>
+  <option value="2XL" data-price="123">2XL — $123.00</option>
+  <option value="3XL" data-price="124">3XL — $124.00</option>
 
-          <option value="XS" data-price="78">XS — $78.00</option>
-          <option value="S" data-price="78">S — $78.00</option>
-          <option value="M" data-price="78">M — $78.00</option>
-          <option value="L" data-price="78">L — $78.00</option>
-          <option value="XL" data-price="78">XL — $78.00</option>
-          <option value="2XL" data-price="80">2XL — $80.00</option>
-          <option value="3XL" data-price="80">3XL — $80.00</option>
-
-        </select>
+</select>
 
         <p class="size-note">
           2XL and 3XL are priced slightly higher.

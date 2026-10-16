@@ -276,8 +276,21 @@
   </option>
 
 </select>
+<p class="price" id="blanketPrice">$99.00</p><div style="margin-top:-15px; margin-bottom:25px;">
+  <label for="blanketCurrency" style="display:block; margin-bottom:8px; font-weight:bold;">
+    Select Currency
+  </label><select
+id="blanketCurrency"
+onchange="updateBlanketPrice()"
+style="width:100%; padding:14px; background:#111; color:white; border:1px solid #444; font-size:16px;">
 
-<p class="price" id="blanketPrice">$99.00</p>
+<option value="USD">USD $</option>
+<option value="GHS">GHS ₵</option>
+<option value="GBP">GBP £</option>
+<option value="EUR">EUR €</option>
+
+  </select>
+</div>
 
         <button
           class="order-button"

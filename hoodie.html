@@ -677,19 +677,52 @@ const sizePrices = {
        UPDATE PRICE
        ========================================================== */
 
-    function updatePrice() {
+    const productCurrencyRates = {
+  USD: 1,
+  GBP: 0.79,
+  EUR: 0.92,
+  GHS: 15.50
+};
 
-      const size =
-        document.getElementById("size").value;
+const productCurrencySymbols = {
+  USD: "$",
+  GBP: "£",
+  EUR: "€",
+  GHS: "₵"
+};
 
-      const price =
-        sizePrices[size];
+function updatePrice() {
+  const size = document.getElementById("size").value;
+  const basePrice = sizePrices[size];
 
-      document.querySelector(".price").textContent =
-        "$" + price.toFixed(2);
+  const currencySelector =
+    document.getElementById("productCurrencySelector");
 
-    }
+  const currency = currencySelector
+    ? currencySelector.value
+    : (localStorage.getItem("tenaciousCurrency") || "USD");
 
+  const rate = productCurrencyRates[currency] || 1;
+  const symbol = productCurrencySymbols[currency] || "$";
+
+  document.getElementById("productPrice").textContent =
+    symbol + (basePrice * rate).toFixed(2);
+
+  localStorage.setItem("tenaciousCurrency", currency);
+}
+
+const productCurrencySelector =
+  document.getElementById("productCurrencySelector");
+
+if (productCurrencySelector) {
+  const savedCurrency =
+    localStorage.getItem("tenaciousCurrency") || "USD";
+
+  productCurrencySelector.value =
+    productCurrencyRates[savedCurrency] !== undefined
+      ? savedCurrency
+      : "USD";
+}
 
     /* ==========================================================
        CHANGE MAIN PRODUCT IMAGE

@@ -251,20 +251,42 @@
           A soft, versatile fleece layer made for cold-weather movement,
           everyday adventures and the @Tenacious spirit.
         </p>
+<p class="price" id="productPrice">$119.00</p>
 
-        <p class="price">$119.00</p>
+<label
+  class="size-label"
+  for="productCurrencySelector">
+  Select Currency
+</label>
 
-        <label class="size-label" for="size">
-          Choose Size
-        </label>
-        
-<select id="size" class="size-select" onchange="updatePrice()">
+<select
+  id="productCurrencySelector"
+  class="size-select"
+  onchange="updatePrice()">
+
+  <option value="USD">USD $</option>
+  <option value="GHS">GHS ₵</option>
+  <option value="GBP">GBP £</option>
+  <option value="EUR">EUR €</option>
+
+</select>
+
+<label class="size-label" for="size">
+  Choose Size
+</label>
+
+<select
+  id="size"
+  class="size-select"
+  onchange="updatePrice()">
+
   <option value="XS" data-price="119">XS — $119.00</option>
   <option value="S" data-price="121">S — $121.00</option>
   <option value="M" data-price="123">M — $123.00</option>
   <option value="L" data-price="125">L — $125.00</option>
   <option value="XL" data-price="127">XL — $127.00</option>
   <option value="2XL" data-price="129">2XL — $129.00</option>
+
 </select>
 
         <button class="order-button" onclick="addToCart()">

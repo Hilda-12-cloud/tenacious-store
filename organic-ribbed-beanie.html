@@ -922,11 +922,18 @@ function updateColor() {
         "checkout.html";
 
     }
+/* Initialize saved currency and product price */
 
+const currencySelector =
+  document.getElementById("productCurrencySelector");
 
-    /* Set initial price */
+const savedCurrency =
+  localStorage.getItem("tenaciousCurrency") || "USD";
 
-    updateColor();
+currencySelector.value =
+  productCurrencyRates[savedCurrency] ? savedCurrency : "USD";
+
+updateColor();
 
   </script>
 

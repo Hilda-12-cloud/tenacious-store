@@ -330,17 +330,48 @@
 
   <script>
 
-    function updatePrice() {
+    const productCurrencyRates = {
+  USD: 1,
+  GBP: 0.79,
+  EUR: 0.92,
+  GHS: 15.50
+};
 
-      const sizeSelect = document.getElementById("size");
-      const selectedOption =
-        sizeSelect.options[sizeSelect.selectedIndex];
+const productCurrencySymbols = {
+  USD: "$",
+  GBP: "£",
+  EUR: "€",
+  GHS: "₵"
+};
 
-      const price = selectedOption.dataset.price;
+function updatePrice() {
+  const sizeSelect = document.getElementById("size");
+  const selectedOption = sizeSelect.options[sizeSelect.selectedIndex];
 
-      document.getElementById("price").textContent =
-        "$" + Number(price).toFixed(2);
-    }
+  const basePrice = Number(selectedOption.dataset.price);
+  const currencySelector = document.getElementById("productCurrencySelector");
+  const currency = currencySelector.value;
+
+  const convertedPrice = basePrice * productCurrencyRates[currency];
+
+  document.getElementById("price").textContent =
+    productCurrencySymbols[currency] + convertedPrice.toFixed(2);
+
+  localStorage.setItem("tenaciousCurrency", currency);
+}
+
+function initializeCurrency() {
+  const selector = document.getElementById("productCurrencySelector");
+  const savedCurrency = localStorage.getItem("tenaciousCurrency") || "USD";
+
+  selector.value = productCurrencyRates[savedCurrency]
+    ? savedCurrency
+    : "USD";
+
+  updatePrice();
+}
+
+initializeCurrency();
 
     function addToCart() {
 

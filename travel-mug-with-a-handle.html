@@ -343,22 +343,31 @@ const productCurrencySymbols = {
   EUR: "€",
   GHS: "₵"
 };
-
 function updatePrice() {
   const sizeSelect = document.getElementById("size");
-  const selectedOption = sizeSelect.options[sizeSelect.selectedIndex];
-
-  const basePrice = Number(selectedOption.dataset.price);
   const currencySelector = document.getElementById("productCurrencySelector");
   const currency = currencySelector.value;
+  const symbol = productCurrencySymbols[currency];
+  const rate = productCurrencyRates[currency];
 
-  const convertedPrice = basePrice * productCurrencyRates[currency];
+  const selectedOption = sizeSelect.options[sizeSelect.selectedIndex];
+  const basePrice = Number(selectedOption.dataset.price);
 
+  // Update the main product price
   document.getElementById("price").textContent =
-    productCurrencySymbols[currency] + convertedPrice.toFixed(2);
+    symbol + (basePrice * rate).toFixed(2);
 
+  // Update both size options
+  Array.from(sizeSelect.options).forEach(function(option) {
+    const optionPrice = Number(option.dataset.price);
+
+    option.textContent =
+      option.value + " — " + symbol + (optionPrice * rate).toFixed(2);
+  });
+
+  // Save the selected currency
   localStorage.setItem("tenaciousCurrency", currency);
-}
+    }
 
 function initializeCurrency() {
   const selector = document.getElementById("productCurrencySelector");

@@ -693,33 +693,66 @@
     /* =========================
        CHANGE COLOUR
        ========================= */
+const productCurrencyRates = {
+  USD: 1,
+  GBP: 0.79,
+  EUR: 0.92,
+  GHS: 15.50
+};
 
-    function updateColor() {
+const productCurrencySymbols = {
+  USD: "$",
+  GBP: "£",
+  EUR: "€",
+  GHS: "₵"
+};
 
-      const color =
-        document.getElementById("color").value;
+function updatePrice() {
+  const currencySelector =
+    document.getElementById("productCurrencySelector");
 
-      const selected =
-        colorOptions[color];
+  const currency = currencySelector.value;
 
+  const color =
+    document.getElementById("color").value;
 
-      if (!selected) {
-        return;
-      }
+  const selected = colorOptions[color];
 
+  if (!selected) return;
 
-      document.getElementById(
-        "mainProductImage"
-      ).src = selected.image;
+  const convertedPrice =
+    selected.price * productCurrencyRates[currency];
 
+  document.getElementById("price").textContent =
+    productCurrencySymbols[currency] +
+    convertedPrice.toFixed(2);
 
-      document.getElementById(
-        "price"
-      ).textContent =
-        "$" + selected.price.toFixed(2);
+  // Update the displayed price for each colour.
+  const colorSelect = document.getElementById("color");
 
-    }
+  Array.from(colorSelect.options).forEach(function(option) {
+    const colourPrice = colorOptions[option.value].price;
 
+    option.textContent =
+      option.value + " — " +
+      productCurrencySymbols[currency] +
+      (colourPrice * productCurrencyRates[currency]).toFixed(2);
+  });
+
+  localStorage.setItem("tenaciousCurrency", currency);
+}
+
+function updateColor() {
+  const color = document.getElementById("color").value;
+  const selected = colorOptions[color];
+
+  if (!selected) return;
+
+  document.getElementById("mainProductImage").src =
+    selected.image;
+
+  updatePrice();
+}
 
     /* =========================
        GET QUANTITY

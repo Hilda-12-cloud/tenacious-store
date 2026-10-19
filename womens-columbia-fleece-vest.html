@@ -382,19 +382,22 @@ const productCurrencySymbols = {
 function updatePrice() {
   const sizeSelect = document.getElementById("size");
   const currencySelector = document.getElementById("productCurrencySelector");
-  const currency = currencySelector.value;
+  const priceDisplay = document.getElementById("productPrice");
 
+  if (!sizeSelect || !currencySelector || !priceDisplay) {
+    return;
+  }
+
+  const currency = currencySelector.value;
   const rate = productCurrencyRates[currency];
   const symbol = productCurrencySymbols[currency];
 
   const selectedOption = sizeSelect.options[sizeSelect.selectedIndex];
   const basePrice = Number(selectedOption.dataset.price);
 
-  // Update the main product price
-  document.getElementById("productPrice").textContent =
+  priceDisplay.textContent =
     symbol + (basePrice * rate).toFixed(2);
 
-  // Update every size option
   Array.from(sizeSelect.options).forEach(function(option) {
     const originalPrice = Number(option.dataset.price);
 
@@ -403,7 +406,6 @@ function updatePrice() {
       symbol + (originalPrice * rate).toFixed(2);
   });
 
-  // Remember the selected currency
   localStorage.setItem("tenaciousCurrency", currency);
 }
 
@@ -411,16 +413,15 @@ function initializeCurrency() {
   const selector = document.getElementById("productCurrencySelector");
   const savedCurrency = localStorage.getItem("tenaciousCurrency") || "USD";
 
-  selector.value = productCurrencyRates[savedCurrency]
+  selector.value = productCurrencyRates[savedCurrency] !== undefined
     ? savedCurrency
     : "USD";
 
   updatePrice();
 }
 
-initializeCurrency();
-
-  </script>
+document.addEventListener("DOMContentLoaded", initializeCurrency);
+ </script>
 
 </body>
 

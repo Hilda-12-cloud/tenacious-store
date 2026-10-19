@@ -393,6 +393,41 @@
       ).src = imageSource;
 
     }
+    const productCurrencyRates = {
+  USD: 1,
+  GBP: 0.79,
+  EUR: 0.92,
+  GHS: 15.50
+};
+
+const productCurrencySymbols = {
+  USD: "$",
+  GBP: "£",
+  EUR: "€",
+  GHS: "₵"
+};
+
+function updatePrice() {
+  const selector = document.getElementById("productCurrencySelector");
+  const priceDisplay = document.getElementById("productPrice");
+
+  const currency = selector.value;
+  const basePrice = 41;
+  const convertedPrice = basePrice * productCurrencyRates[currency];
+
+  priceDisplay.textContent =
+    productCurrencySymbols[currency] + convertedPrice.toFixed(2);
+
+  localStorage.setItem("tenaciousCurrency", currency);
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  const selector = document.getElementById("productCurrencySelector");
+  const savedCurrency = localStorage.getItem("tenaciousCurrency") || "USD";
+
+  selector.value = savedCurrency;
+  updatePrice();
+});
 
   </script>
 

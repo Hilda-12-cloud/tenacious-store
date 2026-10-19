@@ -384,9 +384,7 @@ function updatePrice() {
   const currencySelector = document.getElementById("productCurrencySelector");
   const priceDisplay = document.getElementById("productPrice");
 
-  if (!sizeSelect || !currencySelector || !priceDisplay) {
-    return;
-  }
+  if (!sizeSelect || !currencySelector || !priceDisplay) return;
 
   const currency = currencySelector.value;
   const rate = productCurrencyRates[currency];
@@ -411,16 +409,19 @@ function updatePrice() {
 
 function initializeCurrency() {
   const selector = document.getElementById("productCurrencySelector");
-  const savedCurrency = localStorage.getItem("tenaciousCurrency") || "USD";
 
-  selector.value = productCurrencyRates[savedCurrency] !== undefined
-    ? savedCurrency
-    : "USD";
+  const savedCurrency =
+    localStorage.getItem("tenaciousCurrency") || "USD";
+
+  selector.value =
+    productCurrencyRates[savedCurrency] !== undefined
+      ? savedCurrency
+      : "USD";
 
   updatePrice();
 }
 
-document.addEventListener("DOMContentLoaded", initializeCurrency);
+initializeCurrency();
  </script>
 
 </body>

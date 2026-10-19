@@ -584,6 +584,18 @@
   });
 
   localStorage.setItem("tenaciousCurrency", currency);
+    function initializeCurrency() {
+  const selector = document.getElementById("productCurrencySelector");
+  const savedCurrency = localStorage.getItem("tenaciousCurrency") || "USD";
+
+  selector.value = ["USD", "GHS", "GBP", "EUR"].includes(savedCurrency)
+    ? savedCurrency
+    : "USD";
+
+  updatePrice();
+}
+
+initializeCurrency();
   }
     /* =========================
        ADD TO CART

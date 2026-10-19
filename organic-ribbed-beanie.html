@@ -464,14 +464,29 @@
           made for those who remain tenacious by choice.
         </p>
 
+<div class="price" id="price">
+  $64.00
+</div>
 
-        <div
-          class="price"
-          id="price">
+<div style="margin-top:-15px; margin-bottom:25px;">
+  <label
+    for="productCurrencySelector"
+    style="display:block; margin-bottom:8px; font-weight:bold;">
+    Select Currency
+  </label>
 
-          $64.00
+  <select
+    id="productCurrencySelector"
+    onchange="updatePrice()"
+    style="width:100%; max-width:320px; padding:14px; background:#111; color:white; border:1px solid #444; font-size:16px;">
 
-        </div>
+    <option value="USD">USD $</option>
+    <option value="GHS">GHS ₵</option>
+    <option value="GBP">GBP £</option>
+    <option value="EUR">EUR €</option>
+
+  </select>
+</div>
 
 
         <div class="divider"></div>

@@ -496,6 +496,18 @@ function updatePrice() {
       (price * productCurrencyRates[currency]).toFixed(2);
   });
               }
+          const currencySelector =
+  document.getElementById("productCurrencySelector");
+
+const savedCurrency =
+  localStorage.getItem("tenaciousCurrency") || "USD";
+
+currencySelector.value =
+  productCurrencyRates[savedCurrency] !== undefined
+    ? savedCurrency
+    : "USD";
+
+updatePrice();
 
 
     function addToCart() {

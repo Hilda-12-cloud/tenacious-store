@@ -350,21 +350,62 @@
 
   <script>
 
-    function updatePrice() {
+    const productCurrencyRates = {
+  USD: 1,
+  GBP: 0.79,
+  EUR: 0.92,
+  GHS: 15.50
+};
 
-      const sizeSelect =
-        document.getElementById("size");
+const productCurrencySymbols = {
+  USD: "$",
+  GBP: "£",
+  EUR: "€",
+  GHS: "₵"
+};
 
-      const selectedOption =
-        sizeSelect.options[sizeSelect.selectedIndex];
+function updatePrice() {
+  const sizeSelect = document.getElementById("size");
+  const currencySelect =
+    document.getElementById("productCurrencySelector");
+  const priceDisplay = document.getElementById("productPrice");
 
-      const price =
-        Number(selectedOption.dataset.price);
+  if (!sizeSelect || !priceDisplay) {
+    return;
+  }
 
-      document.getElementById("productPrice").textContent =
-        "$" + price.toFixed(2);
+  const selectedOption =
+    sizeSelect.options[sizeSelect.selectedIndex];
 
-    }
+  const basePrice = Number(selectedOption.dataset.price);
+
+  const currency = currencySelect
+    ? currencySelect.value
+    : (localStorage.getItem("tenaciousCurrency") || "USD");
+
+  const rate = productCurrencyRates[currency] || 1;
+  const symbol = productCurrencySymbols[currency] || "$";
+
+  priceDisplay.textContent =
+    symbol + (basePrice * rate).toFixed(2);
+
+  localStorage.setItem("tenaciousCurrency", currency);
+}
+
+const productCurrencySelector =
+  document.getElementById("productCurrencySelector");
+
+if (productCurrencySelector) {
+  const savedCurrency =
+    localStorage.getItem("tenaciousCurrency") || "USD";
+
+  productCurrencySelector.value =
+    productCurrencyRates[savedCurrency] !== undefined
+      ? savedCurrency
+      : "USD";
+}
+
+updatePrice();
     
     function updateSizeImage() {
   const size = document.getElementById("size").value;

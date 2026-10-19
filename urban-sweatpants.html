@@ -548,55 +548,43 @@
     /* =========================
        UPDATE SIZE PRICE
        ========================= */
-
-const productCurrencyRates = {
-  USD: 1,
-  GBP: 0.79,
-  EUR: 0.92,
-  GHS: 15.50
-};
-
-const productCurrencySymbols = {
-  USD: "$",
-  GBP: "£",
-  EUR: "€",
-  GHS: "₵"
-};
-
-function updatePrice() {
+    
+  function updatePrice() {
   const sizeSelect = document.getElementById("size");
-  const selectedOption = sizeSelect.options[sizeSelect.selectedIndex];
+  const currencySelector = document.getElementById("productCurrencySelector");
+  const priceDisplay = document.getElementById("price");
 
+  const rates = {
+    USD: 1,
+    GBP: 0.79,
+    EUR: 0.92,
+    GHS: 15.50
+  };
+
+  const symbols = {
+    USD: "$",
+    GBP: "£",
+    EUR: "€",
+    GHS: "₵"
+  };
+
+  const currency = currencySelector.value;
+  const selectedOption = sizeSelect.options[sizeSelect.selectedIndex];
   const basePrice = Number(selectedOption.dataset.price);
 
-  const currencySelector = document.getElementById("productCurrencySelector");
-  const currency = currencySelector ? currencySelector.value : "USD";
+  priceDisplay.textContent =
+    symbols[currency] + (basePrice * rates[currency]).toFixed(2);
 
-  const convertedPrice = basePrice * productCurrencyRates[currency];
-  const symbol = productCurrencySymbols[currency];
-
-  document.getElementById("price").textContent =
-    symbol + convertedPrice.toFixed(2);
+  // Update every size option while keeping its original USD price.
+  Array.from(sizeSelect.options).forEach(option => {
+    const originalPrice = Number(option.dataset.price);
+    option.textContent =
+      option.value + " — " +
+      symbols[currency] + (originalPrice * rates[currency]).toFixed(2);
+  });
 
   localStorage.setItem("tenaciousCurrency", currency);
-}
-
-function initializeCurrency() {
-  const currencySelector = document.getElementById("productCurrencySelector");
-
-  if (!currencySelector) return;
-
-  const savedCurrency = localStorage.getItem("tenaciousCurrency") || "USD";
-
-  currencySelector.value = productCurrencyRates[savedCurrency]
-    ? savedCurrency
-    : "USD";
-
-  updatePrice();
-}
-
-initializeCurrency();
-
+  }
     /* =========================
        ADD TO CART
        ========================= */

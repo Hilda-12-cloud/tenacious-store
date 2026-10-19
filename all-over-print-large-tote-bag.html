@@ -246,8 +246,27 @@
           resilience. The All-Over Print Large Tote Bag combines a bold
           @Tenacious look with practical space for wherever the day takes you.
         </p>
+        <p class="price" id="productPrice">$42.00</p>
 
-        <p class="price">$42.00</p>
+<div style="margin-top:-15px; margin-bottom:25px;">
+  <label
+    for="productCurrencySelector"
+    style="display:block; margin-bottom:8px; font-weight:bold;">
+    Select Currency
+  </label>
+
+  <select
+    id="productCurrencySelector"
+    onchange="updatePrice()"
+    style="width:100%; padding:14px; background:#111; color:white; border:1px solid #444; font-size:16px;">
+
+    <option value="USD">USD $</option>
+    <option value="GHS">GHS ₵</option>
+    <option value="GBP">GBP £</option>
+    <option value="EUR">EUR €</option>
+
+  </select>
+</div>
 
         <button class="order-button" onclick="addToCart()">
           Add to Cart

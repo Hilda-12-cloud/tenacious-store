@@ -431,7 +431,53 @@
 
 
   <script>
+const productCurrencyRates = {
+  USD: 1,
+  GBP: 0.79,
+  EUR: 0.92,
+  GHS: 15.50
+};
 
+const productCurrencySymbols = {
+  USD: "$",
+  GBP: "£",
+  EUR: "€",
+  GHS: "₵"
+};
+
+function updatePrice() {
+  const currencySelect =
+    document.getElementById("productCurrencySelector");
+
+  const currency = currencySelect.value;
+  const basePrice = 51;
+
+  const convertedPrice =
+    basePrice * productCurrencyRates[currency];
+
+  document.getElementById("productPrice").textContent =
+    productCurrencySymbols[currency] +
+    convertedPrice.toFixed(2);
+
+  localStorage.setItem("tenaciousCurrency", currency);
+}
+
+function initializeCurrency() {
+  const currencySelect =
+    document.getElementById("productCurrencySelector");
+
+  const savedCurrency =
+    localStorage.getItem("tenaciousCurrency") || "USD";
+
+  currencySelect.value =
+    productCurrencyRates[savedCurrency] !== undefined
+      ? savedCurrency
+      : "USD";
+
+  updatePrice();
+}
+
+initializeCurrency();
     function updateProductImage() {
 
       const colorSelect =

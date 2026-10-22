@@ -268,10 +268,23 @@
           designed to protect your device while carrying the
           @Tenacious spirit everywhere you go.
         </p>
+<label class="model-label" for="productCurrencySelector">
+  Select Currency
+</label>
 
-        <p class="price" id="price">
-          $38.00
-        </p>
+<select
+  id="productCurrencySelector"
+  class="model-select"
+  onchange="updatePrice()">
+
+  <option value="USD">USD — $</option>
+  <option value="GHS">GHS — ₵</option>
+  <option value="GBP">GBP — £</option>
+  <option value="EUR">EUR — €</option>
+
+</select>
+
+<p class="price" id="price">$38.00</p>
 
 
         <!-- MODEL SELECTOR -->

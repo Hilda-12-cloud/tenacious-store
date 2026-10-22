@@ -368,10 +368,24 @@
           A compact, modern desk essential designed for smooth movement
           and everyday precision.
         </p>
+<label for="productCurrencySelector" class="quantity-label">
+  Currency
+</label>
 
-        <div class="price">
-          $32.00
-        </div>
+<select
+  id="productCurrencySelector"
+  class="quantity"
+  style="width: 100%;"
+  onchange="updatePrice()">
+  <option value="USD">USD — $</option>
+  <option value="GHS">GHS — ₵</option>
+  <option value="GBP">GBP — £</option>
+  <option value="EUR">EUR — €</option>
+</select>
+
+<div class="price" id="productPrice">
+  $32.00
+</div>
 
         <div class="divider"></div>
 

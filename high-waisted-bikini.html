@@ -278,8 +278,21 @@
           A flattering high-waisted bikini made with recycled materials,
           designed for bold expression, comfort and the @Tenacious spirit.
         </p>
+<label class="size-label" for="productCurrencySelector">
+  Select Currency
+</label>
 
-        <p class="price" id="price">$118.00</p>
+<select
+  id="productCurrencySelector"
+  class="size-select"
+  onchange="updatePrice()">
+  <option value="USD">USD — $</option>
+  <option value="GHS">GHS — ₵</option>
+  <option value="GBP">GBP — £</option>
+  <option value="EUR">EUR — €</option>
+</select>
+
+<p class="price" id="price">$118.00</p>
 
         <label class="size-label" for="size">
           Choose Size

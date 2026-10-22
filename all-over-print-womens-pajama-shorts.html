@@ -389,51 +389,28 @@ const productCurrencySymbols = {
 
 function updatePrice() {
   const sizeSelect = document.getElementById("size");
-  const currencySelect =
-    document.getElementById("productCurrencySelector");
+  const currencySelect = document.getElementById("productCurrencySelector");
+  const selectedOption = sizeSelect.options[sizeSelect.selectedIndex];
 
-  const selectedOption =
-    sizeSelect.options[sizeSelect.selectedIndex];
-
-  const basePrice = Number(selectedOption.dataset.price);
   const currency = currencySelect.value;
+  const basePrice = Number(selectedOption.getAttribute("data-price"));
 
-  const convertedPrice =
-    basePrice * productCurrencyRates[currency];
+  const convertedPrice = basePrice * productCurrencyRates[currency];
 
   document.getElementById("productPrice").textContent =
-    productCurrencySymbols[currency] +
-    convertedPrice.toFixed(2);
+    productCurrencySymbols[currency] + convertedPrice.toFixed(2);
 
-  // Update displayed prices for every size.
   Array.from(sizeSelect.options).forEach(function(option) {
-    const price = Number(option.dataset.price);
+    const originalPrice = Number(option.getAttribute("data-price"));
 
     option.textContent =
       option.value + " — " +
       productCurrencySymbols[currency] +
-      (price * productCurrencyRates[currency]).toFixed(2);
+      (originalPrice * productCurrencyRates[currency]).toFixed(2);
   });
 
   localStorage.setItem("tenaciousCurrency", currency);
-}
-
-function initializeCurrency() {
-  const currencySelect =
-    document.getElementById("productCurrencySelector");
-
-  const savedCurrency =
-    localStorage.getItem("tenaciousCurrency") || "USD";
-
-  currencySelect.value =
-    productCurrencyRates[savedCurrency] !== undefined
-      ? savedCurrency
-      : "USD";
-
-  updatePrice();
-}
-
-initializeCurrency();
+    }
 
 
     function addToCart() {

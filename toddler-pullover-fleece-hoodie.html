@@ -452,14 +452,29 @@
         Rabbit Skins 3326
       </p>
 
+<label
+  class="selector-label"
+  for="productCurrencySelector">
+  Select Currency
+</label>
 
-      <div
-        class="price"
-        id="display-price">
+<select
+  id="productCurrencySelector"
+  class="size-select"
+  onchange="updatePrice()">
 
-        $71.00
+  <option value="USD">USD — $</option>
+  <option value="GHS">GHS — ₵</option>
+  <option value="GBP">GBP — £</option>
+  <option value="EUR">EUR — €</option>
 
-      </div>
+</select>
+
+<div
+  class="price"
+  id="display-price">
+  $71.00
+</div>
 
 
       <div class="section">

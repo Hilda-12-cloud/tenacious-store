@@ -282,7 +282,23 @@
 
 </select>
 
-        <p class="price" id="productPrice">$115.00</p>
+        <label class="size-label" for="productCurrencySelector">
+  Select Currency
+</label>
+
+<select
+  id="productCurrencySelector"
+  class="size-select"
+  onchange="updatePrice()">
+
+  <option value="USD">USD — $</option>
+  <option value="GHS">GHS — ₵</option>
+  <option value="GBP">GBP — £</option>
+  <option value="EUR">EUR — €</option>
+
+</select>
+
+<p class="price" id="productPrice">$115.00</p>
 
         <button class="order-button" onclick="addToCart()">
           Add to Cart

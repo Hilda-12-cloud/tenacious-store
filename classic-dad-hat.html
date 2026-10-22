@@ -361,10 +361,23 @@
         <div class="size-box">
           <strong>Size:</strong> One Size
         </div>
+        <label class="option-label" for="productCurrencySelector">
+  Select Currency
+</label>
 
-        <p class="price">
-          $51.00
-        </p>
+<select
+  id="productCurrencySelector"
+  class="color-select"
+  onchange="updatePrice()">
+
+  <option value="USD">USD — $</option>
+  <option value="GHS">GHS — ₵</option>
+  <option value="GBP">GBP — £</option>
+  <option value="EUR">EUR — €</option>
+
+</select>
+
+<p class="price" id="productPrice">$51.00</p>
 
         <button
           class="order-button"

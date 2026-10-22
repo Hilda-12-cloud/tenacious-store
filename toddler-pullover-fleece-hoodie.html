@@ -996,32 +996,75 @@
 
     }
 
+/*
+  SIZE PRICE AND CURRENCY CONVERSION
+*/
 
-    /*
-      SIZE PRICE
-    */
+const productCurrencyRates = {
+  USD: 1,
+  GBP: 0.79,
+  EUR: 0.92,
+  GHS: 15.50
+};
 
-    function updatePrice() {
+const productCurrencySymbols = {
+  USD: "$",
+  GBP: "£",
+  EUR: "€",
+  GHS: "₵"
+};
 
-      const sizeSelect =
-        document.getElementById("size");
+function updatePrice() {
+  const sizeSelect = document.getElementById("size");
+  const currencySelect = document.getElementById("productCurrencySelector");
 
-      const selectedOption =
-        sizeSelect.options[
-          sizeSelect.selectedIndex
-        ];
+  const selectedOption =
+    sizeSelect.options[sizeSelect.selectedIndex];
 
-      const price =
-        parseFloat(
-          selectedOption.dataset.price
-        );
+  const basePrice = Number(selectedOption.dataset.price);
+  const currency = currencySelect.value;
 
-      document.getElementById(
-        "display-price"
-      ).textContent =
-        "$" + price.toFixed(2);
+  const convertedPrice =
+    basePrice * productCurrencyRates[currency];
 
-    }
+  document.getElementById("display-price").textContent =
+    productCurrencySymbols[currency] +
+    convertedPrice.toFixed(2);
+
+  // Update the size options to show converted prices.
+  Array.from(sizeSelect.options).forEach(function(option) {
+    const optionPrice = Number(option.dataset.price);
+
+    option.textContent =
+      option.value + " — " +
+      productCurrencySymbols[currency] +
+      (optionPrice * productCurrencyRates[currency]).toFixed(2);
+  });
+
+  localStorage.setItem("tenaciousCurrency", currency);
+}
+
+
+/*
+  INITIALIZE SAVED CURRENCY
+*/
+
+function initializeCurrency() {
+  const currencySelect =
+    document.getElementById("productCurrencySelector");
+
+  const savedCurrency =
+    localStorage.getItem("tenaciousCurrency") || "USD";
+
+  currencySelect.value =
+    productCurrencyRates[savedCurrency] !== undefined
+      ? savedCurrency
+      : "USD";
+
+  updatePrice();
+}
+
+initializeCurrency();
 
 
     /*

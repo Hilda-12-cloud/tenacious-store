@@ -358,7 +358,6 @@ const productCurrencySymbols = {
   EUR: "€",
   GHS: "₵"
 };
-
 function updatePrice() {
   const sizeSelect = document.getElementById("size");
   const currencySelect =
@@ -368,7 +367,9 @@ function updatePrice() {
     sizeSelect.options[sizeSelect.selectedIndex];
 
   const currency = currencySelect.value;
-  const basePrice = Number(selectedOption.dataset.price);
+  const basePrice = Number(
+    selectedOption.getAttribute("data-price")
+  );
 
   const convertedPrice =
     basePrice * productCurrencyRates[currency];
@@ -378,34 +379,18 @@ function updatePrice() {
     convertedPrice.toFixed(2);
 
   Array.from(sizeSelect.options).forEach(function(option) {
-    const baseOptionPrice = Number(option.dataset.price);
+    const originalPrice = Number(
+      option.getAttribute("data-price")
+    );
 
     option.textContent =
       option.value + " — " +
       productCurrencySymbols[currency] +
-      (baseOptionPrice * productCurrencyRates[currency]).toFixed(2);
+      (originalPrice * productCurrencyRates[currency]).toFixed(2);
   });
 
   localStorage.setItem("tenaciousCurrency", currency);
 }
-
-function initializeCurrency() {
-  const currencySelect =
-    document.getElementById("productCurrencySelector");
-
-  const savedCurrency =
-    localStorage.getItem("tenaciousCurrency") || "USD";
-
-  currencySelect.value =
-    productCurrencyRates[savedCurrency] !== undefined
-      ? savedCurrency
-      : "USD";
-
-  updatePrice();
-}
-
-initializeCurrency();
-
     function addToCart() {
 
       const sizeSelect = document.getElementById("size");

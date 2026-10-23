@@ -1329,7 +1329,93 @@
         );
 
     }
+/* @TENACIOUS — HERO MOCKUP BACKGROUND */
 
+.hero {
+isolation: isolate;
+}
+
+.hero::before {
+z-index: 1;
+pointer-events: none;
+}
+
+.hero-grid {
+grid-template-columns: 1fr;
+gap: 0;
+}
+
+.hero-content {
+position: relative;
+z-index: 3;
+max-width: 760px;
+}
+
+.hero-visual {
+position: absolute;
+inset: 0;
+z-index: 0;
+width: 100%;
+height: 100%;
+overflow: hidden;
+pointer-events: none;
+}
+
+.hero-image {
+position: absolute;
+inset: 0;
+width: 100%;
+height: 100%;
+background-color: #080808;
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
+}
+
+.hero-image-overlay {
+position: absolute;
+inset: 0;
+background: linear-gradient(
+90deg,
+rgba(0, 0, 0, 0.78) 0%,
+rgba(0, 0, 0, 0.45) 50%,
+rgba(0, 0, 0, 0.68) 100%
+);
+}
+
+.scroll-indicator {
+z-index: 3;
+}
+
+@media (max-width: 768px) {
+.hero {
+min-height: 100vh;
+min-height: 100svh;
+}
+
+.hero-grid {
+grid-template-columns: 1fr;
+padding-top: 100px;
+padding-bottom: 100px;
+}
+
+.hero-content {
+max-width: 100%;
+}
+
+.hero h1 {
+font-size: clamp(48px, 11vw, 76px);
+}
+
+.hero-visual {
+display: block;
+}
+
+.hero-image {
+background-position: center;
+background-size: cover;
+}
+}
 
     /* =========================
        MARQUEE

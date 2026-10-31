@@ -7726,11 +7726,9 @@ object-position: center;
     </div>
 
 
-
     <!-- CHECKOUT CONTENT -->
 
     <div class="checkout-content">
-
 
       <!-- CUSTOMER FORM -->
 
@@ -7739,53 +7737,50 @@ object-position: center;
         <div class="checkout-section-heading">
 
           <span class="checkout-step">
-
             01
-
           </span>
 
           <div>
 
             <h2>
-
               YOUR DETAILS
-
             </h2>
 
             <p>
-
               Tell us where your order should go.
-</p>
+            </p>
 
-</div>
+          </div>
 
-</div>
+        </div>
 
-<form id="checkoutForm">
+        <form id="checkoutForm">
 
-  <!-- OTHER COUNTRY -->
-  <div class="form-group" id="otherCountryGroup" hidden>
+          <div class="form-grid">
 
-    <label for="customerOtherCountry">
-      Enter Your Country
-    </label>
+            <!-- COUNTRY OF RESIDENCE -->
 
-    <input
-      type="text"
-      id="customerOtherCountry"
-      placeholder="e.g. Nigeria, Germany, South Africa"
-    >
+            <div class="form-group">
 
-  </div>
+              <label for="customerResidenceCountry">
+                Country of Residence
+              </label>
 
-  <div class="form-grid">
-    
+              <input
+                type="text"
+                id="customerResidenceCountry"
+                placeholder="Enter your country"
+                required
+              >
+
+            </div>
+
+            <!-- FIRST NAME -->
+
             <div class="form-group">
 
               <label for="customerFirstName">
-
                 First Name
-
               </label>
 
               <input
@@ -7796,13 +7791,12 @@ object-position: center;
 
             </div>
 
+            <!-- LAST NAME -->
 
             <div class="form-group">
 
               <label for="customerLastName">
-
                 Last Name
-
               </label>
 
               <input
@@ -7814,7 +7808,6 @@ object-position: center;
             </div>
 
           </div>
-
 
           <div class="form-group">
 

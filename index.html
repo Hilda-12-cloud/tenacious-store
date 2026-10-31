@@ -10897,7 +10897,45 @@ console.log("Product grid found:", !!productGrid);
     renderProducts();
 
     renderCart();
-    
+
+    // =================================
+// OTHER SHIPPING COUNTRY
+// =================================
+
+const shippingCountry =
+  document.getElementById("customerCountry");
+
+const otherCountryGroup =
+  document.getElementById("otherCountryGroup");
+
+const otherCountryInput =
+  document.getElementById("customerOtherCountry");
+
+
+if (shippingCountry && otherCountryGroup && otherCountryInput) {
+
+  function toggleOtherCountry() {
+
+    const isOther = shippingCountry.value === "Other";
+
+    otherCountryGroup.hidden = !isOther;
+
+    otherCountryInput.required = isOther;
+
+    if (!isOther) {
+      otherCountryInput.value = "";
+    }
+
+  }
+
+  shippingCountry.addEventListener(
+    "change",
+    toggleOtherCountry
+  );
+
+  toggleOtherCountry();
+
+}
   </script>
 
 </body>

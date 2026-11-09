@@ -1,1 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>The Architecture of Fire | @TENACIOUS</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #080808;
+      color: #f5f5f5;
+      font-family: 'Montserrat', sans-serif;
+      line-height: 1.8;
+    }
+
+    .story-container {
+      max-width: 1050px;
+      margin: auto;
+      padding: 70px 25px;
+    }
+
+    .story-label {
+      color: #c5a059;
+      letter-spacing: 4px;
+      font-size: 11px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .product-name {
+      color: #999;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
+    .story-title {
+      font-family: 'Bodoni Moda', serif;
+      font-size: clamp(38px, 7vw, 76px);
+      line-height: 1.12;
+      font-weight: 400;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+    }
+
+    .story-subtitle {
+      color: #c5a059;
+      font-family: 'Bodoni Moda', serif;
+      font-size: clamp(17px, 3vw, 23px);
+      font-style: italic;
+      margin-bottom: 45px;
+    }
+
+    .story-image {
+      width: 100%;
+      max-width: 760px;
+      display: block;
+      margin: 0 auto 55px;
+      border: 1px solid rgba(197, 160, 89, 0.25);
+    }
+
+    .story-content {
+      max-width: 760px;
+      margin: auto;
+    }
+
+    .story-content h2 {
+      color: #c5a059;
+      font-family: 'Bodoni Moda', serif;
+      font-size: 25px;
+      font-weight: 400;
+      margin: 45px 0 20px;
+      letter-spacing: 1px;
+    }
+
+    .story-content p {
+      color: #c9c9c9;
+      font-size: 15px;
+      line-height: 2.1;
+      margin-bottom: 25px;
+    }
+
+    .story-content .highlight {
+      color: #f5f5f5;
+      font-family: 'Bodoni Moda', serif;
+      font-size: 25px;
+      line-height: 1.6;
+      margin: 45px 0;
+    }
+
+    .story-divider {
+      width: 65px;
+      height: 1px;
+      background: #c5a059;
+      margin: 45px 0;
+    }
+
+    .story-signature {
+      text-align: center;
+      margin-top: 75px;
+      padding-top: 35px;
+      border-top: 1px solid rgba(197, 160, 89, 0.25);
+    }
+
+    .story-signature h3 {
+      font-family: 'Bodoni Moda', serif;
+      font-size: 27px;
+      letter-spacing: 4px;
+      font-weight: 400;
+      margin-bottom: 12px;
+    }
+
+    .story-signature p {
+      color: #c5a059;
+      font-size: 10px;
+      letter-spacing: 3px;
+      margin-bottom: 8px;
+    }
+
+    .story-signature span {
+      color: #888;
+      font-size: 11px;
+      font-style: italic;
+      letter-spacing: 1px;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 45px;
+      color: #c5a059;
+      text-decoration: none;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border-bottom: 1px solid #c5a059;
+      padding-bottom: 7px;
+    }
+
+    .back-link:hover {
+      color: #fff;
+      border-color: #fff;
+    }
+
+    @media (max-width: 600px) {
+      .story-container {
+        padding: 50px 20px;
+      }
+
+      .story-content p {
+        font-size: 14px;
+      }
+
+      .story-image {
+        margin-bottom: 40px;
+      }
+    }
+  </style>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <main class="story-container">
+
+    <div class="story-label">
+      Product Story / 018
+    </div>
+
+    <div class="product-name">
+      Recycled Long Sleeve Cropped Top
+    </div>
+
+    <h1 class="story-title">
+      THE ARCHITECTURE OF FIRE.
+    </h1>
+
+    <div class="story-subtitle">
+      Something Is Happening Beneath the Surface.
+    </div>
+
+    <img
+      src="../images/recycled-long-sleeve-cropped-top.png"
+      alt="@TENACIOUS Recycled Long Sleeve Cropped Top featuring dramatic orange and amber artwork"
+      class="story-image"
+    >
+
+    <section class="story-content">
+
+      <p>
+        There is a moment when darkness stops being empty.
+      </p>
+
+      <p>
+        A strange glow appears. Something begins to take shape.
+        Sparks emerge from somewhere unseen, and what seemed
+        still begins to move.
+      </p>
+
+      <p>
+        No explanation. No announcement. Just a presence that
+        becomes impossible to ignore.
+      </p>
+
+      <p>
+        The front of this garment captures that moment.
+      </p>
+
+      <p>
+        A concentrated stream of molten orange and amber
+        descends towards a dark, almost spherical form.
+        Around it, sparks scatter like fragments of an event
+        that has already begun. The image feels suspended
+        between creation and destruction, leaving one question
+        deliberately unanswered:
+      </p>
+
+      <p class="highlight">
+        What exactly has been awakened?
+      </p>
+
+      <p>
+        The back offers no immediate answer. Instead, flowing
+        forms travel across the fabric, creating a different
+        interpretation of the same mysterious energy.
+      </p>
+
+      <p>
+        Neither side tells the entire story.
+        And perhaps they were never meant to.
+      </p>
+
+      <div class="story-divider"></div>
+
+      <h2>THE FRONT: AN EXPRESSION OF RARE INTENSITY.</h2>
+
+      <p>
+        The front composition draws the eye towards a striking
+        contrast: a dark central form surrounded by an eruption
+        of fiery light.
+      </p>
+
+      <p>
+        The intricate interplay of illuminated structures,
+        scattered sparks and deep shadows gives the artwork
+        an almost cinematic presence. Its visual complexity
+        rewards attention, revealing more of its character
+        the longer it is observed.
+      </p>
+
+      <p>
+        This is not a design that depends on a passing trend.
+        It is built around a visual identity that commands
+        attention without asking for it.
+      </p>
+
+      <div class="story-divider"></div>
+
+      <h2>THE BACK: A DIFFERENT KIND OF REVELATION.</h2>
+
+      <p>
+        Turn the garment around, and the visual language changes.
+      </p>
+
+      <p>
+        Flowing, ribbon-like structures sweep across the fabric,
+        creating layers of movement in charcoal, copper,
+        amber and muted gold.
+      </p>
+
+      <p>
+        The composition feels fluid, deliberate and expansive.
+        It creates a visual experience that continues beyond
+        the first impression, giving the garment a distinctive
+        identity from every angle.
+      </p>
+
+      <p>
+        The front captures intensity. The back introduces
+        dimension.
+      </p>
+
+      <p>
+        Together, they create a considered artistic composition
+        rather than a single decorative image.
+      </p>
+
+      <div class="story-divider"></div>
+
+      <h2>THE SILHOUETTE: DESIGN WITH INTENTION.</h2>
+
+      <p>
+        The artwork does not remain confined to the torso.
+      </p>
+
+      <p>
+        It extends across the long sleeves, following their
+        shape and carrying the composition towards the cuffs.
+        This continuity gives the garment a cohesive appearance,
+        allowing the artwork to interact with the natural
+        proportions of the silhouette.
+      </p>
+
+      <p>
+        The cropped form introduces a contemporary fashion
+        sensibility, balancing the dramatic artwork with a
+        defined, modern profile.
+      </p>
+
+      <p>
+        The black foundation is equally deliberate. It provides
+        visual depth, allowing the fiery orange, luminous amber
+        and subtle golden details to stand apart with greater
+        intensity.
+      </p>
+
+      <p>
+        Even the @TENACIOUS signature near the sleeve cuff
+        contributes to the garment's identity.
+      </p>
+
+      <p>
+        Every visible element belongs to the same visual
+        conversation.
+      </p>
+
+      <div class="story-divider"></div>
+
+      <h2>THE LUXURY OF BEING DISTINCTIVE.</h2>
+
+      <p>
+        Luxury is not always communicated through excess.
+      </p>
+
+      <p>
+        Sometimes it is found in the confidence of an unusual
+        composition, the harmony of contrasting elements and
+        the freedom to wear something that does not resemble
+        everything else.
+      </p>
+
+      <p>
+        This piece embraces that philosophy.
+      </p>
+
+      <p>
+        Its elaborate front-and-back artwork, continuous sleeve
+        detailing, dramatic colour treatment and contemporary
+        silhouette create a statement that extends beyond
+        conventional everyday dressing.
+      </p>
+
+      <p>
+        It is for the individual who appreciates visual
+        distinction, values personal expression and understands
+        that style can communicate without explanation.
+      </p>
+
+      <p>
+        Not designed to disappear into a wardrobe.
+        Not intended to compete with every passing trend.
+        But created to occupy its own space.
+      </p>
+
+      <div class="story-divider"></div>
+
+      <h2>BEYOND THE IMAGE.</h2>
+
+      <p>
+        Perhaps the fire represents transformation.
+      </p>
+
+      <p>
+        Perhaps the dark sphere holds something waiting to
+        emerge. Perhaps the flowing structures at the back
+        are evidence of what remains after an encounter with
+        something powerful.
+      </p>
+
+      <p>
+        We have deliberately avoided assigning the artwork
+        a single meaning.
+      </p>
+
+      <p>
+        Its appeal lies partly in the freedom to interpret it
+        differently. The wearer may recognise ambition,
+        disruption, reinvention or simply the beauty of an
+        extraordinary composition.
+      </p>
+
+      <p class="highlight">
+        Some presences are not designed to blend into
+        the background.
+      </p>
+
+      <p>
+        A distinctive expression of artistic fashion.<br>
+        A statement of individuality.<br>
+        An unmistakable @TENACIOUS presence.
+      </p>
+
+    </section>
+
+    <div class="story-signature">
+
+      <h3>@TENACIOUS</h3>
+
+      <p>MAISON D'ARTISANAT &amp; ECOSYSTEM</p>
+
+      <span>Resilient by Choice.</span>
+
+    </div>
+
+    <a href="../index.html#journal" class="back-link">
+      ← Return to Journal
+    </a>
+
+  </main>
+
+</body>
+  </html>

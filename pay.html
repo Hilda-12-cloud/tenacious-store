@@ -1,6 +1,3 @@
-git clone https://x:art_v2_x_1a7762eaa8c09b8bd4e706dc41912e0e05bdaaaf@31b91e7f9954ad8aa334d46f012bd8ed.artifacts.cloudflare.net/git/lee-production/lee-tenacious-store-payment-stack-c18e2ed24e674f79.git tenacious-store-payment-stack
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -57,3 +54,67 @@ git clone https://x:art_v2_x_1a7762eaa8c09b8bd4e706dc41912e0e05bdaaaf@31b91e7f99
         statusEl.textContent = 'Please enter a valid email and amount.';
         return;
       }
+      
+      btn.disabled = true;
+      statusEl.textContent = 'Creating transaction…';
+
+      try {
+        // 1. Ask the Worker backend to create a Paystack transaction
+        const res = await fetch(BACKEND_URL + '/initialize', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email,
+            amount,
+            currency: currency,
+            metadata: { cart: 'tenacious-store' },
+          }),
+        });
+
+        const body = await res.json();
+        if (!res.ok || !body.status) {
+          throw new Error(body.error || body.message || 'Failed to initialize payment');
+        }
+
+        const { access_code } = body.data;
+
+        // 2. Open Paystack's inline popup using the access_code from the backend
+        const handler = PaystackPop.setup({
+          access_code: access_code,
+          onClose: () => {
+            statusEl.textContent = 'Payment window closed. No charge was made.';
+            btn.disabled = false;
+          },
+          callback: (response) => {
+            // 3. Payment finished — verify on the backend
+            statusEl.textContent = 'Payment reference: ' + response.reference + '. Verifying…';
+            verifyPayment(response.reference);
+          },
+        });
+        handler.openIframe();
+      } catch (err) {
+        statusEl.textContent = 'Error: ' + err.message;
+        btn.disabled = false;
+      }
+    });
+
+    async function verifyPayment(reference) {
+      try {
+        const res = await fetch(BACKEND_URL + '/verify/' + encodeURIComponent(reference));
+        const body = await res.json();
+        const txn = body.data;
+        if (txn && txn.status === 'success') {
+          document.getElementById('status').textContent =
+            '✅ Payment successful! Reference: ' + txn.reference + '. Amount: ' + (txn.amount / 100).toFixed(2) + ' ' + txn.currency + '.';
+        } else {
+          document.getElementById('status').textContent =
+            'Payment status: ' + (txn ? txn.status : 'unknown') + '. Reference: ' + reference;
+        }
+      } catch (err) {
+        document.getElementById('status').textContent = 'Verification error: ' + err.message;
+      }
+      document.getElementById('pay-btn').disabled = false;
+    }
+  </script>
+</body>
+</html>

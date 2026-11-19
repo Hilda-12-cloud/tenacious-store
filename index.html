@@ -10151,46 +10151,51 @@ if (modalCurrencySelector) {
     }
   );
 
+/* =========================================
+   ADD TO CART — VARIANT SUPPORT
+========================================= */
 
-    /* =========================================
-       ADD TO CART
-    ========================================= */
+function addToCart(
+  productId,
+  color = "",
+  size = ""
+) {
 
-    function addToCart(productId) {
+  const existingItem =
+    cart.find(item =>
+      item.id === productId &&
+      (item.color || "") === color &&
+      (item.size || "") === size
+    );
 
-      const existingItem =
-        cart.find(
-          item =>
-            item.id === productId
-        );
+  if (existingItem) {
 
+    existingItem.quantity++;
 
-      if (existingItem) {
+  }
 
-        existingItem.quantity++;
+  else {
 
-      }
+    cart.push({
 
-      else {
+      id: productId,
 
-        cart.push({
+      color: color,
 
-          id:
-            productId,
+      size: size,
 
-          quantity:
-            1
+      quantity: 1
 
-        });
+    });
 
-      }
+  }
 
+  saveCart();
 
-      saveCart();
+  renderCart();
 
-      renderCart();
+}
 
-    }
 
     /* =========================================
        REMOVE FROM CART

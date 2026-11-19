@@ -10196,65 +10196,54 @@ function addToCart(
 
 }
 
+/* =========================================
+   REMOVE CART ITEM — VARIANT SUPPORT
+========================================= */
 
-    /* =========================================
-       REMOVE FROM CART
-    ========================================= */
+function removeCartItem(index) {
 
-    function removeFromCart(productId) {
+  if (
+    index < 0 ||
+    index >= cart.length
+  ) return;
 
-      cart =
-        cart.filter(
-          item =>
-            item.id !== productId
-        );
+  cart.splice(index, 1);
 
+  saveCart();
 
-      saveCart();
+  renderCart();
 
-      renderCart();
-
-    }
-
-
-    /* =========================================
-       CHANGE QUANTITY
-    ========================================= */
-
-    function changeQuantity(
-      productId,
-      amount
-    ) {
-
-      const item =
-        cart.find(
-          item =>
-            item.id === productId
-        );
+}
 
 
-      if (!item) return;
+/* =========================================
+   CHANGE CART QUANTITY — VARIANT SUPPORT
+========================================= */
 
+function changeCartItem(
+  index,
+  amount
+) {
 
-      item.quantity += amount;
+  const item = cart[index];
 
+  if (!item) return;
 
-      if (
-        item.quantity <= 0
-      ) {
+  item.quantity += amount;
 
-        removeFromCart(productId);
+  if (item.quantity <= 0) {
 
-        return;
+    removeCartItem(index);
 
-      }
+    return;
 
+  }
 
-      saveCart();
+  saveCart();
 
-      renderCart();
+  renderCart();
 
-    }
+}
 
 
     /* =========================================

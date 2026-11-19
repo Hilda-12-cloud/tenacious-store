@@ -10284,245 +10284,238 @@ function addToCart(
       );
 
     }
+    
+/* =========================================
+   RENDER CART — VARIANT SUPPORT
+========================================= */
 
+function renderCart() {
 
-    /* =========================================
-       RENDER CART
-    ========================================= */
+  const totalQuantity =
+    getCartQuantity();
 
-    function renderCart() {
+  cartCount.textContent =
+    totalQuantity;
 
-      const totalQuantity =
-        getCartQuantity();
+  cartItems.innerHTML = "";
 
+  if (cart.length === 0) {
 
-      cartCount.textContent =
-        totalQuantity;
+    cartItems.innerHTML = `
 
+      <div class="empty-cart">
 
-      cartItems.innerHTML = "";
+        Your selection is currently empty.
 
+        <br><br>
 
-      if (cart.length === 0) {
+        Explore the collection and find
+        something that speaks to you.
 
-        cartItems.innerHTML = `
+      </div>
 
-          <div class="empty-cart">
+    `;
 
-            Your selection is currently empty.
+    cartSubtotal.textContent = "$0.00";
 
-            <br><br>
+    cartTotal.textContent = "$0.00";
 
-            Explore the collection and find
-            something that speaks to you.
+    discountRow.style.display = "none";
 
-          </div>
+    bulkNoticeContainer.innerHTML = "";
 
-        `;
+    whatsappButton.style.display = "none";
 
+    return;
 
-        cartSubtotal.textContent =
-          "$0.00";
+  }
 
-        cartTotal.textContent =
-          "$0.00";
+  let subtotal = 0;
 
-        discountRow.style.display =
-          "none";
+  cart.forEach((item, index) => {
 
-        bulkNoticeContainer.innerHTML =
-          "";
+    const product =
+      products.find(
+        product =>
+          product.id === item.id
+      );
 
-        whatsappButton.style.display =
-          "none";
+    if (!product) return;
 
-        return;
+    subtotal +=
+      product.price * item.quantity;
 
-      }
+    const cartItem =
+      document.createElement("div");
 
+    cartItem.className = "cart-item";
 
-      let subtotal = 0;
+    cartItem.innerHTML = `
 
+      <div class="cart-thumb">
 
-      cart.forEach(item => {
+        <img
+          src="${product.image}"
+          alt="${product.name}"
+          onerror="
+            this.style.display='none';
+            this.parentElement.textContent='@';
+          "
+        >
 
-        const product =
-          products.find(
-            product =>
-              product.id === item.id
-          );
+      </div>
 
+      <div>
 
-        if (!product) return;
+        <div class="cart-item-name">
 
+          ${product.name}
 
-        subtotal +=
-          product.price *
-          item.quantity;
+        </div>
 
+        <div class="cart-item-variant"></div>
 
-        const cartItem =
-          document.createElement("div");
+        <div class="cart-item-price">
 
+          ${formatPrice(product.price)}
 
-        cartItem.className =
-          "cart-item";
+        </div>
 
-
-        cartItem.innerHTML = `
-
-          <div class="cart-thumb">
-
-            <img
-              src="${product.image}"
-              alt="${product.name}"
-              onerror="
-                this.style.display='none';
-                this.parentElement.textContent='@';
-              "
-            >
-
-          </div>
-
-
-          <div>
-
-            <div class="cart-item-name">
-
-              ${product.name}
-
-            </div>
-<div class="cart-item-price">
-
-  ${formatPrice(product.price)}
-
-</div>
-
-
-
-            <div class="quantity-controls">
-
-              <button
-                onclick="
-                  changeQuantity(
-                    ${product.id},
-                    -1
-                  )
-                "
-              >
-
-                −
-
-              </button>
-
-
-              <span>
-
-                ${item.quantity}
-
-              </span>
-
-
-              <button
-                onclick="
-                  changeQuantity(
-                    ${product.id},
-                    1
-                  )
-                "
-              >
-
-                +
-
-              </button>
-
-            </div>
-
-          </div>
-
+        <div class="quantity-controls">
 
           <button
-            class="remove-item"
-            onclick="
-              removeFromCart(
-                ${product.id}
-              )
-            "
-            aria-label="Remove item"
+            onclick="changeCartItem(${index}, -1)"
+            aria-label="Decrease quantity"
           >
 
-            ×
+            −
 
           </button>
 
-        `;
+          <span>
 
+            ${item.quantity}
 
-        cartItems.appendChild(cartItem);
+          </span>
 
-      });
+          <button
+            onclick="changeCartItem(${index}, 1)"
+            aria-label="Increase quantity"
+          >
 
+            +
 
-      const qualifiesForBulk =
-        totalQuantity >= 10;
+          </button>
 
+        </div>
 
-      let discount = 0;
+      </div>
 
+      <button
+        class="remove-item"
+        onclick="removeCartItem(${index})"
+        aria-label="Remove item"
+      >
 
-      if (qualifiesForBulk) {
+        ×
 
-        discount =
-          subtotal * 0.05;
+      </button>
 
-        discountRow.style.display =
-          "flex";
+    `;
 
-        discountAmount.textContent =
-  `-${formatPrice(discount)}`;
+    const variantDisplay =
+      cartItem.querySelector(
+        ".cart-item-variant"
+      );
 
-        bulkNoticeContainer.innerHTML = `
+    const variantDetails = [];
 
-          <div class="bulk-notice">
+    if (item.color) {
 
-            ✦ Congratulations. Your order qualifies
-            for a 5% bulk discount and WhatsApp
-            ordering assistance.
+      variantDetails.push(
+        "Colour: " + item.color
+      );
 
-          </div>
-
-        `;
-
-
-        whatsappButton.style.display =
-          "flex";
-
-      }
-
-      else {
-
-        discountRow.style.display =
-          "none";
-
-        bulkNoticeContainer.innerHTML =
-          "";
-
-        whatsappButton.style.display =
-          "none";
-
-      }
-
-
-      const finalTotal =
-        subtotal - discount;
-
-
-      cartSubtotal.textContent =
-  formatPrice(subtotal);
-
-      cartTotal.textContent =
-  formatPrice(finalTotal);
     }
+
+    if (item.size) {
+
+      variantDetails.push(
+        "Size: " + item.size
+      );
+
+    }
+
+    variantDisplay.textContent =
+      variantDetails.join(" | ");
+
+    if (!variantDetails.length) {
+
+      variantDisplay.style.display = "none";
+
+    }
+
+    cartItems.appendChild(cartItem);
+
+  });
+
+
+  /* BULK DISCOUNT */
+
+  const qualifiesForBulk =
+    totalQuantity >= 10;
+
+  let discount = 0;
+
+  if (qualifiesForBulk) {
+
+    discount = subtotal * 0.05;
+
+    discountRow.style.display = "flex";
+
+    discountAmount.textContent =
+      `-${formatPrice(discount)}`;
+
+    bulkNoticeContainer.innerHTML = `
+
+      <div class="bulk-notice">
+
+        ✦ Congratulations. Your order qualifies
+        for a 5% bulk discount and WhatsApp
+        ordering assistance.
+
+      </div>
+
+    `;
+
+    whatsappButton.style.display = "flex";
+
+  }
+
+  else {
+
+    discountRow.style.display = "none";
+
+    bulkNoticeContainer.innerHTML = "";
+
+    whatsappButton.style.display = "none";
+
+  }
+
+
+  /* TOTALS */
+
+  const finalTotal =
+    subtotal - discount;
+
+  cartSubtotal.textContent =
+    formatPrice(subtotal);
+
+  cartTotal.textContent =
+    formatPrice(finalTotal);
+
+               }
+
 
 
     /* =========================================

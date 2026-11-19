@@ -10159,9 +10159,9 @@ if (modalCurrencySelector) {
 
     }
   );
-
-/* =========================================
-   ADD TO CART — VARIANT SUPPORT
+    
+    /* =========================================
+   ADD TO CART — SHARED CART DATA
 ========================================= */
 
 function addToCart(
@@ -10169,6 +10169,13 @@ function addToCart(
   color = "",
   size = ""
 ) {
+
+  const product =
+    products.find(
+      product => product.id === productId
+    );
+
+  if (!product) return;
 
   const existingItem =
     cart.find(item =>
@@ -10181,6 +10188,11 @@ function addToCart(
 
     existingItem.quantity++;
 
+    // Preserve complete product information.
+    existingItem.name = product.name;
+    existingItem.image = product.image;
+    existingItem.price = product.price;
+
   }
 
   else {
@@ -10188,6 +10200,12 @@ function addToCart(
     cart.push({
 
       id: productId,
+
+      name: product.name,
+
+      image: product.image,
+
+      price: product.price,
 
       color: color,
 
@@ -10205,6 +10223,7 @@ function addToCart(
 
 }
 
+  
 /* =========================================
    REMOVE CART ITEM — VARIANT SUPPORT
 ========================================= */

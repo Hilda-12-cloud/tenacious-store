@@ -10083,25 +10083,73 @@ if (modalCurrencySelector) {
 
 
     document
-      .getElementById("modalAddButton")
-      .addEventListener(
-        "click",
-        function() {
+  .getElementById("modalAddButton")
+  .addEventListener(
+    "click",
+    function() {
 
-          if (currentProduct) {
+      if (!currentProduct) return;
 
-            addToCart(
-              currentProduct.id
-            );
+      const colorSelect =
+        document.getElementById("modalColor");
 
-            closeProduct();
+      const sizeSelect =
+        document.getElementById("modalSize");
 
-            openCart();
+      const colors =
+        Array.isArray(currentProduct.colors)
+          ? currentProduct.colors
+          : [];
 
-          }
+      const sizes =
+        Array.isArray(currentProduct.sizes)
+          ? currentProduct.sizes
+          : [];
 
-        }
+      const selectedColor =
+        colors.length
+          ? colorSelect.value
+          : "";
+
+      const selectedSize =
+        sizes.length
+          ? sizeSelect.value
+          : "";
+
+      if (
+        colors.length &&
+        !selectedColor
+      ) {
+
+        alert("Please choose a colour.");
+
+        return;
+
+      }
+
+      if (
+        sizes.length &&
+        !selectedSize
+      ) {
+
+        alert("Please choose a size.");
+
+        return;
+
+      }
+
+      addToCart(
+        currentProduct.id,
+        selectedColor,
+        selectedSize
       );
+
+      closeProduct();
+
+      openCart();
+
+    }
+  );
 
 
     /* =========================================

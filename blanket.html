@@ -429,7 +429,7 @@ function addToCart() {
     quantity: 1
   };
 
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let cart = JSON.parse(localStorage.getItem("tenaciousCart")) || [];
 
   const existingProduct = cart.find(
     item =>

@@ -125,21 +125,6 @@
       background: #dddddd;
     }
 
-    .whatsapp-button {
-      display: block;
-      width: 100%;
-      padding: 16px;
-      border: 1px solid #ffffff;
-      color: #ffffff;
-      text-align: center;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .whatsapp-button:hover {
-      background: #ffffff;
-      color: #000000;
-    }
 
     .details {
       margin-top: 35px;
@@ -257,7 +242,7 @@
           relaxation. A hidden decorator pocket keeps the back of
           embroidery designs neatly concealed for a premium finish.
         </p>
-        
+
 <label for="blanketSize" style="display:block; margin-bottom:10px; font-weight:bold;">
   Select Size
 </label>
@@ -363,7 +348,22 @@ function changeProductImage(imageSource) {
   document.getElementById("mainProductImage").src = imageSource;
 }
 
+function validateCartOptions(optionIds) {
+      for (const id of optionIds) {
+        const option = document.getElementById(id);
+        if (option && (!option.value || option.selectedIndex < 0)) {
+          alert("Please select the required " + id.replace(/^blanket/, "blanket ").replace(/([A-Z])/g, " $1").toLowerCase() + " option.");
+          return false;
+        }
+      }
+      return true;
+    }
+
 function addToCart() {
+
+      if (!validateCartOptions(["blanketSize"])) {
+        return;
+      }
   const sizeSelect = document.getElementById("blanketSize");
   const selectedOption = sizeSelect.options[sizeSelect.selectedIndex];
 
@@ -389,7 +389,7 @@ function addToCart() {
   } else {
     cart.push(product);
   }
-  
+
 localStorage.setItem("tenaciousCart", JSON.stringify(cart));
 
   window.location.href = "cart.html";
@@ -412,6 +412,10 @@ if (blanketCurrencySelector) {
 updateBlanketPrice();
 
 function addToCart() {
+
+      if (!validateCartOptions(["blanketSize"])) {
+        return;
+      }
   const sizeSelect = document.getElementById("blanketSize");
   const selectedOption =
     sizeSelect.options[sizeSelect.selectedIndex];
@@ -448,6 +452,7 @@ let cart = JSON.parse(localStorage.getItem("tenaciousCart")) || [];
   }
   </script>
 
+<script src="whatsapp-order.js"></script>
 </body>
 
 </html>

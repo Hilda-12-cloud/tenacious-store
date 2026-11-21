@@ -147,21 +147,6 @@
       background: #dddddd;
     }
 
-    .whatsapp-button {
-      display: block;
-      width: 100%;
-      padding: 16px;
-      border: 1px solid #ffffff;
-      color: #ffffff;
-      text-align: center;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .whatsapp-button:hover {
-      background: #ffffff;
-      color: #000000;
-    }
 
     .details {
       margin-top: 35px;
@@ -310,12 +295,8 @@
   onclick="addToCart()">
   Add to Cart
 </button>
-    
-        <a
-          href="#"
-          class="whatsapp-button">
-          Order via WhatsApp
-        </a>
+
+
 
         <div class="details">
 
@@ -330,7 +311,7 @@
           <p>• Soft faux-fur interior lining</p>
           <p>• Snug fit</p>
           <p>• Top-loading zippered enclosure with two sliders</p>
-          <p>• Padded zipper binding</p> 
+          <p>• Padded zipper binding</p>
           <p>• Solid black rear</p>
           <p>• Sublimation printing</p>
           <p>• Made on demand — no minimums</p>
@@ -405,7 +386,7 @@ if (productCurrencySelector) {
 }
 
 updatePrice();
-    
+
     function updateSizeImage() {
   const size = document.getElementById("size").value;
 
@@ -416,7 +397,22 @@ updatePrice();
   document.getElementById("mainProductImage").src = image;
     }
 
+function validateCartOptions(optionIds) {
+      for (const id of optionIds) {
+        const option = document.getElementById(id);
+        if (option && (!option.value || option.selectedIndex < 0)) {
+          alert("Please select the required " + id.replace(/^blanket/, "blanket ").replace(/([A-Z])/g, " $1").toLowerCase() + " option.");
+          return false;
+        }
+      }
+      return true;
+    }
+
     function addToCart() {
+
+      if (!validateCartOptions(["size"])) {
+        return;
+      }
 
       const sizeSelect =
         document.getElementById("size");
@@ -444,7 +440,7 @@ updatePrice();
       };
 
       let cart =
-        JSON.parse(localStorage.getItem("cart")) || [];
+        JSON.parse(localStorage.getItem("tenaciousCart")) || [];
 
       const existingProduct =
         cart.find(
@@ -464,7 +460,7 @@ updatePrice();
       }
 
       localStorage.setItem(
-        "cart",
+        "tenaciousCart",
         JSON.stringify(cart)
       );
 
@@ -482,8 +478,9 @@ updatePrice();
 
   </script>
 
+<script src="whatsapp-order.js"></script>
 </body>
 
 </html>
 
-    
+

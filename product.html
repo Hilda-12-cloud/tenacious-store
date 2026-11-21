@@ -119,17 +119,6 @@
       margin-bottom: 15px;
     }
 
-    .whatsapp-button {
-      display: block;
-      width: 100%;
-      padding: 16px;
-      border: 1px solid #ffffff;
-      color: #ffffff;
-      text-align: center;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
     .details {
       margin-top: 35px;
       border-top: 1px solid #2d2d2d;
@@ -252,7 +241,7 @@
           Add to Cart
         </button>
 
-        <a href="#" class="whatsapp-button">Order via WhatsApp</a>
+
 
         <div class="details">
           <h2>Product Details</h2>
@@ -281,7 +270,7 @@
         quantity: 1
       };
 
-      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      let cart = JSON.parse(localStorage.getItem("tenaciousCart")) || [];
 
       const existingProduct = cart.find(
         item => item.name === product.name
@@ -293,7 +282,7 @@
         cart.push(product);
       }
 
-      localStorage.setItem("cart", JSON.stringify(cart));
+      localStorage.setItem("tenaciousCart", JSON.stringify(cart));
 
       window.location.href = "cart.html";
     }
@@ -304,6 +293,7 @@
 
   </script>
 
+<script src="whatsapp-order.js"></script>
 </body>
 
 </html>

@@ -215,7 +215,14 @@
 
   <script>
 function loadOrderSummary() {
-  const cart = JSON.parse(localStorage.getItem("tenaciousCart")) || [];
+  const sharedCart = localStorage.getItem("tenaciousCart");
+  const cart = JSON.parse(sharedCart !== null
+    ? sharedCart
+    : localStorage.getItem("cart")) || [];
+  if (sharedCart === null && cart.length > 0) {
+    localStorage.setItem("tenaciousCart", JSON.stringify(cart));
+    localStorage.removeItem("cart");
+  }
 
   const summaryItems = document.getElementById("summary-items");
   const summaryTotal = document.getElementById("summary-total");

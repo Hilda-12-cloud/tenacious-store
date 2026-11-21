@@ -185,17 +185,6 @@
       margin-bottom: 15px;
     }
 
-    .whatsapp-button {
-      display: block;
-      width: 100%;
-      padding: 16px;
-      border: 1px solid #ffffff;
-      color: #ffffff;
-      text-align: center;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
     .details {
       margin-top: 35px;
       border-top: 1px solid #2d2d2d;
@@ -422,9 +411,7 @@
         </button>
 
 
-        <a href="#" class="whatsapp-button">
-          Order via WhatsApp
-        </a>
+
 
 
         <!-- DETAILS -->
@@ -547,7 +534,22 @@ if (productCurrencySelector) {
       : "USD";
     }
 
+function validateCartOptions(optionIds) {
+      for (const id of optionIds) {
+        const option = document.getElementById(id);
+        if (option && (!option.value || option.selectedIndex < 0)) {
+          alert("Please select the required " + id.replace(/^blanket/, "blanket ").replace(/([A-Z])/g, " $1").toLowerCase() + " option.");
+          return false;
+        }
+      }
+      return true;
+    }
+
     function addToCart() {
+
+      if (!validateCartOptions(["size"])) {
+        return;
+      }
 
       const sizeSelect =
         document.getElementById("size");
@@ -592,7 +594,7 @@ if (productCurrencySelector) {
 
       let cart =
         JSON.parse(
-          localStorage.getItem("cart")
+          localStorage.getItem("tenaciousCart")
         ) || [];
 
 
@@ -617,7 +619,7 @@ if (productCurrencySelector) {
 
 
       localStorage.setItem(
-        "cart",
+        "tenaciousCart",
         JSON.stringify(cart)
       );
 
@@ -638,6 +640,7 @@ if (productCurrencySelector) {
 updatePrice();
   </script>
 
+<script src="whatsapp-order.js"></script>
 </body>
 
 </html>

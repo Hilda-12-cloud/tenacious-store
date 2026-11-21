@@ -9410,7 +9410,17 @@ images: [
         localStorage.getItem(
           "tenaciousCart"
         )
+      ) || JSON.parse(
+        localStorage.getItem("cart")
       ) || [];
+
+    if (
+      localStorage.getItem("tenaciousCart") === null &&
+      cart.length > 0
+    ) {
+      localStorage.setItem("tenaciousCart", JSON.stringify(cart));
+      localStorage.removeItem("cart");
+    }
 
 
     let currentProduct = null;

@@ -133,21 +133,6 @@
       opacity: 0.9;
     }
 
-    .whatsapp-button {
-      display: block;
-      width: 100%;
-      padding: 16px;
-      border: 1px solid #ffffff;
-      color: #ffffff;
-      text-align: center;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .whatsapp-button:hover {
-      background: #ffffff;
-      color: #000000;
-    }
 
     /* DETAILS */
 
@@ -219,7 +204,7 @@
             alt="All-Over Print Neck Gaiter">
 
         </div>
-        
+
 
 <div class="thumbnail-gallery">
 
@@ -275,7 +260,7 @@
 
 </div>
       </div>
-      
+
 
 
       <!-- =========================
@@ -320,11 +305,7 @@
           Add to Cart
         </button>
 
-        <a
-          href="#"
-          class="whatsapp-button">
-          Order via WhatsApp
-        </a>
+
 
         <div class="details">
 
@@ -362,7 +343,7 @@
       };
 
       let cart =
-        JSON.parse(localStorage.getItem("cart")) || [];
+        JSON.parse(localStorage.getItem("tenaciousCart")) || [];
 
       const existingProduct =
         cart.find(item => item.name === product.name);
@@ -378,7 +359,7 @@
       }
 
       localStorage.setItem(
-        "cart",
+        "tenaciousCart",
         JSON.stringify(cart)
       );
 
@@ -440,6 +421,7 @@ initializeCurrency();
 
   </script>
 
+<script src="whatsapp-order.js"></script>
 </body>
 
 </html>

@@ -802,14 +802,29 @@ if (productCurrencySelector) {
        ADD TO CART
        ========================================================== */
 
+function validateCartOptions(optionIds) {
+      for (const id of optionIds) {
+        const option = document.getElementById(id);
+        if (option && (!option.value || option.selectedIndex < 0)) {
+          alert("Please select the required " + id.replace(/^blanket/, "blanket ").replace(/([A-Z])/g, " $1").toLowerCase() + " option.");
+          return false;
+        }
+      }
+      return true;
+    }
+
     function addToCart() {
+
+      if (!validateCartOptions(["size"])) {
+        return;
+      }
 
       const product =
         getSelectedProduct();
 
 
       let cart =
-        JSON.parse(localStorage.getItem("cart")) || [];
+        JSON.parse(localStorage.getItem("tenaciousCart")) || [];
 
 
       const existingItem =
@@ -836,7 +851,7 @@ if (productCurrencySelector) {
 
 
       localStorage.setItem(
-        "cart",
+        "tenaciousCart",
         JSON.stringify(cart)
       );
 
@@ -858,7 +873,7 @@ if (productCurrencySelector) {
 
 
       let cart =
-        JSON.parse(localStorage.getItem("cart")) || [];
+        JSON.parse(localStorage.getItem("tenaciousCart")) || [];
 
 
       const existingItem =
@@ -885,7 +900,7 @@ if (productCurrencySelector) {
 
 
       localStorage.setItem(
-        "cart",
+        "tenaciousCart",
         JSON.stringify(cart)
       );
 
@@ -904,6 +919,7 @@ if (productCurrencySelector) {
 
   </script>
 
+<script src="whatsapp-order.js"></script>
 </body>
 
             </html>

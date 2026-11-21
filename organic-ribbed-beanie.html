@@ -826,7 +826,22 @@ function updateColor() {
        ADD TO CART
        ========================= */
 
+function validateCartOptions(optionIds) {
+      for (const id of optionIds) {
+        const option = document.getElementById(id);
+        if (option && (!option.value || option.selectedIndex < 0)) {
+          alert("Please select the required " + id.replace(/^blanket/, "blanket ").replace(/([A-Z])/g, " $1").toLowerCase() + " option.");
+          return false;
+        }
+      }
+      return true;
+    }
+
     function addToCart() {
+
+      if (!validateCartOptions(["color"])) {
+        return;
+      }
 
       const product =
         getProduct();
@@ -834,7 +849,7 @@ function updateColor() {
 
       let cart =
         JSON.parse(
-          localStorage.getItem("cart")
+          localStorage.getItem("tenaciousCart")
         ) || [];
 
 
@@ -862,7 +877,7 @@ function updateColor() {
 
 
       localStorage.setItem(
-        "cart",
+        "tenaciousCart",
         JSON.stringify(cart)
       );
 
@@ -885,7 +900,7 @@ function updateColor() {
 
       let cart =
         JSON.parse(
-          localStorage.getItem("cart")
+          localStorage.getItem("tenaciousCart")
         ) || [];
 
 
@@ -913,7 +928,7 @@ function updateColor() {
 
 
       localStorage.setItem(
-        "cart",
+        "tenaciousCart",
         JSON.stringify(cart)
       );
 
@@ -937,6 +952,7 @@ updateColor();
 
   </script>
 
+<script src="whatsapp-order.js"></script>
 </body>
 
- </html> 
+ </html>

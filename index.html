@@ -9479,17 +9479,67 @@ let selectedCurrency =
   live exchange-rate API data.
 */
 
-const currencyRates = {
-
+let currencyRates = {
   USD: 1,
-
   GBP: 0.79,
-
   EUR: 0.92,
-
   GHS: 15.50
-
 };
+
+async function refreshCurrencyRates() {
+  const cacheKey = "tenaciousLiveExchangeRates";
+  const cached = JSON.parse(localStorage.getItem(cacheKey) || "null");
+
+  if (cached && cached.rates && Date.now() < cached.expiresAt) {
+    currencyRates = cached.rates;
+    applyCurrency(selectedCurrency);
+    return;
+  }
+
+  try {
+    const response = await fetch(
+      "https://open.er-api.com/v6/latest/USD"
+    );
+
+    if (!response.ok) throw new Error("Rate request failed");
+
+    const data = await response.json();
+
+    if (data.result !== "success") {
+      throw new Error("Exchange-rate data unavailable");
+    }
+
+    const rates = {
+      USD: 1,
+      GBP: data.rates.GBP,
+      EUR: data.rates.EUR,
+      GHS: data.rates.GHS
+    };
+
+    if (Object.values(rates).some(rate =>
+      typeof rate !== "number" || !Number.isFinite(rate) || rate <= 0
+    )) {
+      throw new Error("Invalid exchange rates");
+    }
+
+    currencyRates = rates;
+
+    localStorage.setItem(cacheKey, JSON.stringify({
+      rates: rates,
+      expiresAt: data.time_next_update_unix * 1000
+    }));
+
+    applyCurrency(selectedCurrency);
+
+  } catch (error) {
+    console.error("Currency update failed:", error);
+
+    if (cached && cached.rates) {
+      currencyRates = cached.rates;
+      applyCurrency(selectedCurrency);
+    }
+  }
+    }
 
 
 /*

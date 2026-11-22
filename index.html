@@ -8828,6 +8828,9 @@ const products = [
     ],
     colors: ["Black"],
     sizes: ["One Size"],
+    variantPrices: {
+      "One Size": 99
+    },
     link: "blanket.html"
   },
 
@@ -9180,6 +9183,15 @@ images: [
 ],
     colors: ["White"],
     sizes: ["8", "10", "12", "14", "16", "18", "20"],
+    variantPrices: {
+      "8": 72,
+      "10": 72,
+      "12": 74,
+      "14": 74,
+      "16": 76,
+      "18": 78,
+      "20": 80
+    },
     link: "all-over-print-youth-cotton-crew-neck-t-shirt.html"
   },
 
@@ -9577,6 +9589,28 @@ function formatPrice(price) {
 
 }
 
+function getVariantPrice(product, size) {
+  return product.variantPrices && size in product.variantPrices
+    ? product.variantPrices[size]
+    : product.price;
+}
+
+function getQuickViewPrice(product, size = "") {
+  if (!product.variantPrices) {
+    return product.priceLabel || formatPrice(product.price);
+  }
+
+  if (size && size in product.variantPrices) {
+    return formatPrice(product.variantPrices[size]);
+  }
+
+  if (product.minPrice === product.maxPrice) {
+    return formatPrice(product.minPrice);
+  }
+
+  return `${formatPrice(product.minPrice)} – ${formatPrice(product.maxPrice)}`;
+}
+
 /*
   UPDATE CURRENCY SELECTORS
 */
@@ -9626,8 +9660,12 @@ function applyCurrency(currency) {
       document.getElementById("modalPrice");
 
     if (modalPrice) {
-      modalPrice.textContent =
-        formatPrice(currentProduct.price);
+      const sizeSelect =
+        document.getElementById("modalSize");
+
+      modalPrice.textContent = currentProduct.variantPrices
+        ? getQuickViewPrice(currentProduct, sizeSelect?.value || "")
+        : formatPrice(currentProduct.price);
     }
 
   }
@@ -9770,7 +9808,11 @@ if (modalCurrencySelector) {
 
             <div class="product-price">
 
-              ${formatPrice(product.price)}
+              ${
+                product.variantPrices
+                  ? getQuickViewPrice(product)
+                  : formatPrice(product.price)
+              }
 
             </div>
 
@@ -9929,8 +9971,7 @@ if (modalCurrencySelector) {
         product.name || "";
 
       document.getElementById("modalPrice").textContent =
-        product.priceLabel ||
-        formatPrice(product.price);
+        getQuickViewPrice(product);
 
       document.getElementById("modalDescription").textContent =
         product.description || "";
@@ -10074,12 +10115,14 @@ if (modalCurrencySelector) {
 
       if (sizes.length) {
 
-        const sizePlaceholder = document.createElement("option");
+        if (sizes.length > 1) {
+          const sizePlaceholder = document.createElement("option");
 
-        sizePlaceholder.value = "";
-        sizePlaceholder.textContent = "Choose a size";
+          sizePlaceholder.value = "";
+          sizePlaceholder.textContent = "Choose a size";
 
-        sizeSelect.appendChild(sizePlaceholder);
+          sizeSelect.appendChild(sizePlaceholder);
+        }
 
         sizes.forEach(size => {
 
@@ -10090,7 +10133,19 @@ if (modalCurrencySelector) {
 
           sizeSelect.appendChild(option);
         });
+
+        if (sizes.length === 1) {
+          sizeSelect.value = sizes[0];
+        }
       }
+
+      sizeSelect.onchange = function() {
+        document.getElementById("modalPrice").textContent =
+          getQuickViewPrice(product, sizeSelect.value);
+      };
+
+      document.getElementById("modalPrice").textContent =
+        getQuickViewPrice(product, sizeSelect.value);
 
       /* FULL PRODUCT PAGE */
 
@@ -10237,6 +10292,8 @@ function addToCart(
 
   if (!product) return;
 
+  const variantPrice = getVariantPrice(product, size);
+
   const existingItem =
     cart.find(item =>
       item.id === productId &&
@@ -10251,7 +10308,7 @@ function addToCart(
     // Preserve complete product information.
     existingItem.name = product.name;
     existingItem.image = product.image;
-    existingItem.price = product.price;
+    existingItem.price = variantPrice;
 
   }
 
@@ -10265,7 +10322,7 @@ function addToCart(
 
       image: product.image,
 
-      price: product.price,
+      price: variantPrice,
 
       color: color,
 
@@ -10419,8 +10476,8 @@ function renderCart() {
 
     if (!product) return;
 
-    subtotal +=
-      product.price * item.quantity;
+    const itemPrice = Number(item.price ?? product.price);
+    subtotal += itemPrice * item.quantity;
 
     const cartItem =
       document.createElement("div");
@@ -10454,7 +10511,7 @@ function renderCart() {
 
         <div class="cart-item-price">
 
-          ${formatPrice(product.price)}
+          ${formatPrice(itemPrice)}
 
         </div>
 
@@ -10719,7 +10776,7 @@ function renderCart() {
               );
 
             subtotal +=
-              product.price *
+              Number(item.price ?? product.price) *
               item.quantity;
 
           });
@@ -10835,7 +10892,7 @@ message +=
 
 
         subtotal +=
-          product.price *
+          Number(item.price ?? product.price) *
           item.quantity;
 
       });
@@ -10906,7 +10963,7 @@ message +=
 
             <div>
               ${formatPrice(
-                product.price *
+                Number(item.price ?? product.price) *
                 item.quantity
               )}
             </div>

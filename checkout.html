@@ -21,6 +21,9 @@
     .summary-item{display:flex;justify-content:space-between;gap:14px;padding:12px 0;border-bottom:1px solid #292929;font-size:14px}
     .summary-item small{display:block;color:#c5a059;margin-top:3px}
     .summary-total{display:flex;justify-content:space-between;margin-top:20px;font-size:19px;font-weight:bold}
+    .shipping-quote{display:none;margin-top:18px;padding:14px;border:1px solid #c5a059;background:#17130b}
+    .shipping-quote-row{display:flex;justify-content:space-between;gap:12px;margin-top:6px}
+    .shipping-quote strong{color:#f2dfb7}
     .pay-button{width:100%;padding:15px;margin-top:24px;background:#c5a059;color:#090909;border:0;cursor:pointer;font-weight:bold;font-size:15px}
     .pay-button:disabled{opacity:.55;cursor:wait}
     .fine-print{margin-top:14px;color:#999;font-size:12px}
@@ -36,93 +39,70 @@
   <div id="checkout-notice" class="notice" role="status" aria-live="polite"></div>
   <div class="checkout-container">
     <section>
-  <h2 class="section-title">Customer & Delivery Details</h2>
-  <form id="checkout-form">
-    <div class="form-group">
-      <label for="name">Full Name</label>
-      <input id="name" name="name" autocomplete="name" required minlength="2">
-    </div>
-
-    <div class="form-group">
-      <label for="email">Email Address</label>
-      <input id="email" name="email" type="email" autocomplete="email" required>
-    </div>
-
-    <div class="form-group">
-      <label for="phone">Phone Number (include country code)</label>
-      <input id="phone" name="phone" type="tel" autocomplete="tel" required minlength="6" placeholder="+233...">
-    </div>
-
-    <div class="form-group">
-      <label for="country">Country</label>
-      <select id="country" name="country" autocomplete="country" required>
-        <option value="">Select your country</option>
-        <option value="GH">Ghana</option>
-        <option value="US">United States</option>
-        <option value="GB">United Kingdom</option>
-        <option value="CA">Canada</option>
-        <option value="NG">Nigeria</option>
-        <option value="AU">Australia</option>
-        <option value="DE">Germany</option>
-        <option value="FR">France</option>
-        <option value="NL">Netherlands</option>
-        <option value="IT">Italy</option>
-        <option value="ES">Spain</option>
-        <option value="IE">Ireland</option>
-        <option value="ZA">South Africa</option>
-        <option value="AE">United Arab Emirates</option>
-        <option value="SE">Sweden</option>
-        <option value="CH">Switzerland</option>
-        <option value="BE">Belgium</option>
-        <option value="PT">Portugal</option>
-        <option value="DK">Denmark</option>
-        <option value="NO">Norway</option>
-        <option value="NZ">New Zealand</option>
-        <option value="JP">Japan</option>
-        <option value="OTHER">Other / Not Listed</option>
-      </select>
-    </div>
-
-    <div class="form-group" id="otherCountryGroup" hidden>
-      <label for="otherCountry">Please enter your country</label>
-      <input
-        id="otherCountry"
-        name="country_name"
-        type="text"
-        autocomplete="country-name"
-        placeholder="Enter your country name"
-      >
-    </div>
-
-    <div class="form-group">
-      <label for="address">Street Address</label>
-      <input id="address" name="address" autocomplete="street-address" required minlength="4">
-    </div>
-
-    <div class="form-row">
-      <div class="form-group">
-        <label for="city">City / Town</label>
-        <input id="city" name="city" autocomplete="address-level2" required>
-      </div>
-      <div class="form-group">
-        <label for="state">State / Region / Province</label>
-        <input id="state" name="state" autocomplete="address-level1">
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label for="postcode">Postal / ZIP Code</label>
-      <input id="postcode" name="postcode" autocomplete="postal-code">
-    </div>
-  </form>
+      <h2 class="section-title">Customer & Delivery Details</h2>
+      <form id="checkout-form">
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input id="name" name="name" autocomplete="name" required minlength="2">
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input id="email" name="email" type="email" autocomplete="email" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number (include country code)</label>
+          <input id="phone" name="phone" type="tel" autocomplete="tel" required minlength="6" placeholder="+233...">
+        </div>
+        <div class="form-group">
+          <label for="country">Country</label>
+          <select id="country" name="country" autocomplete="country" required>
+            <option value="">Select your country</option>
+            <option value="GH">Ghana</option><option value="US">United States</option><option value="GB">United Kingdom</option>
+            <option value="CA">Canada</option><option value="NG">Nigeria</option><option value="AU">Australia</option>
+            <option value="DE">Germany</option><option value="FR">France</option><option value="NL">Netherlands</option>
+            <option value="IT">Italy</option><option value="ES">Spain</option><option value="IE">Ireland</option>
+            <option value="ZA">South Africa</option><option value="AE">United Arab Emirates</option><option value="SE">Sweden</option>
+            <option value="CH">Switzerland</option><option value="BE">Belgium</option><option value="PT">Portugal</option>
+            <option value="DK">Denmark</option><option value="NO">Norway</option><option value="NZ">New Zealand</option>
+            <option value="JP">Japan</option><option value="OTHER">Other / Not Listed</option>
+          </select>
+        </div>
+        <div class="form-group" id="otherCountryGroup" hidden>
+          <label for="otherCountry">Please enter your country</label>
+          <input id="otherCountry" name="country_name" type="text" autocomplete="country-name" placeholder="Enter your country name">
+        </div>
+        <div class="form-group">
+          <label for="address">Street Address</label>
+          <input id="address" name="address" autocomplete="street-address" required minlength="4">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="city">City / Town</label>
+            <input id="city" name="city" autocomplete="address-level2" required>
+          </div>
+          <div class="form-group">
+            <label for="state">State / Region / Province</label>
+            <input id="state" name="state" autocomplete="address-level1">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="postcode">Postal / ZIP Code</label>
+          <input id="postcode" name="postcode" autocomplete="postal-code">
+        </div>
+      </form>
     </section>
     <section class="order-summary">
       <h2 class="section-title">Your Order</h2>
       <div id="summary-items"></div>
       <div class="summary-total"><span>Item subtotal</span><span>$<span id="summary-total">0.00</span></span></div>
-      <p class="fine-print">Displayed item prices are in USD. The final GHS payment amount is recalculated securely by @Tenacious on the server using the current exchange rate. Browser prices are never used to determine your payment.</p>
+      <div id="shipping-quote" class="shipping-quote" aria-live="polite">
+        <div class="shipping-quote-row"><strong>Shipping method</strong><strong>Standard</strong></div>
+        <div class="shipping-quote-row"><span>Standard shipping</span><span id="quote-shipping">GHS 0.00</span></div>
+        <div class="shipping-quote-row"><strong>Final payment total</strong><strong id="quote-total">GHS 0.00</strong></div>
+      </div>
+      <p class="fine-print">Displayed item prices are in USD. The final GHS payment amount is recalculated securely by @Tenacious on the server using the current exchange rate. Browser prices are never used to determine payment.</p>
       <p class="fine-print">Orders containing 10 or more items qualify for the 5% bulk discount, calculated by the server.</p>
-      <button id="pay-button" class="pay-button" type="button" onclick="startPayment()">Continue to Secure Payment</button>
+      <button id="pay-button" class="pay-button" type="button" onclick="handlePaymentStep()">Continue to Secure Payment</button>
       <p class="secure-note">Payments are processed securely by Paystack. Your order is validated against the @Tenacious product and Printful variant records before payment begins.</p>
     </section>
   </div>
@@ -131,6 +111,9 @@
 const PAYMENT_API = "https://tenacious-payments.hildaocran3.workers.dev";
 const notice = document.getElementById("checkout-notice");
 const payButton = document.getElementById("pay-button");
+const shippingQuote = document.getElementById("shipping-quote");
+let quotedPayloadKey = null;
+let quotedTotalMinor = null;
 
 function readCart() {
   try {
@@ -182,91 +165,145 @@ function loadOrderSummary() {
   payButton.disabled = false;
 }
 
-async function startPayment() {
-  const form = document.getElementById("checkout-form");
-  if (!form.reportValidity()) return;
-
+function buildPayload() {
   const country = document.getElementById("country").value;
   const countryName = document.getElementById("otherCountry").value.trim();
-
-  if (country === "OTHER" && !countryName) {
-    showNotice("Please enter your country before continuing.", true);
-    document.getElementById("otherCountry").focus();
-    return;
-  }
-
   const cart = readCart();
-
-  if (!cart.length) {
-    showNotice("Your cart is empty.", true);
-    return;
-  }
-
   const items = cart.map(item => ({
     name: String(item.name || ""),
     size: String(item.size || ""),
     color: String(item.color || ""),
     quantity: Number(item.quantity)
   }));
-
-  const email = document.getElementById("email").value.trim();
-
-  const payload = {
+  return {
     name: document.getElementById("name").value.trim(),
-    email,
+    email: document.getElementById("email").value.trim(),
     phone: document.getElementById("phone").value.trim(),
     shipping: {
       address1: document.getElementById("address").value.trim(),
       city: document.getElementById("city").value.trim(),
       state: document.getElementById("state").value.trim(),
       postcode: document.getElementById("postcode").value.trim(),
-      country: country,
+      country,
       ...(country === "OTHER" ? { country_name: countryName } : {})
     },
     items
   };
+}
 
+function stablePayloadKey(payload) {
+  return JSON.stringify(payload, Object.keys(payload).sort());
+}
+
+function invalidateQuote(message) {
+  quotedPayloadKey = null;
+  quotedTotalMinor = null;
+  shippingQuote.style.display = "none";
+  payButton.textContent = "Continue to Secure Payment";
+  if (message) showNotice(message, true);
+}
+
+async function readWorkerResponse(response) {
+  let result;
+  try { result = await response.json(); }
+  catch { throw new Error("The payment service returned an unreadable response. Please try again."); }
+  if (!response.ok) {
+    throw new Error(result.error || result.message || "The payment service could not complete your request.");
+  }
+  return result;
+}
+
+async function handlePaymentStep() {
+  const form = document.getElementById("checkout-form");
+  if (!form.reportValidity()) return;
+
+  const country = document.getElementById("country").value;
+  const countryName = document.getElementById("otherCountry").value.trim();
+  if (country === "OTHER" && !countryName) {
+    invalidateQuote("Please enter your country before continuing.");
+    document.getElementById("otherCountry").focus();
+    return;
+  }
+
+  const cart = readCart();
+  if (!cart.length) {
+    invalidateQuote("Your cart is empty.");
+    return;
+  }
+
+  const payload = buildPayload();
+  const payloadKey = stablePayloadKey(payload);
+
+  if (quotedPayloadKey) {
+    if (payloadKey !== quotedPayloadKey) {
+      invalidateQuote("Customer details or cart items changed. Please request a fresh shipping quote.");
+      return;
+    }
+    await initializePayment(payload);
+  } else {
+    await requestQuote(payload);
+  }
+}
+
+async function requestQuote(payload) {
   payButton.disabled = true;
-  payButton.textContent = "Validating your order...";
+  payButton.textContent = "Getting shipping quote...";
   notice.style.display = "none";
-
   try {
-    const response = await fetch(PAYMENT_API + "/initialize", {
+    const response = await fetch(PAYMENT_API + "/quote", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload)
     });
+    const quote = await readWorkerResponse(response);
 
-    const result = await response.json();
-
-    if (!response.ok || !result.data || !result.data.authorization_url) {
-      throw new Error(
-        result.error ||
-        result.message ||
-        "We could not start your payment. Please try again."
-      );
+    if (!Number.isInteger(quote.shipping_minor) || !Number.isInteger(quote.total_minor)) {
+      throw new Error("The shipping quote did not include a valid Standard shipping charge or total.");
     }
 
-    sessionStorage.setItem("tenaciousCheckoutEmail", email);
-    sessionStorage.setItem(
-      "tenaciousCheckoutOrderRef",
-      result.order_ref || ""
-    );
-
-    window.location.assign(result.data.authorization_url);
-
+    quotedPayloadKey = stablePayloadKey(payload);
+    quotedTotalMinor = quote.total_minor;
+    document.getElementById("quote-shipping").textContent = "GHS " + (quote.shipping_minor / 100).toFixed(2);
+    document.getElementById("quote-total").textContent = "GHS " + (quote.total_minor / 100).toFixed(2);
+    shippingQuote.style.display = "block";
+    payButton.textContent = "Confirm & Pay GHS " + (quote.total_minor / 100).toFixed(2);
+    showNotice("Standard shipping quote received. Review the total, then confirm to pay.", false);
   } catch (error) {
-    showNotice(
-      error.message ||
-      "Checkout could not be completed. Please contact support@maisontenacious.com if you need a shipping quote.",
-      true
-    );
-
+    invalidateQuote(error.message || "We could not calculate shipping. Payment has not been started.");
+  } finally {
     payButton.disabled = false;
-    payButton.textContent = "Continue to Secure Payment";
   }
 }
-  
+
+async function initializePayment(payload) {
+  payButton.disabled = true;
+  payButton.textContent = "Validating your order...";
+  notice.style.display = "none";
+  try {
+    const response = await fetch(PAYMENT_API + "/initialize", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ...payload, shipping_confirmed: true })
+    });
+    const result = await readWorkerResponse(response);
+    if (!result.data || !result.data.authorization_url) {
+      throw new Error("We could not start your payment. Please try again.");
+    }
+
+    sessionStorage.setItem("tenaciousCheckoutEmail", payload.email);
+    sessionStorage.setItem("tenaciousCheckoutOrderRef", result.order_ref || "");
+    window.location.assign(result.data.authorization_url);
+  } catch (error) {
+    showNotice(error.message || "Checkout could not be completed. Please try again.", true);
+    payButton.disabled = false;
+    if (quotedTotalMinor !== null) {
+      payButton.textContent = "Confirm & Pay GHS " + (quotedTotalMinor / 100).toFixed(2);
+    } else {
+      payButton.textContent = "Continue to Secure Payment";
+    }
+  }
+}
+
 async function verifyReturnedPayment() {
   const params = new URLSearchParams(window.location.search);
   const reference = params.get("reference") || params.get("trxref");
@@ -280,8 +317,7 @@ async function verifyReturnedPayment() {
     const result = await response.json();
     const payment = result && result.data;
     if (response.ok && payment && payment.status === "success") {
-      const orderRef = (payment.metadata && payment.metadata.order_ref) ||
-        result.order_ref || sessionStorage.getItem("tenaciousCheckoutOrderRef") || "confirmed";
+      const orderRef = (payment.metadata && payment.metadata.order_ref) || result.order_ref || sessionStorage.getItem("tenaciousCheckoutOrderRef") || "confirmed";
       localStorage.removeItem("tenaciousCart");
       localStorage.removeItem("cart");
       showNotice("Thank you for choosing @Tenacious. Your payment is confirmed. Order reference: " + orderRef + ". Your order is being prepared for fulfilment.", false);
@@ -290,6 +326,7 @@ async function verifyReturnedPayment() {
       history.replaceState({}, document.title, window.location.pathname);
       document.getElementById("summary-items").textContent = "Your confirmed order has been received.";
       document.getElementById("summary-total").textContent = "—";
+      shippingQuote.style.display = "none";
     } else {
       showNotice("We could not confirm this payment yet. Please do not pay again until you have checked your Paystack transaction status or contacted support@maisontenacious.com.", true);
       payButton.disabled = false;
@@ -299,27 +336,27 @@ async function verifyReturnedPayment() {
     payButton.disabled = false;
   }
 }
-// Show or hide the manual country field
+
 const countrySelect = document.getElementById("country");
 const otherCountryGroup = document.getElementById("otherCountryGroup");
 const otherCountryInput = document.getElementById("otherCountry");
 
 function updateOtherCountryField() {
   const isOther = countrySelect.value === "OTHER";
-
   otherCountryGroup.hidden = !isOther;
   otherCountryInput.required = isOther;
-
-  if (!isOther) {
-    otherCountryInput.value = "";
-  }
+  if (!isOther) otherCountryInput.value = "";
+  invalidateQuote();
 }
 
 countrySelect.addEventListener("change", updateOtherCountryField);
+const form = document.getElementById("checkout-form");
+form.addEventListener("input", () => invalidateQuote());
+form.addEventListener("change", () => invalidateQuote());
+window.addEventListener("storage", () => { invalidateQuote("Your cart changed. Please request a fresh shipping quote."); loadOrderSummary(); });
 updateOtherCountryField();
 loadOrderSummary();
 verifyReturnedPayment();
 </script>
 </body>
 </html>
-

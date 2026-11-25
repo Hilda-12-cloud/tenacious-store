@@ -262,7 +262,24 @@ async function verifyReturnedPayment() {
     payButton.disabled = false;
   }
 }
+// Show or hide the manual country field
+const countrySelect = document.getElementById("country");
+const otherCountryGroup = document.getElementById("otherCountryGroup");
+const otherCountryInput = document.getElementById("otherCountry");
 
+function updateOtherCountryField() {
+  const isOther = countrySelect.value === "OTHER";
+
+  otherCountryGroup.hidden = !isOther;
+  otherCountryInput.required = isOther;
+
+  if (!isOther) {
+    otherCountryInput.value = "";
+  }
+}
+
+countrySelect.addEventListener("change", updateOtherCountryField);
+updateOtherCountryField();
 loadOrderSummary();
 verifyReturnedPayment();
 </script>

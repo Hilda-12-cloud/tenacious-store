@@ -185,15 +185,32 @@ function loadOrderSummary() {
 async function startPayment() {
   const form = document.getElementById("checkout-form");
   if (!form.reportValidity()) return;
+
+  const country = document.getElementById("country").value;
+  const countryName = document.getElementById("otherCountry").value.trim();
+
+  if (country === "OTHER" && !countryName) {
+    showNotice("Please enter your country before continuing.", true);
+    document.getElementById("otherCountry").focus();
+    return;
+  }
+
   const cart = readCart();
-  if (!cart.length) { showNotice("Your cart is empty.", true); return; }
+
+  if (!cart.length) {
+    showNotice("Your cart is empty.", true);
+    return;
+  }
+
   const items = cart.map(item => ({
     name: String(item.name || ""),
     size: String(item.size || ""),
     color: String(item.color || ""),
     quantity: Number(item.quantity)
   }));
+
   const email = document.getElementById("email").value.trim();
+
   const payload = {
     name: document.getElementById("name").value.trim(),
     email,
@@ -203,33 +220,53 @@ async function startPayment() {
       city: document.getElementById("city").value.trim(),
       state: document.getElementById("state").value.trim(),
       postcode: document.getElementById("postcode").value.trim(),
-      country: document.getElementById("country").value
+      country: country,
+      ...(country === "OTHER" ? { country_name: countryName } : {})
     },
     items
   };
+
   payButton.disabled = true;
   payButton.textContent = "Validating your order...";
   notice.style.display = "none";
+
   try {
     const response = await fetch(PAYMENT_API + "/initialize", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload)
     });
+
     const result = await response.json();
+
     if (!response.ok || !result.data || !result.data.authorization_url) {
-      throw new Error(result.error || result.message || "We could not start your payment. Please try again.");
+      throw new Error(
+        result.error ||
+        result.message ||
+        "We could not start your payment. Please try again."
+      );
     }
+
     sessionStorage.setItem("tenaciousCheckoutEmail", email);
-    sessionStorage.setItem("tenaciousCheckoutOrderRef", result.order_ref || "");
+    sessionStorage.setItem(
+      "tenaciousCheckoutOrderRef",
+      result.order_ref || ""
+    );
+
     window.location.assign(result.data.authorization_url);
+
   } catch (error) {
-    showNotice(error.message || "Checkout could not be completed. Please check your details and try again.", true);
+    showNotice(
+      error.message ||
+      "Checkout could not be completed. Please contact support@maisontenacious.com if you need a shipping quote.",
+      true
+    );
+
     payButton.disabled = false;
     payButton.textContent = "Continue to Secure Payment";
   }
 }
-
+  
 async function verifyReturnedPayment() {
   const params = new URLSearchParams(window.location.search);
   const reference = params.get("reference") || params.get("trxref");

@@ -191,8 +191,14 @@ function buildPayload() {
   };
 }
 
-function stablePayloadKey(payload) {
-  return JSON.stringify(payload, Object.keys(payload).sort());
+function stablePayloadKey(value) {
+  if (Array.isArray(value)) {
+    return "[" + value.map(stablePayloadKey).join(",") + "]";
+  }
+  if (value !== null && typeof value === "object") {
+    return "{" + Object.keys(value).sort().map(key => JSON.stringify(key) + ":" + stablePayloadKey(value[key])).join(",") + "}";
+  }
+  return JSON.stringify(value);
 }
 
 function invalidateQuote(message) {
@@ -256,6 +262,11 @@ async function requestQuote(payload) {
       body: JSON.stringify(payload)
     });
     const quote = await readWorkerResponse(response);
+
+    if (stablePayloadKey(buildPayload()) !== stablePayloadKey(payload)) {
+      invalidateQuote("Your delivery details or cart changed while we were calculating shipping. Please request a fresh quote.");
+      return;
+    }
 
     if (!Number.isInteger(quote.shipping_minor) || !Number.isInteger(quote.total_minor)) {
       throw new Error("The shipping quote did not include a valid Standard shipping charge or total.");

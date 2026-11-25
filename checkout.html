@@ -36,34 +36,85 @@
   <div id="checkout-notice" class="notice" role="status" aria-live="polite"></div>
   <div class="checkout-container">
     <section>
-      <h2 class="section-title">Customer & Delivery Details</h2>
-      <form id="checkout-form">
-        <div class="form-group"><label for="name">Full Name</label><input id="name" name="name" autocomplete="name" required minlength="2"></div>
-        <div class="form-group"><label for="email">Email Address</label><input id="email" name="email" type="email" autocomplete="email" required></div>
-        <div class="form-group"><label for="phone">Phone Number (include country code)</label><input id="phone" name="phone" type="tel" autocomplete="tel" required minlength="6" placeholder="+233..."></div>
-        <div class="form-group"><label for="country">Country</label>
-          <select id="country" name="country" autocomplete="country" required>
-            <option value="">Select your country</option>
-            <option value="GH">Ghana</option><option value="US">United States</option>
-            <option value="GB">United Kingdom</option><option value="CA">Canada</option>
-            <option value="NG">Nigeria</option><option value="AU">Australia</option>
-            <option value="DE">Germany</option><option value="FR">France</option>
-            <option value="NL">Netherlands</option><option value="IT">Italy</option>
-            <option value="ES">Spain</option><option value="IE">Ireland</option>
-            <option value="ZA">South Africa</option><option value="AE">United Arab Emirates</option>
-            <option value="SE">Sweden</option><option value="CH">Switzerland</option>
-            <option value="BE">Belgium</option><option value="PT">Portugal</option>
-            <option value="DK">Denmark</option><option value="NO">Norway</option>
-            <option value="NZ">New Zealand</option><option value="JP">Japan</option>
-          </select>
-        </div>
-        <div class="form-group"><label for="address">Street Address</label><input id="address" name="address" autocomplete="street-address" required minlength="4"></div>
-        <div class="form-row">
-          <div class="form-group"><label for="city">City / Town</label><input id="city" name="city" autocomplete="address-level2" required></div>
-          <div class="form-group"><label for="state">State / Region / Province</label><input id="state" name="state" autocomplete="address-level1"></div>
-        </div>
-        <div class="form-group"><label for="postcode">Postal / ZIP Code</label><input id="postcode" name="postcode" autocomplete="postal-code"></div>
-      </form>
+  <h2 class="section-title">Customer & Delivery Details</h2>
+  <form id="checkout-form">
+    <div class="form-group">
+      <label for="name">Full Name</label>
+      <input id="name" name="name" autocomplete="name" required minlength="2">
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email Address</label>
+      <input id="email" name="email" type="email" autocomplete="email" required>
+    </div>
+
+    <div class="form-group">
+      <label for="phone">Phone Number (include country code)</label>
+      <input id="phone" name="phone" type="tel" autocomplete="tel" required minlength="6" placeholder="+233...">
+    </div>
+
+    <div class="form-group">
+      <label for="country">Country</label>
+      <select id="country" name="country" autocomplete="country" required>
+        <option value="">Select your country</option>
+        <option value="GH">Ghana</option>
+        <option value="US">United States</option>
+        <option value="GB">United Kingdom</option>
+        <option value="CA">Canada</option>
+        <option value="NG">Nigeria</option>
+        <option value="AU">Australia</option>
+        <option value="DE">Germany</option>
+        <option value="FR">France</option>
+        <option value="NL">Netherlands</option>
+        <option value="IT">Italy</option>
+        <option value="ES">Spain</option>
+        <option value="IE">Ireland</option>
+        <option value="ZA">South Africa</option>
+        <option value="AE">United Arab Emirates</option>
+        <option value="SE">Sweden</option>
+        <option value="CH">Switzerland</option>
+        <option value="BE">Belgium</option>
+        <option value="PT">Portugal</option>
+        <option value="DK">Denmark</option>
+        <option value="NO">Norway</option>
+        <option value="NZ">New Zealand</option>
+        <option value="JP">Japan</option>
+        <option value="OTHER">Other / Not Listed</option>
+      </select>
+    </div>
+
+    <div class="form-group" id="otherCountryGroup" hidden>
+      <label for="otherCountry">Please enter your country</label>
+      <input
+        id="otherCountry"
+        name="country_name"
+        type="text"
+        autocomplete="country-name"
+        placeholder="Enter your country name"
+      >
+    </div>
+
+    <div class="form-group">
+      <label for="address">Street Address</label>
+      <input id="address" name="address" autocomplete="street-address" required minlength="4">
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="city">City / Town</label>
+        <input id="city" name="city" autocomplete="address-level2" required>
+      </div>
+      <div class="form-group">
+        <label for="state">State / Region / Province</label>
+        <input id="state" name="state" autocomplete="address-level1">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="postcode">Postal / ZIP Code</label>
+      <input id="postcode" name="postcode" autocomplete="postal-code">
+    </div>
+  </form>
     </section>
     <section class="order-summary">
       <h2 class="section-title">Your Order</h2>

@@ -1,286 +1,220 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Checkout | @Tenacious</title>
-
+  <title>Secure Checkout | @Tenacious</title>
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      background: #0b0b0b;
-      color: #ffffff;
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-    }
-
-    .checkout-page {
-      max-width: 1000px;
-      margin: auto;
-      padding: 40px 20px;
-    }
-
-    .back-link {
-      display: inline-block;
-      color: #ffffff;
-      text-decoration: none;
-      margin-bottom: 35px;
-      opacity: 0.8;
-    }
-
-    .checkout-title {
-      font-size: 36px;
-      margin-bottom: 35px;
-    }
-
-    .checkout-container {
-      display: grid;
-      grid-template-columns: 1.4fr 1fr;
-      gap: 50px;
-    }
-
-    .section-title {
-      font-size: 20px;
-      margin-bottom: 20px;
-    }
-
-    .form-group {
-      margin-bottom: 18px;
-    }
-
-    .form-group label {
-      display: block;
-      margin-bottom: 7px;
-      font-size: 14px;
-    }
-
-    .form-group input,
-    .form-group select {
-      width: 100%;
-      padding: 14px;
-      background: #111111;
-      color: #ffffff;
-      border: 1px solid #333333;
-      outline: none;
-    }
-
-    .form-group input:focus,
-    .form-group select:focus {
-      border-color: #ffffff;
-    }
-
-    .order-summary {
-      background: #111111;
-      border: 1px solid #2d2d2d;
-      padding: 25px;
-      height: fit-content;
-    }
-
-    .summary-item {
-      display: flex;
-      justify-content: space-between;
-      gap: 15px;
-      padding: 12px 0;
-      border-bottom: 1px solid #2d2d2d;
-    }
-
-    .summary-total {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 25px;
-      font-size: 22px;
-      font-weight: bold;
-    }
-
-    .pay-button {
-      width: 100%;
-      padding: 16px;
-      margin-top: 25px;
-      background: #ffffff;
-      color: #000000;
-      border: none;
-      cursor: pointer;
-      font-weight: bold;
-      font-size: 15px;
-    }
-
-    .alternative {
-      margin-top: 15px;
-      text-align: center;
-      color: #999999;
-      font-size: 13px;
-    }
-
-    @media (max-width: 768px) {
-      .checkout-container {
-        grid-template-columns: 1fr;
-        gap: 35px;
-      }
-
-      .checkout-title {
-        font-size: 30px;
-      }
-    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{background:#0b0b0b;color:#fff;font-family:Arial,sans-serif;line-height:1.6}
+    .checkout-page{max-width:1050px;margin:auto;padding:36px 20px 60px}
+    .back-link{display:inline-block;color:#c5a059;text-decoration:none;margin-bottom:28px}
+    .checkout-title{font-family:Georgia,serif;font-size:36px;letter-spacing:1px;margin-bottom:28px}
+    .checkout-container{display:grid;grid-template-columns:1.25fr .9fr;gap:38px}
+    .section-title{font-family:Georgia,serif;font-size:21px;margin-bottom:20px;color:#c5a059}
+    .form-group{margin-bottom:16px}
+    .form-group label{display:block;margin-bottom:6px;font-size:13px;color:#ddd}
+    .form-group input,.form-group select{width:100%;padding:13px;background:#111;color:#fff;border:1px solid #393939;border-radius:2px;outline:none}
+    .form-group input:focus,.form-group select:focus{border-color:#c5a059}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .order-summary{background:#111;border:1px solid #333;padding:24px;height:fit-content}
+    .summary-item{display:flex;justify-content:space-between;gap:14px;padding:12px 0;border-bottom:1px solid #292929;font-size:14px}
+    .summary-item small{display:block;color:#c5a059;margin-top:3px}
+    .summary-total{display:flex;justify-content:space-between;margin-top:20px;font-size:19px;font-weight:bold}
+    .pay-button{width:100%;padding:15px;margin-top:24px;background:#c5a059;color:#090909;border:0;cursor:pointer;font-weight:bold;font-size:15px}
+    .pay-button:disabled{opacity:.55;cursor:wait}
+    .fine-print{margin-top:14px;color:#999;font-size:12px}
+    .notice{display:none;margin:0 0 22px;padding:13px;border:1px solid #c5a059;color:#f2dfb7;background:#17130b;font-size:13px}
+    .secure-note{color:#aaa;font-size:12px;margin-top:10px}
+    @media(max-width:760px){.checkout-container{grid-template-columns:1fr;gap:28px}.checkout-title{font-size:30px}.form-row{grid-template-columns:1fr}}
   </style>
 </head>
-
 <body>
-
-  <main class="checkout-page">
-
-    <a href="cart.html" class="back-link">← Back to Cart</a>
-
-    <h1 class="checkout-title">Checkout</h1>
-
-    <div class="checkout-container">
-
-      <section>
-
-        <h2 class="section-title">Customer Information</h2>
-
-        <form id="checkout-form">
-
-          <div class="form-group">
-            <label for="name">Full Name</label>
-            <input type="text" id="name" required>
-          </div>
-
-          <div class="form-group">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" required>
-          </div>
-
-          <div class="form-group">
-            <label for="phone">Phone Number</label>
-            <input type="tel" id="phone" required>
-          </div>
-
-          <div class="form-group">
-            <label for="address">Shipping Address</label>
-            <input type="text" id="address" required>
-          </div>
-
-          <div class="form-group">
-            <label for="country">Country</label>
-
-            <select id="country" required>
-              <option value="">Select Country</option>
-              <option value="Ghana">Ghana</option>
-              <option value="United States">United States</option>
-              <option value="United Kingdom">United Kingdom</option>
-              <option value="Canada">Canada</option>
-              <option value="Nigeria">Nigeria</option>
-              <option value="Other">Other</option>
-            </select>
-
-          </div>
-
-        </form>
-
-      </section>
-
-
-      <section class="order-summary">
-
-        <h2 class="section-title">Your Order</h2>
-
-        <div id="summary-items"></div>
-
-        <div class="summary-total">
-          <span>Total</span>
-          <span>$<span id="summary-total">0.00</span></span>
+<main class="checkout-page">
+  <a href="cart.html" class="back-link">← Back to Cart</a>
+  <h1 class="checkout-title">Secure Checkout</h1>
+  <div id="checkout-notice" class="notice" role="status" aria-live="polite"></div>
+  <div class="checkout-container">
+    <section>
+      <h2 class="section-title">Customer & Delivery Details</h2>
+      <form id="checkout-form">
+        <div class="form-group"><label for="name">Full Name</label><input id="name" name="name" autocomplete="name" required minlength="2"></div>
+        <div class="form-group"><label for="email">Email Address</label><input id="email" name="email" type="email" autocomplete="email" required></div>
+        <div class="form-group"><label for="phone">Phone Number (include country code)</label><input id="phone" name="phone" type="tel" autocomplete="tel" required minlength="6" placeholder="+233..."></div>
+        <div class="form-group"><label for="country">Country</label>
+          <select id="country" name="country" autocomplete="country" required>
+            <option value="">Select your country</option>
+            <option value="GH">Ghana</option><option value="US">United States</option>
+            <option value="GB">United Kingdom</option><option value="CA">Canada</option>
+            <option value="NG">Nigeria</option><option value="AU">Australia</option>
+            <option value="DE">Germany</option><option value="FR">France</option>
+            <option value="NL">Netherlands</option><option value="IT">Italy</option>
+            <option value="ES">Spain</option><option value="IE">Ireland</option>
+            <option value="ZA">South Africa</option><option value="AE">United Arab Emirates</option>
+            <option value="SE">Sweden</option><option value="CH">Switzerland</option>
+            <option value="BE">Belgium</option><option value="PT">Portugal</option>
+            <option value="DK">Denmark</option><option value="NO">Norway</option>
+            <option value="NZ">New Zealand</option><option value="JP">Japan</option>
+          </select>
         </div>
+        <div class="form-group"><label for="address">Street Address</label><input id="address" name="address" autocomplete="street-address" required minlength="4"></div>
+        <div class="form-row">
+          <div class="form-group"><label for="city">City / Town</label><input id="city" name="city" autocomplete="address-level2" required></div>
+          <div class="form-group"><label for="state">State / Region / Province</label><input id="state" name="state" autocomplete="address-level1"></div>
+        </div>
+        <div class="form-group"><label for="postcode">Postal / ZIP Code</label><input id="postcode" name="postcode" autocomplete="postal-code"></div>
+      </form>
+    </section>
+    <section class="order-summary">
+      <h2 class="section-title">Your Order</h2>
+      <div id="summary-items"></div>
+      <div class="summary-total"><span>Item subtotal</span><span>$<span id="summary-total">0.00</span></span></div>
+      <p class="fine-print">Displayed item prices are in USD. The final GHS payment amount is recalculated securely by @Tenacious on the server using the current exchange rate. Browser prices are never used to determine your payment.</p>
+      <p class="fine-print">Orders containing 10 or more items qualify for the 5% bulk discount, calculated by the server.</p>
+      <button id="pay-button" class="pay-button" type="button" onclick="startPayment()">Continue to Secure Payment</button>
+      <p class="secure-note">Payments are processed securely by Paystack. Your order is validated against the @Tenacious product and Printful variant records before payment begins.</p>
+    </section>
+  </div>
+</main>
+<script>
+const PAYMENT_API = "https://tenacious-payments.hildaocran3.workers.dev";
+const notice = document.getElementById("checkout-notice");
+const payButton = document.getElementById("pay-button");
 
-        <button class="pay-button" onclick="startPayment()">
-          Continue to Payment
-        </button>
+function readCart() {
+  try {
+    const raw = localStorage.getItem("tenaciousCart") ?? localStorage.getItem("cart") ?? "[]";
+    const cart = JSON.parse(raw);
+    return Array.isArray(cart) ? cart : [];
+  } catch { return []; }
+}
 
-        <p class="alternative">
-          Secure payment options will be available here.
-        </p>
+function showNotice(message, isError) {
+  notice.textContent = message;
+  notice.style.display = "block";
+  notice.style.borderColor = isError ? "#b45b50" : "#c5a059";
+  notice.style.color = isError ? "#ffc8c0" : "#f2dfb7";
+}
 
-      </section>
-
-    </div>
-
-  </main>
-
-
-  <script>
 function loadOrderSummary() {
-  const sharedCart = localStorage.getItem("tenaciousCart");
-  const cart = JSON.parse(sharedCart !== null
-    ? sharedCart
-    : localStorage.getItem("cart")) || [];
-  if (sharedCart === null && cart.length > 0) {
-    localStorage.setItem("tenaciousCart", JSON.stringify(cart));
-    localStorage.removeItem("cart");
-  }
-
-  const summaryItems = document.getElementById("summary-items");
-  const summaryTotal = document.getElementById("summary-total");
-
-  summaryItems.innerHTML = "";
-
-  if (cart.length === 0) {
-    summaryItems.innerHTML = "<p>Your cart is empty.</p>";
-    summaryTotal.textContent = "0.00";
+  const cart = readCart();
+  const host = document.getElementById("summary-items");
+  const totalNode = document.getElementById("summary-total");
+  host.replaceChildren();
+  let total = 0;
+  if (!cart.length) {
+    const empty = document.createElement("p");
+    empty.textContent = "Your cart is empty.";
+    host.appendChild(empty);
+    totalNode.textContent = "0.00";
+    payButton.disabled = true;
     return;
   }
-
-  let total = 0;
-
   cart.forEach(item => {
     const price = Number(item.price) || 0;
     const quantity = Number(item.quantity) || 0;
-
     total += price * quantity;
-
-    const variants = [];
-    if (item.color) variants.push("Colour: " + item.color);
-    if (item.size) variants.push("Size: " + item.size);
-
-    summaryItems.innerHTML += `
-      <div class="summary-item">
-        <div>
-          <span>${item.name} × ${quantity}</span>
-          <p style="color:#b9a16a;font-size:12px;margin-top:5px;">
-            ${variants.join(" | ")}
-          </p>
-        </div>
-        <span>$${(price * quantity).toFixed(2)}</span>
-      </div>
-    `;
+    const row = document.createElement("div");
+    row.className = "summary-item";
+    const description = document.createElement("div");
+    const name = document.createElement("span");
+    name.textContent = String(item.name || "Product") + " × " + quantity;
+    const variant = document.createElement("small");
+    variant.textContent = [item.size ? "Size: " + item.size : "", item.color ? "Colour: " + item.color : ""].filter(Boolean).join(" | ");
+    description.append(name, variant);
+    const amount = document.createElement("span");
+    amount.textContent = "$" + (price * quantity).toFixed(2);
+    row.append(description, amount);
+    host.appendChild(row);
   });
-
-  summaryTotal.textContent = total.toFixed(2);
+  totalNode.textContent = total.toFixed(2);
+  payButton.disabled = false;
 }
 
-
-    function startPayment() {
-
-      const form = document.getElementById("checkout-form");
-
-      if (!form.checkValidity()) {
-        form.reportValidity();
-        return;
-      }
-
-      alert("Checkout information received. Paystack will be connected next.");
+async function startPayment() {
+  const form = document.getElementById("checkout-form");
+  if (!form.reportValidity()) return;
+  const cart = readCart();
+  if (!cart.length) { showNotice("Your cart is empty.", true); return; }
+  const items = cart.map(item => ({
+    name: String(item.name || ""),
+    size: String(item.size || ""),
+    color: String(item.color || ""),
+    quantity: Number(item.quantity)
+  }));
+  const email = document.getElementById("email").value.trim();
+  const payload = {
+    name: document.getElementById("name").value.trim(),
+    email,
+    phone: document.getElementById("phone").value.trim(),
+    shipping: {
+      address1: document.getElementById("address").value.trim(),
+      city: document.getElementById("city").value.trim(),
+      state: document.getElementById("state").value.trim(),
+      postcode: document.getElementById("postcode").value.trim(),
+      country: document.getElementById("country").value
+    },
+    items
+  };
+  payButton.disabled = true;
+  payButton.textContent = "Validating your order...";
+  notice.style.display = "none";
+  try {
+    const response = await fetch(PAYMENT_API + "/initialize", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+    const result = await response.json();
+    if (!response.ok || !result.data || !result.data.authorization_url) {
+      throw new Error(result.error || result.message || "We could not start your payment. Please try again.");
     }
+    sessionStorage.setItem("tenaciousCheckoutEmail", email);
+    sessionStorage.setItem("tenaciousCheckoutOrderRef", result.order_ref || "");
+    window.location.assign(result.data.authorization_url);
+  } catch (error) {
+    showNotice(error.message || "Checkout could not be completed. Please check your details and try again.", true);
+    payButton.disabled = false;
+    payButton.textContent = "Continue to Secure Payment";
+  }
+}
 
+async function verifyReturnedPayment() {
+  const params = new URLSearchParams(window.location.search);
+  const reference = params.get("reference") || params.get("trxref");
+  if (!reference) return;
+  const email = sessionStorage.getItem("tenaciousCheckoutEmail") || "";
+  showNotice("Checking your payment securely with Paystack...", false);
+  payButton.disabled = true;
+  try {
+    const url = PAYMENT_API + "/verify/" + encodeURIComponent(reference) + "?email=" + encodeURIComponent(email);
+    const response = await fetch(url);
+    const result = await response.json();
+    const payment = result && result.data;
+    if (response.ok && payment && payment.status === "success") {
+      const orderRef = (payment.metadata && payment.metadata.order_ref) ||
+        result.order_ref || sessionStorage.getItem("tenaciousCheckoutOrderRef") || "confirmed";
+      localStorage.removeItem("tenaciousCart");
+      localStorage.removeItem("cart");
+      showNotice("Thank you for choosing @Tenacious. Your payment is confirmed. Order reference: " + orderRef + ". Your order is being prepared for fulfilment.", false);
+      sessionStorage.removeItem("tenaciousCheckoutEmail");
+      sessionStorage.removeItem("tenaciousCheckoutOrderRef");
+      history.replaceState({}, document.title, window.location.pathname);
+      document.getElementById("summary-items").textContent = "Your confirmed order has been received.";
+      document.getElementById("summary-total").textContent = "—";
+    } else {
+      showNotice("We could not confirm this payment yet. Please do not pay again until you have checked your Paystack transaction status or contacted support@maisontenacious.com.", true);
+      payButton.disabled = false;
+    }
+  } catch {
+    showNotice("We could not verify the payment just now. Please contact support@maisontenacious.com before trying again.", true);
+    payButton.disabled = false;
+  }
+}
 
-    loadOrderSummary();
-
-  </script>
-
+loadOrderSummary();
+verifyReturnedPayment();
+</script>
 </body>
-
 </html>
+

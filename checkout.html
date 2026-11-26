@@ -24,6 +24,10 @@
     .shipping-quote{display:none;margin-top:18px;padding:14px;border:1px solid #c5a059;background:#17130b}
     .shipping-quote-row{display:flex;justify-content:space-between;gap:12px;margin-top:6px}
     .shipping-quote strong{color:#f2dfb7}
+    .summary-breakdown{display:grid;gap:6px;margin-top:10px;font-size:13px}
+    .summary-breakdown-row{display:flex;justify-content:space-between;gap:12px}
+    .quote-discount{display:none;color:#c5a059}
+    .quote-expiry{display:block;margin-top:10px;color:#aaa;font-size:12px}
     .pay-button{width:100%;padding:15px;margin-top:24px;background:#c5a059;color:#090909;border:0;cursor:pointer;font-weight:bold;font-size:15px}
     .pay-button:disabled{opacity:.55;cursor:wait}
     .fine-print{margin-top:14px;color:#999;font-size:12px}
@@ -96,9 +100,12 @@
       <div id="summary-items"></div>
       <div class="summary-total"><span>Item subtotal</span><span>$<span id="summary-total">0.00</span></span></div>
       <div id="shipping-quote" class="shipping-quote" aria-live="polite">
-        <div class="shipping-quote-row"><strong>Shipping method</strong><strong>Standard</strong></div>
+        <div class="shipping-quote-row"><strong>Shipping method</strong><strong id="quote-method">Standard</strong></div>
+        <div class="summary-breakdown" id="quote-breakdown"></div>
+        <div class="shipping-quote-row quote-discount" id="quote-discount-row"><span id="quote-discount-label">Bulk discount</span><span id="quote-discount">-GHS 0.00</span></div>
         <div class="shipping-quote-row"><span>Standard shipping</span><span id="quote-shipping">GHS 0.00</span></div>
         <div class="shipping-quote-row"><strong>Final payment total</strong><strong id="quote-total">GHS 0.00</strong></div>
+        <time class="quote-expiry" id="quote-expiry"></time>
       </div>
       <p class="fine-print">Displayed item prices are in USD. The final GHS payment amount is recalculated securely by @Tenacious on the server using the current exchange rate. Browser prices are never used to determine payment.</p>
       <p class="fine-print">Orders containing 10 or more items qualify for the 5% bulk discount, calculated by the server.</p>
@@ -114,6 +121,8 @@ const payButton = document.getElementById("pay-button");
 const shippingQuote = document.getElementById("shipping-quote");
 let quotedPayloadKey = null;
 let quotedTotalMinor = null;
+let quoteExpiresAt = null;
+let quoteExpiryTimer = null;
 
 function readCart() {
   try {
@@ -204,6 +213,8 @@ function stablePayloadKey(value) {
 function invalidateQuote(message) {
   quotedPayloadKey = null;
   quotedTotalMinor = null;
+  quoteExpiresAt = null;
+  if (quoteExpiryTimer) clearInterval(quoteExpiryTimer);
   shippingQuote.style.display = "none";
   payButton.textContent = "Continue to Secure Payment";
   if (message) showNotice(message, true);
@@ -241,6 +252,10 @@ async function handlePaymentStep() {
   const payloadKey = stablePayloadKey(payload);
 
   if (quotedPayloadKey) {
+    if (quoteExpiresAt && Date.now() >= quoteExpiresAt.getTime()) {
+      invalidateQuote("This shipping quote has expired. Please request a fresh quote.");
+      return;
+    }
     if (payloadKey !== quotedPayloadKey) {
       invalidateQuote("Customer details or cart items changed. Please request a fresh shipping quote.");
       return;
@@ -261,23 +276,83 @@ async function requestQuote(payload) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload)
     });
-    const quote = await readWorkerResponse(response);
+    const result = await readWorkerResponse(response);
+    const quote = result.quote || result;
 
     if (stablePayloadKey(buildPayload()) !== stablePayloadKey(payload)) {
       invalidateQuote("Your delivery details or cart changed while we were calculating shipping. Please request a fresh quote.");
       return;
     }
 
-    if (!Number.isInteger(quote.shipping_minor) || !Number.isInteger(quote.total_minor)) {
-      throw new Error("The shipping quote did not include a valid Standard shipping charge or total.");
+    const ghsMinor = Number.isInteger(quote.total_minor) ? quote.total_minor : null;
+    const shippingMinor = Number.isInteger(quote.shipping_minor) ? quote.shipping_minor : null;
+    if (!Number.isInteger(ghsMinor) || !Number.isInteger(shippingMinor)) {
+      throw new Error("The shipping quote did not include a valid server-calculated total.");
     }
 
     quotedPayloadKey = stablePayloadKey(payload);
-    quotedTotalMinor = quote.total_minor;
-    document.getElementById("quote-shipping").textContent = "GHS " + (quote.shipping_minor / 100).toFixed(2);
-    document.getElementById("quote-total").textContent = "GHS " + (quote.total_minor / 100).toFixed(2);
+    quotedTotalMinor = ghsMinor;
+    const breakdown = document.getElementById("quote-breakdown");
+    breakdown.replaceChildren();
+    const addRow = (label, usd, ghs) => {
+      const row = document.createElement("div");
+      row.className = "summary-breakdown-row";
+      row.innerHTML = "<span></span><span></span>";
+      row.firstElementChild.textContent = label;
+      row.lastElementChild.textContent = (usd !== null ? "USD " + usd.toFixed(2) : "") +
+        (usd !== null && ghs !== null ? " / " : "") +
+        (ghs !== null ? "GHS " + ghs.toFixed(2) : "");
+      breakdown.appendChild(row);
+    };
+    const subtotalUsd = Number.isInteger(quote.subtotal_usd_minor) ? quote.subtotal_usd_minor / 100 : null;
+    const subtotalGhs = Number.isInteger(quote.subtotal_minor) ? quote.subtotal_minor / 100 : null;
+    const shippingUsd = Number.isInteger(quote.shipping_usd_minor) ? quote.shipping_usd_minor / 100 : null;
+    const shippingGhs = quote.shipping_minor / 100;
+    const discountUsd = Number.isInteger(quote.discount_usd_minor) ? quote.discount_usd_minor / 100 : null;
+    const discountGhs = Number.isInteger(quote.discount_minor) ? quote.discount_minor / 100 : null;
+    const totalUsd = Number.isInteger(quote.total_usd_minor) ? quote.total_usd_minor / 100 : null;
+    const totalGhs = ghsMinor / 100;
+    const exchangeRate = Number.isFinite(Number(quote.usd_ghs_rate)) ? Number(quote.usd_ghs_rate) : null;
+    if (subtotalUsd !== null || subtotalGhs !== null) addRow("Item subtotal", subtotalUsd, subtotalGhs);
+    if (shippingUsd !== null || shippingGhs !== null) addRow("Shipping", shippingUsd, shippingGhs);
+    if (exchangeRate !== null) addRow("Exchange rate", null, exchangeRate);
+    addRow("Final payment total", totalUsd, totalGhs);
+
+    document.getElementById("quote-method").textContent = quote.shipping_method || "STANDARD";
+    document.getElementById("quote-shipping").textContent = "GHS " + shippingGhs.toFixed(2);
+    document.getElementById("quote-total").textContent = "GHS " + (ghsMinor / 100).toFixed(2);
+    if (quote.bulk_discount_applied === true && (discountUsd !== null || discountGhs !== null)) {
+      const discountRow = document.getElementById("quote-discount-row");
+      discountRow.style.display = "flex";
+      document.getElementById("quote-discount").textContent =
+        (discountGhs !== null ? "-GHS " + discountGhs.toFixed(2) : "") +
+        (discountUsd !== null && discountGhs !== null ? " / " : "") +
+        (discountUsd !== null ? "-USD " + discountUsd.toFixed(2) : "");
+    } else {
+      document.getElementById("quote-discount-row").style.display = "none";
+    }
+    const quoteExpiry = quote.quote_expires_at || quote.expires_at;
+    if (quoteExpiry) {
+      quoteExpiresAt = new Date(quoteExpiry);
+      if (!Number.isNaN(quoteExpiresAt.getTime())) {
+        const expiryNode = document.getElementById("quote-expiry");
+        expiryNode.dateTime = quoteExpiresAt.toISOString();
+        const updateExpiry = () => {
+          const remainingMs = quoteExpiresAt.getTime() - Date.now();
+          if (remainingMs <= 0) {
+            invalidateQuote("This shipping quote has expired. Please request a fresh quote.");
+            return;
+          }
+          expiryNode.textContent = "Quote expires " + quoteExpiresAt.toLocaleString() +
+            " (" + Math.ceil(remainingMs / 1000) + " seconds remaining)";
+        };
+        updateExpiry();
+        if (quoteExpiryTimer) clearInterval(quoteExpiryTimer);
+        quoteExpiryTimer = setInterval(updateExpiry, 1000);
+      }
+    }
     shippingQuote.style.display = "block";
-    payButton.textContent = "Confirm & Pay GHS " + (quote.total_minor / 100).toFixed(2);
+    payButton.textContent = "Confirm & Pay GHS " + (ghsMinor / 100).toFixed(2);
     showNotice("Standard shipping quote received. Review the total, then confirm to pay.", false);
   } catch (error) {
     invalidateQuote(error.message || "We could not calculate shipping. Payment has not been started.");

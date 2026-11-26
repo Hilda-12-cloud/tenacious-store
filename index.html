@@ -5266,6 +5266,13 @@ object-position: center;
 
     </a>
 
+    <a href="tenacious-circle.html"
+       class="mobile-link">
+
+      Tenacious Circle
+
+    </a>
+
   </div>
 
 </div>
@@ -5324,6 +5331,12 @@ object-position: center;
            class="nav-link">
 
           Journal
+
+        </a>
+        <a href="tenacious-circle.html"
+           class="nav-link">
+
+          Tenacious Circle
 
         </a>
         <div class="currency-selector">
@@ -6794,6 +6807,12 @@ object-position: center;
           <a href="#bulk">
 
             Bulk Orders
+
+          </a>
+
+          <a href="tenacious-circle.html">
+
+            Tenacious Circle
 
           </a>
 
@@ -10860,6 +10879,12 @@ message +=
 
 
     function openCheckout() {
+      if (cart.length === 0) {
+        alert("Your cart is empty.");
+        return;
+      }
+      window.location.href = "checkout.html";
+      return;
 
       if (cart.length === 0) {
 
@@ -11148,8 +11173,11 @@ message +=
         function(event) {
 
           event.preventDefault();
-
-          openCheckout();
+          if (cart.length === 0) {
+            alert("Your cart is empty.");
+            return;
+          }
+          window.location.href = "checkout.html";
 
         }
       );

@@ -105,18 +105,57 @@
       cursor: pointer;
     }
 
+    .bulk-order-panel {
+      margin-top: 20px;
+      padding: 18px;
+      border: 1px solid #c5a059;
+      background: #111111;
+      overflow-wrap: anywhere;
+    }
+
+    .bulk-order-panel h2 {
+      color: #c5a059;
+      font-size: 19px;
+      margin-bottom: 8px;
+    }
+
+    .bulk-order-panel p + p {
+      margin-top: 5px;
+    }
+
+    .bulk-order-support {
+      color: #cccccc;
+      margin-top: 12px !important;
+    }
+
+    .bulk-order-progress {
+      margin-top: 18px;
+      padding: 10px 14px;
+      border-left: 2px solid #c5a059;
+      color: #c5a059;
+    }
+
     .whatsapp-cart-button {
       display: block;
       width: 100%;
-      padding: 16px;
-      margin-top: 12px;
-      background: #25d366;
-      color: #111111;
+      padding: 12px 16px;
+      margin-top: 14px;
+      background: transparent;
+      color: #c5a059;
       text-align: center;
       text-decoration: none;
       font-weight: bold;
+      border: 1px solid #c5a059;
     }
 
+    .whatsapp-cart-button:hover,
+    .whatsapp-cart-button:focus-visible {
+      background: #c5a059;
+      color: #0b0b0b;
+    }
+
+    .bulk-order-panel[hidden],
+    .bulk-order-progress[hidden],
     .whatsapp-cart-button[hidden] {
       display: none;
     }
@@ -157,17 +196,25 @@
     <div class="cart-total">
       Total: $<span id="cart-total">0.00</span>
     </div>
-<a href="checkout.html" class="checkout-button">
-  Proceed to Checkout
-</a>
-<a
-  id="whatsapp-order-button"
-  class="whatsapp-cart-button"
-  target="_blank"
-  rel="noopener noreferrer"
-  hidden>
-  Order this cart via WhatsApp
-</a>
+    <a href="checkout.html" class="checkout-button">
+      Proceed to Checkout
+    </a>
+    <p id="bulk-order-progress" class="bulk-order-progress" hidden></p>
+    <section id="bulk-order-panel" class="bulk-order-panel" hidden aria-live="polite">
+      <h2>Bulk Order Eligible</h2>
+      <p>Total quantity: <span id="bulk-order-quantity"></span> items.</p>
+      <p>Bulk discount: 5%.</p>
+      <p>Your order qualifies for our bulk-order discount.</p>
+      <p class="bulk-order-support">Need assistance with a bulk order? Speak with our team about quantities, sizes, colours and special requirements.</p>
+      <a
+        id="whatsapp-order-button"
+        class="whatsapp-cart-button"
+        target="_blank"
+        rel="noopener noreferrer"
+        hidden>
+        Discuss Bulk Order on WhatsApp
+      </a>
+    </section>
 
   </main>
 
@@ -204,6 +251,22 @@ function saveCart(cart) {
 
 }
 
+function getValidQuantity(item) {
+  const value = item && item.quantity;
+  if (typeof value !== "number" && typeof value !== "string") {
+    return 0;
+  }
+
+  if (typeof value === "string" && value.trim() === "") {
+    return 0;
+  }
+
+  const quantity = Number(value);
+  return Number.isSafeInteger(quantity) && quantity > 0
+    ? quantity
+    : 0;
+}
+
 
 /* =========================================
    DISPLAY CART
@@ -220,12 +283,25 @@ function displayCart() {
     document.getElementById("cart-total");
   const whatsappOrderButton =
     document.getElementById("whatsapp-order-button");
+  const bulkOrderPanel =
+    document.getElementById("bulk-order-panel");
+  const bulkOrderProgress =
+    document.getElementById("bulk-order-progress");
+  const bulkOrderQuantity =
+    document.getElementById("bulk-order-quantity");
+  const totalQuantity = cart.reduce(
+    (sum, item) => sum + getValidQuantity(item),
+    0
+  );
+  const qualifiesForBulk = totalQuantity >= 10;
+
+  whatsappOrderButton.hidden = !qualifiesForBulk;
+  bulkOrderPanel.hidden = !qualifiesForBulk;
+  bulkOrderProgress.hidden = true;
 
   cartItems.innerHTML = "";
 
   if (cart.length === 0) {
-    whatsappOrderButton.hidden = true;
-
     cartItems.innerHTML = `
 
       <div class="empty-cart">
@@ -242,15 +318,35 @@ function displayCart() {
 
   }
 
+  if (qualifiesForBulk) {
+    bulkOrderQuantity.textContent = totalQuantity;
+  } else if (totalQuantity > 0) {
+    const remaining = 10 - totalQuantity;
+    bulkOrderProgress.textContent =
+      `Add ${remaining} more ${remaining === 1 ? "item" : "items"} to qualify for our 5% bulk discount.`;
+    bulkOrderProgress.hidden = false;
+  }
+
   let total = 0;
+  let merchandiseSubtotalAvailable = true;
 
   cart.forEach((item, index) => {
 
-    const price =
-      Number(item.price) || 0;
-
     const quantity =
-      Number(item.quantity) || 0;
+      getValidQuantity(item);
+    const priceValue = item.price;
+    const parsedPrice = Number(priceValue);
+    const hasValidPrice =
+      priceValue !== null &&
+      priceValue !== undefined &&
+      !(typeof priceValue === "string" && priceValue.trim() === "") &&
+      Number.isFinite(parsedPrice) &&
+      parsedPrice >= 0;
+    const price = hasValidPrice ? parsedPrice : 0;
+
+    if (quantity > 0 && !hasValidPrice) {
+      merchandiseSubtotalAvailable = false;
+    }
 
     total += price * quantity;
 
@@ -383,24 +479,42 @@ function displayCart() {
   cartTotal.textContent =
     total.toFixed(2);
 
-  const orderLines = cart.map(item => {
-    const variants = [item.size, item.color].filter(Boolean).join(" / ");
-    const itemName = item.name || "Product";
-    const name = variants ? `${itemName} (${variants})` : itemName;
-    const quantity = Number(item.quantity) || 0;
-    const price = Number(item.price) || 0;
+  if (qualifiesForBulk) {
+    const orderLines = cart.flatMap(item => {
+      const quantity = getValidQuantity(item);
+      if (!quantity) return [];
 
-    return `${name} x ${quantity} — $${(price * quantity).toFixed(2)}`;
-  });
-  const message = [
-    "Hello, I would like to place this order:",
-    ...orderLines,
-    `Total: $${total.toFixed(2)}`
-  ].join("\n");
+      const variants = [
+        item.size ? `Size: ${item.size}` : "",
+        item.color ? `Colour: ${item.color}` : ""
+      ].filter(Boolean);
+      const name = item.name || "Product";
+      const variantText = variants.length
+        ? ` (${variants.join(", ")})`
+        : "";
 
-  whatsappOrderButton.href =
-    `https://wa.me/233553393529?text=${encodeURIComponent(message)}`;
-  whatsappOrderButton.hidden = false;
+      return [`${name}${variantText} × ${quantity}`];
+    });
+    const message = [
+      "Hello @TENACIOUS team,",
+      "",
+      "I would like assistance with this bulk order request:",
+      ...orderLines,
+      "",
+      `Total quantity: ${totalQuantity} items`,
+      `Merchandise subtotal: ${
+        merchandiseSubtotalAvailable
+          ? "$" + total.toFixed(2)
+          : "unavailable from cart price data"
+      }`,
+      "Bulk discount eligibility: 5% (please confirm the final discount in your quote).",
+      "",
+      "Please help confirm the final bulk order and shipping quote. I understand the business will confirm the final order and shipping details."
+    ].join("\n");
+
+    whatsappOrderButton.href =
+      `https://wa.me/233553393529?text=${encodeURIComponent(message)}`;
+  }
 
 }
 
@@ -415,7 +529,10 @@ function changeQuantity(index, amount) {
 
   if (!cart[index]) return;
 
-  cart[index].quantity += amount;
+  const quantity = getValidQuantity(cart[index]);
+  if (!quantity) return;
+
+  cart[index].quantity = quantity + amount;
 
   if (cart[index].quantity <= 0) {
 

@@ -429,6 +429,30 @@
 
     }
 
+    .btn-whatsapp-secondary {
+
+      background:
+        transparent;
+
+      color:
+        var(--gold);
+
+      border-color:
+        var(--gold);
+
+    }
+
+
+    .btn-whatsapp-secondary:hover {
+
+      background:
+        var(--gold);
+
+      color:
+        var(--black);
+
+    }
+
 
     /* =========================
        ANNOUNCEMENT BAR
@@ -7003,11 +7027,11 @@ object-position: center;
           </button>
 
 
-          <button class="btn btn-gold"
+          <button class="btn btn-whatsapp-secondary"
                   id="whatsappButton"
                   style="display:none;">
 
-            WhatsApp Bulk Order
+            Discuss Bulk Order on WhatsApp
 
           </button>
 
@@ -10322,7 +10346,8 @@ function addToCart(
 
   if (existingItem) {
 
-    existingItem.quantity++;
+    existingItem.quantity =
+      getValidCartItemQuantity(existingItem) + 1;
 
     // Preserve complete product information.
     existingItem.name = product.name;
@@ -10393,7 +10418,12 @@ function changeCartItem(
 
   if (!item) return;
 
-  item.quantity += amount;
+  const quantity =
+    getValidCartItemQuantity(item);
+
+  if (!quantity) return;
+
+  item.quantity = quantity + amount;
 
   if (item.quantity <= 0) {
 
@@ -10428,11 +10458,27 @@ function changeCartItem(
        GET TOTAL QUANTITY
     ========================================= */
 
+    function getValidCartItemQuantity(item) {
+      const value = item && item.quantity;
+      if (typeof value !== "number" && typeof value !== "string") {
+        return 0;
+      }
+
+      if (typeof value === "string" && value.trim() === "") {
+        return 0;
+      }
+
+      const quantity = Number(value);
+      return Number.isSafeInteger(quantity) && quantity > 0
+        ? quantity
+        : 0;
+    }
+
     function getCartQuantity() {
 
       return cart.reduce(
         (total, item) =>
-          total + item.quantity,
+          total + getValidCartItemQuantity(item),
         0
       );
 
@@ -10633,9 +10679,11 @@ function renderCart() {
 
       <div class="bulk-notice">
 
-        ✦ Congratulations. Your order qualifies
-        for a 5% bulk discount and WhatsApp
-        ordering assistance.
+        <strong>Bulk Order Eligible</strong>
+        <p>Total quantity: ${totalQuantity} items.</p>
+        <p>Bulk discount: 5%.</p>
+        <p>Your order qualifies for our bulk-order discount.</p>
+        <p>Need assistance with a bulk order? Speak with our team about quantities, sizes, colours and special requirements.</p>
 
       </div>
 
@@ -10763,88 +10811,64 @@ function renderCart() {
 
           }
 
-
-          let message =
-            "*@TENACIOUS BULK ORDER REQUEST*%0A%0A";
-
-
-          cart.forEach(item => {
-
-            const product =
-              products.find(
-                product =>
-                  product.id === item.id
-              );
-
-
-            message +=
-              `• ${product.name} × ${item.quantity}%0A`;
-
-          });
-
-
           let subtotal = 0;
-
-
-          cart.forEach(item => {
+          let subtotalAvailable = true;
+          const orderLines = cart.flatMap(item => {
+            const quantity =
+              getValidCartItemQuantity(item);
+            if (!quantity) return [];
 
             const product =
               products.find(
                 product =>
                   product.id === item.id
               );
+            const name =
+              item.name || (product && product.name) || "Product";
+            const variants = [
+              item.size ? `Size: ${item.size}` : "",
+              item.color ? `Colour: ${item.color}` : ""
+            ].filter(Boolean);
+            const variantText = variants.length
+              ? ` (${variants.join(", ")})`
+              : "";
+            const price = Number(item.price);
+            const hasValidPrice =
+              item.price !== null &&
+              item.price !== undefined &&
+              !(typeof item.price === "string" && item.price.trim() === "") &&
+              Number.isFinite(price) &&
+              price >= 0;
 
-            subtotal +=
-              Number(item.price ?? product.price) *
-              item.quantity;
+            if (hasValidPrice) {
+              subtotal += price * quantity;
+            } else {
+              subtotalAvailable = false;
+            }
 
+            return [`• ${name}${variantText} × ${quantity}`];
           });
 
-
-          const discount =
-            subtotal * 0.05;
-
-
-          const total =
-            subtotal - discount;
-
-
-          message +=
-            `%0ATotal Items: ${totalQuantity}`;
-
-          message +=
-  `%0ASubtotal: ${formatPrice(subtotal)}`;
-          
-message +=
-  `%0ABulk Discount (5%): -${formatPrice(discount)}`;
-          
-          message +=
-  `%0AFinal Total: ${formatPrice(total)}`;
-
-          message +=
-            `%0A%0AI would like assistance completing this bulk order.`;
-
-
-          /*
-            IMPORTANT:
-
-            Replace YOUR_NUMBER with your actual
-            WhatsApp business number.
-
-            Example Ghana format:
-            233XXXXXXXXX
-
-            Do NOT include +
-          */
-
-
-          const whatsappNumber =
-          "233553393529";
-
-
+          const message = [
+            "Hello @TENACIOUS team,",
+            "",
+            "Please assist me with this bulk order request:",
+            ...orderLines,
+            "",
+            `Total quantity: ${totalQuantity} items`,
+            `Merchandise subtotal: ${
+              subtotalAvailable
+                ? formatPrice(subtotal)
+                : "unavailable from cart price data"
+            }`,
+            "Bulk discount eligibility: 5% (please confirm the discount in your quote).",
+            "",
+            "Please help confirm the final bulk order and shipping quote. I understand the business will confirm the final order and shipping details."
+          ].join("\n");
           window.open(
-            `https://wa.me/${whatsappNumber}?text=${message}`,
-            "_blank"
+            `https://wa.me/233553393529?text=${encodeURIComponent(message)}`,
+            "_blank",
+            "noopener,noreferrer"
           );
 
         }

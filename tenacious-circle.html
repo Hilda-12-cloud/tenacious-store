@@ -37,6 +37,7 @@
     textarea{min-height:110px;resize:vertical}input:focus,select:focus,textarea:focus{border-color:var(--gold);outline:none}
     .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.full{grid-column:1/-1}.field label{display:block;margin-bottom:7px;font-size:12px;color:#ddd}
     .help{color:#999;font-size:12px;margin-top:6px}.panel{border:1px solid #303030;background:var(--charcoal);padding:28px}
+    .request-total{border:1px solid #303030;background:#0d0d0d;padding:18px}.request-total-amount{color:#f2dfb7;font-size:18px;margin:8px 0}
     .request-item{display:grid;grid-template-columns:2fr 1.2fr 1fr 90px;gap:10px;margin-bottom:10px}
     .btn{border:1px solid var(--gold);background:var(--gold);color:#090909;padding:12px 16px;font-weight:600;cursor:pointer}
     .btn.secondary{background:transparent;color:var(--gold)}.btn:disabled{opacity:.55;cursor:wait}
@@ -73,18 +74,35 @@
       <div class="form-grid">
         <div class="field"><label for="legal-name">Legal name</label><input id="legal-name" name="legal_name" autocomplete="name" required></div>
         <div class="field"><label for="request-email">Email address</label><input id="request-email" name="email" type="email" autocomplete="email" required></div>
-        <div class="field"><label for="public-alias">Public alias</label><input id="public-alias" name="public_alias" maxlength="40" required><p class="help">This is the only applicant name shown publicly.</p></div>
+        <div class="field"><label for="public-alias">Public alias</label><input id="public-alias" name="alias" maxlength="40" required><p class="help">This is the only applicant name shown publicly.</p></div>
         <div class="field"><label for="circle-story">Why assistance is needed</label><textarea id="circle-story" name="story" required></textarea></div>
         <div class="field full"><label>Requested products</label><div id="requested-items"></div><button type="button" id="add-request-item" class="btn secondary">Add another product</button></div>
         <div class="field"><label for="delivery-address">Private delivery address</label><input id="delivery-address" name="address1" autocomplete="street-address" required></div>
+        <div class="field"><label for="delivery-address2">Address line 2 (optional)</label><input id="delivery-address2" name="address2" autocomplete="address-line2"></div>
         <div class="field"><label for="delivery-city">City / Town</label><input id="delivery-city" name="city" autocomplete="address-level2" required></div>
         <div class="field"><label for="delivery-state">State / Region</label><input id="delivery-state" name="state" autocomplete="address-level1"></div>
         <div class="field"><label for="delivery-postcode">Postal / ZIP code</label><input id="delivery-postcode" name="postcode" autocomplete="postal-code"></div>
-        <div class="field"><label for="delivery-country">Country</label><input id="delivery-country" name="country" autocomplete="country" required></div>
+        <div class="field"><label for="delivery-country">Country</label><select id="delivery-country" name="country" autocomplete="country" required>
+          <option value="">Select your country</option>
+          <option value="GH">Ghana</option><option value="US">United States</option><option value="GB">United Kingdom</option>
+          <option value="CA">Canada</option><option value="NG">Nigeria</option><option value="AU">Australia</option>
+          <option value="DE">Germany</option><option value="FR">France</option><option value="NL">Netherlands</option>
+          <option value="IT">Italy</option><option value="ES">Spain</option><option value="IE">Ireland</option>
+          <option value="ZA">South Africa</option><option value="AE">United Arab Emirates</option><option value="SE">Sweden</option>
+          <option value="CH">Switzerland</option><option value="BE">Belgium</option><option value="PT">Portugal</option>
+          <option value="DK">Denmark</option><option value="NO">Norway</option><option value="NZ">New Zealand</option><option value="JP">Japan</option>
+        </select></div>
         <div class="field"><label for="delivery-phone">Private telephone</label><input id="delivery-phone" name="phone" type="tel" autocomplete="tel" required></div>
+        <div class="field full request-total">
+          <label>Calculated request total</label>
+          <p id="request-total-message" class="help">Calculate the server-validated total for the selected products and delivery details before submitting.</p>
+          <p id="request-total-amount" class="request-total-amount" aria-live="polite"></p>
+          <button type="button" id="calculate-request-total" class="btn secondary">Calculate total</button>
+          <label class="check" style="margin-top:14px"><input id="confirm-request-total" type="checkbox" required disabled> I have reviewed and explicitly confirm this calculated request total.</label>
+        </div>
         <label class="check full"><input id="consent-privacy" type="checkbox" required> I confirm that the private delivery details are accurate and consent to their secure use for moderation and approved fulfilment.</label>
         <label class="check full"><input id="consent-products" type="checkbox" required> I understand that submissions require human approval and no guaranteed approval or cash withdrawal is offered.</label>
-        <div class="full"><button id="request-submit" class="btn" type="submit">Submit for review</button></div>
+        <div class="full"><button id="request-submit" class="btn" type="submit" disabled>Submit for review</button></div>
       </div>
     </form>
   </div></section>
@@ -100,8 +118,10 @@
     <div class="eyebrow">Sponsor Request</div><h2 id="sponsor-title">Contribution</h2>
     <p id="sponsor-remaining" class="help"></p>
     <form id="sponsor-form" style="margin-top:18px">
-      <div class="field"><label for="sponsor-email">Email address</label><input id="sponsor-email" type="email" autocomplete="email" required></div>
-      <div class="field" style="margin-top:12px"><label for="sponsor-amount">Contribution (GH₵)</label><input id="sponsor-amount" type="number" min="1" step="0.01" required><button type="button" id="fund-full" class="btn secondary" style="margin-top:8px">Fund remaining balance</button></div>
+      <div class="field"><label for="sponsor-name">Name (optional)</label><input id="sponsor-name" autocomplete="name"></div>
+      <div class="field" style="margin-top:12px"><label for="sponsor-email">Email address</label><input id="sponsor-email" type="email" autocomplete="email" required></div>
+      <div class="field" style="margin-top:12px"><label id="sponsor-amount-label" for="sponsor-amount">Contribution</label><input id="sponsor-amount" type="number" min="0.01" step="0.01" required><button type="button" id="fund-full" class="btn secondary" style="margin-top:8px">Fund remaining balance</button></div>
+      <p id="sponsor-conversion" class="help" aria-live="polite"></p>
       <div id="sponsor-notice" class="notice" role="alert"></div>
       <div class="modal-actions"><button type="button" id="sponsor-cancel" class="btn secondary">Cancel</button><button type="submit" id="sponsor-submit" class="btn">Continue with Paystack</button></div>
     </form>
@@ -112,7 +132,25 @@
 
 <script>
 const API = "https://tenacious-payments.hildaocran3.workers.dev";
+const supportedCurrencies = new Set(["USD", "GBP", "EUR", "GHS"]);
+const selectedCurrency = getSelectedCurrency();
 let catalogue = [];
+let exchangeRateData = null;
+let exchangeRateFetchedAt = 0;
+let quotedRequestKey = null;
+let quotedRequestExpiry = null;
+let activeRequest = null;
+let activeRemainingMinor = null;
+let initializingContribution = false;
+
+function getSelectedCurrency() {
+  try {
+    const stored = localStorage.getItem("tenaciousCurrency");
+    return supportedCurrencies.has(stored) ? stored : "USD";
+  } catch {
+    return "USD";
+  }
+}
 
 function notice(id, message, error=false) {
   const el = document.getElementById(id);
@@ -124,24 +162,119 @@ function notice(id, message, error=false) {
 async function readResponse(response) {
   let data;
   try { data = await response.json(); } catch { throw new Error("The service returned an unreadable response."); }
-  if (!response.ok) throw new Error(data.error || data.message || "The request could not be completed.");
+  if (!response.ok) {
+    const message = typeof data?.error === "string" ? data.error :
+      typeof data?.message === "string" ? data.message : "The request could not be completed.";
+    throw new Error(message);
+  }
   return data;
 }
 
-function first(obj, names, fallback=null) {
-  for (const name of names) if (obj && obj[name] !== undefined && obj[name] !== null) return obj[name];
-  return fallback;
+function responseData(data) {
+  return data && data.data && typeof data.data === "object" ? data.data : data;
 }
 
-function majorCurrency(value) {
-  if (value === null || value === undefined) return null;
-  const n = Number(value);
-  return Number.isFinite(n) ? n : null;
+function validMinor(value) {
+  return Number.isSafeInteger(value) && value >= 0;
+}
+
+function formatGhs(minor) {
+  return "GHS " + (minor / 100).toFixed(2);
+}
+
+async function getExchangeRates() {
+  if (exchangeRateData && Date.now() - exchangeRateFetchedAt < 15 * 60 * 1000) return exchangeRateData;
+  let response;
+  try {
+    response = await fetch("https://open.er-api.com/v6/latest/GHS");
+  } catch {
+    throw new Error("Live exchange rates are unavailable. Please try again when a reliable GHS rate can be loaded.");
+  }
+  if (!response.ok) throw new Error("Live exchange rates are unavailable. Please try again when a reliable GHS rate can be loaded.");
+  let data;
+  try { data = await response.json(); } catch {
+    throw new Error("The exchange-rate service returned unreadable data.");
+  }
+  if (!data || typeof data !== "object" || data.result !== "success" ||
+      data.base_code !== "GHS" || !data.rates || typeof data.rates !== "object") {
+    throw new Error("The exchange-rate service returned invalid GHS conversion data.");
+  }
+  for (const currency of supportedCurrencies) {
+    const rate = Number(data.rates[currency]);
+    if (!Number.isFinite(rate) || rate <= 0) {
+      throw new Error("A reliable " + currency + " exchange rate is unavailable. No amount has been estimated.");
+    }
+  }
+  exchangeRateData = data;
+  exchangeRateFetchedAt = Date.now();
+  return data;
+}
+
+async function displayRate(currency=selectedCurrency) {
+  if (currency === "GHS") return 1;
+  const data = await getExchangeRates();
+  return Number(data.rates[currency]);
+}
+
+function requestQuotePayload() {
+  const items = [...document.querySelectorAll(".request-item")].map(row => ({
+    name: row.querySelector('[name="product_name"]').value,
+    size: row.querySelector('[name="variant"]').value.trim(),
+    color: row.querySelector('[name="color"]').value.trim(),
+    quantity: Number(row.querySelector('[name="quantity"]').value)
+  })).filter(item => item.name && item.size);
+  if (!items.length) throw new Error("Add at least one requested product.");
+  if (!catalogue.length) throw new Error("The product catalogue could not be loaded. Please try again.");
+  if (items.some(item => !Number.isInteger(item.quantity) || item.quantity < 1 || item.quantity > 20)) {
+    throw new Error("Check the quantity for each requested product.");
+  }
+  const country = document.getElementById("delivery-country").value;
+  if (!/^[A-Z]{2}$/.test(country)) throw new Error("Select a valid country.");
+  return {
+    name: document.getElementById("legal-name").value.trim(),
+    email: document.getElementById("request-email").value.trim(),
+    phone: document.getElementById("delivery-phone").value.trim(),
+    shipping: {
+      address1: document.getElementById("delivery-address").value.trim(),
+      city: document.getElementById("delivery-city").value.trim(),
+      state: document.getElementById("delivery-state").value.trim(),
+      postcode: document.getElementById("delivery-postcode").value.trim(),
+      country
+    },
+    items
+  };
+}
+
+function stableKey(value) {
+  if (Array.isArray(value)) return "[" + value.map(stableKey).join(",") + "]";
+  if (value && typeof value === "object") {
+    return "{" + Object.keys(value).sort().map(key => JSON.stringify(key) + ":" + stableKey(value[key])).join(",") + "}";
+  }
+  return JSON.stringify(value);
+}
+
+function invalidateRequestQuote() {
+  quotedRequestKey = null;
+  quotedRequestExpiry = null;
+  document.getElementById("request-total-message").textContent =
+    "Calculate the server-validated total for the selected products and delivery details before submitting.";
+  document.getElementById("request-total-amount").textContent = "";
+  const confirmation = document.getElementById("confirm-request-total");
+  confirmation.checked = false;
+  confirmation.disabled = true;
+  document.getElementById("request-submit").disabled = true;
+}
+
+function updateRequestSubmit() {
+  document.getElementById("request-submit").disabled =
+    !quotedRequestKey || !document.getElementById("confirm-request-total").checked;
 }
 
 async function loadCatalogue() {
   try {
-    const html = await fetch("index.html").then(r => r.ok ? r.text() : "");
+    const response = await fetch("index.html");
+    if (!response.ok) throw new Error("The product catalogue could not be loaded.");
+    const html = await response.text();
     const blocks = [...html.matchAll(/\{\s*id:\s*\d+,[\s\S]*?\n\s*\},\s*/g)].map(match => match[0]);
     catalogue = blocks.map(block => {
       const name = block.match(/^\s*\{\s*id:\s*\d+,\s*name:\s*"([^"]+)"/m);
@@ -151,8 +284,9 @@ async function loadCatalogue() {
       const parseValues = raw => raw ? [...raw.matchAll(/"([^"]+)"/g)].map(match => match[1]) : [];
       return { name:name[1], sizes:[...new Set(parseValues(sizesMatch?.[1]))], colors:[...new Set(parseValues(colorsMatch?.[1]))] };
     }).filter(Boolean);
-  } catch {
+  } catch (error) {
     catalogue = [];
+    notice("request-notice", error.message || "The product catalogue could not be loaded.", true);
   }
   if (!catalogue.length) notice("request-notice","The product catalogue could not be loaded. Please try again before submitting a request.",true);
   const select = document.querySelector(".circle-product");
@@ -188,10 +322,15 @@ function addRequestedItem() {
 
 async function loadRequests() {
   const host = document.getElementById("requests-grid");
+  host.replaceChildren();
+  const loading = document.createElement("p");
+  loading.className = "privacy-note";
+  loading.textContent = "Loading approved requests...";
+  host.appendChild(loading);
   try {
     const data = await readResponse(await fetch(API + "/circle/requests"));
-    const requests = first(data, ["requests","data"], []);
-    const list = Array.isArray(requests) ? requests : [];
+    const list = data && data.requests;
+    if (!Array.isArray(list)) throw new Error("The service returned an invalid public request list.");
     host.replaceChildren();
     if (!list.length) {
       const empty = document.createElement("p");
@@ -200,183 +339,319 @@ async function loadRequests() {
       host.appendChild(empty);
       return;
     }
-    list.forEach(renderRequest);
+    list.forEach(request => renderRequest(request));
   } catch (error) {
     host.replaceChildren();
-    notice("browse-notice", error.message, true);
+    notice("browse-notice", error.message || "Approved requests could not be loaded.", true);
   }
 }
 
 function renderRequest(request) {
   const host = document.getElementById("requests-grid");
-  const ref = first(request, ["public_reference"], "");
-  const alias = first(request, ["public_alias"], "");
-  const story = first(request, ["approved_public_story"], "");
-  if (!ref || !alias) return;
-  const products = first(request, ["requested_products","items"], []);
-  const target = first(request, ["funding_target_ghs","target_ghs"], null);
-  const funded = first(request, ["amount_funded_ghs","funded_ghs"], null);
-  const remaining = first(request, ["remaining_ghs"], null);
-  const progress = first(request, ["funding_progress_percent","progress_percent"], null);
+  if (!request || typeof request !== "object") return;
+  const ref = typeof request.request_code === "string" ? request.request_code : "";
+  if (!ref || !request.id) return;
+  const alias = typeof request.public_alias === "string" ? request.public_alias : "Community member";
+  const story = typeof request.story === "string" ? request.story : "";
+  const products = Array.isArray(request.items) ? request.items : [];
+  const target = validMinor(request.target_minor) && request.target_minor > 0 ? request.target_minor : null;
+  const funded = validMinor(request.funded_minor) ? request.funded_minor : null;
+  const remaining = validMinor(request.remaining_minor) ? request.remaining_minor : null;
   const card = document.createElement("article");
   card.className = "request-card";
-  const productLines = Array.isArray(products) ? products.map(p => {
+  const productLines = products.map(p => {
     if (typeof p === "string") return p;
-    return [first(p,["name","product_name"]), first(p,["variant","size","model"]), first(p,["color","colour"]), first(p,["quantity","qty"]) ? "× " + first(p,["quantity","qty"]) : ""].filter(Boolean).join(" — ");
-  }) : [String(products || "")].filter(Boolean);
-  card.innerHTML = '<div class="request-ref"></div><h3></h3><p class="request-story"></p><div class="request-details"></div><div class="funding"><div class="funding-amounts"><span id="target"></span><span id="funded"></span><span id="remaining"></span></div><progress></progress></div><div class="card-actions"><button type="button" class="btn sponsor-action">Sponsor</button></div>';
-  card.querySelector(".request-ref").textContent = String(ref);
-  card.querySelector("h3").textContent = String(alias);
-  card.querySelector(".request-story").textContent = String(story);
-  card.querySelector(".request-details").replaceChildren();
+    if (!p || typeof p !== "object") return "";
+    const quantity = Number.isSafeInteger(p.quantity) && p.quantity > 0 ? "× " + p.quantity : "";
+    return [p.name, p.size, p.color, quantity].filter(value => typeof value === "string" && value.trim()).join(" — ") || quantity;
+  }).filter(Boolean);
+  card.innerHTML = '<div class="request-ref"></div><h3></h3><p class="request-story"></p><div class="request-details"></div><p class="help">Products are informational; contributions support the request\'s overall balance.</p><div class="funding"><div class="funding-amounts"><span class="target"></span><span class="funded"></span><span class="remaining"></span></div><progress></progress></div><div class="card-actions"><button type="button" class="btn sponsor-action">Sponsor</button></div>';
+  card.querySelector(".request-ref").textContent = "Request " + ref;
+  card.querySelector("h3").textContent = alias;
+  card.querySelector(".request-story").textContent = story;
   productLines.forEach(line => {
     const lineNode = document.createElement("div");
     lineNode.textContent = line;
     card.querySelector(".request-details").appendChild(lineNode);
   });
-  const targetValue = majorCurrency(target);
-  const fundedValue = majorCurrency(funded);
-  const remainingValue = majorCurrency(remaining);
-  card.querySelector("#target").textContent = targetValue !== null ? "Target GH₵ " + targetValue.toFixed(2) : "";
-  card.querySelector("#funded").textContent = fundedValue !== null ? "Funded GH₵ " + fundedValue.toFixed(2) : "Funding progress";
-  card.querySelector("#remaining").textContent = remainingValue !== null ? "Remaining GH₵ " + remainingValue.toFixed(2) : "";
+  card.querySelector(".target").textContent = target !== null ? "Target " + formatGhs(target) : "Target unavailable";
+  card.querySelector(".funded").textContent = funded !== null ? "Funded " + formatGhs(funded) : "Funded amount unavailable";
+  card.querySelector(".remaining").textContent = remaining !== null ? "Remaining " + formatGhs(remaining) : "Remaining amount unavailable";
   const progressNode = card.querySelector("progress");
-  if (progress !== null) {
-    const percent = majorCurrency(progress);
-    progressNode.value = percent !== null ? Math.max(0, Math.min(100, percent)) : 0;
+  if (target !== null && funded !== null) {
+    progressNode.value = Math.max(0, Math.min(100, (funded / target) * 100));
     progressNode.max = 100;
   } else {
     progressNode.removeAttribute("value");
   }
   const sponsor = card.querySelector(".sponsor-action");
-  sponsor.addEventListener("click", () => openSponsor(request, remainingValue));
+  if (remaining === null || remaining <= 0) {
+    sponsor.disabled = true;
+    sponsor.textContent = remaining === 0 ? "Fully funded" : "Funding unavailable";
+  } else {
+    sponsor.addEventListener("click", () => openSponsor(request, remaining));
+  }
   host.appendChild(card);
 }
 
-let activeRequest = null;
-let activeRemaining = null;
-function openSponsor(request, remaining) {
+async function calculateRequestTotal() {
+  const form = document.getElementById("circle-request-form");
+  const confirmation = document.getElementById("confirm-request-total");
+  const confirmationRequired = confirmation.required;
+  confirmation.required = false;
+  const validForm = form.reportValidity();
+  confirmation.required = confirmationRequired;
+  if (!validForm) return;
+  const button = document.getElementById("calculate-request-total");
+  button.disabled = true;
+  invalidateRequestQuote();
+  document.getElementById("request-total-message").textContent = "Calculating a server-validated total...";
+  try {
+    const payload = requestQuotePayload();
+    const response = await fetch(API + "/quote", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+    const result = await readResponse(response);
+    const quote = result && result.quote ? result.quote : result;
+    const totalMinor = quote && quote.total_minor;
+    if (!validMinor(totalMinor) || totalMinor === 0) {
+      throw new Error("The service did not return a valid calculated GHS total.");
+    }
+    let display = formatGhs(totalMinor);
+    if (selectedCurrency !== "GHS") {
+      const rate = await displayRate();
+      display = "Estimated " + selectedCurrency + " " + ((totalMinor / 100) * rate).toFixed(2) +
+        " / " + formatGhs(totalMinor);
+    }
+    if (stableKey(requestQuotePayload()) !== stableKey(payload)) {
+      throw new Error("Your delivery details or products changed while the total was being calculated. Please calculate it again.");
+    }
+    quotedRequestKey = stableKey(payload);
+    const expiry = quote.quote_expires_at || quote.expires_at;
+    if (expiry) {
+      const date = new Date(expiry);
+      if (!Number.isNaN(date.getTime())) quotedRequestExpiry = date;
+    }
+    document.getElementById("request-total-amount").textContent = display;
+    document.getElementById("request-total-message").textContent =
+      "Server-calculated request total. " + (selectedCurrency === "GHS" ? "The total is shown in GHS." : "The selected-currency amount is an estimate; GHS is the server-calculated total.");
+    document.getElementById("confirm-request-total").disabled = false;
+    updateRequestSubmit();
+  } catch (error) {
+    invalidateRequestQuote();
+    document.getElementById("request-total-message").textContent =
+      error.message || "The request total could not be calculated. Please try again.";
+  } finally {
+    button.disabled = false;
+  }
+}
+
+function requestQuoteKeyCurrent() {
+  try { return stableKey(requestQuotePayload()) === quotedRequestKey; } catch { return false; }
+}
+
+function updateSponsorConversion() {
+  const input = document.getElementById("sponsor-amount");
+  const amount = Number(input.value);
+  const conversion = document.getElementById("sponsor-conversion");
+  const submit = document.getElementById("sponsor-submit");
+  const valid = Number.isFinite(amount) && amount > 0;
+  const rate = selectedCurrency === "GHS" ? 1 :
+    exchangeRateData && Number(exchangeRateData.rates[selectedCurrency]);
+  if (!valid || Math.abs(amount * 100 - Math.round(amount * 100)) > 1e-7 ||
+      !Number.isFinite(rate) || rate <= 0) {
+    conversion.textContent = selectedCurrency === "GHS" ? "" : "A reliable live exchange rate is required before payment.";
+    submit.disabled = true;
+    return null;
+  }
+  const amountMinor = Math.round((amount / rate) * 100);
+  if (!Number.isSafeInteger(amountMinor) || amountMinor <= 0) {
+    conversion.textContent = "Enter an amount that converts to at least GHS 0.01.";
+    submit.disabled = true;
+    return null;
+  }
+  if (activeRemainingMinor !== null && amountMinor > activeRemainingMinor) {
+    conversion.textContent = "This amount is above the remaining request balance of " + formatGhs(activeRemainingMinor) + ".";
+    submit.disabled = true;
+    return null;
+  }
+  conversion.textContent = selectedCurrency === "GHS"
+    ? formatGhs(amountMinor) + ". Paystack will charge GHS."
+    : "Estimated " + formatGhs(amountMinor) + " at 1 GHS = " + rate.toFixed(6) + " " + selectedCurrency +
+      ". Paystack will charge GHS " + (amountMinor / 100).toFixed(2) + ".";
+  submit.disabled = initializingContribution;
+  return amountMinor;
+}
+
+async function openSponsor(request, remainingMinor) {
   activeRequest = request;
-  activeRemaining = remaining;
+  activeRemainingMinor = remainingMinor;
   const modal = document.getElementById("sponsor-modal");
-  document.getElementById("sponsor-remaining").textContent = remaining !== null
-    ? "Current remaining balance: GH₵ " + remaining.toFixed(2)
-    : "The remaining balance will be validated by @Tenacious.";
+  document.getElementById("sponsor-form").reset();
+  document.getElementById("sponsor-amount-label").textContent = "Contribution (" + selectedCurrency + ")";
+  document.getElementById("sponsor-amount").value = "";
+  document.getElementById("sponsor-amount").removeAttribute("max");
+  document.getElementById("fund-full").disabled = true;
+  document.getElementById("sponsor-conversion").textContent = "Loading current exchange rates...";
+  document.getElementById("sponsor-remaining").textContent = "Current remaining balance: " + formatGhs(remainingMinor);
   document.getElementById("sponsor-notice").style.display = "none";
   modal.classList.add("open");
-  document.getElementById("sponsor-amount").focus();
-  const amountInput = document.getElementById("sponsor-amount");
-  amountInput.value = "";
-  if (remaining !== null) {
-    amountInput.max = remaining.toFixed(2);
-  } else {
-    amountInput.removeAttribute("max");
+  const submit = document.getElementById("sponsor-submit");
+  submit.disabled = true;
+  try {
+    const rate = await displayRate();
+    const maxAmount = Math.floor((remainingMinor / 100) * rate * 100) / 100;
+    const amountInput = document.getElementById("sponsor-amount");
+    amountInput.max = maxAmount.toFixed(2);
+    document.getElementById("fund-full").disabled = maxAmount <= 0;
+    if (selectedCurrency !== "GHS") {
+      document.getElementById("sponsor-remaining").textContent =
+        "Current remaining balance: " + selectedCurrency + " " +
+        ((remainingMinor / 100) * rate).toFixed(2) + " / " + formatGhs(remainingMinor);
+    }
+    document.getElementById("sponsor-conversion").textContent = selectedCurrency === "GHS"
+      ? "Contribution amounts are in GHS."
+      : "Displayed amount is an estimate using live exchange rates; the charge is in GHS.";
+    amountInput.focus();
+    updateSponsorConversion();
+  } catch (error) {
+    notice("sponsor-notice", error.message, true);
   }
 }
 
 document.getElementById("fund-full").addEventListener("click", () => {
-  if (activeRemaining !== null) document.getElementById("sponsor-amount").value = activeRemaining.toFixed(2);
+  const input = document.getElementById("sponsor-amount");
+  if (input.max && Number(input.max) > 0) {
+    input.value = input.max;
+    updateSponsorConversion();
+  }
 });
 
 document.getElementById("sponsor-cancel").addEventListener("click", () => document.getElementById("sponsor-modal").classList.remove("open"));
 document.getElementById("sponsor-modal").addEventListener("click", event => { if (event.target.id === "sponsor-modal") event.currentTarget.classList.remove("open"); });
+document.getElementById("sponsor-amount").addEventListener("input", updateSponsorConversion);
 
 document.getElementById("sponsor-form").addEventListener("submit", async event => {
-  event.preventEvent?.();
   event.preventDefault();
-  if (!activeRequest) return;
+  if (!activeRequest || initializingContribution) return;
   const button = document.getElementById("sponsor-submit");
+  const amountMinor = updateSponsorConversion();
+  if (amountMinor === null) return;
+  initializingContribution = true;
   button.disabled = true;
+  document.getElementById("sponsor-notice").style.display = "none";
   try {
-    const amount = document.getElementById("sponsor-amount").value;
     const email = document.getElementById("sponsor-email").value.trim();
-    const requestId = first(activeRequest, ["public_reference","id","request_id","reference"]);
-    if (!requestId) throw new Error("This request reference is unavailable. Please refresh the approved requests.");
-    if (activeRemaining !== null && Number(amount) > activeRemaining) {
-      throw new Error("The contribution exceeds the remaining balance. Enter an amount no higher than the displayed remaining balance.");
-    }
+    const name = document.getElementById("sponsor-name").value.trim();
+    if (!activeRequest.id) throw new Error("This request ID is unavailable. Please refresh the approved requests.");
+    if (!email) throw new Error("Enter your email address.");
+    const payload = { request_id: activeRequest.id, email, amount_minor: amountMinor };
+    if (name) payload.name = name;
     const response = await fetch(API + "/circle/contributions/initialize", {
       method:"POST",headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({request_id:requestId,email,amount:Number(amount)})
+      body:JSON.stringify(payload)
     });
     const data = await readResponse(response);
-    const authorization = first(data,["authorization_url"],null) ||
-      first(first(data,["data"],{}),["authorization_url"],null);
-    if (!authorization) throw new Error("The backend did not return Paystack authorization information.");
-    const reference = first(data,["reference"],null) || first(first(data,["data"],{}),["reference"],null);
-    if (reference) sessionStorage.setItem("tenaciousCircleContributionRef", String(reference));
-    window.location.assign(authorization);
+    const authorization = responseData(data)?.authorization_url;
+    if (typeof authorization !== "string" || !authorization) {
+      throw new Error("The backend did not return Paystack authorization information.");
+    }
+    let authorizationUrl;
+    try { authorizationUrl = new URL(authorization); } catch {
+      throw new Error("The backend returned an invalid Paystack authorization URL.");
+    }
+    if (authorizationUrl.protocol !== "https:" ||
+        !(authorizationUrl.hostname === "paystack.com" || authorizationUrl.hostname.endsWith(".paystack.com"))) {
+      throw new Error("The backend returned an invalid Paystack authorization URL.");
+    }
+    window.location.assign(authorizationUrl.href);
   } catch (error) {
-    notice("sponsor-notice", error.message, true);
+    notice("sponsor-notice", error.message || "Payment could not be initialized. Please try again.", true);
   } finally {
+    initializingContribution = false;
     button.disabled = false;
+    updateSponsorConversion();
   }
 });
 
 document.getElementById("circle-request-form").addEventListener("submit", async event => {
   event.preventDefault();
+  if (!quotedRequestKey || !requestQuoteKeyCurrent() ||
+      (quotedRequestExpiry && Date.now() >= quotedRequestExpiry.getTime())) {
+    invalidateRequestQuote();
+    notice("request-notice", "The request details changed or the calculated total expired. Calculate and confirm the total again.", true);
+    return;
+  }
+  if (!document.getElementById("confirm-request-total").checked) {
+    notice("request-notice", "Review and explicitly confirm the calculated request total before submitting.", true);
+    return;
+  }
   const button = document.getElementById("request-submit");
   button.disabled = true;
   try {
-    const items = [...document.querySelectorAll(".request-item")].map(row => ({
-      name: row.querySelector('[name="product_name"]').value,
-      size: row.querySelector('[name="variant"]').value.trim(),
-      color: row.querySelector('[name="color"]').value.trim(),
-      quantity:Number(row.querySelector('[name="quantity"]').value)
-    })).filter(item => item.name && item.size);
-    if (!items.length) throw new Error("Add at least one requested product.");
-    if (!catalogue.length) throw new Error("The product catalogue could not be loaded. Please try again.");
+    if (!event.currentTarget.reportValidity()) return;
+    const quotePayload = requestQuotePayload();
     const payload = {
-      name:document.getElementById("legal-name").value.trim(),
-      email:document.getElementById("request-email").value.trim(),
+      ...quotePayload,
       alias:document.getElementById("public-alias").value.trim(),
       story:document.getElementById("circle-story").value.trim(),
-      phone:document.getElementById("delivery-phone").value.trim(),
-      items,
-      shipping:{
-        address1:document.getElementById("delivery-address").value.trim(),
-        city:document.getElementById("delivery-city").value.trim(),
-        state:document.getElementById("delivery-state").value.trim(),
-        postcode:document.getElementById("delivery-postcode").value.trim(),
-        country:document.getElementById("delivery-country").value.trim()
+      shipping: {
+        ...quotePayload.shipping,
+        address2:document.getElementById("delivery-address2").value.trim()
       },
-      consent:true,
       shipping_confirmed:true
     };
     const data = await readResponse(await fetch(API + "/circle/requests",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)}));
-    const ref = first(data,["public_reference","request_reference","reference"],"pending");
-    const status = first(data,["status","review_status"],"pending review");
-    notice("request-notice","Submission received. Reference: " + ref + ". Status: " + status + ".",false);
+    const result = responseData(data);
+    if (typeof result?.request_code !== "string" || !result.request_code) {
+      throw new Error("The request may have been submitted, but the service did not return a request_code. Please contact support before retrying.");
+    }
+    const status = result.status === "pending_review" ? " Status: pending review." : "";
+    const ref = result.request_code;
+    notice("request-notice","Submission received for review. Reference: " + ref +
+      "." + status + " This request is private until it has been reviewed and approved.",false);
     event.target.reset();
+    invalidateRequestQuote();
   } catch (error) {
-    notice("request-notice",error.message,true);
+    notice("request-notice",error.message || "The request could not be submitted. Please try again.",true);
   } finally {
     button.disabled = false;
+    updateRequestSubmit();
   }
 });
 
 async function verifyContribution() {
   const params = new URLSearchParams(window.location.search);
-  const reference = params.get("reference") || params.get("trxref") || sessionStorage.getItem("tenaciousCircleContributionRef");
+  const reference = params.get("reference") || params.get("trxref");
   if (!reference) return;
   try {
     const data = await readResponse(await fetch(API + "/circle/contributions/verify/" + encodeURIComponent(reference)));
-    const status = String(first(data,["status","payment_status"],first(first(data,["data"],{}),["status"],""))).toLowerCase();
-    const success = status === "success" || status === "successful" || status === "paid";
-    notice(success ? "browse-notice" : "browse-notice",
-      success ? "Successful contribution. The backend confirmed the payment." :
-      status === "pending" ? "Payment pending verification. It is not yet counted as funded." :
-      "Failed or invalid contribution. The backend did not confirm success.",!success);
-    if (success) {
-      history.replaceState({},document.title,window.location.pathname);
-      sessionStorage.removeItem("tenaciousCircleContributionRef");
+    if (responseData(data)?.verified === true) {
+      notice("browse-notice","Contribution verified by the backend. Request funding progress is being refreshed.",false);
+      const url = new URL(window.location.href);
+      url.searchParams.delete("reference");
+      url.searchParams.delete("trxref");
+      history.replaceState({},document.title,url.pathname + url.search + url.hash);
       await loadRequests();
+    } else {
+      notice("browse-notice","Payment verification is still pending. This contribution is not counted as funded.",false);
     }
   } catch (error) {
-    notice("browse-notice","We could not verify this contribution reference. " + error.message,true);
+    notice("browse-notice","The backend could not verify this payment. It is not counted as funded. " +
+      (error.message || "Please check again later."),true);
   }
 }
 
+document.getElementById("calculate-request-total").addEventListener("click",calculateRequestTotal);
+document.getElementById("confirm-request-total").addEventListener("change",updateRequestSubmit);
+document.getElementById("circle-request-form").addEventListener("input",event => {
+  if (event.target.id !== "confirm-request-total") invalidateRequestQuote();
+});
+document.getElementById("circle-request-form").addEventListener("change",event => {
+  if (event.target.id !== "confirm-request-total") invalidateRequestQuote();
+});
 document.getElementById("add-request-item").addEventListener("click",addRequestedItem);
 loadCatalogue().then(addRequestedItem);
 loadRequests();

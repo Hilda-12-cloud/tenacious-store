@@ -20,13 +20,20 @@
     .order-summary{background:#111;border:1px solid #333;padding:24px;height:fit-content}
     .summary-item{display:flex;justify-content:space-between;gap:14px;padding:12px 0;border-bottom:1px solid #292929;font-size:14px}
     .summary-item small{display:block;color:#c5a059;margin-top:3px}
-    .summary-total{display:flex;justify-content:space-between;margin-top:20px;font-size:19px;font-weight:bold}
     .shipping-quote{display:none;margin-top:18px;padding:14px;border:1px solid #c5a059;background:#17130b}
     .shipping-quote-row{display:flex;justify-content:space-between;gap:12px;margin-top:6px}
     .shipping-quote strong{color:#f2dfb7}
     .summary-breakdown{display:grid;gap:6px;margin-top:10px;font-size:13px}
     .summary-breakdown-row{display:flex;justify-content:space-between;gap:12px}
-    .quote-discount{display:none;color:#c5a059}
+    .summary-breakdown-row span:last-child{text-align:right}
+    .quote-discount{color:#c5a059}
+    .quote-rate{margin-top:14px;padding-top:10px;border-top:1px solid #292929;color:#aaa;font-size:12px}
+    .quote-rate strong{display:block;color:#c5a059;font-size:13px;font-weight:normal}
+    .quote-total{margin-top:16px;padding-top:14px;border-top:1px solid #c5a059}
+    .quote-total-label{color:#f2dfb7;font-size:14px}
+    .quote-total-amounts{display:grid;gap:2px;margin-top:4px;font-size:22px;font-weight:bold;line-height:1.35}
+    .quote-total-amounts .display-currency{color:#c5a059;font-size:17px}
+    .paystack-currency-note{margin-top:8px;color:#999;font-size:11px}
     .quote-expiry{display:block;margin-top:10px;color:#aaa;font-size:12px}
     .pay-button{width:100%;padding:15px;margin-top:24px;background:#c5a059;color:#090909;border:0;cursor:pointer;font-weight:bold;font-size:15px}
     .pay-button:disabled{opacity:.55;cursor:wait}
@@ -98,16 +105,24 @@
     <section class="order-summary">
       <h2 class="section-title">Your Order</h2>
       <div id="summary-items"></div>
-      <div class="summary-total"><span>Item subtotal</span><span>$<span id="summary-total">0.00</span></span></div>
       <div id="shipping-quote" class="shipping-quote" aria-live="polite">
         <div class="shipping-quote-row"><strong>Shipping method</strong><strong id="quote-method">Standard</strong></div>
         <div class="summary-breakdown" id="quote-breakdown"></div>
-        <div class="shipping-quote-row quote-discount" id="quote-discount-row"><span id="quote-discount-label">Bulk discount</span><span id="quote-discount">-GHS 0.00</span></div>
-        <div class="shipping-quote-row"><span>Standard shipping</span><span id="quote-shipping">GHS 0.00</span></div>
-        <div class="shipping-quote-row"><strong>Final payment total</strong><strong id="quote-total">GHS 0.00</strong></div>
+        <div id="quote-rate-panel" class="quote-rate" hidden>
+          Exchange rate
+          <strong id="quote-rate"></strong>
+        </div>
+        <div class="quote-total">
+          <div class="quote-total-label">Final payment total</div>
+          <div class="quote-total-amounts">
+            <span id="quote-total-ghs"></span>
+            <span id="quote-total-display" class="display-currency"></span>
+          </div>
+          <p class="paystack-currency-note">Paystack will charge the GHS amount shown above.</p>
+        </div>
         <time class="quote-expiry" id="quote-expiry"></time>
       </div>
-      <p class="fine-print">Displayed item prices are in USD. The final GHS payment amount is recalculated securely by @Tenacious on the server using the current exchange rate. Browser prices are never used to determine payment.</p>
+      <p class="fine-print">The server calculates the GHS payment amount. Other currency amounts are display estimates; browser prices are never used to determine payment.</p>
       <p class="fine-print">Orders containing 10 or more items qualify for the 5% bulk discount, calculated by the server.</p>
       <button id="pay-button" class="pay-button" type="button" onclick="handlePaymentStep()">Continue to Secure Payment</button>
       <p class="secure-note">Payments are processed securely by Paystack. Your order is validated against the @Tenacious product and Printful variant records before payment begins.</p>
@@ -121,8 +136,19 @@ const payButton = document.getElementById("pay-button");
 const shippingQuote = document.getElementById("shipping-quote");
 let quotedPayloadKey = null;
 let quotedTotalMinor = null;
+let quotedCurrency = null;
 let quoteExpiresAt = null;
 let quoteExpiryTimer = null;
+const supportedCurrencies = new Set(["USD", "GBP", "EUR", "GHS"]);
+
+function getSelectedCurrency() {
+  try {
+    const currency = localStorage.getItem("tenaciousCurrency");
+    return supportedCurrencies.has(currency) ? currency : "USD";
+  } catch {
+    return "USD";
+  }
+}
 
 function readCart() {
   try {
@@ -142,21 +168,17 @@ function showNotice(message, isError) {
 function loadOrderSummary() {
   const cart = readCart();
   const host = document.getElementById("summary-items");
-  const totalNode = document.getElementById("summary-total");
   host.replaceChildren();
-  let total = 0;
   if (!cart.length) {
     const empty = document.createElement("p");
     empty.textContent = "Your cart is empty.";
     host.appendChild(empty);
-    totalNode.textContent = "0.00";
     payButton.disabled = true;
     return;
   }
   cart.forEach(item => {
     const price = Number(item.price) || 0;
     const quantity = Number(item.quantity) || 0;
-    total += price * quantity;
     const row = document.createElement("div");
     row.className = "summary-item";
     const description = document.createElement("div");
@@ -170,7 +192,6 @@ function loadOrderSummary() {
     row.append(description, amount);
     host.appendChild(row);
   });
-  totalNode.textContent = total.toFixed(2);
   payButton.disabled = false;
 }
 
@@ -213,6 +234,7 @@ function stablePayloadKey(value) {
 function invalidateQuote(message) {
   quotedPayloadKey = null;
   quotedTotalMinor = null;
+  quotedCurrency = null;
   quoteExpiresAt = null;
   if (quoteExpiryTimer) clearInterval(quoteExpiryTimer);
   shippingQuote.style.display = "none";
@@ -252,6 +274,10 @@ async function handlePaymentStep() {
   const payloadKey = stablePayloadKey(payload);
 
   if (quotedPayloadKey) {
+    if (quotedCurrency !== getSelectedCurrency()) {
+      invalidateQuote("Your display currency changed. Please request a fresh quote before payment.");
+      return;
+    }
     if (quoteExpiresAt && Date.now() >= quoteExpiresAt.getTime()) {
       invalidateQuote("This shipping quote has expired. Please request a fresh quote.");
       return;
@@ -267,6 +293,7 @@ async function handlePaymentStep() {
 }
 
 async function requestQuote(payload) {
+  const currency = getSelectedCurrency();
   payButton.disabled = true;
   payButton.textContent = "Getting shipping quote...";
   notice.style.display = "none";
@@ -285,51 +312,73 @@ async function requestQuote(payload) {
     }
 
     const ghsMinor = Number.isInteger(quote.total_minor) ? quote.total_minor : null;
+    const subtotalMinor = Number.isInteger(quote.subtotal_minor) ? quote.subtotal_minor : null;
     const shippingMinor = Number.isInteger(quote.shipping_minor) ? quote.shipping_minor : null;
-    if (!Number.isInteger(ghsMinor) || !Number.isInteger(shippingMinor)) {
+    const discountMinor = Number.isInteger(quote.discount_minor) ? quote.discount_minor : null;
+    const usdGhsRate = Number(quote.usd_ghs_rate);
+    if (![ghsMinor, subtotalMinor, shippingMinor, discountMinor].every(Number.isInteger) ||
+        !Number.isFinite(usdGhsRate) || usdGhsRate <= 0) {
       throw new Error("The shipping quote did not include a valid server-calculated total.");
     }
 
+    let liveRates = null;
+    if (currency === "GBP" || currency === "EUR") {
+      const ratesResponse = await fetch("https://open.er-api.com/v6/latest/USD");
+      if (!ratesResponse.ok) throw new Error("Live exchange rates are unavailable. Please try requesting your quote again.");
+      const ratesData = await ratesResponse.json();
+      const requestedRate = Number(ratesData && ratesData.rates && ratesData.rates[currency]);
+      if (ratesData.result !== "success" || !Number.isFinite(requestedRate) || requestedRate <= 0) {
+        throw new Error("Live exchange rates are unavailable. Please try requesting your quote again.");
+      }
+      liveRates = requestedRate;
+    }
+
+    if (getSelectedCurrency() !== currency) {
+      invalidateQuote("Your display currency changed while we were calculating. Please request a fresh quote.");
+      return;
+    }
+
+    const currencyGhsRate = currency === "GHS" ? null : usdGhsRate / (currency === "USD" ? 1 : liveRates);
+    if (currency !== "GHS" && (!Number.isFinite(currencyGhsRate) || currencyGhsRate <= 0)) {
+      throw new Error("The exchange rate could not be calculated. Please request a fresh quote.");
+    }
+    const formatGhs = minor => "GHS " + (minor / 100).toFixed(2);
+    const formatDisplay = minor => currency + " " + (minor / 100 / currencyGhsRate).toFixed(2);
+    const formatAmount = minor => currency === "GHS"
+      ? formatGhs(minor)
+      : formatDisplay(minor) + " / " + formatGhs(minor);
+
     quotedPayloadKey = stablePayloadKey(payload);
     quotedTotalMinor = ghsMinor;
+    quotedCurrency = currency;
     const breakdown = document.getElementById("quote-breakdown");
     breakdown.replaceChildren();
-    const addRow = (label, usd, ghs) => {
+    const addRow = (label, minor, isDiscount = false) => {
       const row = document.createElement("div");
-      row.className = "summary-breakdown-row";
-      row.innerHTML = "<span></span><span></span>";
-      row.firstElementChild.textContent = label;
-      row.lastElementChild.textContent = (usd !== null ? "USD " + usd.toFixed(2) : "") +
-        (usd !== null && ghs !== null ? " / " : "") +
-        (ghs !== null ? "GHS " + ghs.toFixed(2) : "");
+      row.className = "summary-breakdown-row" + (isDiscount ? " quote-discount" : "");
+      const description = document.createElement("span");
+      description.textContent = label;
+      const amount = document.createElement("span");
+      amount.textContent = (isDiscount ? "-" : "") + formatAmount(minor);
+      row.append(description, amount);
       breakdown.appendChild(row);
     };
-    const subtotalUsd = Number.isInteger(quote.subtotal_usd_minor) ? quote.subtotal_usd_minor / 100 : null;
-    const subtotalGhs = Number.isInteger(quote.subtotal_minor) ? quote.subtotal_minor / 100 : null;
-    const shippingUsd = Number.isInteger(quote.shipping_usd_minor) ? quote.shipping_usd_minor / 100 : null;
-    const shippingGhs = quote.shipping_minor / 100;
-    const discountUsd = Number.isInteger(quote.discount_usd_minor) ? quote.discount_usd_minor / 100 : null;
-    const discountGhs = Number.isInteger(quote.discount_minor) ? quote.discount_minor / 100 : null;
-    const totalUsd = Number.isInteger(quote.total_usd_minor) ? quote.total_usd_minor / 100 : null;
-    const totalGhs = ghsMinor / 100;
-    const exchangeRate = Number.isFinite(Number(quote.usd_ghs_rate)) ? Number(quote.usd_ghs_rate) : null;
-    if (subtotalUsd !== null || subtotalGhs !== null) addRow("Item subtotal", subtotalUsd, subtotalGhs);
-    if (shippingUsd !== null || shippingGhs !== null) addRow("Shipping", shippingUsd, shippingGhs);
-    if (exchangeRate !== null) addRow("Exchange rate", null, exchangeRate);
-    addRow("Final payment total", totalUsd, totalGhs);
+    addRow("Item subtotal", subtotalMinor);
+    addRow("Standard shipping", shippingMinor);
+    if (quote.bulk_discount_applied === true && discountMinor > 0) {
+      addRow("Bulk discount", discountMinor, true);
+    }
 
     document.getElementById("quote-method").textContent = quote.shipping_method || "STANDARD";
-    document.getElementById("quote-shipping").textContent = "GHS " + shippingGhs.toFixed(2);
-    document.getElementById("quote-total").textContent = "GHS " + (ghsMinor / 100).toFixed(2);
-    if (quote.bulk_discount_applied === true && (discountUsd !== null || discountGhs !== null)) {
-      const discountRow = document.getElementById("quote-discount-row");
-      discountRow.style.display = "flex";
-      document.getElementById("quote-discount").textContent =
-        (discountGhs !== null ? "-GHS " + discountGhs.toFixed(2) : "") +
-        (discountUsd !== null && discountGhs !== null ? " / " : "") +
-        (discountUsd !== null ? "-USD " + discountUsd.toFixed(2) : "");
-    } else {
-      document.getElementById("quote-discount-row").style.display = "none";
+    document.getElementById("quote-total-ghs").textContent = formatGhs(ghsMinor);
+    const displayTotal = document.getElementById("quote-total-display");
+    displayTotal.textContent = currency === "GHS" ? "" : formatDisplay(ghsMinor);
+    displayTotal.hidden = currency === "GHS";
+    const ratePanel = document.getElementById("quote-rate-panel");
+    ratePanel.hidden = currency === "GHS";
+    if (currency !== "GHS") {
+      document.getElementById("quote-rate").textContent =
+        "1 " + currency + " = " + currencyGhsRate.toFixed(4) + " GHS";
     }
     const quoteExpiry = quote.quote_expires_at || quote.expires_at;
     if (quoteExpiry) {
@@ -411,7 +460,6 @@ async function verifyReturnedPayment() {
       sessionStorage.removeItem("tenaciousCheckoutOrderRef");
       history.replaceState({}, document.title, window.location.pathname);
       document.getElementById("summary-items").textContent = "Your confirmed order has been received.";
-      document.getElementById("summary-total").textContent = "—";
       shippingQuote.style.display = "none";
     } else {
       showNotice("We could not confirm this payment yet. Please do not pay again until you have checked your Paystack transaction status or contacted support@maisontenacious.com.", true);
@@ -439,7 +487,16 @@ countrySelect.addEventListener("change", updateOtherCountryField);
 const form = document.getElementById("checkout-form");
 form.addEventListener("input", () => invalidateQuote());
 form.addEventListener("change", () => invalidateQuote());
-window.addEventListener("storage", () => { invalidateQuote("Your cart changed. Please request a fresh shipping quote."); loadOrderSummary(); });
+window.addEventListener("storage", event => {
+  if (event.key === "tenaciousCurrency") {
+    if (event.oldValue !== event.newValue) {
+      invalidateQuote("Your display currency changed. Please request a fresh quote before payment.");
+    }
+    return;
+  }
+  invalidateQuote("Your cart changed. Please request a fresh shipping quote.");
+  loadOrderSummary();
+});
 updateOtherCountryField();
 loadOrderSummary();
 verifyReturnedPayment();

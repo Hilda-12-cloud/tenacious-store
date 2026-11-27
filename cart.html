@@ -5,6 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <script src="cart-currency.js"></script>
+
   <title>Your Cart | @Tenacious</title>
 
   <style>
@@ -40,6 +42,29 @@
       margin-bottom: 35px;
     }
 
+    .cart-currency {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+      margin: -68px 0 24px;
+      color: #c5a059;
+      font-size: 12px;
+    }
+
+    .cart-currency select {
+      padding: 8px 10px;
+      border: 1px solid #49402f;
+      background: #111;
+      color: #fff;
+    }
+
+    .currency-notice {
+      margin: 0 0 14px;
+      color: #c5a059;
+      font-size: 12px;
+    }
+
     .cart-item {
       display: flex;
       align-items: center;
@@ -66,6 +91,11 @@
 
     .item-price {
       color: #cccccc;
+    }
+
+    .item-subtotal {
+      color: #c5a059;
+      margin-top: 4px;
     }
 
     .quantity {
@@ -167,6 +197,11 @@
     }
 
     @media (max-width: 600px) {
+      .cart-currency {
+        justify-content: flex-start;
+        margin: -20px 0 22px;
+      }
+
       .cart-item {
         gap: 15px;
       }
@@ -187,17 +222,27 @@
 
   <main class="cart-page">
 
-    <a href="index.html#shop" class="back-link">← Continue Shopping</a>
+    <a href="index.html#shop" class="back-link">← CONTINUE SHOPPING</a>
 
     <h1 class="cart-title">Your Cart</h1>
+    <label class="cart-currency" for="cart-currency">
+      Display currency
+      <select id="cart-currency" aria-label="Select display currency">
+        <option value="USD">USD $</option>
+        <option value="GBP">GBP £</option>
+        <option value="EUR">EUR €</option>
+        <option value="GHS">GHS ₵</option>
+      </select>
+    </label>
+    <p id="currency-notice" class="currency-notice" role="status" hidden></p>
 
     <div id="cart-items"></div>
 
     <div class="cart-total">
-      Total: $<span id="cart-total">0.00</span>
+      Cart subtotal: <span id="cart-total">USD 0.00</span>
     </div>
     <a href="checkout.html" class="checkout-button">
-      Proceed to Checkout
+      PROCEED TO CHECKOUT
     </a>
     <p id="bulk-order-progress" class="bulk-order-progress" hidden></p>
     <section id="bulk-order-panel" class="bulk-order-panel" hidden aria-live="polite">
@@ -268,14 +313,29 @@ function getValidQuantity(item) {
 }
 
 function getSelectedCurrency() {
-  const supportedCurrencies = new Set(["USD", "GBP", "EUR", "GHS"]);
+  return TenaciousCurrency.getSelectedCurrency();
+}
+
+let cartRates = { USD: 1 };
+
+function formatCartPrice(amount) {
+  return TenaciousCurrency.format(amount, getSelectedCurrency(), cartRates);
+}
+
+async function refreshCartCurrency() {
+  const notice = document.getElementById("currency-notice");
+  const selector = document.getElementById("cart-currency");
+  const currency = getSelectedCurrency();
+  selector.value = currency;
+  notice.hidden = true;
 
   try {
-    const currency = localStorage.getItem("tenaciousCurrency");
-    return supportedCurrencies.has(currency) ? currency : "USD";
-  } catch {
-    return "USD";
+    cartRates = await TenaciousCurrency.getRates();
+  } catch (error) {
+    notice.textContent = error.message || "Live exchange rates are unavailable.";
+    notice.hidden = false;
   }
+  displayCart();
 }
 
 
@@ -323,7 +383,7 @@ function displayCart() {
 
     `;
 
-    cartTotal.textContent = "0.00";
+    cartTotal.textContent = formatCartPrice(0);
 
     return;
 
@@ -418,7 +478,12 @@ function displayCart() {
     priceDisplay.className = "item-price";
 
     priceDisplay.textContent =
-      "$" + price.toFixed(2);
+      "Unit price: " + formatCartPrice(price);
+
+    const itemSubtotal = document.createElement("p");
+    itemSubtotal.className = "item-subtotal";
+    itemSubtotal.textContent =
+      "Subtotal: " + formatCartPrice(price * quantity);
 
     const quantityControls =
       document.createElement("div");
@@ -474,6 +539,7 @@ function displayCart() {
       name,
       variant,
       priceDisplay,
+      itemSubtotal,
       quantityControls,
       remove
     );
@@ -488,7 +554,7 @@ function displayCart() {
   });
 
   cartTotal.textContent =
-    total.toFixed(2);
+    formatCartPrice(total);
 
   if (qualifiesForBulk) {
     const orderLines = cart.flatMap(item => {
@@ -515,10 +581,7 @@ function displayCart() {
       `Total quantity: ${totalQuantity} items`,
       `Merchandise subtotal: ${
         merchandiseSubtotalAvailable
-          ? new Intl.NumberFormat(undefined, {
-            style: "currency",
-            currency: getSelectedCurrency()
-          }).format(total)
+          ? formatCartPrice(total)
           : "unavailable from cart price data"
       }`,
       "Bulk discount eligibility: 5% (please confirm the final discount in your quote).",
@@ -584,6 +647,24 @@ function removeCartItem(index) {
    INITIALISE CART
 ========================================= */
 
-displayCart();
+const cartCurrencySelector = document.getElementById("cart-currency");
+cartCurrencySelector.value = getSelectedCurrency();
+cartCurrencySelector.addEventListener("change", event => {
+  const currency = event.target.value;
+  if (!["USD", "GBP", "EUR", "GHS"].includes(currency)) return;
+  localStorage.setItem("tenaciousCurrency", currency);
+  refreshCartCurrency();
+});
+
+window.addEventListener("storage", event => {
+  if (event.key === "tenaciousCart") {
+    displayCart();
+  } else if (event.key === "tenaciousCurrency") {
+    refreshCartCurrency();
+  }
+});
+
+refreshCartCurrency();
     
     </script>
+  <script src="cart-access.js"></script>

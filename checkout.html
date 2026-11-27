@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Secure Checkout | @Tenacious</title>
+  <script src="cart-currency.js"></script>
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
     body{background:#0b0b0b;color:#fff;font-family:Arial,sans-serif;line-height:1.6}
@@ -20,6 +21,7 @@
     .order-summary{background:#111;border:1px solid #333;padding:24px;height:fit-content}
     .summary-item{display:flex;justify-content:space-between;gap:14px;padding:12px 0;border-bottom:1px solid #292929;font-size:14px}
     .summary-item small{display:block;color:#c5a059;margin-top:3px}
+    .summary-subtotal{display:flex;justify-content:space-between;gap:14px;padding:14px 0;border-top:1px solid #c5a059;color:#f2dfb7;font-weight:bold}
     .shipping-quote{display:none;margin-top:18px;padding:14px;border:1px solid #c5a059;background:#17130b}
     .shipping-quote-row{display:flex;justify-content:space-between;gap:12px;margin-top:6px}
     .shipping-quote strong{color:#f2dfb7}
@@ -105,6 +107,10 @@
     <section class="order-summary">
       <h2 class="section-title">Your Order</h2>
       <div id="summary-items"></div>
+      <div class="summary-subtotal">
+        <span>Merchandise subtotal estimate</span>
+        <span id="summary-subtotal">USD 0.00</span>
+      </div>
       <div id="shipping-quote" class="shipping-quote" aria-live="polite">
         <div class="shipping-quote-row"><strong>Shipping method</strong><strong id="quote-method">Standard</strong></div>
         <div class="summary-breakdown" id="quote-breakdown"></div>
@@ -139,15 +145,8 @@ let quotedTotalMinor = null;
 let quotedCurrency = null;
 let quoteExpiresAt = null;
 let quoteExpiryTimer = null;
-const supportedCurrencies = new Set(["USD", "GBP", "EUR", "GHS"]);
-
 function getSelectedCurrency() {
-  try {
-    const currency = localStorage.getItem("tenaciousCurrency");
-    return supportedCurrencies.has(currency) ? currency : "USD";
-  } catch {
-    return "USD";
-  }
+  return TenaciousCurrency.getSelectedCurrency();
 }
 
 function readCart() {
@@ -165,20 +164,36 @@ function showNotice(message, isError) {
   notice.style.color = isError ? "#ffc8c0" : "#f2dfb7";
 }
 
-function loadOrderSummary() {
+async function loadOrderSummary() {
   const cart = readCart();
   const host = document.getElementById("summary-items");
   host.replaceChildren();
+  const subtotalHost = document.getElementById("summary-subtotal");
   if (!cart.length) {
     const empty = document.createElement("p");
     empty.textContent = "Your cart is empty.";
     host.appendChild(empty);
+    subtotalHost.textContent = TenaciousCurrency.format(
+      0,
+      getSelectedCurrency(),
+      { USD: 1 }
+    );
     payButton.disabled = true;
     return;
   }
+
+  let rates = { USD: 1 };
+  try {
+    rates = await TenaciousCurrency.getRates();
+  } catch (error) {
+    showNotice(error.message || "Live exchange rates are unavailable. Order estimates may be unavailable.", true);
+  }
+
+  let subtotal = 0;
   cart.forEach(item => {
     const price = Number(item.price) || 0;
     const quantity = Number(item.quantity) || 0;
+    subtotal += price * quantity;
     const row = document.createElement("div");
     row.className = "summary-item";
     const description = document.createElement("div");
@@ -188,10 +203,19 @@ function loadOrderSummary() {
     variant.textContent = [item.size ? "Size: " + item.size : "", item.color ? "Colour: " + item.color : ""].filter(Boolean).join(" | ");
     description.append(name, variant);
     const amount = document.createElement("span");
-    amount.textContent = "$" + (price * quantity).toFixed(2);
+    amount.textContent = TenaciousCurrency.format(
+      price * quantity,
+      getSelectedCurrency(),
+      rates
+    );
     row.append(description, amount);
     host.appendChild(row);
   });
+  subtotalHost.textContent = TenaciousCurrency.format(
+    subtotal,
+    getSelectedCurrency(),
+    rates
+  );
   payButton.disabled = false;
 }
 
@@ -323,11 +347,9 @@ async function requestQuote(payload) {
 
     let liveRates = null;
     if (currency === "GBP" || currency === "EUR") {
-      const ratesResponse = await fetch("https://open.er-api.com/v6/latest/USD");
-      if (!ratesResponse.ok) throw new Error("Live exchange rates are unavailable. Please try requesting your quote again.");
-      const ratesData = await ratesResponse.json();
-      const requestedRate = Number(ratesData && ratesData.rates && ratesData.rates[currency]);
-      if (ratesData.result !== "success" || !Number.isFinite(requestedRate) || requestedRate <= 0) {
+      const rates = await TenaciousCurrency.getRates();
+      const requestedRate = rates[currency];
+      if (!Number.isFinite(requestedRate) || requestedRate <= 0) {
         throw new Error("Live exchange rates are unavailable. Please try requesting your quote again.");
       }
       liveRates = requestedRate;
@@ -492,6 +514,7 @@ window.addEventListener("storage", event => {
     if (event.oldValue !== event.newValue) {
       invalidateQuote("Your display currency changed. Please request a fresh quote before payment.");
     }
+    loadOrderSummary();
     return;
   }
   invalidateQuote("Your cart changed. Please request a fresh shipping quote.");
@@ -501,5 +524,6 @@ updateOtherCountryField();
 loadOrderSummary();
 verifyReturnedPayment();
 </script>
+<script src="cart-access.js"></script>
 </body>
 </html>

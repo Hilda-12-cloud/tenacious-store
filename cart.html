@@ -267,6 +267,17 @@ function getValidQuantity(item) {
     : 0;
 }
 
+function getSelectedCurrency() {
+  const supportedCurrencies = new Set(["USD", "GBP", "EUR", "GHS"]);
+
+  try {
+    const currency = localStorage.getItem("tenaciousCurrency");
+    return supportedCurrencies.has(currency) ? currency : "USD";
+  } catch {
+    return "USD";
+  }
+}
+
 
 /* =========================================
    DISPLAY CART
@@ -504,7 +515,10 @@ function displayCart() {
       `Total quantity: ${totalQuantity} items`,
       `Merchandise subtotal: ${
         merchandiseSubtotalAvailable
-          ? "$" + total.toFixed(2)
+          ? new Intl.NumberFormat(undefined, {
+            style: "currency",
+            currency: getSelectedCurrency()
+          }).format(total)
           : "unavailable from cart price data"
       }`,
       "Bulk discount eligibility: 5% (please confirm the final discount in your quote).",

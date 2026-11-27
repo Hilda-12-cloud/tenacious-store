@@ -145,6 +145,7 @@ const notice = document.getElementById("checkout-notice");
 const payButton = document.getElementById("pay-button");
 const shippingQuote = document.getElementById("shipping-quote");
 let quotedPayloadKey = null;
+let quotedQuoteId = null;
 let quotedTotalMinor = null;
 let quotedCurrency = null;
 let quoteExpiresAt = null;
@@ -261,6 +262,7 @@ function stablePayloadKey(value) {
 }
 
 function invalidateQuote(message) {
+  quotedQuoteId = null;
   quotedPayloadKey = null;
   quotedTotalMinor = null;
   quotedCurrency = null;
@@ -334,6 +336,10 @@ async function requestQuote(payload) {
     });
     const result = await readWorkerResponse(response);
     const quote = result.quote || result;
+    const returnedQuoteId = result.quote_id || quote.quote_id;
+    if (typeof returnedQuoteId !== "string" || !/^[A-Za-z0-9_-]{16,128}$/.test(returnedQuoteId)) {
+      throw new Error("The shipping service did not return a valid saved quote. Please try again.");
+    }
 
     if (stablePayloadKey(buildPayload()) !== stablePayloadKey(payload)) {
       invalidateQuote("Your delivery details or cart changed while we were calculating shipping. Please request a fresh quote.");
@@ -379,6 +385,7 @@ async function requestQuote(payload) {
       : formatDisplay(minor) + " / " + formatGhs(minor);
 
     quotedPayloadKey = stablePayloadKey(payload);
+    quotedQuoteId = returnedQuoteId;
     quotedTotalMinor = ghsMinor;
     quotedCurrency = currency;
     const breakdown = document.getElementById("quote-breakdown");
@@ -453,7 +460,7 @@ async function initializePayment(payload) {
     const response = await fetch(PAYMENT_API + "/initialize", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ...payload, shipping_confirmed: true })
+      body: JSON.stringify({ ...payload, quote_id: quotedQuoteId, shipping_confirmed: true })
     });
     const result = await readWorkerResponse(response);
     if (!result.data || !result.data.authorization_url) {

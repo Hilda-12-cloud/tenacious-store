@@ -102,6 +102,10 @@
           <label for="postcode">Postal / ZIP Code</label>
           <input id="postcode" name="postcode" autocomplete="postal-code">
         </div>
+        <div class="form-group">
+          <label for="discount-code">Discount Code (Optional)</label>
+          <input id="discount-code" name="discount_code" type="text" maxlength="64" spellcheck="false" autocapitalize="characters" autocomplete="off">
+        </div>
       </form>
     </section>
     <section class="order-summary">
@@ -241,6 +245,7 @@ function buildPayload() {
       country,
       ...(country === "OTHER" ? { country_name: countryName } : {})
     },
+    discount_code: document.getElementById("discount-code").value.trim().toUpperCase(),
     items
   };
 }
@@ -339,8 +344,11 @@ async function requestQuote(payload) {
     const subtotalMinor = Number.isInteger(quote.subtotal_minor) ? quote.subtotal_minor : null;
     const shippingMinor = Number.isInteger(quote.shipping_minor) ? quote.shipping_minor : null;
     const discountMinor = Number.isInteger(quote.discount_minor) ? quote.discount_minor : null;
+    const bulkDiscountMinor = Number.isInteger(quote.bulk_discount_minor) ? quote.bulk_discount_minor : null;
+    const codeDiscountMinor = Number.isInteger(quote.code_discount_minor) ? quote.code_discount_minor : null;
     const usdGhsRate = Number(quote.usd_ghs_rate);
-    if (![ghsMinor, subtotalMinor, shippingMinor, discountMinor].every(Number.isInteger) ||
+    if (![ghsMinor, subtotalMinor, shippingMinor, discountMinor, bulkDiscountMinor, codeDiscountMinor].every(Number.isInteger) ||
+        [discountMinor, bulkDiscountMinor, codeDiscountMinor].some(minor => minor < 0) ||
         !Number.isFinite(usdGhsRate) || usdGhsRate <= 0) {
       throw new Error("The shipping quote did not include a valid server-calculated total.");
     }
@@ -387,8 +395,13 @@ async function requestQuote(payload) {
     };
     addRow("Item subtotal", subtotalMinor);
     addRow("Standard shipping", shippingMinor);
-    if (quote.bulk_discount_applied === true && discountMinor > 0) {
-      addRow("Bulk discount", discountMinor, true);
+    if (bulkDiscountMinor > 0) {
+      addRow("Bulk discount", bulkDiscountMinor, true);
+    }
+    if (codeDiscountMinor > 0) {
+      const codeName = [quote.discount_code_name, quote.code_name]
+        .find(name => typeof name === "string" && name.trim()) || payload.discount_code;
+      addRow("Discount code savings (" + codeName + ")", codeDiscountMinor, true);
     }
 
     document.getElementById("quote-method").textContent = quote.shipping_method || "STANDARD";

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="description" content="Private @TENACIOUS customer administration.">
+  <title>Customer Administration | @TENACIOUS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{color-scheme:dark;--black:#080808;--charcoal:#111;--gold:#c5a059;--white:#f5f3ef;--muted:#a9a59e;--line:rgba(245,243,239,.13);--danger:#ffaaa0;--serif:"Cinzel",Georgia,serif}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--black);color:var(--white);font:400 13px/1.6 "Montserrat",sans-serif;min-height:100vh}
+    a{color:inherit;text-decoration:none}
+    button,input{font:inherit}
+    button{cursor:pointer}
+    [hidden]{display:none!important}
+    .app{min-height:100vh}
+    .sidebar{position:fixed;inset:0 auto 0 0;width:250px;padding:27px 20px;background:#0d0d0d;border-right:1px solid var(--line);z-index:5;display:flex;flex-direction:column}
+    .brand{font-size:13px;font-weight:700;letter-spacing:.23em;padding:3px 12px 35px}.brand span{color:var(--gold)}
+    .side-label{color:#77736d;font-size:9px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;padding:0 12px 10px}
+    .side-link{display:block;color:#c5c0b7;padding:12px;border-left:2px solid transparent;font-size:11px;letter-spacing:.06em}
+    .side-link.active,.side-link:hover{border-left-color:var(--gold);color:var(--gold);background:rgba(197,160,89,.06)}
+    .sidebar-note{margin-top:auto;color:#77736d;font-size:10px;padding:12px;line-height:1.7}
+    .workspace{margin-left:250px;min-height:100vh}
+    .header{height:70px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(20px,4vw,48px);background:#0b0b0b}
+    .header-label{font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:#d9d4ca}
+    .header-actions{display:flex;align-items:center;gap:12px}
+    .header-link{color:var(--muted);font-size:10px;letter-spacing:.08em;text-transform:uppercase}
+    .menu-button{display:none;border:1px solid var(--line);color:var(--white);background:none;width:40px;height:40px}
+    main{max-width:1450px;margin:0 auto;padding:clamp(24px,4vw,48px)}
+    .eyebrow{color:var(--gold);font-size:9px;font-weight:600;letter-spacing:.22em;text-transform:uppercase}
+    h1,h2,h3{font-family:var(--serif);font-weight:400;line-height:1.3}
+    h1{font-size:clamp(28px,4vw,40px);margin:7px 0}
+    h2{font-size:24px;margin:0}
+    h3{font-size:18px;margin:0}
+    .muted{color:var(--muted)}
+    .page-heading{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:25px}
+    .page-heading p{margin:5px 0 0;color:var(--muted)}
+    .stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:26px}
+    .stat{padding:18px;background:var(--charcoal);border:1px solid var(--line);min-width:0}
+    .stat span{display:block;color:var(--muted);font-size:9px;letter-spacing:.12em;text-transform:uppercase}
+    .stat strong{display:block;font-size:22px;font-weight:500;margin-top:8px;overflow-wrap:anywhere}
+    .section{background:var(--charcoal);border:1px solid var(--line);margin-bottom:20px}
+    .section-head{padding:20px 22px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .section-body{padding:20px 22px}
+    .customer-toolbar{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:16px}
+    .search{width:min(440px,100%);height:44px;background:#090909;color:var(--white);border:1px solid #393630;padding:0 13px;outline:none}
+    .search:focus{border-color:var(--gold)}
+    .search::placeholder{color:#77736d}
+    .count{color:var(--muted);font-size:10px;white-space:nowrap}
+    .table-wrap{overflow-x:auto;border:1px solid var(--line)}
+    table{width:100%;border-collapse:collapse;min-width:780px}
+    th,td{text-align:left;padding:13px 14px;border-bottom:1px solid var(--line);vertical-align:middle}
+    th{color:#a7a196;font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;background:#0d0d0d}
+    td{font-size:11px}
+    tbody tr:last-child td{border-bottom:0}
+    tbody tr:hover{background:#171612}
+    .customer-select{color:var(--white);background:none;border:0;padding:0;text-align:left;font-weight:600;overflow-wrap:anywhere}
+    .customer-select:hover{color:var(--gold);text-decoration:underline;text-underline-offset:3px}
+    .tier{color:#e2c990}
+    .pagination{display:flex;align-items:center;justify-content:flex-end;gap:12px;padding-top:16px}
+    .pagination span{color:var(--muted);font-size:10px}
+    .small-button,.action-button{background:none;border:1px solid #49443a;color:var(--white);padding:9px 13px;font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
+    .small-button:hover,.action-button:hover{border-color:var(--gold);color:var(--gold)}
+    .small-button:disabled,.action-button:disabled{opacity:.45;cursor:default}
+    .insights-note{font-size:10px;color:var(--muted);margin:0 0 14px}
+    .insight-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+    .insight-card{padding:15px;background:#0d0d0d;border:1px solid var(--line)}
+    .insight-card strong{display:block;font-size:17px;font-weight:500;margin-bottom:3px}
+    .insight-card span{color:var(--muted);font-size:10px}
+    .detail{scroll-margin-top:20px}
+    .detail-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+    .detail-top p{margin:5px 0 0;color:var(--muted);overflow-wrap:anywhere}
+    .detail-id{font-size:10px;color:var(--muted);overflow-wrap:anywhere}
+    .detail-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px 24px}
+    .detail-item span{display:block;color:var(--muted);font-size:9px;letter-spacing:.1em;text-transform:uppercase}
+    .detail-item strong{display:block;margin-top:4px;font-size:12px;font-weight:500;overflow-wrap:anywhere}
+    .detail-subhead{margin:26px 0 13px;font-size:17px}
+    .empty{padding:32px;text-align:center;border:1px dashed #393630;color:var(--muted)}
+    .status{min-height:22px;color:var(--muted);font-size:11px}
+    .status.error{color:var(--danger)}.status.success{color:#d8c28e}
+    .overlay{position:fixed;inset:0;background:rgba(0,0,0,.76);display:grid;place-items:center;padding:20px;z-index:20}
+    .signin{width:min(430px,100%);padding:32px;background:#121212;border:1px solid rgba(197,160,89,.45);box-shadow:0 20px 80px #000}
+    .signin h2{margin:7px 0 8px}
+    .signin p{color:var(--muted);font-size:11px;margin:0 0 22px}
+    .signin label{display:block;font-size:10px;font-weight:600;letter-spacing:.1em;margin:15px 0 6px}
+    .signin input{width:100%;height:46px;background:#090909;color:var(--white);border:1px solid #393630;padding:0 12px;outline:none}
+    .signin input:focus{border-color:var(--gold)}
+    .action-button{background:var(--gold);color:#111;border-color:var(--gold);width:100%;min-height:45px;margin-top:18px}
+    .action-button:hover{background:#d3b779;color:#111}
+    .signin-status{min-height:20px;margin-top:14px;color:var(--muted);font-size:11px}
+    @media(max-width:1000px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.insight-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.detail-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:760px){.sidebar{width:250px;transform:translateX(-100%);transition:transform .2s ease;box-shadow:16px 0 40px rgba(0,0,0,.45)}.sidebar.open{transform:translateX(0)}.workspace{margin-left:0}.menu-button{display:block}.header{justify-content:flex-start;gap:14px}.header-actions{margin-left:auto}main{padding:24px 16px}.section-head,.section-body{padding:17px}.page-heading{align-items:flex-start;flex-direction:column}}
+    @media(max-width:480px){.stats{gap:8px}.stat{padding:14px}.stat strong{font-size:18px}.customer-toolbar{align-items:flex-start;flex-direction:column}.search{width:100%}.insight-grid{grid-template-columns:1fr 1fr}.detail-grid{grid-template-columns:1fr 1fr}.header-label{font-size:9px}.header-link{font-size:9px}}
+  </style>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar" id="sidebar" aria-label="Admin navigation">
+      <a class="brand" href="index.html"><span>@</span>TENACIOUS</a>
+      <p class="side-label">Administration</p>
+      <a class="side-link active" href="#customers">Customers</a>
+      <a class="side-link" href="#insights">Customer insights</a>
+      <p class="sidebar-note">Private customer information. Keep this dashboard accessible only to authorized staff.</p>
+    </aside>
+    <div class="workspace">
+      <header class="header">
+        <button class="menu-button" id="menu-button" type="button" aria-label="Open admin navigation" aria-expanded="false">☰</button>
+        <span class="header-label">Customer administration</span>
+        <div class="header-actions"><a class="header-link" href="index.html">Return to storefront</a><button class="small-button" id="signout" type="button" hidden>Sign out</button></div>
+      </header>
+      <main>
+        <section class="page-heading">
+          <div><p class="eyebrow">Private workspace</p><h1>Customers</h1><p>Search and review customer accounts and order history.</p></div>
+          <p class="status" id="page-status" role="status" aria-live="polite"></p>
+        </section>
+
+        <section class="stats" aria-label="Customer overview">
+          <div class="stat"><span>Total registered</span><strong id="registered-total">—</strong></div>
+          <div class="stat"><span>Returning customers</span><strong id="returning-total">—</strong></div>
+          <div class="stat"><span>No completed orders</span><strong id="no-orders-total">—</strong></div>
+          <div class="stat"><span>Spend on current page</span><strong id="page-spend">—</strong></div>
+        </section>
+
+        <section class="section" id="customers">
+          <div class="section-head"><h2>Customer directory</h2><span class="count" id="result-count"></span></div>
+          <div class="section-body">
+            <div class="customer-toolbar">
+              <input class="search" id="search" type="search" autocomplete="off" placeholder="Search customer name or email" aria-label="Search customers by name or email">
+              <span class="count" id="page-count"></span>
+            </div>
+            <div class="status" id="list-status" role="status" aria-live="polite"></div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Customer</th><th>Email</th><th>Phone</th><th>Registered</th><th>Orders</th><th>Total spent</th><th>Tier</th></tr></thead>
+                <tbody id="customer-rows"></tbody>
+              </table>
+            </div>
+            <div class="pagination"><button class="small-button" id="previous-page" type="button">Previous</button><span id="pagination-label">Page 1</span><button class="small-button" id="next-page" type="button">Next</button></div>
+          </div>
+        </section>
+
+        <section class="section" id="insights">
+          <div class="section-head"><h2>Customer insights</h2></div>
+          <div class="section-body">
+            <p class="insights-note">Activity breakdowns use the customer records returned for this page; registered total uses the API’s total when provided.</p>
+            <div class="insight-grid" id="insights-grid"><div class="insight-card"><strong>—</strong><span>Insights appear after loading customers.</span></div></div>
+          </div>
+        </section>
+
+        <section class="section detail" id="customer-detail" hidden>
+          <div class="section-head"><div class="detail-top"><div><p class="eyebrow">Selected customer</p><h2 id="detail-name"></h2><p id="detail-email"></p></div><span class="detail-id" id="detail-id"></span></div><button class="small-button" id="close-detail" type="button">Close</button></div>
+          <div class="section-body">
+            <div class="status" id="detail-status" role="status" aria-live="polite"></div>
+            <div class="detail-grid" id="detail-fields"></div>
+            <h3 class="detail-subhead">Order history</h3>
+            <div id="detail-orders"></div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <div class="overlay" id="signin-overlay">
+    <form class="signin" id="signin-form">
+      <p class="eyebrow">Restricted access</p>
+      <h2>Administrator sign in</h2>
+      <p>Enter your administrator API token to access customer records. The token stays in memory for this page only.</p>
+      <label for="admin-token">Administrator API token</label>
+      <input id="admin-token" type="password" autocomplete="off" required>
+      <button class="action-button" id="signin-button" type="submit">Access dashboard</button>
+      <div class="signin-status" id="signin-status" role="status" aria-live="polite"></div>
+    </form>
+  </div>
+  <script src="admin-customers.js" defer></script>
+</body>
+</html>
